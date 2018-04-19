@@ -1,0 +1,107 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
+using System.Reflection;
+
+namespace civox {
+    static class Options {
+        const string PERIOD_LOCATION = "OUTS{0:d4}\\PERIOD{1:d2}\\";
+        const string OUTPUT_LOCATION = "OUTPUT\\";
+
+        static string baseDirectory;
+        static string lpuLocation;
+        static string outputLocation;
+        static string lpuCode;
+        static string fomsCode;
+        static int year;
+        static int month;
+        static string periodLocation;
+        static Data.IDataProvider provider;
+
+        /// <summary>
+        /// This application's binary location
+        /// </summary>
+        public static string BaseDirectory { get { return baseDirectory; } }
+
+        /// <summary>
+        /// Relax location
+        /// </summary>
+        public static string LpuLocation { get { return lpuLocation; } }
+
+        /// <summary>
+        /// Relax output location
+        /// </summary>
+        public static string OutputLocation { get { return outputLocation; } }
+
+        /// <summary>
+        /// Clinic code (270019)
+        /// </summary>
+        public static string LpuCode { get { return lpuCode; } }
+
+        /// <summary>
+        /// Territory FOMS code (27)
+        /// </summary>
+        public static string FomsCode { get { return fomsCode; } }
+
+        /// <summary>
+        /// Report year
+        /// </summary>
+        public static int Year { get { return year; } }
+
+        /// <summary>
+        /// Report month
+        /// </summary>
+        public static int Month { get { return month; } }
+
+        /// <summary>
+        /// Relax database path for the period to export
+        /// </summary>
+        public static string PeriodLocation { get { return periodLocation; } }
+
+        /// <summary>
+        /// Data provider
+        /// </summary>
+        public static Data.IDataProvider DataProvider { get { return provider; } }
+
+        /// <summary>
+        /// Load application options
+        /// </summary>
+        /// <param name="args">Command line parameters</param>
+        public static void Init(string[] args) {
+            Assembly asm = Assembly.GetEntryAssembly();
+            if (asm != null)
+                baseDirectory = Path.GetDirectoryName(asm.Location);
+            else
+                baseDirectory = Directory.GetCurrentDirectory(); 
+            
+            lpuLocation = Properties.Settings.Default.LpuLocation.Trim();
+            if (!lpuLocation.EndsWith("\\")) lpuLocation += '\\';
+            outputLocation = lpuLocation + OUTPUT_LOCATION;
+
+            lpuCode = Properties.Settings.Default.LpuCode;
+            fomsCode = Properties.Settings.Default.FomsCode;
+
+            // Default period - previous month
+            DateTime date = DateTime.Today.AddMonths(-1);
+            year = date.Year;
+            month = date.Month;
+
+            if (args.Length > 0) {
+                int yy, mm;
+                string m = args[0];
+                if (m.Length == 6) {
+                    string y = m.Substring(0, m.Length - 2);
+                    if (int.TryParse(y, out yy) && yy > 2000 && yy < 2100) year = yy;
+                    m = m.Substring(4);
+                }
+                if (int.TryParse(m, out mm) && mm > 0 && mm < 13) month = mm;
+            }
+
+            periodLocation = string.Format(PERIOD_LOCATION, year, month);
+            provider = new Data.Relax.Provider(lpuLocation);
+        }
+
+    }
+}

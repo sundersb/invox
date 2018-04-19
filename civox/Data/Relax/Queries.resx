@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SELECT_CASE_TREAT" xml:space="preserve">
+    <value>select
+  S.RECID,
+  S.D_U,
+  S.COD,
+  S.C_I,
+  S.K_U,
+  S.S_ALL,
+  S.D_TYPE,
+  S.TN1,
+  BE,
+  ST_U,
+  USL
+ from {period}S2101003 S
+ where (S.SN_POL = ?)
+  and (S.OTD = '0001')
+  and (S.DS = ?)</value>
+    <comment>Обращение с лечебной целью</comment>
+  </data>
+  <data name="SELECT_INVOICE_RECS" xml:space="preserve">
+    <value>select distinct top 100
+  P.RECID,
+  P.T_POL,
+  P.SN_POL,
+  P.Q,
+  P.NOVOR
+ from {period}P2101003 P
+  join {period}S2101003 S on S.SN_POL = P.SN_POL
+ order by P.RECID</value>
+  </data>
+  <data name="SELECT_PEOPLE" xml:space="preserve">
+    <value>select distinct top 20
+  P.RECID,
+  cpconvert(866, 1251, P.FAM) FAM,
+  cpconvert(866, 1251, P.IM) IM,
+  cpconvert(866, 1251, P.OT) OT,
+  P.W,
+  P.DR,
+  P.SS,
+  P.SP,
+  cpconvert(866, 1251, P.SN_POL) SN_POL,
+  cpconvert(866, 1251, P.ADRES) ADRES
+ from {period}P2101003 P
+  join {period}S2101003 S on S.SN_POL = P.SN_POL
+ order by P.RECID</value>
+  </data>
+  <data name="SELECT_RECOURSE_CASES" xml:space="preserve">
+    <value>select distinct
+  OTD,
+  icase(OTD = '0001', 1,
+   OTD = '0003', iif(COD = 3001 or COD = 3034, 2, 3),
+   OTD = '0004', iif(COD = 50002 or COD = 50001 or floor(COD / 10000) = 6, 4, 5),
+   OTD = '0005', 6,
+   OTD = '0009', icase(floor(COD / 1000) = 27, 7, floor(COD / 1000) = 25 or floor(COD / 1000) = 28, 9, 8),
+   0) REASON,
+  DS
+ from {period}S2101003
+ where SN_POL = cpconvert(1251, 866, ?)
+ order by 1, 2</value>
+    <comment>Случаи обращения. NB: В одну запись могут попасть два случая обращения, если одинаковый диагноз и REASON</comment>
+  </data>
+  <data name="SELECT_TOTAL_TO_PAY" xml:space="preserve">
+    <value>select sum(S_ALL) TOTAL from {period}S2101003</value>
+    <comment>Предьявить к оплате</comment>
+  </data>
+</root>
