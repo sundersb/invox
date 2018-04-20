@@ -9,5 +9,6 @@ namespace civox.Model {
         public string Diagnosis;
         public bool FirstRevealed;
         public string Department;
+        public string Condition;
     }
 }

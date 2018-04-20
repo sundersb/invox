@@ -9,7 +9,8 @@ namespace civox.Data.Relax {
             Model.Recourse result = new Model.Recourse() {
                 Reason = (Model.Reason)(int)(decimal) reader["REASON"],
                 Diagnosis = ReadString(reader["DS"]),
-                Department = ReadString(reader["OTD"])
+                Department = ReadString(reader["OTD"]),
+                Condition = Dict.LocalCondition.FromLocal(ReadString(reader["COND"]))
             };
             int fr = ReadInt(reader["F"]);
             // DIAGNOZIS.F:

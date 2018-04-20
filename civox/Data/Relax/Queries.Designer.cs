@@ -133,10 +133,10 @@ namespace civox.Data.Relax {
         ///   S.OTD = &apos;0009&apos;, icase(floor(S.COD / 1000) = 27, 7, floor(S.COD / 1000) = 25 or floor(COD / 1000) = 28, 9, 8),
         ///   0) REASON,
         ///  S.DS,
-        ///  D.F
+        ///  D.F,
+        ///  USL.CODE COND
         /// from {period}S2101003 S
-        ///  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGIN = S.DS)
-        /// where  [остаток строки не уместился]&quot;;.
+        ///  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGI [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_RECOURSE_CASES {
             get {

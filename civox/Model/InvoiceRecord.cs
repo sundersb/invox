@@ -112,7 +112,10 @@ namespace civox.Model {
             xml.Writer.WriteStartElement("SLUCH");
 
             xml.Writer.WriteElementString("IDSERV", marks.Resulting.ID.ToString());
-            xml.Writer.WriteElementString("USL_OK", "1");  // Условия оказания МП - Амбулаторая
+
+            // V006 Условия оказания МП
+            xml.Writer.WriteElementString("USL_OK", rec.Condition);  // Условия оказания МП - Амбулаторая
+
             xml.Writer.WriteElementString("VIDPOM", "1");  // Вид - Первичная МСП
             xml.Writer.WriteElementString("FOR_POM", "3"); // Форма - Плановая
 
@@ -145,8 +148,10 @@ namespace civox.Model {
             if (rec.FirstRevealed)
                 xml.Writer.WriteElementString("DS1_PR", "1");
 
-            xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);     // V009
+            // V009
+            xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
             xml.Writer.WriteElementString("RSLT_D", string.Empty);         // TODO: 
+
             xml.Writer.WriteElementString("ISHOD", string.Empty);        // TODO: Исход заболевания V012
             xml.Writer.WriteElementString("PRVS", string.Empty);         // TODO: Специальность врача V015
             xml.Writer.WriteElementString("VERS_SPEC", "V015");          // Имя справочника специальностей
