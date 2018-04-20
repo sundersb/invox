@@ -57,6 +57,7 @@
       <DependentUpon>Queries.resx</DependentUpon>
     </Compile>
     <Compile Include="Dict\Helper.cs" />
+    <Compile Include="Dict\LocalAidKind.cs" />
     <Compile Include="Dict\LocalRezobr.cs" />
     <Compile Include="Model\Reason.cs" />
     <Compile Include="Data\Relax\RepoInvoice.cs" />
@@ -100,6 +101,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Dict\V002-SLMSP.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dict\V009-BE.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
