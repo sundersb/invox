@@ -122,7 +122,13 @@ namespace civox.Model {
             xml.Writer.WriteElementString("VBR", string.Empty);                // Выездная бригада - нет
 
             xml.Writer.WriteElementString("PROFIL", "0");             // TODO: Профиль V002
-            xml.Writer.WriteElementString("DET", string.Empty);             // TODO: Детский
+
+            // Педиатрический профиль
+            if (Options.Pediatric)
+                xml.Writer.WriteElementString("DET", "1");
+            else
+                xml.Writer.WriteElementString("DET", string.Empty);
+            
             xml.Writer.WriteElementString("TAL_D", string.Empty);           // Дата талона ВМП
             xml.Writer.WriteElementString("TAL_P", string.Empty);           // Дата запланир. госпит.
             xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);  // TODO: Номер амб карты/истории болезни

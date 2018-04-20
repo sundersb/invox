@@ -14,5 +14,8 @@
     <Setting Name="OKATO" Type="System.String" Scope="User">
       <Value Profile="(Default)">8000</Value>
     </Setting>
+    <Setting Name="Pediatric" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

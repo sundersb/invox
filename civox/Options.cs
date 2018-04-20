@@ -16,6 +16,7 @@ namespace civox {
         static string outputLocation;
         static string lpuCode;
         static string fomsCode;
+        static bool pediatric;
         static int year;
         static int month;
         static string periodLocation;
@@ -50,6 +51,11 @@ namespace civox {
         /// Territory FOMS code (27)
         /// </summary>
         public static string FomsCode { get { return fomsCode; } }
+
+        /// <summary>
+        /// This is pediatric clinic
+        /// </summary>
+        public static bool Pediatric { get { return pediatric; } }
 
         /// <summary>
         /// Report year
@@ -88,6 +94,7 @@ namespace civox {
 
             lpuCode = Properties.Settings.Default.LpuCode;
             fomsCode = Properties.Settings.Default.FomsCode;
+            pediatric = Properties.Settings.Default.Pediatric;
 
             // Default period - previous month
             DateTime date = DateTime.Today.AddMonths(-1);
