@@ -11,5 +11,8 @@
     <Setting Name="FomsCode" Type="System.String" Scope="User">
       <Value Profile="(Default)">27</Value>
     </Setting>
+    <Setting Name="OKATO" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -9,8 +9,6 @@ namespace civox.Model {
     /// Implements ZAP record of the invoice file
     /// </summary>
     class InvoiceRecord : Model {
-        const string LOCAL_OKATO = "8000";
-
         int number;
 
         // Original SN_POL value
@@ -78,7 +76,7 @@ namespace civox.Model {
             xml.Writer.WriteElementString("VPOLIS", PolicyKind.ToString());
             WriteIfValid("SPOLIS", PolicySerial, xml);
             xml.Writer.WriteElementString("NPOLIS", PolicyNumber);
-            xml.Writer.WriteElementString("OKATO", LOCAL_OKATO);
+            xml.Writer.WriteElementString("OKATO", Options.OKATO);
             xml.Writer.WriteElementString("SMO", SmoCode);
             WriteBool("NOVOR", IsNewborn, xml);
             xml.Writer.WriteEndElement();

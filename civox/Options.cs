@@ -11,6 +11,7 @@ namespace civox {
         const string OUTPUT_LOCATION = "OUTPUT\\";
 
         static string baseDirectory;
+        static string okato;
         static string lpuLocation;
         static string outputLocation;
         static string lpuCode;
@@ -24,6 +25,11 @@ namespace civox {
         /// This application's binary location
         /// </summary>
         public static string BaseDirectory { get { return baseDirectory; } }
+
+        /// <summary>
+        /// LPU OKATO code
+        /// </summary>
+        public static string OKATO { get { return okato; } }
 
         /// <summary>
         /// Relax location

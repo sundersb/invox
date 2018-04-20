@@ -58,5 +58,17 @@ namespace civox.Properties {
                 this["FomsCode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8000")]
+        public string OKATO {
+            get {
+                return ((string)(this["OKATO"]));
+            }
+            set {
+                this["OKATO"] = value;
+            }
+        }
     }
 }
