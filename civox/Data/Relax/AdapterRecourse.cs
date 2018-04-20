@@ -20,6 +20,10 @@ namespace civox.Data.Relax {
             // 4 - Хроническое, выявленное ранее
             // 5 - Д-учет
             result.FirstRevealed = fr == 2 || fr == 3;
+
+            string ig = ReadString(reader["IG"]);
+            result.Outcome = Dict.LocalOutcome.FromLocal(result.Condition, ig);
+
             return result;
         }
     }

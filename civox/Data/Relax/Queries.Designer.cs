@@ -134,9 +134,10 @@ namespace civox.Data.Relax {
         ///   0) REASON,
         ///  S.DS,
         ///  D.F,
-        ///  USL.CODE COND
+        ///  USL.CODE COND,
+        ///  S.IG
         /// from {period}S2101003 S
-        ///  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGI [остаток строки не уместился]&quot;;.
+        ///  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_RECOURSE_CASES {
             get {

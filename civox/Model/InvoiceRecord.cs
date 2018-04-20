@@ -152,7 +152,7 @@ namespace civox.Model {
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
             xml.Writer.WriteElementString("RSLT_D", string.Empty);         // TODO: 
 
-            xml.Writer.WriteElementString("ISHOD", string.Empty);        // TODO: Исход заболевания V012
+            xml.Writer.WriteElementString("ISHOD", rec.Outcome);         // TODO: Исход заболевания V012
             xml.Writer.WriteElementString("PRVS", string.Empty);         // TODO: Специальность врача V015
             xml.Writer.WriteElementString("VERS_SPEC", "V015");          // Имя справочника специальностей
 
@@ -186,8 +186,11 @@ namespace civox.Model {
                 xml.Writer.WriteElementString("PODR", rec.Department);
                 xml.Writer.WriteElementString("PROFIL", s.AidProfile);
 
-                //PROFIL		Профиль МП. Классификатор V002 Приложения А
-                //DET		Принак детского профиля. 0 - нет, 1 - да
+                if (Options.Pediatric)
+                    xml.Writer.WriteElementString("DET", "1");
+                else
+                    xml.Writer.WriteElementString("DET", string.Empty);
+                
                 xml.Writer.WriteElementString("DATE_IN", s.Date.AsXml());
                 xml.Writer.WriteElementString("DATE_OUT", s.Date.AsXml());
                 xml.Writer.WriteElementString("DS", rec.Diagnosis);

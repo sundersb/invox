@@ -174,7 +174,8 @@
    0) REASON,
   S.DS,
   D.F,
-  USL.CODE COND
+  USL.CODE COND,
+  S.IG
  from {period}S2101003 S
   left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGIN = S.DS)
   left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
