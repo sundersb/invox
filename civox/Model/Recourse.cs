@@ -7,6 +7,7 @@ namespace civox.Model {
     class Recourse {
         public Reason Reason;
         public string Diagnosis;
+        public bool FirstRevealed;
         public string Department;
     }
 }

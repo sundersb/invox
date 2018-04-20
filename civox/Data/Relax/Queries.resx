@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="SELECT_CASE_TREAT" xml:space="preserve">
-    <value>select
+    <value>select distinct
   S.RECID,
   S.D_U,
   S.COD,
@@ -127,9 +127,7 @@
   S.S_ALL,
   S.D_TYPE,
   S.TN1,
-  BE,
-  ST_U,
-  USL
+  S.BE
  from {period}S2101003 S
  where (S.SN_POL = ?)
   and (S.OTD = '0001')
@@ -165,16 +163,18 @@
   </data>
   <data name="SELECT_RECOURSE_CASES" xml:space="preserve">
     <value>select distinct
-  OTD,
-  icase(OTD = '0001', 1,
-   OTD = '0003', iif(COD = 3001 or COD = 3034, 2, 3),
-   OTD = '0004', iif(COD = 50002 or COD = 50001 or floor(COD / 10000) = 6, 4, 5),
-   OTD = '0005', 6,
-   OTD = '0009', icase(floor(COD / 1000) = 27, 7, floor(COD / 1000) = 25 or floor(COD / 1000) = 28, 9, 8),
+  S.OTD,
+  icase(S.OTD = '0001', 1,
+   S.OTD = '0003', iif(S.COD = 3001 or S.COD = 3034, 2, 3),
+   S.OTD = '0004', iif(S.COD = 50002 or S.COD = 50001 or floor(S.COD / 10000) = 6, 4, 5),
+   S.OTD = '0005', 6,
+   S.OTD = '0009', icase(floor(S.COD / 1000) = 27, 7, floor(S.COD / 1000) = 25 or floor(COD / 1000) = 28, 9, 8),
    0) REASON,
-  DS
- from {period}S2101003
- where SN_POL = cpconvert(1251, 866, ?)
+  S.DS,
+  D.F
+ from {period}S2101003 S
+  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGIN = S.DS)
+ where S.SN_POL = cpconvert(1251, 866, ?)
  order by 1, 2</value>
     <comment>Случаи обращения. NB: В одну запись могут попасть два случая обращения, если одинаковый диагноз и REASON</comment>
   </data>

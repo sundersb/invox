@@ -133,31 +133,10 @@ namespace civox.Model {
             xml.Writer.WriteElementString("DATE_1", marks.First.Date.AsXml());
             xml.Writer.WriteElementString("DATE_2", marks.Last.Date.AsXml());
             xml.Writer.WriteElementString("DS1", rec.Diagnosis);
-            // DIAGNOZ.F
-            //ILLNESS_KIND_SKIP = 1;
-            //ILLNESS_KIND_ACUTE = 2;
-            //ILLNESS_KIND_MANIFEST = 3;
-            //ILLNESS_KIND_CHRONICAL = 4;
-            //ILLNESS_KIND_DISP = 5;
-
- //           select
- // S.RECID,
- // S.D_U,
- // S.COD,
- // S.C_I,
- // S.K_U,
- // S.S_ALL,
- // S.D_TYPE,
- // S.TN1,
- // S.BE,
- // D.F,
- // ST_U
- //from S2101003 S
- // left outer join DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGIN = S.DS)
- //where (S.SN_POL = '27 75260823000038')
- // and (S.OTD = '0001')
- // and (S.DS = 'H40.1')
-            xml.Writer.WriteElementString("DS1_PR", string.Empty);         // TODO: диагноз первичный
+            
+            // Диагноз первичный
+            if (rec.FirstRevealed)
+                xml.Writer.WriteElementString("DS1_PR", "1");
 
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);     // V009
             xml.Writer.WriteElementString("RSLT_D", string.Empty);         // TODO: 
@@ -168,8 +147,8 @@ namespace civox.Model {
             xml.Writer.WriteElementString("IDDOKT", ss.OrderBy(s => s.Date).Last().DoctorCode);
 
             // TODO: Список особых случаев from D_TYPE
-            foreach (Service s in ss.Where(s => !string.IsNullOrEmpty(s.SpecialCase)))
-                xml.Writer.WriteElementString("OS_SLUCH", s.SpecialCase);
+            foreach (string sc in ss.Select(s => s.SpecialCase).Where(s => !string.IsNullOrEmpty(s)).Distinct())
+                xml.Writer.WriteElementString("OS_SLUCH", sc);
 
             xml.Writer.WriteElementString("IDSP", string.Empty);         // TODO: Способ оплаты V010
             xml.Writer.WriteElementString("ED_COL", "1");                // К-во единиц оплаты

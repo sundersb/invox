@@ -11,6 +11,14 @@ namespace civox.Data.Relax {
                 Diagnosis = ReadString(reader["DS"]),
                 Department = ReadString(reader["OTD"])
             };
+            int fr = ReadInt(reader["F"]);
+            // DIAGNOZIS.F:
+            // 1 - Прочее
+            // 2 - Острое
+            // 3 - Хроническое, впервые выявленное
+            // 4 - Хроническое, выявленное ранее
+            // 5 - Д-учет
+            result.FirstRevealed = fr == 2 || fr == 3;
             return result;
         }
     }

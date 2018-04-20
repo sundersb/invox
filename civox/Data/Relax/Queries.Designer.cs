@@ -61,7 +61,7 @@ namespace civox.Data.Relax {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select
+        ///   Ищет локализованную строку, похожую на select distinct
         ///  S.RECID,
         ///  S.D_U,
         ///  S.COD,
@@ -70,9 +70,7 @@ namespace civox.Data.Relax {
         ///  S.S_ALL,
         ///  S.D_TYPE,
         ///  S.TN1,
-        ///  BE,
-        ///  ST_U,
-        ///  USL
+        ///  S.BE
         /// from {period}S2101003 S
         /// where (S.SN_POL = ?)
         ///  and (S.OTD = &apos;0001&apos;)
@@ -125,17 +123,18 @@ namespace civox.Data.Relax {
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на select distinct
-        ///  OTD,
-        ///  icase(OTD = &apos;0001&apos;, 1,
-        ///   OTD = &apos;0003&apos;, iif(COD = 3001 or COD = 3034, 2, 3),
-        ///   OTD = &apos;0004&apos;, iif(COD = 50002 or COD = 50001 or floor(COD / 10000) = 6, 4, 5),
-        ///   OTD = &apos;0005&apos;, 6,
-        ///   OTD = &apos;0009&apos;, icase(floor(COD / 1000) = 27, 7, floor(COD / 1000) = 25 or floor(COD / 1000) = 28, 9, 8),
+        ///  S.OTD,
+        ///  icase(S.OTD = &apos;0001&apos;, 1,
+        ///   S.OTD = &apos;0003&apos;, iif(S.COD = 3001 or S.COD = 3034, 2, 3),
+        ///   S.OTD = &apos;0004&apos;, iif(S.COD = 50002 or S.COD = 50001 or floor(S.COD / 10000) = 6, 4, 5),
+        ///   S.OTD = &apos;0005&apos;, 6,
+        ///   S.OTD = &apos;0009&apos;, icase(floor(S.COD / 1000) = 27, 7, floor(S.COD / 1000) = 25 or floor(COD / 1000) = 28, 9, 8),
         ///   0) REASON,
-        ///  DS
-        /// from {period}S2101003
-        /// where SN_POL = cpconvert(1251, 866, ?)
-        /// order by 1, 2.
+        ///  S.DS,
+        ///  D.F
+        /// from {period}S2101003 S
+        ///  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGIN = S.DS)
+        /// where  [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_RECOURSE_CASES {
             get {

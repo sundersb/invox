@@ -5,10 +5,11 @@ using System.Text;
 
 namespace civox.Model {
     class Service {
-        const int[] DISP_I_CODES = { 22, 24, 29 };
-        const int[] DISP_II_CODES = { 25, 28 };
-        const int[] DISP_I_START_CODES = { 24001, 24003 };
-        const int[] DISP_I_RESULT_CODES = { 22, 29 };
+        // TODO: Dispanserisation once in two years
+        static int[] DISP_I_CODES = { 22, 24, 29 };
+        static int[] DISP_II_CODES = { 25, 28 };
+        static int[] DISP_I_START_CODES = { 24001, 24003 };
+        static int[] DISP_I_RESULT_CODES = { 22, 29 };
         const int DISP_II_RESULT_CODE = 28;
         const int RECOURSE_RESULT_CODE = 50;
 
@@ -29,8 +30,6 @@ namespace civox.Model {
         public static RecourseLandmarks ArrangeServices(List<Service> services) {
             if (services == null) return null;
             RecourseLandmarks result = new RecourseLandmarks();
-
-            //services.FirstOrDefault(s => DISP_I_CODES.Contains(s.ServiceCode / 1000));
 
             if (services.Any(s => DISP_I_CODES.Contains(s.ServiceCode / 1000))) {
                 // Dispanserisation I stage

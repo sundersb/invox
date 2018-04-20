@@ -13,10 +13,12 @@ namespace civox.Data.Relax {
                 CardNumber = ReadString(reader["C_I"]),
                 Quantity = (int)(decimal)reader["K_U"],
                 Price = (decimal) reader["S_ALL"],
-                SpecialCase = ReadString(reader["D_TYPE"]),
                 DoctorCode = ReadString(reader["TN1"]),
                 ResultCode = Dict.LocalRezobr.FromLocal(ReadString(reader["BE"]))
             };
+            string sc = ReadString(reader["D_TYPE"]);
+            if (!string.IsNullOrEmpty(sc) && sc != "0")
+                result.SpecialCase = sc;
             return result;
         }
     }
