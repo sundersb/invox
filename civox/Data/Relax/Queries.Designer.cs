@@ -70,8 +70,10 @@ namespace civox.Data.Relax {
         ///  S.S_ALL,
         ///  S.D_TYPE,
         ///  S.TN1,
-        ///  S.BE
+        ///  S.BE,
+        ///  K.MSP
         /// from {period}S2101003 S
+        ///  left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
         /// where (S.SN_POL = ?)
         ///  and (S.OTD = &apos;0001&apos;)
         ///  and (S.DS = ?).

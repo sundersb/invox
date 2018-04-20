@@ -22,6 +22,7 @@ namespace civox.Model {
         public string SpecialCase;
         public string DoctorCode;
         public string ResultCode; // V009
+        public string AidKind;    // V002
 
         /// <summary>
         /// Mark relevant services as resulting, first or last

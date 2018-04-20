@@ -121,7 +121,7 @@ namespace civox.Model {
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
             xml.Writer.WriteElementString("VBR", string.Empty);                // Выездная бригада - нет
 
-            xml.Writer.WriteElementString("PROFIL", "0");             // TODO: Профиль V002
+            xml.Writer.WriteElementString("PROFIL", marks.Last.AidKind);       // Профиль МП V002
 
             // Педиатрический профиль
             if (Options.Pediatric)
@@ -131,7 +131,10 @@ namespace civox.Model {
             
             xml.Writer.WriteElementString("TAL_D", string.Empty);           // Дата талона ВМП
             xml.Writer.WriteElementString("TAL_P", string.Empty);           // Дата запланир. госпит.
-            xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);  // TODO: Номер амб карты/истории болезни
+
+            // Номер амб карты/истории болезни
+            xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
+
             xml.Writer.WriteElementString("P_OTK", string.Empty);           // Признак отказа
 
             xml.Writer.WriteElementString("DATE_1", marks.First.Date.AsXml());
