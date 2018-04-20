@@ -15,7 +15,7 @@ namespace civox.Data.Relax {
                 Price = (decimal) reader["S_ALL"],
                 DoctorCode = ReadString(reader["TN1"]),
                 ResultCode = Dict.LocalRezobr.FromLocal(ReadString(reader["BE"])),
-                AidKind = Dict.LocalAidKind.FromLocal(ReadString(reader["MSP"]))
+                AidProfile = Dict.LocalAidKind.FromLocal(ReadString(reader["MSP"]))
             };
             string sc = ReadString(reader["D_TYPE"]);
             if (!string.IsNullOrEmpty(sc) && sc != "0")

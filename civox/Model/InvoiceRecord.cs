@@ -112,8 +112,8 @@ namespace civox.Model {
             xml.Writer.WriteStartElement("SLUCH");
 
             xml.Writer.WriteElementString("IDSERV", marks.Resulting.ID.ToString());
-            xml.Writer.WriteElementString("USL_OK", "1"); // Условия оказания МП - Амбулаторая
-            xml.Writer.WriteElementString("VIDPOM", "1"); // Вид - Первичная МСП
+            xml.Writer.WriteElementString("USL_OK", "1");  // Условия оказания МП - Амбулаторая
+            xml.Writer.WriteElementString("VIDPOM", "1");  // Вид - Первичная МСП
             xml.Writer.WriteElementString("FOR_POM", "3"); // Форма - Плановая
 
             xml.Writer.WriteElementString("VID_HMP", string.Empty);   // Вид ВМП - нет
@@ -121,7 +121,7 @@ namespace civox.Model {
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
             xml.Writer.WriteElementString("VBR", string.Empty);                // Выездная бригада - нет
 
-            xml.Writer.WriteElementString("PROFIL", marks.Last.AidKind);       // Профиль МП V002
+            xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile);       // Профиль МП V002
 
             // Педиатрический профиль
             if (Options.Pediatric)
@@ -179,6 +179,7 @@ namespace civox.Model {
                 xml.Writer.WriteElementString("IDSERV", s.ID.ToString());
                 xml.Writer.WriteElementString("LPU", Options.LpuCode);
                 xml.Writer.WriteElementString("PODR", rec.Department);
+                xml.Writer.WriteElementString("PROFIL", s.AidProfile);
 
                 //PROFIL		Профиль МП. Классификатор V002 Приложения А
                 //DET		Принак детского профиля. 0 - нет, 1 - да
