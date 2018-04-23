@@ -116,29 +116,26 @@ namespace civox.Model {
             // V006 Условия оказания МП
             xml.Writer.WriteElementString("USL_OK", rec.Condition);
 
-            xml.Writer.WriteElementString("VIDPOM", "1");  // Вид - Первичная МСП
-            xml.Writer.WriteElementString("FOR_POM", "3"); // Форма - Плановая
+            xml.Writer.WriteElementString("VIDPOM", "1");                      // Вид - Первичная МСП
+            xml.Writer.WriteElementString("FOR_POM", "3");                     // Форма - Плановая
 
-            xml.Writer.WriteElementString("VID_HMP", string.Empty);   // Вид ВМП - нет
-            xml.Writer.WriteElementString("METOD_HMP", string.Empty); // Метод ВМП - нет
+            xml.Writer.WriteElementString("VID_HMP", string.Empty);            // Вид ВМП - нет
+            xml.Writer.WriteElementString("METOD_HMP", string.Empty);          // Метод ВМП - нет
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
             xml.Writer.WriteElementString("VBR", string.Empty);                // Выездная бригада - нет
 
-            xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile);       // Профиль МП V002
+            xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile);    // Профиль МП V002
 
             // Педиатрический профиль
-            if (Options.Pediatric)
-                xml.Writer.WriteElementString("DET", "1");
-            else
-                xml.Writer.WriteElementString("DET", string.Empty);
-            
-            xml.Writer.WriteElementString("TAL_D", string.Empty);           // Дата талона ВМП
-            xml.Writer.WriteElementString("TAL_P", string.Empty);           // Дата запланир. госпит.
+            WriteBool("DET", Options.Pediatric, xml);
+                        
+            xml.Writer.WriteElementString("TAL_D", string.Empty);              // Дата талона ВМП
+            xml.Writer.WriteElementString("TAL_P", string.Empty);              // Дата запланир. госпит.
 
             // Номер амб карты/истории болезни
             xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
 
-            xml.Writer.WriteElementString("P_OTK", string.Empty);           // Признак отказа
+            xml.Writer.WriteElementString("P_OTK", string.Empty);              // Признак отказа
 
             xml.Writer.WriteElementString("DATE_1", marks.First.Date.AsXml());
             xml.Writer.WriteElementString("DATE_2", marks.Last.Date.AsXml());
@@ -150,13 +147,13 @@ namespace civox.Model {
 
             // V009
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
-            xml.Writer.WriteElementString("RSLT_D", string.Empty);         // TODO: 
+            xml.Writer.WriteElementString("RSLT_D", string.Empty);             // TODO: 
 
             // Исход заболевания V012
             xml.Writer.WriteElementString("ISHOD", rec.Outcome);
 
-            xml.Writer.WriteElementString("PRVS", string.Empty);         // TODO: Специальность врача V015
-            xml.Writer.WriteElementString("VERS_SPEC", "V015");          // Имя справочника специальностей
+            xml.Writer.WriteElementString("PRVS", string.Empty);               // TODO: Специальность врача V015
+            xml.Writer.WriteElementString("VERS_SPEC", "V015");                // Имя справочника специальностей
 
             xml.Writer.WriteElementString("IDDOKT", ss.OrderBy(s => s.Date).Last().DoctorCode);
 
@@ -164,8 +161,8 @@ namespace civox.Model {
             foreach (string sc in ss.Select(s => s.SpecialCase).Where(s => !string.IsNullOrEmpty(s)).Distinct())
                 xml.Writer.WriteElementString("OS_SLUCH", sc);
 
-            xml.Writer.WriteElementString("IDSP", string.Empty);         // TODO: Способ оплаты V010
-            xml.Writer.WriteElementString("ED_COL", "1");                // К-во единиц оплаты
+            xml.Writer.WriteElementString("IDSP", string.Empty);               // TODO: Способ оплаты V010
+            xml.Writer.WriteElementString("ED_COL", "1");                      // К-во единиц оплаты
 
             // TODO: Цель обращения кроме лечебной
             if (marks.Resulting.ServiceCode % 2 == 0)
@@ -179,7 +176,7 @@ namespace civox.Model {
             // TODO: Сумма к оплате - запятую на точку
             xml.Writer.WriteElementString("SUMV", string.Format("{0:f2}", ss.Sum(s => s.Price)));
 
-            xml.Writer.WriteElementString("OPLATA", "1");                // Оплата - 1 - полная
+            xml.Writer.WriteElementString("OPLATA", "1");                      // Оплата - 1 - полная
 
             foreach (Service s in ss) {
                 xml.Writer.WriteStartElement("USL");
@@ -188,21 +185,18 @@ namespace civox.Model {
                 xml.Writer.WriteElementString("PODR", rec.Department);
                 xml.Writer.WriteElementString("PROFIL", s.AidProfile);
 
-                if (Options.Pediatric)
-                    xml.Writer.WriteElementString("DET", "1");
-                else
-                    xml.Writer.WriteElementString("DET", string.Empty);
+                WriteBool("DET", Options.Pediatric, xml);
                 
                 xml.Writer.WriteElementString("DATE_IN", s.Date.AsXml());
                 xml.Writer.WriteElementString("DATE_OUT", s.Date.AsXml());
                 xml.Writer.WriteElementString("DS", rec.Diagnosis);
-                xml.Writer.WriteElementString("P_OTK", string.Empty);            // Признак отказа
+                xml.Writer.WriteElementString("P_OTK", string.Empty);          // Признак отказа
                 xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString()); // Код услуги
                 xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString()); // Кратность услуги
-                xml.Writer.WriteElementString("TARIF", string.Empty);            // TODO:
+                xml.Writer.WriteElementString("TARIF", string.Empty);          // TODO:
                 xml.Writer.WriteElementString("SUMV_USL", string.Format("{0:f2}", s.Price));
-                xml.Writer.WriteElementString("PRVS", string.Empty);         // TODO: Специальность врача V015
-                xml.Writer.WriteElementString("CODE_MD", s.DoctorCode);          // Код медицинского работника
+                xml.Writer.WriteElementString("PRVS", string.Empty);           // TODO: Специальность врача V015
+                xml.Writer.WriteElementString("CODE_MD", s.DoctorCode);        // Код медицинского работника
 
                 xml.Writer.WriteEndElement();
             }
