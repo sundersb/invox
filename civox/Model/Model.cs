@@ -26,10 +26,7 @@ namespace civox.Model {
         }
 
         protected void WriteBool(string node, bool value, Lib.XmlExporter xml) {
-            if (value)
-                xml.Writer.WriteElementString(node, "1");
-            else
-                xml.Writer.WriteElementString(node, "0");
+            xml.Writer.WriteElementString(node, value ? "1" : "0");
         }
     }
 }
