@@ -152,7 +152,8 @@ namespace civox.Model {
             // Исход заболевания V012
             xml.Writer.WriteElementString("ISHOD", rec.Outcome);
 
-            xml.Writer.WriteElementString("PRVS", string.Empty);               // TODO: Специальность врача V015
+            // Специальность врача V015
+            xml.Writer.WriteElementString("PRVS", marks.Resulting.DoctorProfile);
             xml.Writer.WriteElementString("VERS_SPEC", "V015");                // Имя справочника специальностей
 
             xml.Writer.WriteElementString("IDDOKT", ss.OrderBy(s => s.Date).Last().DoctorCode);
@@ -195,7 +196,7 @@ namespace civox.Model {
                 xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString()); // Кратность услуги
                 xml.Writer.WriteElementString("TARIF", string.Empty);          // TODO:
                 xml.Writer.WriteElementString("SUMV_USL", string.Format("{0:f2}", s.Price));
-                xml.Writer.WriteElementString("PRVS", string.Empty);           // TODO: Специальность врача V015
+                xml.Writer.WriteElementString("PRVS", s.DoctorProfile);        // Специальность врача V015
                 xml.Writer.WriteElementString("CODE_MD", s.DoctorCode);        // Код медицинского работника
 
                 xml.Writer.WriteEndElement();

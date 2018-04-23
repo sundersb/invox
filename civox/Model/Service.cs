@@ -21,9 +21,9 @@ namespace civox.Model {
         public decimal Price;
         public string SpecialCase;
         public string DoctorCode;
-        public string ResultCode; // V009
-        public string AidProfile; // V002
-        public string Profile;    // V015
+        public string ResultCode;    // V009
+        public string AidProfile;    // V002
+        public string DoctorProfile; // V015
 
         /// <summary>
         /// Mark relevant services as resulting, first or last
