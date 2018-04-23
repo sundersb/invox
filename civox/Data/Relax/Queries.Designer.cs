@@ -72,7 +72,8 @@ namespace civox.Data.Relax {
         ///  S.TN1,
         ///  S.BE,
         ///  K.MSP,
-        ///  nvl(M.PROFILE, &apos;xxx&apos;) PROFILE
+        ///  nvl(M.PROFILE, &apos;xxx&apos;) PROFILE,
+        ///  K.OPL
         /// from {period}S2101003 S
         ///  left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
         ///  left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD

@@ -24,6 +24,7 @@ namespace civox.Model {
         public string ResultCode;    // V009
         public string AidProfile;    // V002
         public string DoctorProfile; // V015
+        public string PayKind;       // V010
 
         /// <summary>
         /// Mark relevant services as resulting, first or last
