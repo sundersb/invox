@@ -7,6 +7,7 @@ using civox.Lib;
 namespace civox.Model {
     class Invoice : Model {
         const string VERSION = "2.1";
+        const int PROGRESS_WIDTH = 74;
 
         Lib.InvoiceNames invoiceNames;
 
@@ -42,13 +43,22 @@ namespace civox.Model {
             xml.Writer.WriteElementString("DSCHET", DateTime.Today.AsXml());
             // TODO: Invoice SMO - unnecessary
             xml.Writer.WriteElementString("PLAT", string.Empty);
+
             // TODO: Dot decimal separator
             string dummy = string.Format ("{0:f2}", provider.GetInvoiceRepository().TotalToPay());
+
+            // TODO: Recourses count
+            int count = 100;
+
             xml.Writer.WriteElementString("SUMMAV", dummy);
             xml.Writer.WriteEndElement();
 
-            foreach (InvoiceRecord irec in provider.GetInvoiceRepository().LoadInvoiceRecords())
+            Lib.Progress progress = new Progress("Случаи обращения", count);
+            foreach (InvoiceRecord irec in provider.GetInvoiceRepository().LoadInvoiceRecords()) {
                 irec.Write(xml, provider);
+                progress.Step();
+            }
+            progress.Close();
 
             xml.Writer.WriteEndElement();
         }

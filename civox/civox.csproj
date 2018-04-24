@@ -64,6 +64,7 @@
     <Compile Include="Dict\Profile.cs" />
     <Compile Include="Dict\RecourseAim.cs" />
     <Compile Include="Dict\Rezobr.cs" />
+    <Compile Include="Lib\Progress.cs" />
     <Compile Include="Model\Reason.cs" />
     <Compile Include="Data\Relax\RepoInvoice.cs" />
     <Compile Include="Dict\SMO.cs" />

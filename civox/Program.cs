@@ -76,6 +76,7 @@ namespace civox {
 
             if (Checkup()) {
                 Run();
+                Console.WriteLine("\r\nОК\r\n");
             } else {
                 Console.WriteLine("\r\nВыгрузка не произведена!");
             }
