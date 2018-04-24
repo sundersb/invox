@@ -10,8 +10,9 @@ namespace civox.Data.Relax {
                 Reason = (Model.Reason)(int)(decimal) reader["REASON"],
                 Diagnosis = ReadString(reader["DS"]),
                 Department = ReadString(reader["OTD"]),
-                Condition = Dict.LocalCondition.FromLocal(ReadString(reader["COND"]))
+                Condition = Dict.Condition.Instance.Get(ReadString(reader["COND"]))
             };
+
             int fr = ReadInt(reader["F"]);
             // DIAGNOZIS.F:
             // 1 - Прочее
@@ -21,8 +22,8 @@ namespace civox.Data.Relax {
             // 5 - Д-учет
             result.FirstRevealed = fr == 2 || fr == 3;
 
-            string ig = ReadString(reader["IG"]);
-            result.Outcome = Dict.LocalOutcome.FromLocal(result.Condition, ig);
+            string ig = ReadString(reader["IG"]).TrimStart('0');
+            result.Outcome = Dict.Outcome.Get(result.Condition, ig);
 
             return result;
         }

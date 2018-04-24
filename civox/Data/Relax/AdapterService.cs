@@ -14,10 +14,10 @@ namespace civox.Data.Relax {
                 Quantity = (int)(decimal)reader["K_U"],
                 Price = (decimal) reader["S_ALL"],
                 DoctorCode = ReadString(reader["TN1"]),
-                ResultCode = Dict.LocalRezobr.FromLocal(ReadString(reader["BE"])),
-                AidProfile = Dict.LocalAidKind.FromLocal(ReadString(reader["MSP"])),
-                DoctorProfile = Dict.LocalProfile.FromLocal(ReadString(reader["PROFILE"]).TrimStart('0')),
-                PayKind = Dict.LocalPayKind.FromLocal(ReadString(reader["OPL"]).TrimStart('0'))
+                ResultCode = Dict.Rezobr.Instance.Get(ReadString(reader["BE"])),
+                AidProfile = Dict.AidKind.Instance.Get(ReadString(reader["MSP"])),
+                DoctorProfile = Dict.Profile.Instance.Get(ReadString(reader["PROFILE"])),
+                PayKind = Dict.PayKind.Instance.Get(ReadString(reader["OPL"]))
             };
             string sc = ReadString(reader["D_TYPE"]);
             if (!string.IsNullOrEmpty(sc) && sc != "0")

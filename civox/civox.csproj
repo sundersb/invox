@@ -56,16 +56,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Queries.resx</DependentUpon>
     </Compile>
-    <Compile Include="Dict\Helper.cs" />
-    <Compile Include="Dict\LocalAidKind.cs" />
-    <Compile Include="Dict\LocalCondition.cs" />
-    <Compile Include="Dict\LocalOutcome.cs" />
-    <Compile Include="Dict\LocalPayKind.cs" />
-    <Compile Include="Dict\LocalProfile.cs" />
-    <Compile Include="Dict\LocalRezobr.cs" />
+    <Compile Include="Dict\Base.cs" />
+    <Compile Include="Dict\AidKind.cs" />
+    <Compile Include="Dict\Condition.cs" />
+    <Compile Include="Dict\Outcome.cs" />
+    <Compile Include="Dict\PayKind.cs" />
+    <Compile Include="Dict\Profile.cs" />
+    <Compile Include="Dict\Rezobr.cs" />
     <Compile Include="Model\Reason.cs" />
     <Compile Include="Data\Relax\RepoInvoice.cs" />
-    <Compile Include="Dict\LocalSMO.cs" />
+    <Compile Include="Dict\SMO.cs" />
     <Compile Include="Lib\DateFormatter.cs" />
     <Compile Include="Lib\InvoiceNames.cs" />
     <Compile Include="Lib\Logger.cs" />

@@ -9,7 +9,7 @@
                 Policy = ReadString(reader["SN_POL"])
             };
             string smo = ReadString(reader["Q"]);
-            record.SmoCode = Dict.LocalSMO.FromLocal(smo);
+            record.SmoCode = Dict.SMO.Instance.Get(smo);
 
             return record;
         }
