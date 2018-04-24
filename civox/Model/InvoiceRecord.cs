@@ -82,20 +82,22 @@ namespace civox.Model {
             xml.Writer.WriteEndElement();
 
             // SLUCH records
+
+            // ToList() soasto check lazyness and use the connection
             List<Recourse> rs = provider.GetInvoiceRepository().LoadRecourceCases(policyCompound).ToList();
-            // Just testing
+
             foreach (Recourse r in rs) {
-                WriteTreatment(r, xml, provider);
+                List<Service> services = provider.GetInvoiceRepository().LoadServices(policyCompound, r.Diagnosis, r.Department).ToList();
+                WriteRecourse(r, xml, services);
             }
 
             xml.Writer.WriteEndElement();
         }
 
-        void WriteTreatment(Recourse rec, Lib.XmlExporter xml, Data.IDataProvider provider) {
-            List<Service> ss = provider.GetInvoiceRepository().LoadServices(policyCompound, rec.Diagnosis, rec.Department).ToList();
-            if (ss.Count == 0) return;
+        void WriteRecourse(Recourse rec, Lib.XmlExporter xml, List<Service> services) {
+            if (services.Count == 0) return;
 
-            RecourseLandmarks marks = Service.ArrangeServices(ss);
+            RecourseLandmarks marks = Service.ArrangeServices(services);
             if (!marks.Valid) {
                 Lib.Logger.Log(string.Format("Услуги не формируют случай обращения:\r\n\t'{0}', DS {1}, отделение {2}, повод обращения {3}",
                     policyCompound,
@@ -152,13 +154,15 @@ namespace civox.Model {
             xml.Writer.WriteElementString("PRVS", marks.Resulting.DoctorProfile);
             xml.Writer.WriteElementString("VERS_SPEC", "V015");                // Имя справочника специальностей
 
-            xml.Writer.WriteElementString("IDDOKT", ss.OrderBy(s => s.Date).Last().DoctorCode);
+            xml.Writer.WriteElementString("IDDOKT", services.OrderBy(s => s.Date).Last().DoctorCode);
 
             // TODO: Список особых случаев from D_TYPE
-            foreach (string sc in ss.Select(s => s.SpecialCase).Where(s => !string.IsNullOrEmpty(s)).Distinct())
+            foreach (string sc in services.Select(s => s.SpecialCase).Where(s => !string.IsNullOrEmpty(s)).Distinct())
                 xml.Writer.WriteElementString("OS_SLUCH", sc);
 
             xml.Writer.WriteElementString("IDSP", marks.Resulting.PayKind);    // Способ оплаты V010
+
+            // TODO: Check ED_COL & USL.KOL_USL for hospital
             xml.Writer.WriteElementString("ED_COL", "1");                      // К-во единиц оплаты
 
             // Цель обращения
@@ -168,11 +172,11 @@ namespace civox.Model {
             // UPDATE: Хуй там! В релаксе подушевые суммы по нулям
             xml.Writer.WriteElementString("TARIF", string.Empty);
             // TODO: Сумма к оплате - запятую на точку
-            xml.Writer.WriteElementString("SUMV", string.Format("{0:f2}", ss.Sum(s => s.Price)));
+            xml.Writer.WriteElementString("SUMV", string.Format("{0:f2}", services.Sum(s => s.Price)));
 
             xml.Writer.WriteElementString("OPLATA", "1");                      // Оплата - 1 - полная
 
-            foreach (Service s in ss) {
+            foreach (Service s in services) {
                 xml.Writer.WriteStartElement("USL");
                 xml.Writer.WriteElementString("IDSERV", s.ID.ToString());
                 xml.Writer.WriteElementString("LPU", Options.LpuCode);

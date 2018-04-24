@@ -12,6 +12,7 @@ namespace civox.Model {
         static int[] DISP_I_RESULT_CODES = { 22, 29 };
         const int DISP_II_RESULT_CODE = 28;
         const int RECOURSE_RESULT_CODE = 50;
+        const int DAY_HOSP_CODE = 30;
 
         public long ID;
         public DateTime Date;
@@ -46,9 +47,17 @@ namespace civox.Model {
                 result.First = services.FirstOrDefault(s => s.Date == date);
                 result.Last = services.FirstOrDefault(s => s.ServiceCode / 1000 == DISP_II_RESULT_CODE);
                 result.Resulting = result.Last;
+            } else if (services.Any(s => s.ServiceCode / 100 == DAY_HOSP_CODE)) {
+                // Day hospital
+                result.Resulting = services.FirstOrDefault(s => s.ServiceCode / 100 == DAY_HOSP_CODE);
+
+                DateTime date = services.Max(s => s.Date);
+                result.Last = services.FirstOrDefault(s => s.Date == date);
+
+                date = services.Min(s => s.Date);
+                result.First = services.FirstOrDefault(s => s.Date == date);
             } else {
                 // Set resulting service by code 50xxx
-                // TODO: Hospitalization resulting service
                 result.Resulting = services.FirstOrDefault(s => s.ServiceCode / 1000 == RECOURSE_RESULT_CODE);
                 
                 DateTime date = services.Max(s => s.Date);
