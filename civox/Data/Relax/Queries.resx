@@ -136,8 +136,8 @@
   left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD
   left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
  where (S.SN_POL = ?)
-  and (S.OTD = '0001')
-  and (S.DS = ?)</value>
+  and (S.DS = ?)
+  and (S.OTD = ?)</value>
     <comment>Обращение с лечебной целью</comment>
   </data>
   <data name="SELECT_INVOICE_RECS" xml:space="preserve">
@@ -178,13 +178,12 @@
    0) REASON,
   S.DS,
   D.F,
-  USL.CODE COND,
+  UMP.SLUSL COND,
   S.IG
  from {period}S2101003 S
   left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGIN = S.DS)
   left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
   left outer join BASE/COMMON/SLUMP UMP on UMP.CODE = K.UMP
-  left outer join BASE/COMMON/SLUSL USL on USL.CODE = UMP.SLUSL
  where S.SN_POL = cpconvert(1251, 866, ?)
  order by 1, 2</value>
     <comment>Случаи обращения. NB: В одну запись могут попасть два случая обращения, если одинаковый диагноз и REASON</comment>

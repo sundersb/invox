@@ -79,8 +79,8 @@ namespace civox.Data.Relax {
         ///  left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD
         ///  left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
         /// where (S.SN_POL = ?)
-        ///  and (S.OTD = &apos;0001&apos;)
-        ///  and (S.DS = ?).
+        ///  and (S.DS = ?)
+        ///  and (S.OTD = ?).
         /// </summary>
         internal static string SELECT_CASE_TREAT {
             get {
@@ -138,10 +138,10 @@ namespace civox.Data.Relax {
         ///   0) REASON,
         ///  S.DS,
         ///  D.F,
-        ///  USL.CODE COND,
+        ///  UMP.SLUSL COND,
         ///  S.IG
         /// from {period}S2101003 S
-        ///  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and [остаток строки не уместился]&quot;;.
+        ///  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) an [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_RECOURSE_CASES {
             get {

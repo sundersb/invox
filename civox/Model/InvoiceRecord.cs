@@ -85,18 +85,14 @@ namespace civox.Model {
             List<Recourse> rs = provider.GetInvoiceRepository().LoadRecourceCases(policyCompound).ToList();
             // Just testing
             foreach (Recourse r in rs) {
-                switch (r.Reason) {
-                    case Reason.AmbTreatment:
-                        WriteTreatment(r, xml, provider);
-                        break;
-                }
+                WriteTreatment(r, xml, provider);
             }
 
             xml.Writer.WriteEndElement();
         }
 
         void WriteTreatment(Recourse rec, Lib.XmlExporter xml, Data.IDataProvider provider) {
-            List<Service> ss = provider.GetInvoiceRepository().LoadServices(policyCompound, rec.Diagnosis).ToList();
+            List<Service> ss = provider.GetInvoiceRepository().LoadServices(policyCompound, rec.Diagnosis, rec.Department).ToList();
             if (ss.Count == 0) return;
 
             RecourseLandmarks marks = Service.ArrangeServices(ss);
@@ -162,14 +158,11 @@ namespace civox.Model {
             foreach (string sc in ss.Select(s => s.SpecialCase).Where(s => !string.IsNullOrEmpty(s)).Distinct())
                 xml.Writer.WriteElementString("OS_SLUCH", sc);
 
-            xml.Writer.WriteElementString("IDSP", marks.Resulting.PayKind);    // TODO: Способ оплаты V010
+            xml.Writer.WriteElementString("IDSP", marks.Resulting.PayKind);    // Способ оплаты V010
             xml.Writer.WriteElementString("ED_COL", "1");                      // К-во единиц оплаты
 
-            // TODO: Цель обращения кроме лечебной
-            if (marks.Resulting.ServiceCode % 2 == 0)
-                xml.Writer.WriteElementString("CEL", "17"); // Лечебная цель, подушевой тариф
-            else
-                xml.Writer.WriteElementString("CEL", "16"); // Лечебная цель, самостоятельный тариф
+            // Цель обращения
+            xml.Writer.WriteElementString("CEL", marks.Resulting.RecourseAim);
 
             // TODO: Тариф
             // UPDATE: Хуй там! В релаксе подушевые суммы по нулям

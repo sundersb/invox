@@ -47,6 +47,7 @@ namespace civox.Data.Relax {
             selectService = helperAlt(Queries.SELECT_CASE_TREAT);
             selectService.Parameters.Add(new OleDbParameter("?", OleDbType.VarChar));
             selectService.Parameters.Add(new OleDbParameter("?", OleDbType.VarChar));
+            selectService.Parameters.Add(new OleDbParameter("?", OleDbType.VarChar));
         }
 
 
@@ -75,9 +76,10 @@ namespace civox.Data.Relax {
             return aRecourse.Load(selectRecourses);
         }
 
-        public IEnumerable<Model.Service> LoadServices(string policy, string diagnosis) {
+        public IEnumerable<Model.Service> LoadServices(string policy, string diagnosis, string dept) {
             selectService.Parameters[0].Value = policy;
             selectService.Parameters[1].Value = diagnosis;
+            selectService.Parameters[2].Value = dept;
             return aService.Load(selectService);
         }
 

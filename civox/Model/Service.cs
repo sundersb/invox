@@ -25,6 +25,7 @@ namespace civox.Model {
         public string AidProfile;    // V002
         public string DoctorProfile; // V015
         public string PayKind;       // V010
+        public string RecourseAim;   // CEL (territory)
 
         /// <summary>
         /// Mark relevant services as resulting, first or last

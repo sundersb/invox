@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <dict title="Условия оказания МП" in="SLUSL" out="V006">
-  <item in="1" out="1" title="Стационаро"/>
+  <item in="1" out="1" title="Стационарно"/>
   <item in="2" out="2" title="В дневном стационаре"/>
   <item in="3" out="3" title="Амбулаторно"/>
   <item in="4" out="4" title="Вне медицинской организации"/>

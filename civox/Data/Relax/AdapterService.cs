@@ -17,11 +17,15 @@ namespace civox.Data.Relax {
                 ResultCode = Dict.Rezobr.Instance.Get(ReadString(reader["BE"])),
                 AidProfile = Dict.AidKind.Instance.Get(ReadString(reader["MSP"])),
                 DoctorProfile = Dict.Profile.Instance.Get(ReadString(reader["PROFILE"])),
-                PayKind = Dict.PayKind.Instance.Get(ReadString(reader["OPL"]))
             };
-            string sc = ReadString(reader["D_TYPE"]);
-            if (!string.IsNullOrEmpty(sc) && sc != "0")
-                result.SpecialCase = sc;
+            string dummy = ReadString(reader["D_TYPE"]);
+            if (!string.IsNullOrEmpty(dummy) && dummy != "0")
+                result.SpecialCase = dummy;
+
+            dummy = ReadString(reader["OPL"]);
+            result.PayKind = Dict.PayKind.Instance.Get(dummy);
+            result.RecourseAim = Dict.RecourseAim.Instance.Get(dummy);
+
             return result;
         }
     }

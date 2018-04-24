@@ -40,6 +40,6 @@ namespace civox.Data {
         /// <param name="policy">Person's policy number</param>
         /// <param name="diagnosis">ICD code</param>
         /// <returns>Collection of services</returns>
-        IEnumerable<Model.Service> LoadServices(string policy, string diagnosis);
+        IEnumerable<Model.Service> LoadServices(string policy, string diagnosis, string dept);
     }
 }

@@ -62,6 +62,7 @@
     <Compile Include="Dict\Outcome.cs" />
     <Compile Include="Dict\PayKind.cs" />
     <Compile Include="Dict\Profile.cs" />
+    <Compile Include="Dict\RecourseAim.cs" />
     <Compile Include="Dict\Rezobr.cs" />
     <Compile Include="Model\Reason.cs" />
     <Compile Include="Data\Relax\RepoInvoice.cs" />
@@ -105,6 +106,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Dict\CEL-OPLMSP.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dict\V010-OPLMSP.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
