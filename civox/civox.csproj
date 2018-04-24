@@ -60,6 +60,7 @@
     <Compile Include="Dict\LocalAidKind.cs" />
     <Compile Include="Dict\LocalCondition.cs" />
     <Compile Include="Dict\LocalOutcome.cs" />
+    <Compile Include="Dict\LocalPayKind.cs" />
     <Compile Include="Dict\LocalProfile.cs" />
     <Compile Include="Dict\LocalRezobr.cs" />
     <Compile Include="Model\Reason.cs" />
@@ -104,6 +105,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Dict\V010-OPLMSP.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dict\V002-SLMSP.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
