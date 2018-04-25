@@ -31,5 +31,12 @@ namespace civox.Model {
         /// Исход обращения (госпитализации) V012
         /// </summary>
         public string Outcome;
+
+        public bool IsDispanserisation() {
+            return this.Reason == Reason.Stage1 ||
+                this.Reason == Reason.Stage2 ||
+                this.Reason == Reason.StrippedStage1 ||
+                this.Reason == Reason.StrippedStage2;
+        }
     }
 }
