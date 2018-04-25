@@ -88,7 +88,14 @@ namespace civox.Model {
 
             foreach (Recourse r in rs) {
                 List<Service> services = provider.GetInvoiceRepository().LoadServices(policyCompound, r.Diagnosis, r.Department).ToList();
-                WriteRecourse(r, xml, services);
+
+                if (ReasonHelper.IsSingleDay(r.Reason)) {
+                    // List of services may contain several recourses (Emergency, Prof, Other etc.)
+                    foreach (IGrouping<DateTime, Service> group in services.GroupBy(s => s.Date))
+                        WriteRecourse(r, xml, group.ToList());
+                } else {
+                    WriteRecourse(r, xml, services);
+                }
             }
 
             xml.Writer.WriteEndElement();

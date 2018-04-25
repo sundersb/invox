@@ -5,6 +5,28 @@ using System.Text;
 
 namespace civox.Model {
     /// <summary>
+    /// Telling simple single-day recourse from cases with multiple services
+    /// </summary>
+    class ReasonHelper {
+        static Reason[] SINGLE_DAY = {
+            Reason.DayHosp,
+            Reason.SurgeryDayHosp,
+            Reason.Other,
+            Reason.Emergency,
+            Reason.Prof,
+            Reason.DispRegister
+        };
+
+        /// <summary>
+        /// True if the reason provided is a single-day recourse
+        /// </summary>
+        /// <param name="reason">Recourse reason</param>
+        public static bool IsSingleDay(Reason reason) {
+            return SINGLE_DAY.Contains(reason);
+        }
+    }
+
+    /// <summary>
     /// Cause of recourse (повод обращения)
     /// </summary>
     enum Reason : int {

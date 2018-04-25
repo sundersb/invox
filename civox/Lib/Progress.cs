@@ -25,6 +25,7 @@ namespace civox.Lib {
         /// <param name="maxPosition">Maximal position value</param>
         public Progress(string title, int maxPosition) {
             Console.CursorVisible = false;
+
             max = maxPosition;
             step = 0;
             position = 0;
