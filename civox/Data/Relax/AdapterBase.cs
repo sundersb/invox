@@ -28,7 +28,7 @@ namespace civox.Data.Relax {
                 try {
                     r = command.ExecuteReader();
                 } catch (Exception ex) {
-                    Lib.Logger.Log(ex.Message + "\n" + command.CommandText);
+                    Lib.Logger.Log(ex.Message + "\r\n" + Provider.ShowCommand(command));
                     if (r != null) r.Close();
                 }
 

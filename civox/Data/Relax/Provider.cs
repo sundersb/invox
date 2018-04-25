@@ -59,6 +59,22 @@ namespace civox.Data.Relax {
                 command.Parameters.Add(new OleDbParameter(param, OleDbType.VarChar));
         }
 
+        /// <summary>
+        /// Get SQL command query and parameter values
+        /// </summary>
+        /// <param name="command">Command to describe</param>
+        /// <returns>Command's SQL text and parameters</returns>
+        public static string ShowCommand(this DbCommand command) {
+            StringBuilder sb = new StringBuilder(command.CommandText);
+            if (command.Parameters.Count > 0) {
+                sb.Append("\r\n\r\nПараметры:");
+                foreach (DbParameter p in command.Parameters) {
+                    sb.Append(string.Format("\r\n\t{0} = '{1}'", p.ParameterName, p.Value));
+                }
+            }
+            return sb.ToString();
+        }
+
         public IInvoice GetInvoiceRepository() {
             if (repoInvoice == null) repoInvoice = new RepoInvoice(this);
             return repoInvoice;
@@ -73,7 +89,7 @@ namespace civox.Data.Relax {
             try {
                 command.ExecuteNonQuery();
             } catch (Exception ex) {
-                Lib.Logger.Log(ex.Message + "\n" + command.CommandText);
+                Lib.Logger.Log(ex.Message + "\r\n" + ShowCommand(command));
             } finally {
                 command.Connection.Close();
             }
@@ -90,7 +106,7 @@ namespace civox.Data.Relax {
             try {
                 result = command.ExecuteScalar();
             } catch (Exception ex) {
-                Lib.Logger.Log(ex.Message + "\n" + command.CommandText);
+                Lib.Logger.Log(ex.Message + "\r\n" + ShowCommand(command));
             } finally {
                 command.Connection.Close();
             }
