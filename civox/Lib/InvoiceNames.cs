@@ -40,6 +40,7 @@ namespace civox.Lib {
                 case AgentCode.AssuranceCompany: return string.Format("S{0}", smoCode);
                 case AgentCode.Clinic: return string.Format("M{0}", Options.LpuCode);
             }
+            Lib.Logger.Log("Упущен контрагент в InvoiceNames.GetAgentCode(): " + agent.ToString());
             return string.Empty;
         }
 
@@ -51,7 +52,9 @@ namespace civox.Lib {
                 case ProfKind.Orphans: return 'S';
                 case ProfKind.Adopted: return 'U';
                 case ProfKind.Underage: return 'F';
-                default: return 'O';
+                default:
+                    Lib.Logger.Log("Упущен вид посещения с профцелью в InvoiceNames.GetProfCode(): " + kind.ToString());
+                    return 'O';
             }
         }
 
@@ -93,6 +96,9 @@ namespace civox.Lib {
                     body = GetProfCode(profKind) + body;
                     invoice = "D" + body;
                     people = "L" + body;
+                    break;
+                default:
+                    Lib.Logger.Log("Упущен вид счета в InvoiceNames.InvoiceToFoms(): " + invoiceKind.ToString());
                     break;
             }
             return new InvoiceNames(people, invoice) {

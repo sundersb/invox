@@ -47,8 +47,21 @@ namespace civox.Lib {
             return string.Format("{0:yyyy-MM-dd}", date);
         }
 
+        /// <summary>
+        /// Get DateTime from yyyy-mm-dd string
+        /// </summary>
+        /// <param name="value">String representation of a DateTime value to read from</param>
+        /// <returns>DateTime value read from the string</returns>
         public static DateTime Parse(string value) {
-            return DateTime.ParseExact(value, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime result = DateTime.Now;
+            try {
+                result = DateTime.ParseExact(value,
+                    "yyyy-MM-dd",
+                    System.Globalization.CultureInfo.InvariantCulture);
+            } catch(FormatException ex) {
+                Lib.Logger.Log(ex.Message + "\r\nНеверный формат даты: " + value);
+            }
+            return result;
         }
 
         /// <summary>
@@ -73,16 +86,28 @@ namespace civox.Lib {
         static void LoadDates(List<DateTime> days, string fName) {
             string fileName = Options.BaseDirectory + fName;
 
-            if (!File.Exists(fileName)) return;
+            if (!File.Exists(fileName)) {
+                Lib.Logger.Log("Файл не найден: " + fName);
+                return;
+            }
 
             FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-            if (!fs.CanRead) return;
+            if (!fs.CanRead) {
+                Lib.Logger.Log("Файл недоступен для чтения: " + fName);
+                return;
+            }
 
             XDocument x = XDocument.Load(fs);
-            if (x.Root.Name != "dates") return;
+            if (x.Root.Name != "dates") {
+                Lib.Logger.Log("Неверный формат файла: " + fName);
+                return;
+            }
 
             foreach (var n in x.Root.Elements()) {
-                if (n.Name != "date") return;
+                if (n.Name != "date") {
+                    Lib.Logger.Log(string.Format("Неверный параметр {0} в файле {1}", n.Name, fName));
+                    return;
+                }
                 days.Add(Parse(n.Value));
             }
         }

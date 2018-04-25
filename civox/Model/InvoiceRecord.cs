@@ -212,7 +212,7 @@ namespace civox.Model {
             // UPDATE: Хуй там! В релаксе подушевые суммы по нулям
             xml.Writer.WriteElementString("TARIF", string.Empty);
             
-            // Сумма к оплате - запятую на точку
+            // Сумма к оплате
             xml.Writer.WriteElementString("SUMV", string.Format(Options.NumberFormat, "{0:f2}", services.Sum(s => s.Price)));
             
             // Оплата - 1 - полная
