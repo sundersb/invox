@@ -12,6 +12,11 @@ namespace civox.Data {
         IEnumerable<Model.Person> LoadPeople();
 
         /// <summary>
+        /// Get amount of records in people dataset
+        /// </summary>
+        int GetPeopleCount();
+
+        /// <summary>
         /// Get invoice records
         /// </summary>
         /// <returns>Collection of InvoiceRecord</returns>

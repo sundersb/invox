@@ -34,8 +34,8 @@ namespace civox.Model {
 
             xml.Writer.WriteEndElement();
 
-            // TODO: Person count
-            Lib.Progress progress = new Progress("Пациенты", 20);
+            int count = repo.GetPeopleCount();
+            Lib.Progress progress = new Progress("Пациенты", count);
 
             foreach (Person p in repo.LoadPeople()) {
                 p.Write(xml, null);

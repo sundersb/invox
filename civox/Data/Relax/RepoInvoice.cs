@@ -10,8 +10,8 @@ namespace civox.Data.Relax {
     /// </summary>
     class RepoInvoice : IInvoice {
         const string PERIOD_MARKER = "{period}";
-        const string[] SELECT_RECOURSE_CASES_PARAMS = { "SN_POL" };
-        const string[] SELECT_CASE_TREAT_PARAMS = { "SN_POL", "DS", "OTD" };
+        static string[] SELECT_RECOURSE_CASES_PARAMS = { "SN_POL" };
+        static string[] SELECT_CASE_TREAT_PARAMS = { "SN_POL", "DS", "OTD" };
 
         Provider provider;
 
@@ -21,6 +21,7 @@ namespace civox.Data.Relax {
         AdapterService aService;
 
         OleDbCommand selectPeople;
+        OleDbCommand selectPeopleCount;
         OleDbCommand selectTotalToPay;
         OleDbCommand selectInvoiceRecs;
         OleDbCommand selectRecourses;
@@ -40,6 +41,7 @@ namespace civox.Data.Relax {
                 s => provider.CreateCommandAlt(s.Replace(PERIOD_MARKER, Options.PeriodLocation));
 
             selectPeople = helper(Queries.SELECT_PEOPLE);
+            selectPeopleCount = helper(Queries.SELECT_PEOPLE_COUNT);
             selectTotalToPay = helper(Queries.SELECT_TOTAL_TO_PAY);
             selectInvoiceRecs = helper(Queries.SELECT_INVOICE_RECS);
 
@@ -83,7 +85,13 @@ namespace civox.Data.Relax {
             return aService.Load(selectService);
         }
 
+        public int GetPeopleCount() {
+            object result = provider.ExecuteScalar(selectPeopleCount);
+            return (int)(decimal)result;
+        }
+
         // **************************
         #endregion
+
     }
 }

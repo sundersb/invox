@@ -5,7 +5,7 @@ using System.Text;
 
 namespace civox.Data.Relax {
     class AdapterService : AdapterBase<Model.Service> {
-        const string[] REFUSAL_RESULTS = { "302", "408", "417", "207" };
+        static string[] REFUSAL_RESULTS = { "302", "408", "417", "207" };
 
         public override Model.Service Read(System.Data.Common.DbDataReader reader, int number) {
             Model.Service result = new Model.Service() {

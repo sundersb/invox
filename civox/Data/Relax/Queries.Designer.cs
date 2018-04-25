@@ -131,6 +131,17 @@ namespace civox.Data.Relax {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на select count(distinct P.SN_POL)
+        /// from {period}P2101003 P
+        ///  join {period}S2101003 S on S.SN_POL = P.SN_POL.
+        /// </summary>
+        internal static string SELECT_PEOPLE_COUNT {
+            get {
+                return ResourceManager.GetString("SELECT_PEOPLE_COUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на select distinct
         ///  S.OTD,
         ///  icase(S.OTD = &apos;0001&apos;, 1,

@@ -170,6 +170,12 @@
   left outer join {period}PAT PP on PP.SN_POL = P.SN_POL
  order by P.RECID</value>
   </data>
+  <data name="SELECT_PEOPLE_COUNT" xml:space="preserve">
+    <value>select count(distinct P.SN_POL)
+ from {period}P2101003 P
+  join {period}S2101003 S on S.SN_POL = P.SN_POL</value>
+    <comment>Join с услугами, чтобы отсеять пациентов без услуг</comment>
+  </data>
   <data name="SELECT_RECOURSE_CASES" xml:space="preserve">
     <value>select distinct
   S.OTD,

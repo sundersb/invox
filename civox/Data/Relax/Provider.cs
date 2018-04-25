@@ -64,7 +64,7 @@ namespace civox.Data.Relax {
         /// </summary>
         /// <param name="command">Command to describe</param>
         /// <returns>Command's SQL text and parameters</returns>
-        public static string ShowCommand(this DbCommand command) {
+        public static string ShowCommand(DbCommand command) {
             StringBuilder sb = new StringBuilder(command.CommandText);
             if (command.Parameters.Count > 0) {
                 sb.Append("\r\n\r\nПараметры:");
