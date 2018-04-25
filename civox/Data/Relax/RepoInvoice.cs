@@ -10,6 +10,8 @@ namespace civox.Data.Relax {
     /// </summary>
     class RepoInvoice : IInvoice {
         const string PERIOD_MARKER = "{period}";
+        const string[] SELECT_RECOURSE_CASES_PARAMS = { "SN_POL" };
+        const string[] SELECT_CASE_TREAT_PARAMS = { "SN_POL", "DS", "OTD" };
 
         Provider provider;
 
@@ -42,12 +44,10 @@ namespace civox.Data.Relax {
             selectInvoiceRecs = helper(Queries.SELECT_INVOICE_RECS);
 
             selectRecourses = helperAlt(Queries.SELECT_RECOURSE_CASES);
-            selectRecourses.Parameters.Add(new OleDbParameter("?", OleDbType.VarChar));
+            provider.AddStringParameters(selectRecourses, SELECT_RECOURSE_CASES_PARAMS);
 
             selectService = helperAlt(Queries.SELECT_CASE_TREAT);
-            selectService.Parameters.Add(new OleDbParameter("?", OleDbType.VarChar));
-            selectService.Parameters.Add(new OleDbParameter("?", OleDbType.VarChar));
-            selectService.Parameters.Add(new OleDbParameter("?", OleDbType.VarChar));
+            provider.AddStringParameters(selectService, SELECT_CASE_TREAT_PARAMS);
         }
 
 

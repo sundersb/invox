@@ -49,6 +49,16 @@ namespace civox.Data.Relax {
             return result;
         }
 
+        /// <summary>
+        /// Add varchar parameters to an SQL command
+        /// </summary>
+        /// <param name="command">SQL command to add parameters to</param>
+        /// <param name="parameters">Parameter names</param>
+        public void AddStringParameters(OleDbCommand command, string[] parameters) {
+            foreach (string param in parameters)
+                command.Parameters.Add(new OleDbParameter(param, OleDbType.VarChar));
+        }
+
         public IInvoice GetInvoiceRepository() {
             if (repoInvoice == null) repoInvoice = new RepoInvoice(this);
             return repoInvoice;
