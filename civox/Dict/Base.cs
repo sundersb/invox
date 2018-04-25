@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Xml;
+using System.Xml.Linq;
 
 namespace civox.Dict {
     /// <summary>
@@ -19,16 +19,14 @@ namespace civox.Dict {
             FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             if (!fs.CanRead) return false;
 
-            XmlDataDocument xml = new XmlDataDocument();
-            xml.Load(fs);
+            XDocument x = XDocument.Load(fs);
+            if (x.Root.Name != "dict") return false;
 
-            if (xml.DocumentElement.Name != "dict") return false;
+            foreach(var n in x.Root.Elements()) {
+                if (n.Name != "item") return false;
 
-            foreach (XmlNode node in xml.DocumentElement.ChildNodes) {
-                if (node.Name != "item") return false;
-
-                string ins = node.Attributes["in"].Value;
-                string outs = node.Attributes["out"].Value;
+                string ins = n.Attribute("in").Value;
+                string outs = n.Attribute("out").Value;
                 dict.Add(ins, outs);
             }
             return true;
