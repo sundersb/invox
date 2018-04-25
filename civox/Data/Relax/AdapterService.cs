@@ -5,6 +5,8 @@ using System.Text;
 
 namespace civox.Data.Relax {
     class AdapterService : AdapterBase<Model.Service> {
+        const string[] REFUSAL_RESULTS = { "302", "408", "417", "207" };
+
         public override Model.Service Read(System.Data.Common.DbDataReader reader, int number) {
             Model.Service result = new Model.Service() {
                 ID = ReadInt(reader["RECID"]),
@@ -25,6 +27,8 @@ namespace civox.Data.Relax {
             result.RecourseAim = Dict.RecourseAim.Instance.Get(dummy);
 
             result.SetDates(ReadDate(reader["D_U"]), (int)(decimal)reader["K_U"]);
+
+            result.Refusal = REFUSAL_RESULTS.Contains(result.ResultCode);
 
             return result;
         }

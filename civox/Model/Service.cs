@@ -46,6 +46,7 @@ namespace civox.Model {
         public string DoctorProfile; // V015
         public string PayKind;       // V010
         public string RecourseAim;   // CEL (territory)
+        public bool Refusal;
 
         public void SetDates(DateTime serviceDate, int days) {
             if (days < 0) return;

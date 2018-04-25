@@ -145,7 +145,8 @@ namespace civox.Model {
             // Номер амб карты/истории болезни
             xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
 
-            xml.Writer.WriteElementString("P_OTK", string.Empty);              // TODO: Признак отказа
+            // Признак отказа
+            WriteBool("P_OTK", services.Any(s => s.Refusal), xml);
 
             if (rec.Reason == Reason.DayHosp || rec.Reason == Reason.SurgeryDayHosp) {
                 xml.Writer.WriteElementString("DATE_1", marks.Resulting.BeginDate.AsXml());
@@ -175,7 +176,6 @@ namespace civox.Model {
 
             // Список особых случаев from D_TYPE
             // TODO: ХКФОМС вкладывает в OS_SLUCH свой особый смысл. Не тот, что ФФОМС.
-            // ...и смысл этот неведом, только чувствуется концептуальность
             foreach (string sc in services.Select(s => s.SpecialCase).Where(s => !string.IsNullOrEmpty(s)).Distinct())
                 xml.Writer.WriteElementString("OS_SLUCH", sc);
 
@@ -211,7 +211,10 @@ namespace civox.Model {
                 xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
 
                 xml.Writer.WriteElementString("DS", rec.Diagnosis);
-                xml.Writer.WriteElementString("P_OTK", string.Empty);          // Признак отказа
+                
+                // Признак отказа
+                WriteBool("P_OTK", s.Refusal, xml);
+
                 xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString());
                 xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString()); // Кратность услуги
 
