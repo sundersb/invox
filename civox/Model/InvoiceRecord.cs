@@ -118,6 +118,7 @@ namespace civox.Model {
                 return;
             }
 
+            // В приказе этот узел зовется Z_SL. У нас вот так:
             xml.Writer.WriteStartElement("SLUCH");
 
             xml.Writer.WriteElementString("IDSERV", marks.Resulting.ID.ToString());
@@ -125,8 +126,19 @@ namespace civox.Model {
             // V006 Условия оказания МП
             xml.Writer.WriteElementString("USL_OK", rec.Condition);
 
-            xml.Writer.WriteElementString("VIDPOM", "1");                      // TODO: Вид - Первичная МСП
-            xml.Writer.WriteElementString("FOR_POM", "3");                     // TODO: Форма - Плановая
+            // Вид - Первичная МСП V008
+            xml.Writer.WriteElementString("VIDPOM", marks.Resulting.AidKind);
+            
+            // TODO: Форма - Плановая V014
+            xml.Writer.WriteElementString("FOR_POM", "3");
+
+            // TODO: Признак поступления/перевода. Наш ФОМС игнорирует(?)
+            // Обязательно для дневного и круглосуточного стационара.
+            //1 – Самостоятельно
+            //2 – СМП
+            //3 – Перевод из другой МО
+            //4 – Перевод внутри МО с другого профиля
+            xml.Writer.WriteElementString("P_PER", "3");
 
             xml.Writer.WriteElementString("VID_HMP", string.Empty);            // TODO: Вид ВМП - нет
             xml.Writer.WriteElementString("METOD_HMP", string.Empty);          // TODO: Метод ВМП - нет
@@ -139,10 +151,12 @@ namespace civox.Model {
             // Педиатрический
             WriteBool("DET", Options.Pediatric, xml);
 
-            xml.Writer.WriteElementString("TAL_D", string.Empty);              // TODO: Дата талона ВМП
-            xml.Writer.WriteElementString("TAL_P", string.Empty);              // TODO: Дата запланир. госпит.
+            // TODO: Дата талона ВМП
+            xml.Writer.WriteElementString("TAL_D", string.Empty);
 
-            // Номер амб карты/истории болезни
+            // TODO: Дата запланир. госпит.
+            xml.Writer.WriteElementString("TAL_P", string.Empty);
+
             xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
 
             // Признак отказа
@@ -163,14 +177,17 @@ namespace civox.Model {
 
             // V009
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
-            xml.Writer.WriteElementString("RSLT_D", string.Empty);             // TODO: 
+            if (rec.IsDispanserisation()) {
+                // TODO: Результат диспансеризации
+                xml.Writer.WriteElementString("RSLT_D", string.Empty);
+            }
 
             // Исход заболевания V012
             xml.Writer.WriteElementString("ISHOD", rec.Outcome);
 
             // Специальность врача V015
             xml.Writer.WriteElementString("PRVS", marks.Resulting.DoctorProfile);
-            xml.Writer.WriteElementString("VERS_SPEC", "V015");                // Имя справочника специальностей
+            xml.Writer.WriteElementString("VERS_SPEC", "V015");
 
             xml.Writer.WriteElementString("IDDOKT", services.OrderBy(s => s.EndDate).Last().DoctorCode);
 
@@ -184,6 +201,9 @@ namespace civox.Model {
 
             // К-во единиц оплаты
             xml.Writer.WriteElementString("ED_COL", marks.Resulting.Quantity.ToString());
+            // Продолжительность госпитализации (койко-дни/пациенто-дни). ХКФОМС игнорирует(?)
+            if (marks.Resulting.Quantity > 1)
+                xml.Writer.WriteElementString("KD_Z", marks.Resulting.Quantity.ToString());
 
             // Цель обращения
             xml.Writer.WriteElementString("CEL", marks.Resulting.RecourseAim);
@@ -216,7 +236,7 @@ namespace civox.Model {
                 WriteBool("P_OTK", s.Refusal, xml);
 
                 xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString());
-                xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString()); // Кратность услуги
+                xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString());
 
                 xml.Writer.WriteElementString("TARIF", string.Empty);          // TODO:
                 xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", s.Price));

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 
 namespace civox.Model {
+    /// <summary>
+    /// Случай обращения за МП
+    /// </summary>
     class Recourse {
         /// <summary>
         /// Повод обращение
@@ -32,6 +35,9 @@ namespace civox.Model {
         /// </summary>
         public string Outcome;
 
+        /// <summary>
+        /// Является ли данный случай диспансеризацией
+        /// </summary>
         public bool IsDispanserisation() {
             return this.Reason == Reason.Stage1 ||
                 this.Reason == Reason.Stage2 ||

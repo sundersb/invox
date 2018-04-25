@@ -14,9 +14,16 @@ namespace civox.Model {
     /// обретают атрибуты услуг, а услуги - законченных случаев. Группировки полис/диагноз для вычленения
     /// обращений не хватает (для посещений с лечебной целью работает,
     /// для проф. и иных - нет), а при формировании коллекции услуг
-    /// не хватает данных из случая. Отсюда и причудливые запросы.
+    /// не хватает данных из случая (диагноз, отделение). Отсюда и причудливые запросы.
+    /// По этой же причине Service не наследует Model: экспорт в XML реализует InvoiceRecord
     /// </remarks>
     class Service {
+        // V008
+        const string AID_KIND_PRIMARY = "1";
+        const string AID_KIND_EMERGENCY = "2";
+        const string AID_KIND_SPECIALIZED = "31";
+        const string AID_KIND_HITECH = "32";
+
         // TODO: Dispanserisation once in two years
         static int[] DISP_I_CODES = { 22, 24, 29 };
         static int[] DISP_II_CODES = { 25, 28 };
@@ -30,13 +37,20 @@ namespace civox.Model {
         DateTime beginDate;
         DateTime endDate;
         int quantity;
+        int serviceCode;
+        string aidKind;
 
         public DateTime EndDate { get { return beginDate; } }
         public DateTime BeginDate { get { return endDate; } }
         public int Quantity { get { return quantity; } }
+        public int ServiceCode { get { return serviceCode; } set { SetServiceCode(value); } }
+
+        /// <summary>
+        /// Вид медицинской помощи V008
+        /// </summary>
+        public string AidKind { get { return aidKind; } }
 
         public long ID;
-        public int ServiceCode;
         public string CardNumber;
         public decimal Price;
         public string SpecialCase;
@@ -100,6 +114,26 @@ namespace civox.Model {
                 result.First = services.FirstOrDefault(s => s.EndDate == date);
             }
             return result;
+        }
+
+        void SetServiceCode(int code) {
+            serviceCode = code;
+            switch (code / 10000) {
+                case 7:
+                    aidKind = AID_KIND_HITECH;
+                    break;
+
+                case 4:
+                    aidKind = AID_KIND_EMERGENCY;
+                    break;
+
+                default:
+                    if (code / 1000 == 98)
+                        aidKind = AID_KIND_SPECIALIZED;
+                    else
+                        aidKind = AID_KIND_PRIMARY;
+                    break;
+            }
         }
     }
 
