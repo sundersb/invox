@@ -92,7 +92,7 @@ namespace civox.Model {
 
                 if (ReasonHelper.IsSingleDay(r.Reason)) {
                     // List of services may contain several recourses (Emergency, Prof, Other etc.)
-                    foreach (IGrouping<DateTime, Service> group in services.GroupBy(s => s.Date))
+                    foreach (IGrouping<DateTime, Service> group in services.GroupBy(s => s.EndDate))
                         WriteRecourse(r, xml, group.ToList());
                 } else {
                     WriteRecourse(r, xml, services);
@@ -147,8 +147,13 @@ namespace civox.Model {
 
             xml.Writer.WriteElementString("P_OTK", string.Empty);              // TODO: Признак отказа
 
-            xml.Writer.WriteElementString("DATE_1", marks.First.Date.AsXml());
-            xml.Writer.WriteElementString("DATE_2", marks.Last.Date.AsXml());
+            if (rec.Reason == Reason.DayHosp || rec.Reason == Reason.SurgeryDayHosp) {
+                xml.Writer.WriteElementString("DATE_1", marks.Resulting.BeginDate.AsXml());
+                xml.Writer.WriteElementString("DATE_2", marks.Resulting.EndDate.AsXml());
+            } else {
+                xml.Writer.WriteElementString("DATE_1", marks.First.BeginDate.AsXml());
+                xml.Writer.WriteElementString("DATE_2", marks.Last.EndDate.AsXml());
+            }
             xml.Writer.WriteElementString("DS1", rec.Diagnosis);
             
             // Диагноз первичный
@@ -166,7 +171,7 @@ namespace civox.Model {
             xml.Writer.WriteElementString("PRVS", marks.Resulting.DoctorProfile);
             xml.Writer.WriteElementString("VERS_SPEC", "V015");                // Имя справочника специальностей
 
-            xml.Writer.WriteElementString("IDDOKT", services.OrderBy(s => s.Date).Last().DoctorCode);
+            xml.Writer.WriteElementString("IDDOKT", services.OrderBy(s => s.EndDate).Last().DoctorCode);
 
             // Список особых случаев from D_TYPE
             // TODO: ХКФОМС вкладывает в OS_SLUCH свой особый смысл. Не тот, что ФФОМС.
@@ -203,9 +208,8 @@ namespace civox.Model {
 
                 WriteBool("DET", Options.Pediatric, xml);
 
-                // TODO: DATE_IN, DATE_OUT for hospitalization
-                xml.Writer.WriteElementString("DATE_IN", s.Date.AsXml());
-                xml.Writer.WriteElementString("DATE_OUT", s.Date.AsXml());
+                xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
+                xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
 
                 xml.Writer.WriteElementString("DS", rec.Diagnosis);
                 xml.Writer.WriteElementString("P_OTK", string.Empty);          // Признак отказа

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using civox.Lib;
 
 namespace civox.Model {
     class Service {
@@ -15,11 +16,17 @@ namespace civox.Model {
         const int RECOURSE_RESULT_CODE = 50;
         const int DAY_HOSP_CODE = 30;
 
+        DateTime beginDate;
+        DateTime endDate;
+        int quantity;
+
+        public DateTime EndDate { get { return beginDate; } }
+        public DateTime BeginDate { get { return endDate; } }
+        public int Quantity { get { return quantity; } }
+
         public long ID;
-        public DateTime Date;
         public int ServiceCode;
         public string CardNumber;
-        public int Quantity;
         public decimal Price;
         public string SpecialCase;
         public string DoctorCode;
@@ -28,6 +35,19 @@ namespace civox.Model {
         public string DoctorProfile; // V015
         public string PayKind;       // V010
         public string RecourseAim;   // CEL (territory)
+
+        public void SetDates(DateTime serviceDate, int days) {
+            if (days < 0) return;
+
+            if (days <= 1) {
+                quantity = 1;
+                beginDate = endDate = serviceDate;
+            } else {
+                quantity = days;
+                endDate = serviceDate;
+                beginDate = serviceDate.WorkingDaysBefore(days);
+            }
+        }
 
         /// <summary>
         /// Mark relevant services as resulting, first or last
@@ -44,28 +64,28 @@ namespace civox.Model {
                 result.Resulting = result.Last;
             } else if (services.Any(s => DISP_II_CODES.Contains(s.ServiceCode / 1000))) {
                 // Dispanserisation II stage
-                DateTime date = services.Min(s => s.Date);
-                result.First = services.FirstOrDefault(s => s.Date == date);
+                DateTime date = services.Min(s => s.EndDate);
+                result.First = services.FirstOrDefault(s => s.EndDate == date);
                 result.Last = services.FirstOrDefault(s => s.ServiceCode / 1000 == DISP_II_RESULT_CODE);
                 result.Resulting = result.Last;
             } else if (services.Any(s => s.ServiceCode / 100 == DAY_HOSP_CODE)) {
                 // Day hospital
                 result.Resulting = services.FirstOrDefault(s => s.ServiceCode / 100 == DAY_HOSP_CODE);
 
-                DateTime date = services.Max(s => s.Date);
-                result.Last = services.FirstOrDefault(s => s.Date == date);
+                DateTime date = services.Max(s => s.EndDate);
+                result.Last = services.FirstOrDefault(s => s.EndDate == date);
 
-                date = services.Min(s => s.Date);
-                result.First = services.FirstOrDefault(s => s.Date == date);
+                date = services.Min(s => s.EndDate);
+                result.First = services.FirstOrDefault(s => s.EndDate == date);
             } else {
                 // Set resulting service by code 50xxx
                 result.Resulting = services.FirstOrDefault(s => s.ServiceCode / 1000 == RECOURSE_RESULT_CODE);
                 
-                DateTime date = services.Max(s => s.Date);
-                result.Last = services.FirstOrDefault(s => s.Date == date);
+                DateTime date = services.Max(s => s.EndDate);
+                result.Last = services.FirstOrDefault(s => s.EndDate == date);
 
-                date = services.Min(s => s.Date);
-                result.First = services.FirstOrDefault(s => s.Date == date);
+                date = services.Min(s => s.EndDate);
+                result.First = services.FirstOrDefault(s => s.EndDate == date);
             }
             return result;
         }

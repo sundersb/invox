@@ -8,10 +8,8 @@ namespace civox.Data.Relax {
         public override Model.Service Read(System.Data.Common.DbDataReader reader, int number) {
             Model.Service result = new Model.Service() {
                 ID = ReadInt(reader["RECID"]),
-                Date = ReadDate(reader["D_U"]),
                 ServiceCode = (int)(decimal)reader["COD"],
                 CardNumber = ReadString(reader["C_I"]),
-                Quantity = (int)(decimal)reader["K_U"],
                 Price = (decimal) reader["S_ALL"],
                 DoctorCode = ReadString(reader["TN1"]),
                 ResultCode = Dict.Rezobr.Instance.Get(ReadString(reader["BE"])),
@@ -25,6 +23,8 @@ namespace civox.Data.Relax {
             dummy = ReadString(reader["OPL"]);
             result.PayKind = Dict.PayKind.Instance.Get(dummy);
             result.RecourseAim = Dict.RecourseAim.Instance.Get(dummy);
+
+            result.SetDates(ReadDate(reader["D_U"]), (int)(decimal)reader["K_U"]);
 
             return result;
         }

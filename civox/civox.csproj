@@ -69,7 +69,7 @@
     <Compile Include="Model\Reason.cs" />
     <Compile Include="Data\Relax\RepoInvoice.cs" />
     <Compile Include="Dict\SMO.cs" />
-    <Compile Include="Lib\DateFormatter.cs" />
+    <Compile Include="Lib\DateHelper.cs" />
     <Compile Include="Lib\InvoiceNames.cs" />
     <Compile Include="Lib\Logger.cs" />
     <Compile Include="Lib\SnilsChecker.cs" />
@@ -136,6 +136,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Dict\V015-SLSPEC-PED.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Lib\holidays.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Lib\workdays.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
