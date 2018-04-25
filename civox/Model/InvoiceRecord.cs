@@ -192,8 +192,8 @@ namespace civox.Model {
             // UPDATE: Хуй там! В релаксе подушевые суммы по нулям
             xml.Writer.WriteElementString("TARIF", string.Empty);
             
-            // TODO: Сумма к оплате - запятую на точку
-            xml.Writer.WriteElementString("SUMV", string.Format("{0:f2}", services.Sum(s => s.Price)));
+            // Сумма к оплате - запятую на точку
+            xml.Writer.WriteElementString("SUMV", string.Format(Options.NumberFormat, "{0:f2}", services.Sum(s => s.Price)));
             
             // Оплата - 1 - полная
             xml.Writer.WriteElementString("OPLATA", "1");
@@ -216,7 +216,7 @@ namespace civox.Model {
                 xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString()); // Кратность услуги
 
                 xml.Writer.WriteElementString("TARIF", string.Empty);          // TODO:
-                xml.Writer.WriteElementString("SUMV_USL", string.Format("{0:f2}", s.Price));
+                xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", s.Price));
                 
                 xml.Writer.WriteElementString("PRVS", s.DoctorProfile);        // V015
                 xml.Writer.WriteElementString("CODE_MD", s.DoctorCode);

@@ -44,8 +44,7 @@ namespace civox.Model {
             // TODO: Invoice SMO - unnecessary
             xml.Writer.WriteElementString("PLAT", string.Empty);
 
-            // TODO: Dot decimal separator
-            string dummy = string.Format("{0:f2}", repo.TotalToPay());
+            string dummy = string.Format(Options.NumberFormat, "{0:f2}", repo.TotalToPay());
 
             // TODO: Recourses count
             int count = 100;

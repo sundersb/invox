@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Reflection;
+using System.Globalization;
 
 namespace civox {
     static class Options {
@@ -22,6 +23,8 @@ namespace civox {
         static int month;
         static string periodLocation;
         static Data.IDataProvider provider;
+
+        public static NumberFormatInfo NumberFormat { get; private set; }
 
         /// <summary>
         /// This application's binary location
@@ -122,6 +125,10 @@ namespace civox {
 
             periodLocation = string.Format(PERIOD_LOCATION, year, month);
             provider = new Data.Relax.Provider(lpuLocation);
+
+            // Decimal point instead of comma
+            NumberFormat = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
+            NumberFormat.NumberDecimalSeparator = ".";
         }
 
     }
