@@ -16,6 +16,7 @@ namespace civox {
         static string outputLocation;
         static string lpuCode;
         static string fomsCode;
+        static string defaultDocument;
         static bool pediatric;
         static int year;
         static int month;
@@ -51,6 +52,11 @@ namespace civox {
         /// Territory FOMS code (27)
         /// </summary>
         public static string FomsCode { get { return fomsCode; } }
+
+        /// <summary>
+        /// Default document code (ref. F011). 14 for passport RF
+        /// </summary>
+        public static string DefaultDocument { get { return defaultDocument; } }
 
         /// <summary>
         /// This is pediatric clinic
@@ -96,6 +102,7 @@ namespace civox {
             fomsCode = Properties.Settings.Default.FomsCode;
             pediatric = Properties.Settings.Default.Pediatric;
             okato = Properties.Settings.Default.OKATO;
+            defaultDocument = Properties.Settings.Default.DefaultDocument;
 
             // Default period - previous month
             DateTime date = DateTime.Today.AddMonths(-1);

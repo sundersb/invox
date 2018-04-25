@@ -15,8 +15,13 @@ namespace civox.Data.Relax {
             result.Address = ReadString(reader["ADRES"]);
             result.SocialPosition = ReadInt(reader["SP"]);
             result.ResidenceOKATO = "08401000000";
-            // SN_POL?
 
+            string docType = Dict.DocumentType.Get(ReadString(reader["Q_PASP"]));
+            string serial = ReadString(reader["SN_PASP"]);
+
+            result.SetDocument(docType, serial);
+
+            // SN_POL?
             return result;
         }
     }

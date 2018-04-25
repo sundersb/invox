@@ -82,5 +82,17 @@ namespace civox.Properties {
                 this["Pediatric"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("14")]
+        public string DefaultDocument {
+            get {
+                return ((string)(this["DefaultDocument"]));
+            }
+            set {
+                this["DefaultDocument"] = value;
+            }
+        }
     }
 }

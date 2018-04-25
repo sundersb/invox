@@ -9,6 +9,9 @@ namespace civox.Model {
     /// A PERS record in the people XML
     /// </summary>
     class Person : Model {
+        const string DEFAULT_DOCUMENT = "14";
+        static char[] SEPARATORS = " \r\n\t".ToCharArray();
+
         int sex;
         List<IdentityReliability> identityReliabilities = null;
 
@@ -42,7 +45,7 @@ namespace civox.Model {
         /// <summary>
         /// U Document type (F011)
         /// </summary>
-        public long DocTypeId;
+        public string DocTypeId;
 
         public string DocumentSerial; // U
         public string DocumentNumber; // U
@@ -107,9 +110,7 @@ namespace civox.Model {
             // Only for dispanserisation
             WriteIfValid("TEL", Phone, xml);
             WriteIfValid("MR", Address, xml);
-
-            if (DocTypeId > 0)
-                xml.Writer.WriteElementString("DOCTYPE", DocTypeId.ToString());
+            WriteIfValid("DOCTYPE", DocTypeId, xml);
 
             WriteIfValid("DOCSER", DocumentSerial, xml);
             WriteIfValid("DOCNUM", DocumentNumber, xml);
@@ -118,6 +119,39 @@ namespace civox.Model {
             WriteIfValid("OKATOP", PresenceOKATO, xml);
 
             xml.Writer.WriteEndElement();
+        }
+
+        /// <summary>
+        /// Set document's serial and number
+        /// </summary>
+        /// <param name="number">Serial and number separated by space</param>
+        /// <remarks>Value may have consist of a single word, two or even more words.
+        /// Single word is considered document's number.
+        /// Two words - serial and number correspondinly.
+        /// If there are three or more words, the last of them is number,
+        /// while the former ones are joined together to form document's serial.</remarks>
+        public void SetDocument(string type, string number) {
+            number = number.Trim();
+            if (string.IsNullOrEmpty(number)) {
+                DocTypeId = string.Empty;
+                DocumentNumber = string.Empty;
+                DocumentSerial = string.Empty;
+            } else {
+                DocTypeId = string.IsNullOrEmpty(type) ? DEFAULT_DOCUMENT : type;
+
+                string[] parts = number.Split(SEPARATORS);
+                int l = parts.Length - 1;
+                DocumentNumber = parts[l];
+
+                if (l > 0) {
+                    System.Text.StringBuilder sb = new System.Text.StringBuilder(parts[0]);
+                    for (int i = 1; i < l; ++i)
+                        sb.Append(parts[i]);
+                    DocumentSerial = sb.ToString();
+                } else {
+                    DocumentSerial = string.Empty;
+                }
+            }
         }
     }
 }

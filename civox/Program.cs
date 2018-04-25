@@ -39,16 +39,16 @@ namespace civox {
             string fname;
             Lib.XmlExporter xml;
 
-            //fname = Options.OutputLocation + names.PeopleFileName + ".xml";
-            //xml = new Lib.XmlExporter();
-            //if (xml.Init(fname)) {
-            //    Model.People people = new Model.People(names);
-            //    people.Write(xml, Options.DataProvider);
-            //    xml.Close();
-            //} else {
-            //    Console.WriteLine("Ошибка при выгрузке пациентов");
-            //    return false;
-            //}
+            fname = Options.OutputLocation + names.PeopleFileName + ".xml";
+            xml = new Lib.XmlExporter();
+            if (xml.Init(fname)) {
+                Model.People people = new Model.People(names);
+                people.Write(xml, Options.DataProvider);
+                xml.Close();
+            } else {
+                Console.WriteLine("Ошибка при выгрузке пациентов");
+                return false;
+            }
 
             fname = Options.OutputLocation + names.InvoiceFileName + ".xml";
             xml = new Lib.XmlExporter();

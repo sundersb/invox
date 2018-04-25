@@ -116,9 +116,12 @@ namespace civox.Data.Relax {
         ///  P.SS,
         ///  P.SP,
         ///  cpconvert(866, 1251, P.SN_POL) SN_POL,
-        ///  cpconvert(866, 1251, P.ADRES) ADRES
+        ///  cpconvert(866, 1251, P.ADRES) ADRES,
+        ///  PP.Q_PASP,
+        ///  PP.SN_PASP
         /// from {period}P2101003 P
         ///  join {period}S2101003 S on S.SN_POL = P.SN_POL
+        ///  left outer join {period}PAT PP on PP.SN_POL = P.SN_POL
         /// order by P.RECID.
         /// </summary>
         internal static string SELECT_PEOPLE {
