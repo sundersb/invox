@@ -8,8 +8,9 @@ namespace civox.Model {
         // TODO: Dispanserisation once in two years
         static int[] DISP_I_CODES = { 22, 24, 29 };
         static int[] DISP_II_CODES = { 25, 28 };
-        static int[] DISP_I_START_CODES = { 24001, 24003 };
         static int[] DISP_I_RESULT_CODES = { 22, 29 };
+
+        const int DISP_I_START_CODE = 24001;
         const int DISP_II_RESULT_CODE = 28;
         const int RECOURSE_RESULT_CODE = 50;
         const int DAY_HOSP_CODE = 30;
@@ -38,7 +39,7 @@ namespace civox.Model {
 
             if (services.Any(s => DISP_I_CODES.Contains(s.ServiceCode / 1000))) {
                 // Dispanserisation I stage
-                result.First = services.FirstOrDefault(s => DISP_I_START_CODES.Contains(s.ServiceCode));
+                result.First = services.FirstOrDefault(s => s.ServiceCode == DISP_I_START_CODE);
                 result.Last = services.FirstOrDefault(s => DISP_I_RESULT_CODES.Contains(s.ServiceCode / 1000));
                 result.Resulting = result.Last;
             } else if (services.Any(s => DISP_II_CODES.Contains(s.ServiceCode / 1000))) {

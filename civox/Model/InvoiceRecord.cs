@@ -23,6 +23,7 @@ namespace civox.Model {
         public string PolicySerial { get; private set; }
         public string PolicyNumber { get; private set; }
         public string SmoCode;
+        public string OKATO;
         public bool IsNewborn;
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace civox.Model {
         }
         
         /// <summary>
-        /// Save record to XML exporter
+        /// Save record
         /// </summary>
         /// <param name="xml">XML exporter this record to write to</param>
         /// <param name="provider">Data provider</param>
@@ -76,14 +77,14 @@ namespace civox.Model {
             xml.Writer.WriteElementString("VPOLIS", PolicyKind.ToString());
             WriteIfValid("SPOLIS", PolicySerial, xml);
             xml.Writer.WriteElementString("NPOLIS", PolicyNumber);
-            xml.Writer.WriteElementString("OKATO", Options.OKATO);
+            xml.Writer.WriteElementString("OKATO", OKATO);
             xml.Writer.WriteElementString("SMO", SmoCode);
             WriteBool("NOVOR", IsNewborn, xml);
             xml.Writer.WriteEndElement();
 
             // SLUCH records
 
-            // ToList() soasto check lazyness and use the connection
+            // ToList() soasto check lazyness and free the connection for subqueries
             List<Recourse> rs = provider.GetInvoiceRepository().LoadRecourceCases(policyCompound).ToList();
 
             foreach (Recourse r in rs) {

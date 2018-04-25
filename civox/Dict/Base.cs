@@ -11,6 +11,12 @@ namespace civox.Dict {
 
         Dictionary<string, string> dict = new Dictionary<string,string>();
 
+        /// <summary>
+        /// Load dictionary from XML with the given name
+        /// </summary>
+        /// <param name="fName">XML file name</param>
+        /// <returns>True on success</returns>
+        /// <remarks>The fName param is relative to binary location</remarks>
         protected bool Load(string fName) {
             string fileName = Options.BaseDirectory + fName;
 

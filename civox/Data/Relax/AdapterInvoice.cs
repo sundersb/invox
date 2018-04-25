@@ -6,7 +6,8 @@
                 IsUpdated = false,
                 PersonId = ReadInt(reader["RECID"]),
                 PolicyKind = (int)(decimal)reader["T_POL"],
-                Policy = ReadString(reader["SN_POL"])
+                Policy = ReadString(reader["SN_POL"]),
+                OKATO = Options.OKATO
             };
             string smo = ReadString(reader["Q"]);
             record.SmoCode = Dict.SMO.Instance.Get(smo);
