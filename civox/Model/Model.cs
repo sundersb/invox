@@ -12,7 +12,7 @@ namespace civox.Model {
         /// Write model to XML
         /// </summary>
         /// <param name="xml">XML write helper</param>
-        public abstract void Write(Lib.XmlExporter xml, Data.IDataProvider provider);
+        public abstract void Write(Lib.XmlExporter xml, Data.IInvoice repo);
 
         /// <summary>
         /// Write string element to XML if it is not empty

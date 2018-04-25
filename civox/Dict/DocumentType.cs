@@ -19,7 +19,7 @@
 
         DocumentType() { }
 
-        public static string Get(string value) {
+        new public static string Get(string value) {
             return Instance.GetDefault(value, Options.DefaultDocument);
         }
     }

@@ -43,7 +43,7 @@ namespace civox {
             xml = new Lib.XmlExporter();
             if (xml.Init(fname)) {
                 Model.People people = new Model.People(names);
-                people.Write(xml, Options.DataProvider);
+                people.Write(xml, Options.DataProvider.GetInvoiceRepository());
                 xml.Close();
             } else {
                 Console.WriteLine("Ошибка при выгрузке пациентов");
@@ -54,7 +54,7 @@ namespace civox {
             xml = new Lib.XmlExporter();
             if (xml.Init(fname)) {
                 Model.Invoice invoice = new Model.Invoice(names);
-                invoice.Write(xml, Options.DataProvider);
+                invoice.Write(xml, Options.DataProvider.GetInvoiceRepository());
                 xml.Close();
             } else {
                 Console.WriteLine("Ошибка при выгрузке счета");

@@ -15,7 +15,7 @@ namespace civox.Model {
             invoiceNames = files;
         }
 
-        public override void Write(Lib.XmlExporter xml, Data.IDataProvider provider) {
+        public override void Write(Lib.XmlExporter xml, Data.IInvoice repo) {
             if (!xml.OK) return;
             xml.Writer.WriteStartElement("ZL_LIST");
 
@@ -45,7 +45,7 @@ namespace civox.Model {
             xml.Writer.WriteElementString("PLAT", string.Empty);
 
             // TODO: Dot decimal separator
-            string dummy = string.Format ("{0:f2}", provider.GetInvoiceRepository().TotalToPay());
+            string dummy = string.Format("{0:f2}", repo.TotalToPay());
 
             // TODO: Recourses count
             int count = 100;
@@ -54,8 +54,8 @@ namespace civox.Model {
             xml.Writer.WriteEndElement();
 
             Lib.Progress progress = new Progress("Случаи обращения", count);
-            foreach (InvoiceRecord irec in provider.GetInvoiceRepository().LoadInvoiceRecords()) {
-                irec.Write(xml, provider);
+            foreach (InvoiceRecord irec in repo.LoadInvoiceRecords()) {
+                irec.Write(xml, repo);
                 progress.Step();
             }
             progress.Close();

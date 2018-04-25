@@ -12,8 +12,8 @@ namespace civox.Lib {
         const int PROGRESS_WIDTH = LINE_LENGTH - 6;
 
         int max;
-        int step;
-        int position;
+        long step;
+        long position;
         ConsoleColor fg;
         int left;
         int top;
@@ -56,16 +56,16 @@ namespace civox.Lib {
         /// Move progress position by one
         /// </summary>
         public void Step() {
-            int newpos = ++position * PROGRESS_WIDTH / max;
+            long newpos = ++position * PROGRESS_WIDTH / max;
             if (newpos > step) {
                 step = newpos;
 
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.SetCursorPosition(left + step - 1, top);
+                Console.SetCursorPosition(left + (int)step - 1, top);
                 Console.Write('=');
 
                 Console.ForegroundColor = fg;
-                Center(top + 1, string.Format("{0}%", position * 100 / max));
+                Center(top + 1, string.Format("{0}%", (long)position * 100 / max));
             }
         }
 

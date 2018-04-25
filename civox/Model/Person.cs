@@ -78,7 +78,7 @@ namespace civox.Model {
         /// Save person to XML
         /// </summary>
         /// <param name="xml">XML export helper</param>
-        public override void Write(Lib.XmlExporter xml, Data.IDataProvider provider) {
+        public override void Write(Lib.XmlExporter xml, Data.IInvoice repo) {
             if (!xml.OK) return;
             xml.Writer.WriteStartElement("PERS");
 

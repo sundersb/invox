@@ -21,7 +21,7 @@ namespace civox.Model {
         /// Export to XML
         /// </summary>
         /// <param name="xml">XML write helper</param>
-        public override void Write(Lib.XmlExporter xml, Data.IDataProvider provider) {
+        public override void Write(Lib.XmlExporter xml, Data.IInvoice repo) {
             if (!xml.OK) return;
             xml.Writer.WriteStartElement("PERS_LIST");
 
@@ -34,7 +34,14 @@ namespace civox.Model {
 
             xml.Writer.WriteEndElement();
 
-            foreach (Person p in provider.GetInvoiceRepository().LoadPeople()) p.Write(xml, null);
+            // TODO: Person count
+            Lib.Progress progress = new Progress("Пациенты", 20);
+
+            foreach (Person p in repo.LoadPeople()) {
+                p.Write(xml, null);
+                progress.Step();
+            }
+            progress.Close();
 
             xml.Writer.WriteEndElement();
         }

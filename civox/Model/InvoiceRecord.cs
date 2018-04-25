@@ -65,7 +65,7 @@ namespace civox.Model {
         /// </summary>
         /// <param name="xml">XML exporter this record to write to</param>
         /// <param name="provider">Data provider</param>
-        public override void Write(Lib.XmlExporter xml, Data.IDataProvider provider) {
+        public override void Write(Lib.XmlExporter xml, Data.IInvoice repo) {
             xml.Writer.WriteStartElement("ZAP");
             
             xml.Writer.WriteElementString("N_ZAP", number.ToString());
@@ -85,10 +85,10 @@ namespace civox.Model {
             // SLUCH records
 
             // ToList() soasto check lazyness and free the connection for subqueries
-            List<Recourse> rs = provider.GetInvoiceRepository().LoadRecourceCases(policyCompound).ToList();
+            List<Recourse> rs = repo.LoadRecourceCases(policyCompound).ToList();
 
             foreach (Recourse r in rs) {
-                List<Service> services = provider.GetInvoiceRepository().LoadServices(policyCompound, r.Diagnosis, r.Department).ToList();
+                List<Service> services = repo.LoadServices(policyCompound, r.Diagnosis, r.Department).ToList();
 
                 if (ReasonHelper.IsSingleDay(r.Reason)) {
                     // List of services may contain several recourses (Emergency, Prof, Other etc.)
@@ -102,6 +102,9 @@ namespace civox.Model {
             xml.Writer.WriteEndElement();
         }
 
+        /// <summary>
+        /// Write SLUCH record
+        /// </summary>
         void WriteRecourse(Recourse rec, Lib.XmlExporter xml, List<Service> services) {
             if (services.Count == 0) return;
 
@@ -130,9 +133,10 @@ namespace civox.Model {
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
             xml.Writer.WriteElementString("VBR", string.Empty);                // TODO: Выездная бригада - нет
 
-            xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile);    // Профиль МП V002
+            // Профиль МП V002
+            xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile);
 
-            // Педиатрический профиль
+            // Педиатрический
             WriteBool("DET", Options.Pediatric, xml);
 
             xml.Writer.WriteElementString("TAL_D", string.Empty);              // TODO: Дата талона ВМП
@@ -164,14 +168,18 @@ namespace civox.Model {
 
             xml.Writer.WriteElementString("IDDOKT", services.OrderBy(s => s.Date).Last().DoctorCode);
 
-            // TODO: Список особых случаев from D_TYPE
+            // Список особых случаев from D_TYPE
+            // TODO: ХКФОМС вкладывает в OS_SLUCH свой особый смысл. Не тот, что ФФОМС.
+            // ...и смысл этот неведом, только чувствуется концептуальность
             foreach (string sc in services.Select(s => s.SpecialCase).Where(s => !string.IsNullOrEmpty(s)).Distinct())
                 xml.Writer.WriteElementString("OS_SLUCH", sc);
 
-            xml.Writer.WriteElementString("IDSP", marks.Resulting.PayKind);    // Способ оплаты V010
+            // Способ оплаты V010
+            xml.Writer.WriteElementString("IDSP", marks.Resulting.PayKind);
 
+            // К-во единиц оплаты
             // TODO: Check ED_COL & USL.KOL_USL for hospital
-            xml.Writer.WriteElementString("ED_COL", "1");                      // К-во единиц оплаты
+            xml.Writer.WriteElementString("ED_COL", "1");
 
             // Цель обращения
             xml.Writer.WriteElementString("CEL", marks.Resulting.RecourseAim);
@@ -179,10 +187,12 @@ namespace civox.Model {
             // TODO: Тариф
             // UPDATE: Хуй там! В релаксе подушевые суммы по нулям
             xml.Writer.WriteElementString("TARIF", string.Empty);
+            
             // TODO: Сумма к оплате - запятую на точку
             xml.Writer.WriteElementString("SUMV", string.Format("{0:f2}", services.Sum(s => s.Price)));
-
-            xml.Writer.WriteElementString("OPLATA", "1");                      // Оплата - 1 - полная
+            
+            // Оплата - 1 - полная
+            xml.Writer.WriteElementString("OPLATA", "1");
 
             foreach (Service s in services) {
                 xml.Writer.WriteStartElement("USL");
@@ -192,17 +202,21 @@ namespace civox.Model {
                 xml.Writer.WriteElementString("PROFIL", s.AidProfile);
 
                 WriteBool("DET", Options.Pediatric, xml);
-                
+
+                // TODO: DATE_IN, DATE_OUT for hospitalization
                 xml.Writer.WriteElementString("DATE_IN", s.Date.AsXml());
                 xml.Writer.WriteElementString("DATE_OUT", s.Date.AsXml());
+
                 xml.Writer.WriteElementString("DS", rec.Diagnosis);
                 xml.Writer.WriteElementString("P_OTK", string.Empty);          // Признак отказа
-                xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString()); // Код услуги
+                xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString());
                 xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString()); // Кратность услуги
+
                 xml.Writer.WriteElementString("TARIF", string.Empty);          // TODO:
                 xml.Writer.WriteElementString("SUMV_USL", string.Format("{0:f2}", s.Price));
-                xml.Writer.WriteElementString("PRVS", s.DoctorProfile);        // Специальность врача V015
-                xml.Writer.WriteElementString("CODE_MD", s.DoctorCode);        // Код медицинского работника
+                
+                xml.Writer.WriteElementString("PRVS", s.DoctorProfile);        // V015
+                xml.Writer.WriteElementString("CODE_MD", s.DoctorCode);
 
                 xml.Writer.WriteEndElement();
             }
