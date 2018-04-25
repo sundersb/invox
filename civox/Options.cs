@@ -95,6 +95,7 @@ namespace civox {
             lpuCode = Properties.Settings.Default.LpuCode;
             fomsCode = Properties.Settings.Default.FomsCode;
             pediatric = Properties.Settings.Default.Pediatric;
+            okato = Properties.Settings.Default.OKATO;
 
             // Default period - previous month
             DateTime date = DateTime.Today.AddMonths(-1);
