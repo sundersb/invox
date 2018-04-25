@@ -33,8 +33,7 @@ namespace civox {
         }
 
         static bool Run() {
-            Lib.InvoiceNames names = Lib.InvoiceNames.InvoiceToFoms(1,
-                Model.InvoiceKind.GeneralTreatment);
+            Lib.InvoiceNames names = Lib.InvoiceNames.InvoiceToFoms(1, Model.InvoiceKind.GeneralTreatment);
 
             string fname;
             Lib.XmlExporter xml;

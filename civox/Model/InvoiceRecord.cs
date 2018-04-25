@@ -17,7 +17,7 @@ namespace civox.Model {
         public bool IsUpdated;
         public long PersonId;
         
-        // T_POL values (1, 3) seems to match F008
+        // T_POL values (1, 3) seem to match F008
         public int PolicyKind;
 
         public string PolicySerial { get; private set; }
@@ -183,8 +183,7 @@ namespace civox.Model {
             xml.Writer.WriteElementString("IDSP", marks.Resulting.PayKind);
 
             // К-во единиц оплаты
-            // TODO: Check ED_COL & USL.KOL_USL for hospital
-            xml.Writer.WriteElementString("ED_COL", "1");
+            xml.Writer.WriteElementString("ED_COL", marks.Resulting.Quantity.ToString());
 
             // Цель обращения
             xml.Writer.WriteElementString("CEL", marks.Resulting.RecourseAim);

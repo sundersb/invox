@@ -13,11 +13,11 @@ namespace civox.Data.Relax {
         /// </summary>
         /// <param name="reader">Data reader with Models' dataset</param>
         /// <param name="number">Record's number in the dataset</param>
-        /// <returns>A Model instance</returns>
+        /// <returns>Model instance</returns>
         public abstract T Read(DbDataReader reader, int number);
 
         /// <summary>
-        /// Get collection of Models executing SQL command
+        /// Get collection of Models provided by dataset from an SQL command
         /// </summary>
         /// <param name="command">SQL command with select statement</param>
         /// <returns>Models' collection</returns>
