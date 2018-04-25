@@ -129,8 +129,8 @@ namespace civox.Model {
             // Вид - Первичная МСП V008
             xml.Writer.WriteElementString("VIDPOM", marks.Resulting.AidKind);
             
-            // TODO: Форма - Плановая V014
-            xml.Writer.WriteElementString("FOR_POM", "3");
+            // Форма - Плановая V014
+            xml.Writer.WriteElementString("FOR_POM", marks.Resulting.AidForm);
 
             // TODO: Признак поступления/перевода. Наш ФОМС игнорирует(?)
             // Обязательно для дневного и круглосуточного стационара.

@@ -23,6 +23,11 @@ namespace civox.Model {
         const string AID_KIND_EMERGENCY = "2";
         const string AID_KIND_SPECIALIZED = "31";
         const string AID_KIND_HITECH = "32";
+        
+        // V014
+        const string AID_FORM_URGENT = "1";
+        const string AID_FORM_PRESSING = "2";
+        const string AID_FORM_ORDINAL = "3";
 
         // TODO: Dispanserisation once in two years
         static int[] DISP_I_CODES = { 22, 24, 29 };
@@ -37,20 +42,23 @@ namespace civox.Model {
         DateTime beginDate;
         DateTime endDate;
         int quantity;
-        int serviceCode;
-        string aidKind;
 
         public DateTime EndDate { get { return beginDate; } }
         public DateTime BeginDate { get { return endDate; } }
         public int Quantity { get { return quantity; } }
-        public int ServiceCode { get { return serviceCode; } set { SetServiceCode(value); } }
 
         /// <summary>
         /// Вид медицинской помощи V008
         /// </summary>
-        public string AidKind { get { return aidKind; } }
+        public string AidKind { get { return GetAidKind(); } }
+
+        /// <summary>
+        /// Форма оказания МП V014
+        /// </summary>
+        public string AidForm { get { return GetAidForm(); } }
 
         public long ID;
+        public int ServiceCode;
         public string CardNumber;
         public decimal Price;
         public string SpecialCase;
@@ -116,24 +124,26 @@ namespace civox.Model {
             return result;
         }
 
-        void SetServiceCode(int code) {
-            serviceCode = code;
-            switch (code / 10000) {
+        string GetAidKind() {
+            switch (ServiceCode / 10000) {
                 case 7:
-                    aidKind = AID_KIND_HITECH;
-                    break;
+                    return AID_KIND_HITECH;
 
                 case 4:
-                    aidKind = AID_KIND_EMERGENCY;
-                    break;
+                    return AID_KIND_EMERGENCY;
 
                 default:
-                    if (code / 1000 == 98)
-                        aidKind = AID_KIND_SPECIALIZED;
+                    if (ServiceCode / 1000 == 98)
+                        return AID_KIND_SPECIALIZED;
                     else
-                        aidKind = AID_KIND_PRIMARY;
-                    break;
+                        return AID_KIND_PRIMARY;
             }
+        }
+
+        string GetAidForm() {
+            if (ServiceCode / 10000 == 4) return AID_FORM_URGENT;
+            if (ServiceCode / 1000 == 7) return AID_FORM_PRESSING;
+            return AID_FORM_ORDINAL;
         }
     }
 
