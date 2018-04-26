@@ -56,5 +56,26 @@ namespace civox.Lib {
                 writer = null;
             }
         }
+
+        /// <summary>
+        /// Write string element to XML if it is not empty
+        /// </summary>
+        /// <param name="node">XML node name</param>
+        /// <param name="value">Node value to check and write</param>
+        /// <param name="xml">XML write helper</param>
+        /// <remarks>No checks for the writer validity performed</remarks>
+        public void WriteIfValid(string node, string value) {
+            if (!string.IsNullOrEmpty(value))
+                writer.WriteElementString(node, value);
+        }
+
+        /// <summary>
+        /// Write boolean value node to XML (0 or 1)
+        /// </summary>
+        /// <param name="node">Node name</param>
+        /// <param name="value">Value to write</param>
+        public void WriteBool(string node, bool value) {
+            writer.WriteElementString(node, value ? "1" : "0");
+        }
     }
 }

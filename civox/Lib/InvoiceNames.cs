@@ -40,8 +40,6 @@ namespace civox.Lib {
         InvoiceNames(string people, string invoice) {
             this.people = people;
             this.invoice = invoice;
-
-            // TODO: Invoice SMO - unnecessary
             smoCode = string.Empty;
         }
 

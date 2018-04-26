@@ -45,7 +45,7 @@ namespace civox.Model {
             while (date.IsWorkDay()) date = date.AddDays(-1);
             xml.Writer.WriteElementString("DSCHET", date.AsXml());
 
-            xml.Writer.WriteElementString("PLAT", invoiceNames.SmoCode);
+            xml.WriteIfValid("PLAT", invoiceNames.SmoCode);
 
             string dummy = string.Format(Options.NumberFormat, "{0:f2}", repo.TotalToPay());
             xml.Writer.WriteElementString("SUMMAV", dummy);

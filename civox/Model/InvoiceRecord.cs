@@ -69,17 +69,17 @@ namespace civox.Model {
             xml.Writer.WriteStartElement("ZAP");
             
             xml.Writer.WriteElementString("N_ZAP", number.ToString());
-            WriteBool("PR_NOV", IsUpdated, xml);
+            xml.WriteBool("PR_NOV", IsUpdated);
 
             // PATIENT record
             xml.Writer.WriteStartElement("PACIENT");
             xml.Writer.WriteElementString("ID_PAC", PersonId.ToString());
             xml.Writer.WriteElementString("VPOLIS", PolicyKind.ToString());
-            WriteIfValid("SPOLIS", PolicySerial, xml);
+            xml.WriteIfValid("SPOLIS", PolicySerial);
             xml.Writer.WriteElementString("NPOLIS", PolicyNumber);
             xml.Writer.WriteElementString("OKATO", OKATO);
             xml.Writer.WriteElementString("SMO", SmoCode);
-            WriteBool("NOVOR", IsNewborn, xml);
+            xml.WriteBool("NOVOR", IsNewborn);
             xml.Writer.WriteEndElement();
 
             // SLUCH records
@@ -149,7 +149,7 @@ namespace civox.Model {
             xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile);
 
             // Педиатрический
-            WriteBool("DET", Options.Pediatric, xml);
+            xml.WriteBool("DET", Options.Pediatric);
 
             // TODO: Дата талона ВМП
             xml.Writer.WriteElementString("TAL_D", string.Empty);
@@ -160,7 +160,7 @@ namespace civox.Model {
             xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
 
             // Признак отказа
-            WriteBool("P_OTK", services.Any(s => s.Refusal), xml);
+            xml.WriteBool("P_OTK", services.Any(s => s.Refusal));
 
             if (rec.Reason == Reason.DayHosp || rec.Reason == Reason.SurgeryDayHosp) {
                 xml.Writer.WriteElementString("DATE_1", marks.Resulting.BeginDate.AsXml());
@@ -225,7 +225,7 @@ namespace civox.Model {
                 xml.Writer.WriteElementString("PODR", rec.Department);
                 xml.Writer.WriteElementString("PROFIL", s.AidProfile);
 
-                WriteBool("DET", Options.Pediatric, xml);
+                xml.WriteBool("DET", Options.Pediatric);
 
                 xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
                 xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
@@ -233,7 +233,7 @@ namespace civox.Model {
                 xml.Writer.WriteElementString("DS", rec.Diagnosis);
                 
                 // Признак отказа
-                WriteBool("P_OTK", s.Refusal, xml);
+                xml.WriteBool("P_OTK", s.Refusal);
 
                 xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString());
                 xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString());

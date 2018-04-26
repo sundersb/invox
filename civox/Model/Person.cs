@@ -108,15 +108,15 @@ namespace civox.Model {
             }
 
             // Only for dispanserisation
-            WriteIfValid("TEL", Phone, xml);
-            WriteIfValid("MR", Address, xml);
-            WriteIfValid("DOCTYPE", DocTypeId, xml);
+            xml.WriteIfValid("TEL", Phone);
+            xml.WriteIfValid("MR", Address);
+            xml.WriteIfValid("DOCTYPE", DocTypeId);
 
-            WriteIfValid("DOCSER", DocumentSerial, xml);
-            WriteIfValid("DOCNUM", DocumentNumber, xml);
-            WriteIfValid("SNILS", SNILS, xml);
-            WriteIfValid("OKATOG", ResidenceOKATO, xml);
-            WriteIfValid("OKATOP", PresenceOKATO, xml);
+            xml.WriteIfValid("DOCSER", DocumentSerial);
+            xml.WriteIfValid("DOCNUM", DocumentNumber);
+            xml.WriteIfValid("SNILS", SNILS);
+            xml.WriteIfValid("OKATOG", ResidenceOKATO);
+            xml.WriteIfValid("OKATOP", PresenceOKATO);
 
             xml.Writer.WriteEndElement();
         }

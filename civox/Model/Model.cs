@@ -13,20 +13,5 @@ namespace civox.Model {
         /// </summary>
         /// <param name="xml">XML write helper</param>
         public abstract void Write(Lib.XmlExporter xml, Data.IInvoice repo);
-
-        /// <summary>
-        /// Write string element to XML if it is not empty
-        /// </summary>
-        /// <param name="node">XML node name</param>
-        /// <param name="value">Node value to check and write</param>
-        /// <param name="xml">XML write helper</param>
-        protected void WriteIfValid(string node, string value, Lib.XmlExporter xml) {
-            if (!string.IsNullOrEmpty(value))
-                xml.Writer.WriteElementString(node, value);
-        }
-
-        protected void WriteBool(string node, bool value, Lib.XmlExporter xml) {
-            xml.Writer.WriteElementString(node, value ? "1" : "0");
-        }
     }
 }
