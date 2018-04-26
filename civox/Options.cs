@@ -16,6 +16,7 @@ namespace civox {
         static string lpuLocation;
         static string outputLocation;
         static string lpuCode;
+        static string localLpuCode;
         static string fomsCode;
         static string defaultDocument;
         static bool pediatric;
@@ -50,6 +51,11 @@ namespace civox {
         /// Clinic code (270019)
         /// </summary>
         public static string LpuCode { get { return lpuCode; } }
+
+        /// <summary>
+        /// Clinic code in territory register (2101003)
+        /// </summary>
+        public static string LocalLpuCode { get { return localLpuCode; } }
 
         /// <summary>
         /// Territory FOMS code (27)
@@ -102,6 +108,7 @@ namespace civox {
             outputLocation = lpuLocation + OUTPUT_LOCATION;
 
             lpuCode = Properties.Settings.Default.LpuCode;
+            localLpuCode = Properties.Settings.Default.LocalLpuCode;
             fomsCode = Properties.Settings.Default.FomsCode;
             pediatric = Properties.Settings.Default.Pediatric;
             okato = Properties.Settings.Default.OKATO;

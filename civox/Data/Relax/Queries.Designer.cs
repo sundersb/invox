@@ -74,7 +74,7 @@ namespace civox.Data.Relax {
         ///  K.MSP,
         ///  nvl(M.PROFILE, &apos;xxx&apos;) PROFILE,
         ///  K.OPL
-        /// from {period}S2101003 S
+        /// from {period}S{lpu} S
         ///  left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
         ///  left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD
         ///  left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
@@ -95,8 +95,8 @@ namespace civox.Data.Relax {
         ///  P.SN_POL,
         ///  P.Q,
         ///  P.NOVOR
-        /// from {period}P2101003 P
-        ///  join {period}S2101003 S on S.SN_POL = P.SN_POL
+        /// from {period}P{lpu} P
+        ///  join {period}S{lpu} S on S.SN_POL = P.SN_POL
         /// order by P.RECID.
         /// </summary>
         internal static string SELECT_INVOICE_RECS {
@@ -119,8 +119,8 @@ namespace civox.Data.Relax {
         ///  cpconvert(866, 1251, P.ADRES) ADRES,
         ///  PP.Q_PASP,
         ///  PP.SN_PASP
-        /// from {period}P2101003 P
-        ///  join {period}S2101003 S on S.SN_POL = P.SN_POL
+        /// from {period}P{lpu} P
+        ///  join {period}S{lpu} S on S.SN_POL = P.SN_POL
         ///  left outer join {period}PAT PP on PP.SN_POL = P.SN_POL
         /// order by P.RECID.
         /// </summary>
@@ -132,8 +132,8 @@ namespace civox.Data.Relax {
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на select count(distinct P.SN_POL)
-        /// from {period}P2101003 P
-        ///  join {period}S2101003 S on S.SN_POL = P.SN_POL.
+        /// from {period}P{lpu} P
+        ///  join {period}S{lpu} S on S.SN_POL = P.SN_POL.
         /// </summary>
         internal static string SELECT_PEOPLE_COUNT {
             get {
@@ -154,8 +154,8 @@ namespace civox.Data.Relax {
         ///  D.F,
         ///  UMP.SLUSL COND,
         ///  S.IG
-        /// from {period}S2101003 S
-        ///  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) an [остаток строки не уместился]&quot;;.
+        /// from {period}S{lpu} S
+        ///  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and  [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_RECOURSE_CASES {
             get {
@@ -164,7 +164,7 @@ namespace civox.Data.Relax {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select sum(S_ALL) TOTAL from {period}S2101003.
+        ///   Ищет локализованную строку, похожую на select sum(S_ALL) TOTAL from {period}S{lpu}.
         /// </summary>
         internal static string SELECT_TOTAL_TO_PAY {
             get {

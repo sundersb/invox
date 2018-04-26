@@ -20,5 +20,8 @@
     <Setting Name="DefaultDocument" Type="System.String" Scope="User">
       <Value Profile="(Default)">14</Value>
     </Setting>
+    <Setting Name="LocalLpuCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2101003</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

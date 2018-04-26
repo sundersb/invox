@@ -10,6 +10,8 @@ namespace civox.Data.Relax {
     /// </summary>
     class RepoInvoice : IInvoice {
         const string PERIOD_MARKER = "{period}";
+        const string LPU_MARKER = "{lpu}";
+
         static string[] SELECT_RECOURSE_CASES_PARAMS = { "SN_POL" };
         static string[] SELECT_CASE_TREAT_PARAMS = { "SN_POL", "DS", "OTD" };
 
@@ -35,10 +37,10 @@ namespace civox.Data.Relax {
             aService = new AdapterService();
 
             Func<string, OleDbCommand> helper =
-                s => provider.CreateCommand(s.Replace(PERIOD_MARKER, Options.PeriodLocation));
+                s => provider.CreateCommand(LocalizeQuery(s));
 
             Func<string, OleDbCommand> helperAlt =
-                s => provider.CreateCommandAlt(s.Replace(PERIOD_MARKER, Options.PeriodLocation));
+                s => provider.CreateCommandAlt(LocalizeQuery(s));
 
             selectPeople = helper(Queries.SELECT_PEOPLE);
             selectPeopleCount = helper(Queries.SELECT_PEOPLE_COUNT);
@@ -50,6 +52,16 @@ namespace civox.Data.Relax {
 
             selectService = helperAlt(Queries.SELECT_CASE_TREAT);
             provider.AddStringParameters(selectService, SELECT_CASE_TREAT_PARAMS);
+        }
+
+        /// <summary>
+        /// Extend SQL macros
+        /// </summary>
+        /// <param name="sql">SQL with period and clinic macros</param>
+        /// <returns>SQL with macros extended</returns>
+        string LocalizeQuery(string sql) {
+            return sql.Replace(PERIOD_MARKER, Options.PeriodLocation)
+                .Replace(LPU_MARKER, Options.LocalLpuCode);
         }
 
 

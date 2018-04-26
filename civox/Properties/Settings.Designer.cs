@@ -94,5 +94,17 @@ namespace civox.Properties {
                 this["DefaultDocument"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2101003")]
+        public string LocalLpuCode {
+            get {
+                return ((string)(this["LocalLpuCode"]));
+            }
+            set {
+                this["LocalLpuCode"] = value;
+            }
+        }
     }
 }

@@ -131,7 +131,7 @@
   K.MSP,
   nvl(M.PROFILE, 'xxx') PROFILE,
   K.OPL
- from {period}S2101003 S
+ from {period}S{lpu} S
   left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
   left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD
   left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
@@ -147,8 +147,8 @@
   P.SN_POL,
   P.Q,
   P.NOVOR
- from {period}P2101003 P
-  join {period}S2101003 S on S.SN_POL = P.SN_POL
+ from {period}P{lpu} P
+  join {period}S{lpu} S on S.SN_POL = P.SN_POL
  order by P.RECID</value>
   </data>
   <data name="SELECT_PEOPLE" xml:space="preserve">
@@ -165,15 +165,15 @@
   cpconvert(866, 1251, P.ADRES) ADRES,
   PP.Q_PASP,
   PP.SN_PASP
- from {period}P2101003 P
-  join {period}S2101003 S on S.SN_POL = P.SN_POL
+ from {period}P{lpu} P
+  join {period}S{lpu} S on S.SN_POL = P.SN_POL
   left outer join {period}PAT PP on PP.SN_POL = P.SN_POL
  order by P.RECID</value>
   </data>
   <data name="SELECT_PEOPLE_COUNT" xml:space="preserve">
     <value>select count(distinct P.SN_POL)
- from {period}P2101003 P
-  join {period}S2101003 S on S.SN_POL = P.SN_POL</value>
+ from {period}P{lpu} P
+  join {period}S{lpu} S on S.SN_POL = P.SN_POL</value>
     <comment>Join с услугами, чтобы отсеять пациентов без услуг</comment>
   </data>
   <data name="SELECT_RECOURSE_CASES" xml:space="preserve">
@@ -189,7 +189,7 @@
   D.F,
   UMP.SLUSL COND,
   S.IG
- from {period}S2101003 S
+ from {period}S{lpu} S
   left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGIN = S.DS)
   left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
   left outer join BASE/COMMON/SLUMP UMP on UMP.CODE = K.UMP
@@ -198,7 +198,7 @@
     <comment>Случаи обращения. NB: В одну запись могут попасть два случая обращения, если одинаковый диагноз и REASON</comment>
   </data>
   <data name="SELECT_TOTAL_TO_PAY" xml:space="preserve">
-    <value>select sum(S_ALL) TOTAL from {period}S2101003</value>
+    <value>select sum(S_ALL) TOTAL from {period}S{lpu}</value>
     <comment>Предьявить к оплате</comment>
   </data>
 </root>
