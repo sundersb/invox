@@ -73,12 +73,12 @@ namespace civox.Lib {
             date = date.Date;
             while (n > 0) {
                 date = date.AddDays(-1);
-                if (IsWorkDay(date)) --n;
+                if (date.IsWorkDay()) --n;
             }
             return date;
         }
 
-        static bool IsWorkDay(DateTime date) {
+        public static bool IsWorkDay(this DateTime date) {
             DayOfWeek dw = date.DayOfWeek;
             return ((dw != DayOfWeek.Saturday && dw != DayOfWeek.Sunday) || Workdays.Contains(date)) && !Holidays.Contains(date);
         }

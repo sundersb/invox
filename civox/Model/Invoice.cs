@@ -39,8 +39,14 @@ namespace civox.Model {
             xml.Writer.WriteElementString("MONTH", Options.Month.ToString());
             // TODO: Invoice number
             xml.Writer.WriteElementString("NSCHET", string.Empty);
-            // TODO: Invoice date
-            xml.Writer.WriteElementString("DSCHET", DateTime.Today.AsXml());
+
+            // Invoice date
+            // Get last working day of the report month
+            DateTime date = new DateTime(Options.Year, Options.Month, 1);
+            date = date.AddMonths(1).AddDays(-1);
+            while (date.IsWorkDay()) date = date.AddDays(-1);
+            xml.Writer.WriteElementString("DSCHET", date.AsXml());
+
             // TODO: Invoice SMO - unnecessary
             xml.Writer.WriteElementString("PLAT", string.Empty);
 
