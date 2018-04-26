@@ -175,7 +175,6 @@ namespace civox.Model {
             if (rec.FirstRevealed)
                 xml.Writer.WriteElementString("DS1_PR", "1");
 
-            // TODO: Whata heck with BOLEND instead of REZOBR to V009
             // V009
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
             if (rec.IsDispanserisation()) {

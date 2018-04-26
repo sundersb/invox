@@ -1,6 +1,6 @@
 ﻿namespace civox.Dict {
     class Rezobr : Base {
-        const string XML_NAME = "\\Dict\\V009-BE.xml";
+        const string XML_NAME = "\\Dict\\V009-REZOBR.xml";
 
         static Rezobr instance = null;
         static object flock = new object();
