@@ -27,6 +27,7 @@ namespace civox.Data.Relax {
         OleDbCommand selectTotalToPay;
         OleDbCommand selectInvoiceRecs;
         OleDbCommand selectRecourses;
+        OleDbCommand selectRecoursesCount;
         OleDbCommand selectService;
 
         public RepoInvoice(Provider provider) {
@@ -46,6 +47,7 @@ namespace civox.Data.Relax {
             selectPeopleCount = helper(Queries.SELECT_PEOPLE_COUNT);
             selectTotalToPay = helper(Queries.SELECT_TOTAL_TO_PAY);
             selectInvoiceRecs = helper(Queries.SELECT_INVOICE_RECS);
+            selectRecoursesCount = helper(Queries.SELECT_RECOURSES_COUNT);
 
             selectRecourses = helperAlt(Queries.SELECT_RECOURSE_CASES);
             provider.AddStringParameters(selectRecourses, SELECT_RECOURSE_CASES_PARAMS);
@@ -72,9 +74,9 @@ namespace civox.Data.Relax {
             return aPerson.Load(selectPeople);
         }
 
-        // TODO: int GetCasesNumber()
-        public int GetCasesNumber() {
-            throw new NotImplementedException();
+        public int GetRecourcesCount() {
+            object result = provider.ExecuteScalar(selectRecoursesCount);
+            return (int)(decimal)result;
         }
 
         public decimal TotalToPay() {

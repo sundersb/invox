@@ -25,7 +25,7 @@ namespace civox.Data {
         /// <summary>
         /// Get quantity of treatment cases
         /// </summary>
-        int GetCasesNumber();
+        int GetRecourcesCount();
 
         /// <summary>
         /// Get total price for the FOMS to pay

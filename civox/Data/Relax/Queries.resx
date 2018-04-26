@@ -141,7 +141,7 @@
     <comment>Обращение с лечебной целью</comment>
   </data>
   <data name="SELECT_INVOICE_RECS" xml:space="preserve">
-    <value>select distinct top 100
+    <value>select distinct top 400
   P.RECID,
   P.T_POL,
   P.SN_POL,
@@ -175,6 +175,11 @@
  from {period}P{lpu} P
   join {period}S{lpu} S on S.SN_POL = P.SN_POL</value>
     <comment>Join с услугами, чтобы отсеять пациентов без услуг</comment>
+  </data>
+  <data name="SELECT_RECOURSES_COUNT" xml:space="preserve">
+    <value>select count(*)
+ from {period}S{lpu}
+ where floor(COD/1000) in (3, 27, 25, 29, 22, 50)</value>
   </data>
   <data name="SELECT_RECOURSE_CASES" xml:space="preserve">
     <value>select distinct

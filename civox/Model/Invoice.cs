@@ -24,8 +24,8 @@ namespace civox.Model {
             xml.Writer.WriteElementString("VERSION", VERSION);
             xml.Writer.WriteElementString("DATA", DateTime.Today.AsXml());
             xml.Writer.WriteElementString("FILENAME", invoiceNames.InvoiceFileName);
-            // TODO: Number of ZAP
-            xml.Writer.WriteElementString("SD_Z", string.Empty);
+
+            xml.Writer.WriteElementString("SD_Z", repo.GetRecourcesCount().ToString());
             xml.Writer.WriteEndElement();
 
 
@@ -47,7 +47,7 @@ namespace civox.Model {
             string dummy = string.Format(Options.NumberFormat, "{0:f2}", repo.TotalToPay());
 
             // TODO: Recourses count
-            int count = 100;
+            int count = repo.GetPeopleCount();
 
             xml.Writer.WriteElementString("SUMMAV", dummy);
             xml.Writer.WriteEndElement();

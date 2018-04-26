@@ -89,7 +89,7 @@ namespace civox.Data.Relax {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select distinct top 100
+        ///   Ищет локализованную строку, похожую на select distinct top 400
         ///  P.RECID,
         ///  P.T_POL,
         ///  P.SN_POL,
@@ -160,6 +160,17 @@ namespace civox.Data.Relax {
         internal static string SELECT_RECOURSE_CASES {
             get {
                 return ResourceManager.GetString("SELECT_RECOURSE_CASES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на select count(*)
+        /// from {period}S{lpu}
+        /// where floor(COD/1000) in (3, 27, 25, 29, 22, 50).
+        /// </summary>
+        internal static string SELECT_RECOURSES_COUNT {
+            get {
+                return ResourceManager.GetString("SELECT_RECOURSES_COUNT", resourceCulture);
             }
         }
         
