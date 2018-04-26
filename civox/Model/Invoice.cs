@@ -42,7 +42,7 @@ namespace civox.Model {
             // Get last working day of the report month
             DateTime date = new DateTime(Options.Year, Options.Month, 1);
             date = date.AddMonths(1).AddDays(-1);
-            while (date.IsWorkDay()) date = date.AddDays(-1);
+            while (!date.IsWorkDay()) date = date.AddDays(-1);
             xml.Writer.WriteElementString("DSCHET", date.AsXml());
 
             xml.WriteIfValid("PLAT", invoiceNames.SmoCode);
