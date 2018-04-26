@@ -88,7 +88,6 @@ namespace civox.Model {
             List<Recourse> rs = repo.LoadRecourceCases(policyCompound).ToList();
 
             foreach (Recourse r in rs) {
-                // TODO: Dispanserisation SLUCH doubled in case of both dd1 and dd2 present
                 List<Service> services = repo.LoadServices(policyCompound, r.Diagnosis, r.Reason).ToList();
 
                 if (ReasonHelper.IsSingleDay(r.Reason)) {
@@ -142,7 +141,7 @@ namespace civox.Model {
             //xml.Writer.WriteElementString("P_PER", "3");
 
             xml.Writer.WriteElementString("VID_HMP", string.Empty);            // TODO: Вид ВМП - нет
-            xml.Writer.WriteElementString("METOD_HMP", string.Empty);          // TODO: Метод ВМП - нет
+            //xml.Writer.WriteElementString("METOD_HMP", string.Empty);          // TODO: Метод ВМП - нет
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
             xml.Writer.WriteElementString("VBR", string.Empty);                // TODO: Выездная бригада - нет
 
@@ -153,10 +152,10 @@ namespace civox.Model {
             xml.WriteBool("DET", Options.Pediatric);
 
             // TODO: Дата талона ВМП
-            xml.Writer.WriteElementString("TAL_D", string.Empty);
+            //xml.Writer.WriteElementString("TAL_D", string.Empty);
 
             // TODO: Дата запланир. госпит.
-            xml.Writer.WriteElementString("TAL_P", string.Empty);
+            //xml.Writer.WriteElementString("TAL_P", string.Empty);
 
             xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
 
@@ -176,6 +175,7 @@ namespace civox.Model {
             if (rec.FirstRevealed)
                 xml.Writer.WriteElementString("DS1_PR", "1");
 
+            // TODO: Whata heck with BOLEND instead of REZOBR to V009
             // V009
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
             if (rec.IsDispanserisation()) {
@@ -211,7 +211,7 @@ namespace civox.Model {
 
             // TODO: Тариф
             // UPDATE: Хуй там! В релаксе подушевые суммы по нулям
-            xml.Writer.WriteElementString("TARIF", string.Empty);
+            //xml.Writer.WriteElementString("TARIF", string.Empty);
             
             // Сумма к оплате
             xml.Writer.WriteElementString("SUMV", string.Format(Options.NumberFormat, "{0:f2}", services.Sum(s => s.Price)));
@@ -234,12 +234,13 @@ namespace civox.Model {
                 xml.Writer.WriteElementString("DS", rec.Diagnosis);
                 
                 // Признак отказа
-                xml.WriteBool("P_OTK", s.Refusal);
+                // FLK complaints on USL.P_OTK
+                //xml.WriteBool("P_OTK", s.Refusal);
 
                 xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString());
                 xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString());
 
-                xml.Writer.WriteElementString("TARIF", string.Empty);          // TODO:
+                //xml.Writer.WriteElementString("TARIF", string.Empty);          // TODO:
                 xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", s.Price));
                 
                 xml.Writer.WriteElementString("PRVS", s.DoctorProfile);        // V015
