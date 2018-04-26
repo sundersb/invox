@@ -22,6 +22,7 @@ namespace civox {
         static bool pediatric;
         static int year;
         static int month;
+        static string invoiceNumber;
         static string periodLocation;
         static Data.IDataProvider provider;
 
@@ -83,6 +84,18 @@ namespace civox {
         public static int Month { get { return month; } }
 
         /// <summary>
+        /// Invoice number
+        /// </summary>
+        public static string InvoiceNumber { get { return invoiceNumber; } }
+
+        /// <summary>
+        /// Invoice number. Generated from federal code of the clinic and invoice number
+        /// </summary>
+        public static string InvoiceCode {
+            get { return lpuCode + invoiceNumber; }
+        }
+
+        /// <summary>
         /// Relax database path for the period to export
         /// </summary>
         public static string PeriodLocation { get { return periodLocation; } }
@@ -118,6 +131,9 @@ namespace civox {
             DateTime date = DateTime.Today.AddMonths(-1);
             year = date.Year;
             month = date.Month;
+
+            // TODO: Invoice number from command line
+            invoiceNumber = "3";
 
             if (args.Length > 0) {
                 int yy, mm;

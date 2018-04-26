@@ -32,13 +32,11 @@ namespace civox.Model {
             // SCHET record
             xml.Writer.WriteStartElement("SCHET");
             
-            // TODO: Invoice code
-            xml.Writer.WriteElementString("CODE", string.Empty);
+            xml.Writer.WriteElementString("CODE", Options.InvoiceCode);
             xml.Writer.WriteElementString("CODE_MO", Options.LpuCode);
             xml.Writer.WriteElementString("YEAR", Options.Year.ToString());
             xml.Writer.WriteElementString("MONTH", Options.Month.ToString());
-            // TODO: Invoice number
-            xml.Writer.WriteElementString("NSCHET", string.Empty);
+            xml.Writer.WriteElementString("NSCHET", Options.InvoiceNumber);
 
             // Invoice date
             // Get last working day of the report month
