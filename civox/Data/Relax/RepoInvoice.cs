@@ -13,7 +13,7 @@ namespace civox.Data.Relax {
         const string LPU_MARKER = "{lpu}";
 
         static string[] SELECT_RECOURSE_CASES_PARAMS = { "SN_POL" };
-        static string[] SELECT_CASE_TREAT_PARAMS = { "SN_POL", "DS", "OTD" };
+        static string[] SELECT_CASE_TREAT_PARAMS = { "SN_POL", "DS", "REASON" };
 
         Provider provider;
 
@@ -92,10 +92,10 @@ namespace civox.Data.Relax {
             return aRecourse.Load(selectRecourses);
         }
 
-        public IEnumerable<Model.Service> LoadServices(string policy, string diagnosis, string dept) {
+        public IEnumerable<Model.Service> LoadServices(string policy, string diagnosis, Model.Reason reason) {
             selectService.Parameters[0].Value = policy;
             selectService.Parameters[1].Value = diagnosis;
-            selectService.Parameters[2].Value = dept;
+            selectService.Parameters[2].Value = ((int)reason).ToString();
             return aService.Load(selectService);
         }
 

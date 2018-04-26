@@ -34,7 +34,7 @@ namespace civox.Lib {
                         LoadDates(workdays, XML_WORKDAYS);
                     }
                 }
-                return holidays;
+                return workdays;
             }
         }
 

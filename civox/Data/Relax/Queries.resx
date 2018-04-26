@@ -137,7 +137,12 @@
   left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
  where (S.SN_POL = ?)
   and (S.DS = ?)
-  and (S.OTD = ?)</value>
+  and (icase(S.OTD = '0001', '1',
+   S.OTD = '0003', iif(S.COD = 3001 or S.COD = 3034, '2', '3'),
+   S.OTD = '0004', iif(S.COD = 50002 or S.COD = 50001 or floor(S.COD / 10000) = 6, '4', '5'),
+   S.OTD = '0005', '6',
+   S.OTD = '0009', icase(floor(S.COD / 1000) = 27, '7', floor(S.COD / 1000) = 25 or floor(COD / 1000) = 28, '9', '8'),
+   '0') = ?)</value>
     <comment>Обращение с лечебной целью</comment>
   </data>
   <data name="SELECT_INVOICE_RECS" xml:space="preserve">

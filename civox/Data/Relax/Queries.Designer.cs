@@ -80,7 +80,8 @@ namespace civox.Data.Relax {
         ///  left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
         /// where (S.SN_POL = ?)
         ///  and (S.DS = ?)
-        ///  and (S.OTD = ?).
+        ///  and (icase(S.OTD = &apos;0001&apos;, &apos;1&apos;,
+        ///   S.OTD = &apos;0003&apos;, iif(S.COD = 3001 or S.COD [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_CASE_TREAT {
             get {

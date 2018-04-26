@@ -77,7 +77,7 @@ namespace civox.Model {
             xml.Writer.WriteElementString("VPOLIS", PolicyKind.ToString());
             xml.WriteIfValid("SPOLIS", PolicySerial);
             xml.Writer.WriteElementString("NPOLIS", PolicyNumber);
-            xml.Writer.WriteElementString("OKATO", OKATO);
+            xml.Writer.WriteElementString("ST_OKATO", OKATO);
             xml.Writer.WriteElementString("SMO", SmoCode);
             xml.WriteBool("NOVOR", IsNewborn);
             xml.Writer.WriteEndElement();
@@ -88,7 +88,8 @@ namespace civox.Model {
             List<Recourse> rs = repo.LoadRecourceCases(policyCompound).ToList();
 
             foreach (Recourse r in rs) {
-                List<Service> services = repo.LoadServices(policyCompound, r.Diagnosis, r.Department).ToList();
+                // TODO: Dispanserisation SLUCH doubled in case of both dd1 and dd2 present
+                List<Service> services = repo.LoadServices(policyCompound, r.Diagnosis, r.Reason).ToList();
 
                 if (ReasonHelper.IsSingleDay(r.Reason)) {
                     // List of services may contain several recourses (Emergency, Prof, Other etc.)
@@ -121,7 +122,7 @@ namespace civox.Model {
             // В приказе этот узел зовется Z_SL. У нас вот так:
             xml.Writer.WriteStartElement("SLUCH");
 
-            xml.Writer.WriteElementString("IDSERV", marks.Resulting.ID.ToString());
+            xml.Writer.WriteElementString("IDCASE", marks.Resulting.ID.ToString());
 
             // V006 Условия оказания МП
             xml.Writer.WriteElementString("USL_OK", rec.Condition);
@@ -138,7 +139,7 @@ namespace civox.Model {
             //2 – СМП
             //3 – Перевод из другой МО
             //4 – Перевод внутри МО с другого профиля
-            xml.Writer.WriteElementString("P_PER", "3");
+            //xml.Writer.WriteElementString("P_PER", "3");
 
             xml.Writer.WriteElementString("VID_HMP", string.Empty);            // TODO: Вид ВМП - нет
             xml.Writer.WriteElementString("METOD_HMP", string.Empty);          // TODO: Метод ВМП - нет
