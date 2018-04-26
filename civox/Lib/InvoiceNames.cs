@@ -8,9 +8,11 @@ namespace civox.Lib {
     /// <summary>
     /// Invoice file names helper
     /// </summary>
+    // TODO: Extend InvoiceNames with invoice-to-SMO factory
     class InvoiceNames {
         string people;
         string invoice;
+        string smoCode;
 
         InvoiceKind invoiceKind;
 
@@ -25,13 +27,22 @@ namespace civox.Lib {
         public string InvoiceFileName { get { return invoice; } }
 
         /// <summary>
+        /// Federal code of the assurance company
+        /// </summary>
+        public string SmoCode { get { return smoCode; } }
+
+        /// <summary>
         /// Invoice kind
         /// </summary>
         public InvoiceKind InvoiceKind { get { return invoiceKind; } }
 
+
         InvoiceNames(string people, string invoice) {
             this.people = people;
             this.invoice = invoice;
+
+            // TODO: Invoice SMO - unnecessary
+            smoCode = string.Empty;
         }
 
         static string GetAgentCode(AgentCode agent, string smoCode) {

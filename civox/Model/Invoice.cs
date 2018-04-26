@@ -45,18 +45,14 @@ namespace civox.Model {
             while (date.IsWorkDay()) date = date.AddDays(-1);
             xml.Writer.WriteElementString("DSCHET", date.AsXml());
 
-            // TODO: Invoice SMO - unnecessary
-            xml.Writer.WriteElementString("PLAT", string.Empty);
+            xml.Writer.WriteElementString("PLAT", invoiceNames.SmoCode);
 
             string dummy = string.Format(Options.NumberFormat, "{0:f2}", repo.TotalToPay());
-
-            // TODO: Recourses count
-            int count = repo.GetPeopleCount();
-
             xml.Writer.WriteElementString("SUMMAV", dummy);
+
             xml.Writer.WriteEndElement();
 
-            Lib.Progress progress = new Progress("Случаи обращения", count);
+            Lib.Progress progress = new Progress("Случаи обращения", repo.GetPeopleCount());
             foreach (InvoiceRecord irec in repo.LoadInvoiceRecords()) {
                 irec.Write(xml, repo);
                 progress.Step();
