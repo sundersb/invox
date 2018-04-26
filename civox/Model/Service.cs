@@ -38,6 +38,7 @@ namespace civox.Model {
         const int DISP_II_RESULT_CODE = 28;
         const int RECOURSE_RESULT_CODE = 50;
         const int DAY_HOSP_CODE = 30;
+        const int PROPHYLAX_CODE = 27;
 
         DateTime beginDate;
         DateTime endDate;
@@ -112,8 +113,11 @@ namespace civox.Model {
                 date = services.Min(s => s.EndDate);
                 result.First = services.FirstOrDefault(s => s.EndDate == date);
             } else {
-                // Set resulting service by code 50xxx
-                result.Resulting = services.FirstOrDefault(s => s.ServiceCode / 1000 == RECOURSE_RESULT_CODE);
+                // Set resulting service by code 50xxx, 27xxx
+                result.Resulting = services.FirstOrDefault(s => {
+                    int sc = s.ServiceCode / 1000;
+                    return sc == RECOURSE_RESULT_CODE || sc == PROPHYLAX_CODE;
+                });
                 
                 DateTime date = services.Max(s => s.EndDate);
                 result.Last = services.FirstOrDefault(s => s.EndDate == date);

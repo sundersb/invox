@@ -9,8 +9,6 @@ namespace civox.Model {
     /// </summary>
     class ReasonHelper {
         static Reason[] SINGLE_DAY = {
-            Reason.DayHosp,
-            Reason.SurgeryDayHosp,
             Reason.Other,
             Reason.Emergency,
             Reason.Prof,
