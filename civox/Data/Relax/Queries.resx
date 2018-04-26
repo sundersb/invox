@@ -141,7 +141,7 @@
     <comment>Обращение с лечебной целью</comment>
   </data>
   <data name="SELECT_INVOICE_RECS" xml:space="preserve">
-    <value>select distinct top 400
+    <value>select distinct top 200
   P.RECID,
   P.T_POL,
   P.SN_POL,

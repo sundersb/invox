@@ -37,8 +37,7 @@ namespace civox.Lib {
 
                 ws.Indent = true;
                 ws.IndentChars = "  ";
-                // TODO: XML encoding to 1251
-                ws.Encoding = Encoding.UTF8;// Encoding.GetEncoding("windows-1251");
+                ws.Encoding = Encoding.GetEncoding("windows-1251");
 
                 writer = XmlWriter.Create(s, ws);
             } catch (Exception ex) {

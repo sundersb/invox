@@ -89,7 +89,7 @@ namespace civox.Data.Relax {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select distinct top 400
+        ///   Ищет локализованную строку, похожую на select distinct top 200
         ///  P.RECID,
         ///  P.T_POL,
         ///  P.SN_POL,
