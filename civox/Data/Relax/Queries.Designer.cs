@@ -106,7 +106,7 @@ namespace civox.Data.Relax {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select distinct top 20
+        ///   Ищет локализованную строку, похожую на select distinct
         ///  P.RECID,
         ///  cpconvert(866, 1251, P.FAM) FAM,
         ///  cpconvert(866, 1251, P.IM) IM,

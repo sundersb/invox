@@ -152,7 +152,7 @@
  order by P.RECID</value>
   </data>
   <data name="SELECT_PEOPLE" xml:space="preserve">
-    <value>select distinct top 20
+    <value>select distinct
   P.RECID,
   cpconvert(866, 1251, P.FAM) FAM,
   cpconvert(866, 1251, P.IM) IM,

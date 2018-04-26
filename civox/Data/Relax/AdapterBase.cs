@@ -50,11 +50,13 @@ namespace civox.Data.Relax {
 
         protected int ReadInt(object value) {
             int result = 0;
-            int.TryParse((string)value, out result);
+            if (value != DBNull.Value) int.TryParse((string)value, out result);
             return result;
         }
 
         protected string ReadString(object value) {
+            if (value == DBNull.Value) return string.Empty;
+
             string result = (string)value;
             return result.Trim();
         }
