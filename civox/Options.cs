@@ -23,6 +23,7 @@ namespace civox {
         static int year;
         static int month;
         static string invoiceNumber;
+        static string packetNumber;
         static string periodLocation;
         static Data.IDataProvider provider;
 
@@ -89,6 +90,11 @@ namespace civox {
         public static string InvoiceNumber { get { return invoiceNumber; } }
 
         /// <summary>
+        /// Ordinal number of the packet for the period
+        /// </summary>
+        public static string PacketNumber { get { return packetNumber; } }
+
+        /// <summary>
         /// Invoice number. Generated from federal code of the clinic and invoice number
         /// </summary>
         public static string InvoiceCode {
@@ -134,6 +140,7 @@ namespace civox {
 
             // TODO: Invoice number from command line
             invoiceNumber = "3";
+            packetNumber = "1";
 
             if (args.Length > 0) {
                 int yy, mm;

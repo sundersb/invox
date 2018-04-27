@@ -74,7 +74,7 @@ namespace civox.Lib {
         /// <param name="invoiceKind">Invoice kind</param>
         /// <param name="profKind">Prophylaxis kind in case invoiceKind is Prophylaxis</param>
         /// <returns>Names for the person data and invoice files</returns>
-        public static InvoiceNames InvoiceToFoms(int packetNumber,
+        public static InvoiceNames InvoiceToFoms(string packetNumber,
             InvoiceKind invoiceKind,
             ProfKind profKind = ProfKind.Adults) {
 
@@ -85,7 +85,7 @@ namespace civox.Lib {
             b.Append(Options.Year % 100);
             b.Append(string.Format("{0:d2}", Options.Month));
 
-            //b.Append(packetNumber % 10); // FOMS ignores "single digit" rule
+            // FOMS ignores "single digit" rule
             b.Append(packetNumber);
             
             string body = b.ToString();

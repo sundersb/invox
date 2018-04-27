@@ -69,7 +69,8 @@ namespace civox {
                 Options.PeriodLocation));
 
             if (Checkup()) {
-                Lib.InvoiceNames names = Lib.InvoiceNames.InvoiceToFoms(1, Model.InvoiceKind.GeneralTreatment);
+                Lib.InvoiceNames names = Lib.InvoiceNames.InvoiceToFoms(Options.PacketNumber,
+                    Model.InvoiceKind.GeneralTreatment);
 
                 if (Run(names))
                     Console.WriteLine("\r\nОК\r\n");
