@@ -10,7 +10,6 @@ namespace civox.Lib {
     /// </summary>
     class Zip {
         const string ARGUMENTS_7Z = "a -tzip -mx9 \"{0}{1}.zip\" \"{0}{1}.xml\" \"{0}{2}.xml\"";
-        //const string ARGUMENTS_7Z = "a -tzip -mx9 \"{0}{1}.zip\" \"{0}{2}.xml\"";
 
         /// <summary>
         /// Compress invoice files to ZIP archive

@@ -55,6 +55,8 @@ namespace civox.Lib {
                 writer.Close();
                 writer = null;
             }
+
+            // Force flush and close or else Zip complains
             if (stream != null) {
                 stream.Dispose();
                 stream = null;
