@@ -9,6 +9,9 @@ namespace civox.Lib {
     /// ZIP archiver helper
     /// </summary>
     class Zip {
+        const string ARGUMENTS_7Z = "a -tzip -mx9 \"{0}{1}.zip\" \"{0}{1}.xml\" \"{0}{2}.xml\"";
+        //const string ARGUMENTS_7Z = "a -tzip -mx9 \"{0}{1}.zip\" \"{0}{2}.xml\"";
+
         /// <summary>
         /// Compress invoice files to ZIP archive
         /// </summary>
@@ -23,23 +26,25 @@ namespace civox.Lib {
             info.CreateNoWindow = true;
             info.WindowStyle = ProcessWindowStyle.Hidden;
 
-            StringBuilder sb = new StringBuilder("a -tzip \"");
-            sb.Append(Options.OutputLocation);
-            sb.Append(names.InvoiceFileName);
-            sb.Append(".zip\" \"");
-            sb.Append(Options.OutputLocation);
-            sb.Append(names.InvoiceFileName);
-            sb.Append(".xml\" \"");
-            sb.Append(Options.OutputLocation);
-            sb.Append(names.PeopleFileName);
-            sb.Append(".xml\"");
+            info.UseShellExecute = false;
+            info.RedirectStandardError = true;
+            info.RedirectStandardOutput = true;
 
-            info.Arguments = sb.ToString();
+            info.Arguments = string.Format(ARGUMENTS_7Z,
+                Options.OutputLocation,
+                names.InvoiceFileName,
+                names.PeopleFileName);
 
             Process p = Process.Start(info);
+            string error = p.StandardError.ReadToEnd();
+            string output = p.StandardOutput.ReadToEnd();
             p.WaitForExit();
 
-            return p.ExitCode == 0;
+            if (p.ExitCode != 0) {
+                Logger.Log(output);
+                Logger.Log(error);
+                return false;
+            } else return true;
         }
     }
 }

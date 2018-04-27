@@ -32,9 +32,7 @@ namespace civox {
             return true;
         }
 
-        static bool Run() {
-            Lib.InvoiceNames names = Lib.InvoiceNames.InvoiceToFoms(1, Model.InvoiceKind.GeneralTreatment);
-
+        static bool Run(Lib.InvoiceNames names) {
             string fname;
             Lib.XmlExporter xml;
 
@@ -43,23 +41,20 @@ namespace civox {
             if (xml.Init(fname)) {
                 Model.People people = new Model.People(names);
                 people.Write(xml, Options.DataProvider.GetInvoiceRepository());
-                xml.Close();
             } else {
                 Console.WriteLine("Ошибка при выгрузке пациентов");
                 return false;
             }
 
             fname = Options.OutputLocation + names.InvoiceFileName + ".xml";
-            xml = new Lib.XmlExporter();
             if (xml.Init(fname)) {
                 Model.Invoice invoice = new Model.Invoice(names);
                 invoice.Write(xml, Options.DataProvider.GetInvoiceRepository());
-                xml.Close();
             } else {
                 Console.WriteLine("Ошибка при выгрузке счета");
                 return false;
             }
-
+            xml.Close();
             return Lib.Zip.Compress(names);
         }
 
@@ -74,8 +69,12 @@ namespace civox {
                 Options.PeriodLocation));
 
             if (Checkup()) {
-                Run();
-                Console.WriteLine("\r\nОК\r\n");
+                Lib.InvoiceNames names = Lib.InvoiceNames.InvoiceToFoms(1, Model.InvoiceKind.GeneralTreatment);
+
+                if (Run(names))
+                    Console.WriteLine("\r\nОК\r\n");
+                else
+                    Console.WriteLine("\r\nОшибка!\r\n");
             } else {
                 Console.WriteLine("\r\nВыгрузка не произведена!");
             }

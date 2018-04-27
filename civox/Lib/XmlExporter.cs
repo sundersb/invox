@@ -11,6 +11,7 @@ namespace civox.Lib {
     /// </summary>
     class XmlExporter {
         XmlWriter writer = null;
+        FileStream stream = null;
 
         /// <summary>
         /// Main horse
@@ -28,18 +29,17 @@ namespace civox.Lib {
         /// <param name="fileName">Name of the XML file to stream into</param>
         /// <returns>True on success</returns>
         public bool Init(string fileName) {
-            if (writer != null) writer.Close();
+            Close();
 
-            FileStream s = null;
             try {
-                s = new FileStream(fileName, FileMode.Create);
+                stream = new FileStream(fileName, FileMode.Create);
                 XmlWriterSettings ws = new XmlWriterSettings();
 
                 ws.Indent = true;
                 ws.IndentChars = "  ";
                 ws.Encoding = Encoding.GetEncoding("windows-1251");
 
-                writer = XmlWriter.Create(s, ws);
+                writer = XmlWriter.Create(stream, ws);
             } catch (Exception ex) {
                 Lib.Logger.Log(string.Format("XmlExporter.Init('{0}'):\r\n", fileName) + ex.Message);
                 return false;
@@ -54,6 +54,10 @@ namespace civox.Lib {
             if (writer != null) {
                 writer.Close();
                 writer = null;
+            }
+            if (stream != null) {
+                stream.Dispose();
+                stream = null;
             }
         }
 
