@@ -129,16 +129,18 @@ namespace civox.Model {
             // SOC (О, Т2) Социальный статус: Справочник "Социальный статус"
             xml.Writer.WriteElementString("SOC", SocialPosition.ToString());
 
-            // KT (У, Т2) "Категория льготности"
-            //xml.WriteIfValid("KT", SocialFavour);
-
-            // Опять от ФОМС (без KT ошибки нет):
-            //  Element 'SNILS': This element is not expected. Expected is ( COMENTP )
-            if (string.IsNullOrEmpty(SocialFavour))
-                xml.WriteIfValid("SNILS", SNILS);
+            xml.WriteIfValid("SNILS", SNILS);
 
             xml.WriteIfValid("OKATOG", ResidenceOKATO);
             xml.WriteIfValid("OKATOP", PresenceOKATO);
+
+            // KT (У, Т2) "Категория льготности"
+            xml.WriteIfValid("KT", SocialFavour);
+
+            // Опять от ФОМС (без KT ошибки нет):
+            //  Element 'SNILS': This element is not expected. Expected is ( COMENTP )
+            if (!string.IsNullOrEmpty(SocialFavour))
+                xml.Writer.WriteElementString("COMENTP", string.Empty);
 
             xml.Writer.WriteEndElement();
         }

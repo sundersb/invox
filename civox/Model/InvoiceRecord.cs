@@ -177,15 +177,39 @@ namespace civox.Model {
 
             // V009
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
+
+            // V017
             if (rec.IsDispanserisation()) {
-                // TODO: Результат диспансеризации
-                xml.Writer.WriteElementString("RSLT_D", string.Empty);
+                xml.Writer.WriteElementString("RSLT_D", marks.Resulting.DispResultCode);
+                // TODO: PR_D_N - сведения о диспансерном наблюдении по поводу основного заболевания: 1 - состоит, 2 – взят
+                // NAZ - Назначения по ДД
+                //      NAZ_N       Номер по порядку
+                //      NAZ_R       Заполняется при присвоении группы здоровья, кроме I и II.
+                //                  1 – направлен на консультацию в медицинскую организацию по месту прикрепления;
+                //                  2 – направлен на консультацию в иную медицинскую организацию;
+                //                  3 – направлен на обследование;
+                //                  4 – направлен в дневной стационар;
+                //                  5 – направлен на госпитализацию;
+                //                  6 – направлен в реабилитационное отделение
+                //      NAZ_SP      Специальность врача, если в поле NAZ_R проставлены коды 1 или 2. Классификатор V021
+                //      NAZ_V       Вид обследования, если в поле NAZ_R проставлен код 3.
+                //                  1 – лабораторная диагностика;
+                //                  2 – инструментальная диагностика;
+                //                  3 – методы лучевой диагностики, за исключением дорогостоящих;
+                //                  4 – дорогостоящие методы лучевой диагностики (КТ, МРТ, ангиография)
+                //      NAZ_PMP     Профиль медицинской помощи, если в поле NAZ_R проставлены коды 4 или 5 Классификатор V002
+                //      NAZ_PK      Профиль койки, если в поле NAZ_R проставлен код 6. Классификатор V020
+
+                // DS2_N - Сопутствующие заболевания
+                //      DS2         Код из справочника МКБ до уровня подрубрики
+                //      DS2_PR      Обязательно указывается «1», если данный сопутствующий диагноз выявлен впервые
+                //      PR_DS2_N    сведения о диспансерном наблюдении по поводу основного заболевания: 1 - состоит, 2 – взят
             }
 
             // Исход заболевания V012
             xml.Writer.WriteElementString("ISHOD", rec.Outcome);
 
-            // Специальность врача V015
+            // Специальность врача (по федеральному приказу V021, по ХКФОМС V015)
             xml.Writer.WriteElementString("PRVS", marks.Resulting.DoctorProfile);
             xml.Writer.WriteElementString("VERS_SPEC", "V015");
 
@@ -236,12 +260,12 @@ namespace civox.Model {
                 // FLK complaints on USL.P_OTK
                 //xml.WriteBool("P_OTK", s.Refusal);
 
-                xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString());
+                xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString("D6"));
                 xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString());
 
                 //xml.Writer.WriteElementString("TARIF", string.Empty);          // TODO:
                 xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", s.Price));
-                
+
                 xml.Writer.WriteElementString("PRVS", s.DoctorProfile);        // V015
                 xml.Writer.WriteElementString("CODE_MD", s.DoctorCode);
 

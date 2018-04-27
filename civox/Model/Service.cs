@@ -65,6 +65,7 @@ namespace civox.Model {
         public string SpecialCase;
         public string DoctorCode;
         public string ResultCode;    // V009
+        public string DispResultCode;// V017
         public string AidProfile;    // V002
         public string DoctorProfile; // V015
         public string PayKind;       // V010
