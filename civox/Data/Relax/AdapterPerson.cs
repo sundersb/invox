@@ -14,6 +14,7 @@ namespace civox.Data.Relax {
             result.SNILS = ReadString(reader["SS"]);
             result.Address = ReadString(reader["ADRES"]);
             result.SocialPosition = ReadInt(reader["SP"]);
+            result.SocialFavour = ReadString(reader["KT"]);
             result.ResidenceOKATO = "08401000000";
 
             string docType = Dict.DocumentType.Get(ReadString(reader["Q_PASP"]));

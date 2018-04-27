@@ -116,6 +116,7 @@ namespace civox.Data.Relax {
         ///  P.DR,
         ///  P.SS,
         ///  P.SP,
+        ///  P.KT,
         ///  cpconvert(866, 1251, P.SN_POL) SN_POL,
         ///  cpconvert(866, 1251, P.ADRES) ADRES,
         ///  PP.Q_PASP,

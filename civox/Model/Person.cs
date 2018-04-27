@@ -21,6 +21,16 @@ namespace civox.Model {
         public string Patronymic;
 
         /// <summary>
+        /// Социальное положение
+        /// </summary>
+        public int SocialPosition;
+
+        /// <summary>
+        /// Категория льгот
+        /// </summary>
+        public string SocialFavour;
+
+        /// <summary>
         /// Person's sex: 1 - male, 2 - female (V005) O
         /// </summary>
         public int Sex {
@@ -59,9 +69,7 @@ namespace civox.Model {
 
         public string ResidenceOKATO; // U
         public string PresenceOKATO; // U
-
-        public int SocialPosition;
-
+        
         public Person() {
         }
 
@@ -112,9 +120,23 @@ namespace civox.Model {
             xml.WriteIfValid("MR", Address);
             xml.WriteIfValid("DOCTYPE", DocTypeId);
 
-            xml.WriteIfValid("DOCSER", DocumentSerial);
-            xml.WriteIfValid("DOCNUM", DocumentNumber);
-            xml.WriteIfValid("SNILS", SNILS);
+            // ХКФОМС чудит:
+            //  Element 'DOCSER': This element is not expected. Expected is ( SOC ).
+            //  Element 'DOCNUM': This element is not expected. Expected is ( SOC )
+            //xml.WriteIfValid("DOCSER", DocumentSerial);
+            //xml.WriteIfValid("DOCNUM", DocumentNumber);
+
+            // SOC (О, Т2) Социальный статус: Справочник "Социальный статус"
+            xml.Writer.WriteElementString("SOC", SocialPosition.ToString());
+
+            // KT (У, Т2) "Категория льготности"
+            //xml.WriteIfValid("KT", SocialFavour);
+
+            // Опять от ФОМС (без KT ошибки нет):
+            //  Element 'SNILS': This element is not expected. Expected is ( COMENTP )
+            if (string.IsNullOrEmpty(SocialFavour))
+                xml.WriteIfValid("SNILS", SNILS);
+
             xml.WriteIfValid("OKATOG", ResidenceOKATO);
             xml.WriteIfValid("OKATOP", PresenceOKATO);
 
