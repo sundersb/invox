@@ -106,5 +106,17 @@ namespace civox.Properties {
                 this["LocalLpuCode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files\\7-Zip\\7z.exe")]
+        public string PathTo7Zip {
+            get {
+                return ((string)(this["PathTo7Zip"]));
+            }
+            set {
+                this["PathTo7Zip"] = value;
+            }
+        }
     }
 }
