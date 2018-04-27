@@ -46,5 +46,12 @@ namespace civox.Data {
         /// <param name="diagnosis">ICD code</param>
         /// <returns>Collection of services</returns>
         IEnumerable<Model.Service> LoadServices(string policy, string diagnosis, Model.Reason reason);
+
+        /// <summary>
+        /// Load directions on dispanserisation resume
+        /// </summary>
+        /// <param name="serviceId">ID of the dispanserisation resulting service</param>
+        /// <returns>Collection of disp routes</returns>
+        List<Model.DispDirection> LoadDispanserisationRoute(long serviceId);
     }
 }

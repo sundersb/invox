@@ -90,6 +90,17 @@ namespace civox.Data.Relax {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на select KSG, KSG2
+        /// from {period}S{lpu}
+        /// where RECID = ?.
+        /// </summary>
+        internal static string SELECT_DISP_DIRECTIONS {
+            get {
+                return ResourceManager.GetString("SELECT_DISP_DIRECTIONS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на select distinct top 200
         ///  P.RECID,
         ///  P.T_POL,

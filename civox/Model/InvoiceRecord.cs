@@ -93,9 +93,9 @@ namespace civox.Model {
                 if (ReasonHelper.IsSingleDay(r.Reason)) {
                     // List of services may contain several recourses (Emergency, Prof, Other etc.)
                     foreach (IGrouping<DateTime, Service> group in services.GroupBy(s => s.EndDate))
-                        WriteRecourse(r, xml, group.ToList());
+                        WriteRecourse(r, xml, group.ToList(), repo);
                 } else {
-                    WriteRecourse(r, xml, services);
+                    WriteRecourse(r, xml, services, repo);
                 }
             }
 
@@ -105,7 +105,7 @@ namespace civox.Model {
         /// <summary>
         /// Write SLUCH record
         /// </summary>
-        void WriteRecourse(Recourse rec, Lib.XmlExporter xml, List<Service> services) {
+        void WriteRecourse(Recourse rec, Lib.XmlExporter xml, List<Service> services, Data.IInvoice repo) {
             if (services.Count == 0) return;
 
             RecourseLandmarks marks = Service.ArrangeServices(services);
@@ -181,24 +181,13 @@ namespace civox.Model {
             // V017
             if (rec.IsDispanserisation()) {
                 xml.Writer.WriteElementString("RSLT_D", marks.Resulting.DispResultCode);
+                
+                // Dispanserisation resulting route
+                // TODO: ХКФОМС придерживается какой-то своей схемы. Здесь пишет ошибку, что NAZ не канает
+                //foreach (DispDirection d in repo.LoadDispanserisationRoute(marks.Resulting.ID))
+                //    d.Write(xml, repo);
+
                 // TODO: PR_D_N - сведения о диспансерном наблюдении по поводу основного заболевания: 1 - состоит, 2 – взят
-                // NAZ - Назначения по ДД
-                //      NAZ_N       Номер по порядку
-                //      NAZ_R       Заполняется при присвоении группы здоровья, кроме I и II.
-                //                  1 – направлен на консультацию в медицинскую организацию по месту прикрепления;
-                //                  2 – направлен на консультацию в иную медицинскую организацию;
-                //                  3 – направлен на обследование;
-                //                  4 – направлен в дневной стационар;
-                //                  5 – направлен на госпитализацию;
-                //                  6 – направлен в реабилитационное отделение
-                //      NAZ_SP      Специальность врача, если в поле NAZ_R проставлены коды 1 или 2. Классификатор V021
-                //      NAZ_V       Вид обследования, если в поле NAZ_R проставлен код 3.
-                //                  1 – лабораторная диагностика;
-                //                  2 – инструментальная диагностика;
-                //                  3 – методы лучевой диагностики, за исключением дорогостоящих;
-                //                  4 – дорогостоящие методы лучевой диагностики (КТ, МРТ, ангиография)
-                //      NAZ_PMP     Профиль медицинской помощи, если в поле NAZ_R проставлены коды 4 или 5 Классификатор V002
-                //      NAZ_PK      Профиль койки, если в поле NAZ_R проставлен код 6. Классификатор V020
 
                 // DS2_N - Сопутствующие заболевания
                 //      DS2         Код из справочника МКБ до уровня подрубрики

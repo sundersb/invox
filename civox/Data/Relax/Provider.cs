@@ -112,5 +112,32 @@ namespace civox.Data.Relax {
             }
             return result;
         }
+
+        /// <summary>
+        /// Execute arbitrary select query
+        /// </summary>
+        /// <param name="command">Command to execute</param>
+        /// <param name="onRead">Action to perform on records in the dataset</param>
+        public void ExecuteReader(DbCommand command, Action<DbDataReader> onRead) {
+            command.Connection.Open();
+            try {
+                DbDataReader r = null;
+                try {
+                    r = command.ExecuteReader();
+                } catch (Exception ex) {
+                    Lib.Logger.Log(ex.Message + "\r\n" + Provider.ShowCommand(command));
+                    if (r != null) r.Close();
+                }
+
+                try {
+                    while (r.Read())
+                        onRead(r);
+                } finally {
+                    r.Dispose();
+                }
+            } finally {
+                command.Connection.Close();
+            }
+        }
     }
 }

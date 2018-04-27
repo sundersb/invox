@@ -14,6 +14,7 @@ namespace civox.Data.Relax {
 
         static string[] SELECT_RECOURSE_CASES_PARAMS = { "SN_POL" };
         static string[] SELECT_CASE_TREAT_PARAMS = { "SN_POL", "DS", "REASON" };
+        static string[] SELECT_DISP_DIRECTIONS_PARAMS = { "RECID" };
 
         Provider provider;
 
@@ -29,6 +30,7 @@ namespace civox.Data.Relax {
         OleDbCommand selectRecourses;
         OleDbCommand selectRecoursesCount;
         OleDbCommand selectService;
+        OleDbCommand selectDispDirections;
 
         public RepoInvoice(Provider provider) {
             this.provider = provider;
@@ -54,6 +56,9 @@ namespace civox.Data.Relax {
 
             selectService = helperAlt(Queries.SELECT_CASE_TREAT);
             provider.AddStringParameters(selectService, SELECT_CASE_TREAT_PARAMS);
+
+            selectDispDirections = helperAlt(Queries.SELECT_DISP_DIRECTIONS);
+            provider.AddStringParameters(selectDispDirections, SELECT_DISP_DIRECTIONS_PARAMS);
         }
 
         /// <summary>
@@ -104,8 +109,22 @@ namespace civox.Data.Relax {
             return (int)(decimal)result;
         }
 
+        public List<Model.DispDirection> LoadDispanserisationRoute(long serviceId) {
+            string id = string.Format("{0,6}", serviceId);
+            selectDispDirections.Parameters[0].Value = id;
+            List<Model.DispDirection> result = null;
+
+            Action<System.Data.Common.DbDataReader> onRead = r => {
+                string codes = (string)r["KSG"];
+                string values = (string)r["KSG2"];
+                result = Model.DispDirection.Make(codes.Trim(), values.Trim()).ToList();
+            };
+
+            provider.ExecuteReader(selectDispDirections, onRead);
+            return result;
+        }
+
         // **************************
         #endregion
-
     }
 }

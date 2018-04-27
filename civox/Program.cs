@@ -60,7 +60,7 @@ namespace civox {
                 return false;
             }
 
-            return true;
+            return Lib.Zip.Compress(names);
         }
 
         static void Main(string[] args) {
