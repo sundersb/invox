@@ -14,7 +14,7 @@ namespace civox.Lib
         /// SNILS validity check
         /// </summary>
         /// <param name="snils">SNILS</param>
-        /// <returns>True if SNILS control sum is valid</returns>
+        /// <returns>True if SNILS control sum is valid and not all-zeros</returns>
         public static bool Valid(string snils)
         {
             if (string.IsNullOrEmpty(snils)) return false;

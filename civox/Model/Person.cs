@@ -13,6 +13,7 @@ namespace civox.Model {
         static char[] SEPARATORS = " \r\n\t".ToCharArray();
 
         int sex;
+        string snils;
         List<IdentityReliability> identityReliabilities = null;
 
         public long ID;
@@ -60,7 +61,12 @@ namespace civox.Model {
         public string DocumentSerial; // U
         public string DocumentNumber; // U
 
-        public string SNILS;
+        public string SNILS {
+            get { return snils; }
+            set {
+                if (Lib.SnilsChecker.Valid(value)) snils = value;
+            }
+        }
 
         /// <summary>
         /// U

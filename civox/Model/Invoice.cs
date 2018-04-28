@@ -41,8 +41,11 @@ namespace civox.Model {
 
             xml.WriteIfValid("PLAT", invoiceNames.SmoCode);
 
+            // TODO: Где ее брать, если финансирование подушевое?
             string dummy = string.Format(Options.NumberFormat, "{0:f2}", repo.TotalToPay());
             xml.Writer.WriteElementString("SUMMAV", dummy);
+
+            // DISP     У Тип диспансеризации V016. И как это, если в файле счета случаи любого повода обращения?
 
             xml.Writer.WriteEndElement();
 
