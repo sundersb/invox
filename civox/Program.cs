@@ -7,6 +7,8 @@ using System.IO;
 namespace civox {
     class Program {
         const string DBF = ".DBF";
+        const string XML = ".xml";
+
         static string[] INTRO = { "CIVOX.EXE v.{0}",
                                  "",
                                  "\tЭкспорт счетов Релакс в XML",
@@ -57,7 +59,7 @@ namespace civox {
             string fname;
             Lib.XmlExporter xml;
 
-            fname = Options.OutputLocation + names.PeopleFileName + ".xml";
+            fname = Options.OutputLocation + names.PeopleFileName + XML;
             xml = new Lib.XmlExporter();
             if (xml.Init(fname)) {
                 Model.People people = new Model.People(names);
@@ -67,7 +69,7 @@ namespace civox {
                 return false;
             }
 
-            fname = Options.OutputLocation + names.InvoiceFileName + ".xml";
+            fname = Options.OutputLocation + names.InvoiceFileName + XML;
             if (xml.Init(fname)) {
                 Model.Invoice invoice = new Model.Invoice(names);
                 invoice.Write(xml, Options.DataProvider.GetInvoiceRepository());
@@ -79,6 +81,9 @@ namespace civox {
 
             if (Lib.Zip.Compress(names)) {
                 Lib.Unlinker.RemoveFiles(names);
+                Console.WriteLine(string.Format("Файл выгрузки: {0}{1}.zip",
+                    Options.OutputLocation,
+                    names.InvoiceFileName));
                 return true;
             } else return false;
         }
