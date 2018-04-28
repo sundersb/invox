@@ -55,7 +55,11 @@ namespace civox {
                 return false;
             }
             xml.Close();
-            return Lib.Zip.Compress(names);
+
+            if (Lib.Zip.Compress(names)) {
+                Lib.Unlinker.RemoveFiles(names);
+                return true;
+            } else return false;
         }
 
         static void Main(string[] args) {
