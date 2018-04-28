@@ -6,6 +6,7 @@ using System.IO;
 
 namespace civox {
     class Program {
+        const string DBF = ".DBF";
         static string[] INTRO = { "CIVOX.EXE v.{0}",
                                  "",
                                  "\tЭкспорт счетов Релакс в XML",
@@ -26,6 +27,26 @@ namespace civox {
             string path = Path.Combine(Options.LpuLocation, Options.PeriodLocation);
             if (!Directory.Exists(path)) {
                 Console.WriteLine("Каталог не найден: " + path);
+                return false;
+            }
+
+            if (!File.Exists(Path.Combine(path, 'P' + Options.LocalLpuCode + DBF))) {
+                Console.WriteLine("Данный период не содержит файла пациентов своей территории");
+                return false;
+            }
+
+            if (!File.Exists(Path.Combine(path, 'S' + Options.LocalLpuCode + DBF))) {
+                Console.WriteLine("Данный период не содержит файла счетов своей территории");
+                return false;
+            }
+
+            if (!File.Exists(Path.Combine(path, "PAT.DBF"))) {
+                Console.WriteLine("Данный период не содержит сводного счета");
+                return false;
+            }
+
+            if (!File.Exists(Path.Combine(path, "DIAGNOZ.DBF"))) {
+                Console.WriteLine("Данный период не содержит файла диагнозов");
                 return false;
             }
             
