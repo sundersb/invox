@@ -117,17 +117,20 @@ namespace civox.Model {
 
             // Only for dispanserisation
             xml.WriteIfValid("TEL", Phone);
+            
+            // Приказ 169 - место рождения. ХКФОМС - домашний адрес
             xml.WriteIfValid("MR", Address);
             xml.WriteIfValid("DOCTYPE", DocTypeId);
 
-            // ХКФОМС чудит:
+            // SOC (О, Т2) Социальный статус: Справочник "Социальный статус", ХКФОМС
+            xml.Writer.WriteElementString("SOC", SocialPosition.ToString());
+
+            // ФОМС чудит, если расположить эти поля выше SOC:
             //  Element 'DOCSER': This element is not expected. Expected is ( SOC ).
             //  Element 'DOCNUM': This element is not expected. Expected is ( SOC )
-            //xml.WriteIfValid("DOCSER", DocumentSerial);
-            //xml.WriteIfValid("DOCNUM", DocumentNumber);
-
-            // SOC (О, Т2) Социальный статус: Справочник "Социальный статус"
-            xml.Writer.WriteElementString("SOC", SocialPosition.ToString());
+            // Порядок имеет значение - новый стандарт XML от ХКФОМС
+            xml.WriteIfValid("DOCSER", DocumentSerial);
+            xml.WriteIfValid("DOCNUM", DocumentNumber);
 
             xml.WriteIfValid("SNILS", SNILS);
 

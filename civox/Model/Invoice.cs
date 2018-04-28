@@ -37,13 +37,7 @@ namespace civox.Model {
             xml.Writer.WriteElementString("YEAR", Options.Year.ToString());
             xml.Writer.WriteElementString("MONTH", Options.Month.ToString());
             xml.Writer.WriteElementString("NSCHET", Options.InvoiceNumber);
-
-            // Invoice date
-            // Get last working day of the report month
-            DateTime date = new DateTime(Options.Year, Options.Month, 1);
-            date = date.AddMonths(1).AddDays(-1);
-            while (!date.IsWorkDay()) date = date.AddDays(-1);
-            xml.Writer.WriteElementString("DSCHET", date.AsXml());
+            xml.Writer.WriteElementString("DSCHET", Options.InvoiceDate.AsXml());
 
             xml.WriteIfValid("PLAT", invoiceNames.SmoCode);
 

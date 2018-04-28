@@ -135,7 +135,7 @@ namespace civox {
             else
                 baseDirectory = Directory.GetCurrentDirectory(); 
             
-            lpuLocation = Properties.Settings.Default.LpuLocation.Trim();
+            lpuLocation = Properties.Settings.Default.LpuLocation;
             outputLocation = Path.Combine(lpuLocation, OUTPUT_LOCATION);
 
             lpuCode = Properties.Settings.Default.LpuCode;

@@ -41,9 +41,11 @@ namespace civox.Lib {
             Year = date.Year;
             Month = date.Month;
             InvoiceNumber = "1";
+            PackageNumber = "1";
             ShowHelp = false;
             Error = string.Empty;
 
+            // Get last working day of the report month
             InvoiceDate = new DateTime(Year, Month, 1);
             InvoiceDate = InvoiceDate.AddMonths(1).AddDays(-1);
             while (!InvoiceDate.IsWorkDay()) InvoiceDate = InvoiceDate.AddDays(-1);
