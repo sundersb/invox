@@ -68,16 +68,22 @@ namespace civox {
                 Options.LpuLocation,
                 Options.PeriodLocation));
 
-            if (Checkup()) {
-                Lib.InvoiceNames names = Lib.InvoiceNames.InvoiceToFoms(Options.PacketNumber,
-                    Model.InvoiceKind.GeneralTreatment);
-
-                if (Run(names))
-                    Console.WriteLine("\r\nОК\r\n");
-                else
-                    Console.WriteLine("\r\nОшибка!\r\n");
+            if (Options.NeedHelp) {
+                Console.WriteLine("\r\nПараметры:");
+                Console.WriteLine(Options.Help);
+                Console.WriteLine();
             } else {
-                Console.WriteLine("\r\nВыгрузка не произведена!");
+                if (Checkup()) {
+                    Lib.InvoiceNames names = Lib.InvoiceNames.InvoiceToFoms(Options.PacketNumber,
+                        Model.InvoiceKind.GeneralTreatment);
+
+                    if (Run(names))
+                        Console.WriteLine("\r\nОК\r\n");
+                    else
+                        Console.WriteLine("\r\nОшибка!\r\n");
+                } else {
+                    Console.WriteLine("\r\nВыгрузка не произведена!");
+                }
             }
 
             Console.ReadKey();

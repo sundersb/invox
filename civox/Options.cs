@@ -20,11 +20,9 @@ namespace civox {
         static string fomsCode;
         static string defaultDocument;
         static bool pediatric;
-        static int year;
-        static int month;
-        static string invoiceNumber;
-        static string packetNumber;
         static string periodLocation;
+        static Lib.CivoxOptions options;
+
         static Data.IDataProvider provider;
 
         public static NumberFormatInfo NumberFormat { get; private set; }
@@ -77,29 +75,34 @@ namespace civox {
         /// <summary>
         /// Report year
         /// </summary>
-        public static int Year { get { return year; } }
+        public static int Year { get { return options.Year; } }
 
         /// <summary>
         /// Report month
         /// </summary>
-        public static int Month { get { return month; } }
+        public static int Month { get { return options.Month; } }
 
         /// <summary>
         /// Invoice number
         /// </summary>
-        public static string InvoiceNumber { get { return invoiceNumber; } }
+        public static string InvoiceNumber { get { return options.InvoiceNumber; } }
 
         /// <summary>
         /// Ordinal number of the packet for the period
         /// </summary>
-        public static string PacketNumber { get { return packetNumber; } }
+        public static string PacketNumber { get { return options.PackageNumber; } }
 
         /// <summary>
         /// Invoice number. Generated from federal code of the clinic and invoice number
         /// </summary>
         public static string InvoiceCode {
-            get { return lpuCode + invoiceNumber; }
+            get { return lpuCode + options.InvoiceNumber; }
         }
+
+        /// <summary>
+        /// Invoice issue date
+        /// </summary>
+        public static DateTime InvoiceDate { get { return options.InvoiceDate; } }
 
         /// <summary>
         /// Relax database path for the period to export
@@ -110,6 +113,16 @@ namespace civox {
         /// Data provider
         /// </summary>
         public static Data.IDataProvider DataProvider { get { return provider; } }
+
+        /// <summary>
+        /// True if showing help needed
+        /// </summary>
+        public static bool NeedHelp { get { return options.ShowHelp; } }
+
+        /// <summary>
+        /// Show command line help and error
+        /// </summary>
+        public static string Help { get { return Lib.CommandLineOptions.ShowHelp(options); } }
 
         /// <summary>
         /// Load application options
@@ -133,33 +146,14 @@ namespace civox {
             okato = Properties.Settings.Default.OKATO;
             defaultDocument = Properties.Settings.Default.DefaultDocument;
 
-            // Default period - previous month
-            DateTime date = DateTime.Today.AddMonths(-1);
-            year = date.Year;
-            month = date.Month;
-
-            // TODO: Invoice number from command line
-            invoiceNumber = "3";
-            packetNumber = "1";
-
-            if (args.Length > 0) {
-                int yy, mm;
-                string m = args[0];
-                if (m.Length == 6) {
-                    string y = m.Substring(0, m.Length - 2);
-                    if (int.TryParse(y, out yy) && yy > 2000 && yy < 2100) year = yy;
-                    m = m.Substring(4);
-                }
-                if (int.TryParse(m, out mm) && mm > 0 && mm < 13) month = mm;
-            }
-
-            periodLocation = string.Format(PERIOD_LOCATION, year, month);
-            provider = new Data.Relax.Provider(lpuLocation);
-
             // Decimal point instead of comma
             NumberFormat = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
             NumberFormat.NumberDecimalSeparator = ".";
-        }
 
+            options = Lib.CommandLineOptions.Get(args, typeof(Lib.CivoxOptions)) as Lib.CivoxOptions;
+
+            periodLocation = string.Format(PERIOD_LOCATION, options.Year, options.Month);
+            provider = new Data.Relax.Provider(lpuLocation);
+        }
     }
 }

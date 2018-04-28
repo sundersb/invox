@@ -84,7 +84,7 @@ namespace civox.Lib {
         }
 
         static void LoadDates(List<DateTime> days, string fName) {
-            string fileName = Options.BaseDirectory + fName;
+            string fileName = civox.Options.BaseDirectory + fName;
 
             if (!File.Exists(fileName)) {
                 Lib.Logger.Log("Файл не найден: " + fName);

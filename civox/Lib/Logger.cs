@@ -15,7 +15,7 @@ namespace civox.Lib {
             get {
                 if (instance == null) lock (flock) {
                     if (instance == null) {
-                        instance = new StreamWriter(Options.BaseDirectory + LOG_FILENAME, true, Encoding.UTF8);
+                        instance = new StreamWriter(civox.Options.BaseDirectory + LOG_FILENAME, true, Encoding.UTF8);
                     }
                 }
                 return instance;

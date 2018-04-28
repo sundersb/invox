@@ -45,9 +45,9 @@ namespace civox.Lib {
 
         static string GetAgentCode(AgentCode agent, string smoCode) {
             switch (agent) {
-                case AgentCode.TerritoryFund: return string.Format("T{0}", Options.FomsCode);
+                case AgentCode.TerritoryFund: return string.Format("T{0}", civox.Options.FomsCode);
                 case AgentCode.AssuranceCompany: return string.Format("S{0}", smoCode);
-                case AgentCode.Clinic: return string.Format("M{0}", Options.LpuCode);
+                case AgentCode.Clinic: return string.Format("M{0}", civox.Options.LpuCode);
             }
             Lib.Logger.Log("Упущен контрагент в InvoiceNames.GetAgentCode(): " + agent.ToString());
             return string.Empty;
@@ -82,8 +82,8 @@ namespace civox.Lib {
             b.Append(GetAgentCode(AgentCode.Clinic, string.Empty));
             b.Append(GetAgentCode(AgentCode.TerritoryFund, string.Empty));
             b.Append('_');
-            b.Append(Options.Year % 100);
-            b.Append(string.Format("{0:d2}", Options.Month));
+            b.Append(civox.Options.Year % 100);
+            b.Append(string.Format("{0:d2}", civox.Options.Month));
 
             // FOMS ignores "single digit" rule
             b.Append(packetNumber);

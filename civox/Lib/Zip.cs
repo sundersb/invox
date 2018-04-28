@@ -30,7 +30,7 @@ namespace civox.Lib {
             info.RedirectStandardOutput = true;
 
             info.Arguments = string.Format(ARGUMENTS_7Z,
-                Options.OutputLocation,
+                civox.Options.OutputLocation,
                 names.InvoiceFileName,
                 names.PeopleFileName);
 
