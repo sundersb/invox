@@ -25,6 +25,16 @@ namespace civox.Model {
     }
 
     /// <summary>
+    /// Раздел приложения к приказу для различения форматов XML
+    /// </summary>
+    enum AppendixSection {
+        D1,         // Приложение Д1 - Персонифицированный учет...
+        D2,         // Приложение Д2 - ВМП
+        D3,         // Приложение Д3 - Профилактика и диспансеризация
+        D4          // Общие файлы обмена
+    }
+
+    /// <summary>
     /// Cause of recourse (повод обращения)
     /// </summary>
     enum Reason : int {
@@ -40,5 +50,10 @@ namespace civox.Model {
         Stage2 = 9,         // Диспансеризация, 2 этап
         StrippedStage1 = 10,// Дисп. раз в два года - 1 этап
         StrippedStage2 = 11 // Дисп. раз в два года - 2 этап
+        // NB! При добавлении учесть:
+        // Recourse.Section (Recourse.Reason)
+        // Recourse.IsDispanserisation()
+        // ReasonHelper.IsSingleDay()
+        // запросы Data.Relax.Queries
     }
 }
