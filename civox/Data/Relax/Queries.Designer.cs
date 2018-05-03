@@ -78,10 +78,10 @@ namespace civox.Data.Relax {
         ///  left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
         ///  left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD
         ///  left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
-        /// where (S.SN_POL = ?)
+        /// where (S.SN_POL = cpconvert(1251, 866, ?))
         ///  and (S.DS = ?)
         ///  and (icase(S.OTD = &apos;0001&apos;, &apos;1&apos;,
-        ///   S.OTD = &apos;0003&apos;, iif(S.COD = 3001 or S.COD [остаток строки не уместился]&quot;;.
+        ///   S.OTD = &apos;0003&apos;, iif [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_CASE_TREAT {
             get {
@@ -164,11 +164,11 @@ namespace civox.Data.Relax {
         ///   S.OTD = &apos;0009&apos;, icase(floor(S.COD / 1000) = 27, 7, floor(S.COD / 1000) = 25 or floor(COD / 1000) = 28, 9, 8),
         ///   0) REASON,
         ///  S.DS,
-        ///  D.F,
-        ///  UMP.SLUSL COND,
-        ///  S.IG
+        ///  max(D.F) F,
+        ///  max(UMP.SLUSL) COND,
+        ///  max(S.IG) IG
         /// from {period}S{lpu} S
-        ///  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and  [остаток строки не уместился]&quot;;.
+        ///  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and  [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_RECOURSE_CASES {
             get {
