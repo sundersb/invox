@@ -44,8 +44,8 @@ namespace civox.Model {
         DateTime endDate;
         int quantity;
 
-        public DateTime EndDate { get { return beginDate; } }
-        public DateTime BeginDate { get { return endDate; } }
+        public DateTime BeginDate { get { return beginDate; } }
+        public DateTime EndDate { get { return endDate; } }
         public int Quantity { get { return quantity; } }
 
         /// <summary>
