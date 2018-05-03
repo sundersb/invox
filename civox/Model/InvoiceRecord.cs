@@ -151,13 +151,15 @@ namespace civox.Model {
             xml.Writer.WriteElementString("IDCASE", marks.Resulting.ID.ToString());
 
             // V006 Условия оказания МП (нет при дисп и проф Д3):
-            xml.Writer.WriteElementString("USL_OK", rec.Condition);
+            if (rec.Section != AppendixSection.D3)
+                xml.Writer.WriteElementString("USL_OK", rec.Condition);
 
             // Вид - Первичная МСП V008
             xml.Writer.WriteElementString("VIDPOM", marks.Resulting.AidKind);
             
             // Форма - Плановая V014 (нет при проф и дисп Д3)
-            xml.Writer.WriteElementString("FOR_POM", marks.Resulting.AidForm);
+            if (rec.Section != AppendixSection.D3)
+                xml.Writer.WriteElementString("FOR_POM", marks.Resulting.AidForm);
 
             // Только для ВМП (Д2): VID_HMP, METOD_HMP
             //xml.Writer.WriteElementString("VID_HMP", string.Empty);            // TODO: Вид ВМП - нет
@@ -169,13 +171,16 @@ namespace civox.Model {
             // LPU_1    Подразделение МО лечения из регионального справочника
 
             // Выездная бригада - только Д3:
-            xml.Writer.WriteElementString("VBR", string.Empty);
+            if (rec.Section == AppendixSection.D3)
+                xml.Writer.WriteElementString("VBR", string.Empty);
 
             // PODR     Не для Д3 Отделение МО лечения из регионального справочника
 
             // Профиль МП V002
-            xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile); // Не для Д3
-            xml.WriteBool("DET", Options.Pediatric);                        // Не для Д3
+            if (rec.Section != AppendixSection.D3) {
+                xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile); // Не для Д3
+                xml.WriteBool("DET", Options.Pediatric);                        // Не для Д3
+            }
 
             // Только для ВМП (Д2): TAL_D, TAL_P
             // Дата талона ВМП
@@ -186,7 +191,8 @@ namespace civox.Model {
             xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
 
             // Признак отказа - только Д3
-            xml.WriteBool("P_OTK", services.Any(s => s.Refusal));
+            if (rec.Section == AppendixSection.D3)
+                xml.WriteBool("P_OTK", services.Any(s => s.Refusal));
 
             // TODO: Признак поступления/перевода. Наш ФОМС игнорирует(?)
             // Обязательно для дневного и круглосуточного стационара. Только для Д1
@@ -214,7 +220,8 @@ namespace civox.Model {
             // V017
             if (rec.IsDispanserisation()) {
                 // Диагноз первичный. Только для Д3
-                if (rec.FirstRevealed) xml.Writer.WriteElementString("DS1_PR", "1");
+                if (rec.FirstRevealed)
+                    xml.Writer.WriteElementString("DS1_PR", "1");
 
                 // DS2_N - Сопутствующие заболевания
                 //      DS2         Код из справочника МКБ до уровня подрубрики
@@ -298,17 +305,20 @@ namespace civox.Model {
                     // Признак отказа
                     // FLK complaints on USL.P_OTK
                     //xml.WriteBool("P_OTK", s.Refusal);
+
+                    // Doubling code in attitude to DATE_IN, DATE_OUT because of featured FOMS formal check
+                    xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
+                    xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
                 } else {
                     xml.Writer.WriteElementString("PODR", rec.Department);
                     xml.Writer.WriteElementString("PROFIL", s.AidProfile);
                     // VID_VME  У Вид медицинского вмешательства V001
                     xml.WriteBool("DET", Options.Pediatric);
+                    xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
+                    xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
                     xml.Writer.WriteElementString("DS", rec.Diagnosis);
                     xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString());
                 }
-
-                xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
-                xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
 
                 xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString("D6"));
 
