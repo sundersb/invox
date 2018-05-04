@@ -145,8 +145,6 @@ namespace civox.Model {
                 return;
             }
 
-            bool isDisp = rec.IsDispanserisation();
-
             xml.Writer.WriteStartElement("SLUCH");
 
             xml.Writer.WriteElementString("IDCASE", marks.Resulting.ID.ToString());
@@ -225,7 +223,7 @@ namespace civox.Model {
             // DS3      УМ Не для Д3 Диагноз осложнения заболевания
 
             // V017
-            if (isDisp) {
+            if (rec.Section == AppendixSection.D3) {
                 // Диагноз первичный. Только для Д3
                 if (rec.FirstRevealed)
                     xml.Writer.WriteElementString("DS1_PR", "1");
@@ -294,55 +292,7 @@ namespace civox.Model {
             //3 - частичный отказ
             xml.Writer.WriteElementString("OPLATA", "1");
 
-            foreach (Service s in services) {
-                xml.Writer.WriteStartElement("USL");
-
-                xml.Writer.WriteElementString("IDSERV", s.ID.ToString());
-
-                xml.Writer.WriteElementString("LPU", Options.LpuCode);
-                // LPU_1    У Подразделение МО лечения из регионального справочника
-
-                if (isDisp) {
-                    // Требует ФОМС, не по приказу
-                    xml.Writer.WriteElementString("PODR", rec.Department);
-                    // Doubling code in attitude to DATE_IN, DATE_OUT because of featured FOMS formal check
-                } else {
-                    xml.Writer.WriteElementString("PODR", rec.Department);
-                    xml.Writer.WriteElementString("PROFIL", s.AidProfile);
-                    // VID_VME  У Вид медицинского вмешательства V001
-                    xml.WriteBool("DET", Options.Pediatric);
-                }
-                xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
-                xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
-
-                // ФОМС требует диагноз даже для ДД и проф. Не по приказу
-                xml.Writer.WriteElementString("DS", rec.Diagnosis);
-
-                // Признак отказа. ФОМС пропускает везде, но по приказу только ДД и проф. Теперь дает ошибку
-                //xml.Writer.WriteElementString("P_OTK", s.Refusal ? "1" : string.Empty);
-                // Порядок элементов для ФОМС имеет значение: если сунуть CODE_USL выше или ниже, БАРС выдаст ошибку:
-                xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString("D6"));
-                xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString());
-
-                //xml.Writer.WriteElementString("TARIF", "1");          // TODO:
-                xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", s.Price));
-
-                xml.Writer.WriteElementString("PRVS", s.DoctorProfile);        // V015
-                xml.Writer.WriteElementString("CODE_MD", s.DoctorCode);
-                                
-                // NPL      У Неполный объем Только Д1
-                //1 - документированный отказ больного,
-                //2 - медицинские противопоказания,
-                //3 - прочие причины (умер, переведен в другое отделение и пр.)
-                //4 - ранее проведенные услуги в пределах установленных сроков
-                //xml.Writer.WriteElementString("NPL", string.Empty);
-
-                // Нате вам пасхалку
-                xml.WriteIfValid("COMENTU", Options.ReadingBot.Read());
-                //xml.Writer.WriteElementString("COMENTU", string.Empty);
-
-                xml.Writer.WriteEndElement();
-            }
+            foreach (Service s in services) s.Write(rec, xml, repo);
 
             xml.Writer.WriteEndElement();
         }

@@ -152,6 +152,62 @@ namespace civox.Model {
             if (ServiceCode / 1000 == 7) return AID_FORM_PRESSING;
             return AID_FORM_ORDINAL;
         }
+
+        /// <summary>
+        /// XML-stream the service
+        /// </summary>
+        /// <param name="rec">Recourse to which this service is bound to</param>
+        /// <param name="xml">XML streaming helper</param>
+        /// <param name="repo">Data repository</param>
+        public void Write(Recourse rec, Lib.XmlExporter xml, Data.IInvoice repo) {
+            xml.Writer.WriteStartElement("USL");
+
+            xml.Writer.WriteElementString("IDSERV", ID.ToString());
+
+            xml.Writer.WriteElementString("LPU", Options.LpuCode);
+            // LPU_1    У Подразделение МО лечения из регионального справочника
+
+            if (rec.Section == AppendixSection.D3) {
+                // Требует ФОМС, не по приказу
+                xml.Writer.WriteElementString("PODR", rec.Department);
+                // Doubling code in attitude to DATE_IN, DATE_OUT because of featured FOMS formal check
+            } else {
+                xml.Writer.WriteElementString("PODR", rec.Department);
+                xml.Writer.WriteElementString("PROFIL", AidProfile);
+                // VID_VME  У Вид медицинского вмешательства V001
+                xml.WriteBool("DET", Options.Pediatric);
+            }
+            xml.Writer.WriteElementString("DATE_IN", BeginDate.AsXml());
+            xml.Writer.WriteElementString("DATE_OUT", EndDate.AsXml());
+
+            // ФОМС требует диагноз даже для ДД и проф. Не по приказу
+            xml.Writer.WriteElementString("DS", rec.Diagnosis);
+
+            // Признак отказа. ФОМС пропускает везде, но по приказу только ДД и проф. Теперь дает ошибку
+            //xml.Writer.WriteElementString("P_OTK", s.Refusal ? "1" : string.Empty);
+            // Порядок элементов для ФОМС имеет значение: если сунуть CODE_USL выше или ниже, БАРС выдаст ошибку:
+            xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString("D6"));
+            xml.Writer.WriteElementString("KOL_USL", Quantity.ToString());
+
+            //xml.Writer.WriteElementString("TARIF", "1");          // TODO:
+            xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", Price));
+
+            xml.Writer.WriteElementString("PRVS", DoctorProfile);        // V015
+            xml.Writer.WriteElementString("CODE_MD", DoctorCode);
+
+            // NPL      У Неполный объем Только Д1
+            //1 - документированный отказ больного,
+            //2 - медицинские противопоказания,
+            //3 - прочие причины (умер, переведен в другое отделение и пр.)
+            //4 - ранее проведенные услуги в пределах установленных сроков
+            //xml.Writer.WriteElementString("NPL", string.Empty);
+
+            // Нате вам пасхалку
+            xml.WriteIfValid("COMENTU", Options.ReadingBot.Read());
+            //xml.Writer.WriteElementString("COMENTU", string.Empty);
+
+            xml.Writer.WriteEndElement();
+        }
     }
 
     class RecourseLandmarks {
