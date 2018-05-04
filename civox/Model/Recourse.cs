@@ -11,7 +11,7 @@ namespace civox.Model {
         Reason reason;
 
         /// <summary>
-        /// Повод обращение
+        /// Повод обращения
         /// </summary>
         public Reason Reason {
             get { return reason; }

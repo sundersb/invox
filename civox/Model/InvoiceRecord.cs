@@ -145,7 +145,8 @@ namespace civox.Model {
                 return;
             }
 
-            // В приказе этот узел зовется Z_SL. У нас вот так:
+            bool isDisp = rec.IsDispanserisation();
+
             xml.Writer.WriteStartElement("SLUCH");
 
             xml.Writer.WriteElementString("IDCASE", marks.Resulting.ID.ToString());
@@ -218,7 +219,7 @@ namespace civox.Model {
             // DS3      УМ Не для Д3 Диагноз осложнения заболевания
 
             // V017
-            if (rec.IsDispanserisation()) {
+            if (isDisp) {
                 // Диагноз первичный. Только для Д3
                 if (rec.FirstRevealed)
                     xml.Writer.WriteElementString("DS1_PR", "1");
@@ -274,6 +275,8 @@ namespace civox.Model {
 
             // TODO: Тариф
             // UPDATE: В релаксе подушевые суммы по нулям. Где его брать?
+            // PATU.TARIF Код тарифа услуги (1-себестоимость ОМС по ИП, 2- полная себестоимость по ИП, 3-цена по ИП, 4 –территориальный тариф)
+            // We have all 1 here
             //xml.Writer.WriteElementString("TARIF", string.Empty);
 
             // Цель обращения
@@ -297,11 +300,13 @@ namespace civox.Model {
 
             foreach (Service s in services) {
                 xml.Writer.WriteStartElement("USL");
+
                 xml.Writer.WriteElementString("IDSERV", s.ID.ToString());
+
                 xml.Writer.WriteElementString("LPU", Options.LpuCode);
                 // LPU_1    У Подразделение МО лечения из регионального справочника
 
-                if (rec.IsDispanserisation()) {
+                if (isDisp) {
                     // Признак отказа
                     // FLK complaints on USL.P_OTK
                     //xml.WriteBool("P_OTK", s.Refusal);
@@ -309,6 +314,7 @@ namespace civox.Model {
                     // Doubling code in attitude to DATE_IN, DATE_OUT because of featured FOMS formal check
                     xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
                     xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
+                    xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString("D6"));
                 } else {
                     xml.Writer.WriteElementString("PODR", rec.Department);
                     xml.Writer.WriteElementString("PROFIL", s.AidProfile);
@@ -317,23 +323,26 @@ namespace civox.Model {
                     xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
                     xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
                     xml.Writer.WriteElementString("DS", rec.Diagnosis);
+                    // ФОМС настаивает, что CODE_USL не в том месте. Куда его запихать еще???
+                    // Без этой строки нормально загружается и отправляется на ФЛК. Что, код услуги не нужен?
+                    xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString("D6"));
                     xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString());
                 }
 
-                xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString("D6"));
-
-                //xml.Writer.WriteElementString("TARIF", string.Empty);          // TODO:
+                xml.Writer.WriteElementString("TARIF", "1");          // TODO:
                 xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", s.Price));
 
                 xml.Writer.WriteElementString("PRVS", s.DoctorProfile);        // V015
                 xml.Writer.WriteElementString("CODE_MD", s.DoctorCode);
-                
+                                
                 // NPL      У Неполный объем Только Д1
                 //1 - документированный отказ больного,
                 //2 - медицинские противопоказания,
                 //3 - прочие причины (умер, переведен в другое отделение и пр.)
                 //4 - ранее проведенные услуги в пределах установленных сроков
+                //xml.Writer.WriteElementString("NPL", string.Empty);
 
+                //xml.Writer.WriteElementString("COMENTU", string.Empty);
 
                 xml.Writer.WriteEndElement();
             }
