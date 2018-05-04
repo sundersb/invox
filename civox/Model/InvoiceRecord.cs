@@ -294,13 +294,6 @@ namespace civox.Model {
             //3 - частичный отказ
             xml.Writer.WriteElementString("OPLATA", "1");
 
-            // ***********
-            // Все что ниже, относящееся к SLUCH, в разделе Д1, Д2, Д3 отсутствует
-
-            // Продолжительность госпитализации (койко-дни/пациенто-дни). ХКФОМС игнорирует(?)
-            //if (marks.Resulting.Quantity > 1)
-            //    xml.Writer.WriteElementString("KD_Z", marks.Resulting.Quantity.ToString());
-
             foreach (Service s in services) {
                 xml.Writer.WriteStartElement("USL");
 
@@ -344,6 +337,8 @@ namespace civox.Model {
                 //4 - ранее проведенные услуги в пределах установленных сроков
                 //xml.Writer.WriteElementString("NPL", string.Empty);
 
+                // Нате вам пасхалку
+                xml.WriteIfValid("COMENTU", Options.ReadingBot.Read());
                 //xml.Writer.WriteElementString("COMENTU", string.Empty);
 
                 xml.Writer.WriteEndElement();

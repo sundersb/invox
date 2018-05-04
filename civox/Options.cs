@@ -22,6 +22,7 @@ namespace civox {
         static bool pediatric;
         static string periodLocation;
         static Lib.CivoxOptions options;
+        static Lib.ReadingBot readingBot;
 
         static Data.IDataProvider provider;
 
@@ -125,6 +126,11 @@ namespace civox {
         public static string Help { get { return Lib.CommandLineOptions.ShowHelp(options); } }
 
         /// <summary>
+        /// Line-by-line text reader
+        /// </summary>
+        public static Lib.ReadingBot ReadingBot { get { return readingBot; } }
+
+        /// <summary>
         /// Load application options
         /// </summary>
         /// <param name="args">Command line parameters</param>
@@ -153,6 +159,8 @@ namespace civox {
 
             periodLocation = string.Format(PERIOD_LOCATION, options.Year, options.Month);
             provider = new Data.Relax.Provider(lpuLocation);
+
+            readingBot = new Lib.ReadingBot(options.Reading);
         }
     }
 }

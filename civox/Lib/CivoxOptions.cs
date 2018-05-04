@@ -27,6 +27,9 @@ namespace civox.Lib {
         [CommandLineOptionAttribute("i", "invoice-number", "Номер счета")]
         public string InvoiceNumber { get; set; }
 
+        [CommandLineOptionAttribute("r", "reading", "Путь к файлу с текстом комментариев (UTF-8)")]
+        public string Reading { get; set; }
+
         [CommandLineOptionAttribute("d", "date", "Дата счета (yyyy-mm-dd)")]
         public DateTime InvoiceDate { get; set; }
 

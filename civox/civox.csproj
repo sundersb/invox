@@ -69,6 +69,7 @@
     <Compile Include="Lib\CivoxOptions.cs" />
     <Compile Include="Lib\CommandLine.cs" />
     <Compile Include="Lib\Progress.cs" />
+    <Compile Include="Lib\ReadingBot.cs" />
     <Compile Include="Lib\Unlinker.cs" />
     <Compile Include="Lib\Zip.cs" />
     <Compile Include="Model\DispDirection.cs" />
