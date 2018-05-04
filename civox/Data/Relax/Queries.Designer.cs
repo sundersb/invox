@@ -101,7 +101,7 @@ namespace civox.Data.Relax {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select distinct top 200
+        ///   Ищет локализованную строку, похожую на select distinct top 50
         ///  P.RECID,
         ///  P.T_POL,
         ///  P.SN_POL,
@@ -109,7 +109,7 @@ namespace civox.Data.Relax {
         ///  P.NOVOR
         /// from {period}P{lpu} P
         ///  join {period}S{lpu} S on S.SN_POL = P.SN_POL
-        /// order by P.RECID.
+        /// order by P.SN_POL.
         /// </summary>
         internal static string SELECT_INVOICE_RECS {
             get {
@@ -118,7 +118,8 @@ namespace civox.Data.Relax {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select distinct
+        ///   Ищет локализованную строку, похожую на select distinct top 50
+        ///  P.SN_POL,
         ///  P.RECID,
         ///  cpconvert(866, 1251, P.FAM) FAM,
         ///  cpconvert(866, 1251, P.IM) IM,
@@ -135,7 +136,7 @@ namespace civox.Data.Relax {
         /// from {period}P{lpu} P
         ///  join {period}S{lpu} S on S.SN_POL = P.SN_POL
         ///  left outer join {period}PAT PP on PP.SN_POL = P.SN_POL
-        /// order by P.RECID.
+        /// order by 1.
         /// </summary>
         internal static string SELECT_PEOPLE {
             get {
