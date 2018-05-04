@@ -33,6 +33,11 @@ namespace civox.Data.Relax {
             result.ResultCode = Dict.Rezobr.Instance.Get(dummy);
             result.DispResultCode = Dict.DispResult.Instance.Get(dummy);
 
+            dummy = ReadString(reader["EXTR"]);
+
+            // PATU.EXTR: 1 - планово, 2 - экстренно
+            result.UrgentHospitalization = dummy == "2";
+
             return result;
         }
     }

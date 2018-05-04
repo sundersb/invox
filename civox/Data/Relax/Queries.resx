@@ -130,7 +130,8 @@
   S.BE,
   K.MSP,
   nvl(M.PROFILE, 'xxx') PROFILE,
-  K.OPL
+  K.OPL,
+  S.EXTR
  from {period}S{lpu} S
   left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
   left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD

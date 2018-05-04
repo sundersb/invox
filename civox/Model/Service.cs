@@ -71,6 +71,7 @@ namespace civox.Model {
         public string PayKind;       // V010
         public string RecourseAim;   // CEL (territory)
         public bool Refusal;
+        public bool UrgentHospitalization;
 
         public void SetDates(DateTime serviceDate, int days) {
             if (days < 0) return;

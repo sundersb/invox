@@ -167,7 +167,11 @@ namespace civox.Model {
             //xml.Writer.WriteElementString("METOD_HMP", string.Empty);          // TODO: Метод ВМП - нет
 
             // NPR_MO   Не для Д3 Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
+
             // EXTR     Не для Д3 Направление (госпитализация), 1 - плановая; 2 - экстренная
+            if (rec.Section != AppendixSection.D3 && ReasonHelper.IsHospitalization(rec.Reason))
+                xml.Writer.WriteElementString("EXTR", marks.Resulting.UrgentHospitalization ? "2" : "1");
+
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
             // LPU_1    Подразделение МО лечения из регионального справочника
 
@@ -276,7 +280,6 @@ namespace civox.Model {
             // TODO: Тариф
             // UPDATE: В релаксе подушевые суммы по нулям. Где его брать?
             // PATU.TARIF Код тарифа услуги (1-себестоимость ОМС по ИП, 2- полная себестоимость по ИП, 3-цена по ИП, 4 –территориальный тариф)
-            // We have all 1 here
             //xml.Writer.WriteElementString("TARIF", string.Empty);
 
             // Цель обращения
@@ -307,13 +310,11 @@ namespace civox.Model {
                 // LPU_1    У Подразделение МО лечения из регионального справочника
 
                 if (isDisp) {
-                    // Признак отказа
-                    // FLK complaints on USL.P_OTK
-                    //xml.WriteBool("P_OTK", s.Refusal);
-
                     // Doubling code in attitude to DATE_IN, DATE_OUT because of featured FOMS formal check
                     xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
                     xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
+                    // Признак отказа. ФОМС пропускает везде, но по приказу только ДД и проф
+                    xml.Writer.WriteElementString("P_OTK", s.Refusal ? "1" : string.Empty);
                     xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString("D6"));
                 } else {
                     xml.Writer.WriteElementString("PODR", rec.Department);
@@ -323,13 +324,12 @@ namespace civox.Model {
                     xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
                     xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
                     xml.Writer.WriteElementString("DS", rec.Diagnosis);
-                    // ФОМС настаивает, что CODE_USL не в том месте. Куда его запихать еще???
-                    // Без этой строки нормально загружается и отправляется на ФЛК. Что, код услуги не нужен?
+                    // Порядок элементов для ФОМС имеет значение: если сунуть CODE_USL выше или ниже, БАРС выдаст ошибку:
                     xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString("D6"));
                     xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString());
                 }
 
-                xml.Writer.WriteElementString("TARIF", "1");          // TODO:
+                //xml.Writer.WriteElementString("TARIF", "1");          // TODO:
                 xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", s.Price));
 
                 xml.Writer.WriteElementString("PRVS", s.DoctorProfile);        // V015

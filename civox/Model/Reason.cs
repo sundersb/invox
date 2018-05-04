@@ -22,6 +22,10 @@ namespace civox.Model {
         public static bool IsSingleDay(Reason reason) {
             return SINGLE_DAY.Contains(reason);
         }
+
+        public static bool IsHospitalization(Reason reason) {
+            return reason == Reason.DayHosp || reason == Reason.SurgeryDayHosp;
+        }
     }
 
     /// <summary>
