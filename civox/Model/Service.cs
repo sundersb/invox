@@ -72,6 +72,7 @@ namespace civox.Model {
         public string RecourseAim;   // CEL (territory)
         public bool Refusal;
         public bool UrgentHospitalization;
+        public bool VisitingBrigade; // Выездная бригада
 
         public void SetDates(DateTime serviceDate, int days) {
             if (days < 0) return;

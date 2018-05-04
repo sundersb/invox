@@ -175,11 +175,13 @@ namespace civox.Model {
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
             // LPU_1    Подразделение МО лечения из регионального справочника
 
-            // Выездная бригада - только Д3:
-            if (rec.Section == AppendixSection.D3)
-                xml.Writer.WriteElementString("VBR", string.Empty);
+            // Выездная бригада - только Д3 (0/1):
+            if (rec.Section == AppendixSection.D3 && marks.Resulting.VisitingBrigade)
+                xml.Writer.WriteElementString("VBR", "1");
 
             // PODR     Не для Д3 Отделение МО лечения из регионального справочника
+            if (rec.Section != AppendixSection.D3)
+                xml.Writer.WriteElementString("PODR", rec.Department);
 
             // Профиль МП V002
             if (rec.Section != AppendixSection.D3) {
@@ -234,15 +236,9 @@ namespace civox.Model {
 
                 xml.Writer.WriteElementString("RSLT_D", marks.Resulting.DispResultCode);
 
-                // Dispanserisation resulting route
-                // TODO: ХКФОМС придерживается какой-то своей схемы. Здесь пишет ошибку, что NAZ не канает
-                //foreach (DispDirection d in repo.LoadDispanserisationRoute(marks.Resulting.ID))
-                //    d.Write(xml, repo);
-                // NAZR
-                // NAZ_SP
-                // NAZ_V
-                // NAZ_PMP
-                // NAZ_PK
+                // Направления по итогам диспансеризации
+                foreach (DispDirection d in repo.LoadDispanserisationRoute(marks.Resulting.ID))
+                    d.Write(xml, repo);
 
                 // PR_D_N - сведения о диспансерном наблюдении по поводу основного заболевания: 0 - нет; 1 - да
             } else {

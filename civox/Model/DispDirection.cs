@@ -45,11 +45,6 @@ namespace civox.Model {
         }
 
         public override void Write(Lib.XmlExporter xml, Data.IInvoice repo) {
-            // NAZ - Назначения по ДД
-            xml.Writer.WriteStartElement("NAZ");
-            //      NAZ_N       Номер по порядку
-            xml.Writer.WriteElementString("NAZ_N", index.ToString());
-
             //      NAZ_R       Заполняется при присвоении группы здоровья, кроме I и II.
             //                  1 – направлен на консультацию в медицинскую организацию по месту прикрепления;
             //                  2 – направлен на консультацию в иную медицинскую организацию;
@@ -74,8 +69,6 @@ namespace civox.Model {
 
             //      NAZ_PK      Профиль койки, если в поле NAZ_R проставлен код 6. Классификатор V020
             xml.WriteIfValid("NAZ_PK", bedProfile);
-            
-            xml.Writer.WriteEndElement();
         }
 
         /// <summary>
