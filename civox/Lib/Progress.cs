@@ -50,6 +50,7 @@ namespace civox.Lib {
 
             Console.SetCursorPosition(left, top);
             fg = Console.ForegroundColor;
+            Center(top + 1, "0%");
         }
 
         /// <summary>
