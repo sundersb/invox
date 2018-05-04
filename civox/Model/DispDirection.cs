@@ -45,14 +45,14 @@ namespace civox.Model {
         }
 
         public override void Write(Lib.XmlExporter xml, Data.IInvoice repo) {
-            //      NAZ_R       Заполняется при присвоении группы здоровья, кроме I и II.
+            //      NAZR       Заполняется при присвоении группы здоровья, кроме I и II.
             //                  1 – направлен на консультацию в медицинскую организацию по месту прикрепления;
             //                  2 – направлен на консультацию в иную медицинскую организацию;
             //                  3 – направлен на обследование;
             //                  4 – направлен в дневной стационар;
             //                  5 – направлен на госпитализацию;
             //                  6 – направлен в реабилитационное отделение
-            xml.Writer.WriteElementString("NAZ_R", routeCode.ToString());
+            xml.Writer.WriteElementString("NAZR", routeCode.ToString());
 
             //      NAZ_SP      Специальность врача, если в поле NAZ_R проставлены коды 1 или 2. Классификатор V021
             xml.WriteIfValid("NAZ_SP", doctorSpec);

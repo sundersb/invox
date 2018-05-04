@@ -233,7 +233,11 @@ namespace civox.Model {
                 // DS2_N - Сопутствующие заболевания
                 //      DS2         Код из справочника МКБ до уровня подрубрики
                 //      DS2_PR      Обязательно указывается «1», если данный сопутствующий диагноз выявлен впервые
+                
+                // V009 ФОМС требует это поле и для диспансеризации. Хоть и не по приказу
+                xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
 
+                // V017
                 xml.Writer.WriteElementString("RSLT_D", marks.Resulting.DispResultCode);
 
                 // Направления по итогам диспансеризации
@@ -306,24 +310,26 @@ namespace civox.Model {
                 // LPU_1    У Подразделение МО лечения из регионального справочника
 
                 if (isDisp) {
+                    // Требует ФОМС, не по приказу
+                    xml.Writer.WriteElementString("PODR", rec.Department);
                     // Doubling code in attitude to DATE_IN, DATE_OUT because of featured FOMS formal check
-                    xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
-                    xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
-                    // Признак отказа. ФОМС пропускает везде, но по приказу только ДД и проф
-                    xml.Writer.WriteElementString("P_OTK", s.Refusal ? "1" : string.Empty);
-                    xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString("D6"));
                 } else {
                     xml.Writer.WriteElementString("PODR", rec.Department);
                     xml.Writer.WriteElementString("PROFIL", s.AidProfile);
                     // VID_VME  У Вид медицинского вмешательства V001
                     xml.WriteBool("DET", Options.Pediatric);
-                    xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
-                    xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
-                    xml.Writer.WriteElementString("DS", rec.Diagnosis);
-                    // Порядок элементов для ФОМС имеет значение: если сунуть CODE_USL выше или ниже, БАРС выдаст ошибку:
-                    xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString("D6"));
-                    xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString());
                 }
+                xml.Writer.WriteElementString("DATE_IN", s.BeginDate.AsXml());
+                xml.Writer.WriteElementString("DATE_OUT", s.EndDate.AsXml());
+
+                // ФОМС требует диагноз даже для ДД и проф. Не по приказу
+                xml.Writer.WriteElementString("DS", rec.Diagnosis);
+
+                // Признак отказа. ФОМС пропускает везде, но по приказу только ДД и проф. Теперь дает ошибку
+                //xml.Writer.WriteElementString("P_OTK", s.Refusal ? "1" : string.Empty);
+                // Порядок элементов для ФОМС имеет значение: если сунуть CODE_USL выше или ниже, БАРС выдаст ошибку:
+                xml.Writer.WriteElementString("CODE_USL", s.ServiceCode.ToString("D6"));
+                xml.Writer.WriteElementString("KOL_USL", s.Quantity.ToString());
 
                 //xml.Writer.WriteElementString("TARIF", "1");          // TODO:
                 xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", s.Price));
