@@ -115,24 +115,35 @@ namespace civox.Model {
             List<Recourse> rs = repo.LoadRecourceCases(policyCompound).ToList();
 
             foreach (Recourse r in rs) {
+                var writer = GetWriter(r);
                 List<Service> services = repo.LoadServices(policyCompound, r.Diagnosis, r.Reason).ToList();
 
                 if (ReasonHelper.IsSingleDay(r.Reason)) {
                     // List of services may contain several recourses (Emergency, Prof, Other etc.)
-                    foreach (IGrouping<DateTime, Service> group in services.GroupBy(s => s.EndDate))
-                        WriteRecourse(r, xml, group.ToList(), repo);
+                    foreach (IGrouping<DateTime, Service> group in services.GroupBy(s => s.EndDate)) {
+                        writer(r, xml, group.ToList(), repo);
+                    }
                 } else {
-                    WriteRecourse(r, xml, services, repo);
+                    writer(r, xml, services, repo);
                 }
             }
 
             xml.Writer.WriteEndElement();
         }
 
+        Action<Recourse, Lib.XmlExporter, List<Service>, Data.IInvoice> GetWriter(Recourse rec) {
+            switch (rec.Section) {
+                case AppendixSection.D1: return WriteD1;
+                case AppendixSection.D2: return WriteD2;
+                case AppendixSection.D3: return WriteD3;
+                default: throw new ArgumentException("Неверный раздел для повода обращения: " + rec.Section.ToString());
+            }
+        }
+
         /// <summary>
-        /// Write SLUCH record
+        /// Write SLUCH record for appendix D1 recourse
         /// </summary>
-        void WriteRecourse(Recourse rec, Lib.XmlExporter xml, List<Service> services, Data.IInvoice repo) {
+        void WriteD1(Recourse rec, Lib.XmlExporter xml, List<Service> services, Data.IInvoice repo) {
             if (services.Count == 0) return;
 
             RecourseLandmarks marks = Service.ArrangeServices(services);
@@ -149,55 +160,32 @@ namespace civox.Model {
 
             xml.Writer.WriteElementString("IDCASE", marks.Resulting.ID.ToString());
 
-            // V006 Условия оказания МП (нет при дисп и проф Д3):
-            if (rec.Section != AppendixSection.D3)
-                xml.Writer.WriteElementString("USL_OK", rec.Condition);
+            // V006 Условия оказания МП
+            xml.Writer.WriteElementString("USL_OK", rec.Condition);
 
             // Вид - Первичная МСП V008
             xml.Writer.WriteElementString("VIDPOM", marks.Resulting.AidKind);
             
-            // Форма - Плановая V014 (нет при проф и дисп Д3)
-            if (rec.Section != AppendixSection.D3)
-                xml.Writer.WriteElementString("FOR_POM", marks.Resulting.AidForm);
+            // Форма - Плановая V014
+            xml.Writer.WriteElementString("FOR_POM", marks.Resulting.AidForm);
 
-            // Только для ВМП (Д2): VID_HMP, METOD_HMP
-            //xml.Writer.WriteElementString("VID_HMP", string.Empty);            // TODO: Вид ВМП - нет
-            //xml.Writer.WriteElementString("METOD_HMP", string.Empty);          // TODO: Метод ВМП - нет
-
-            // NPR_MO   Не для Д3 Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
+            // NPR_MO   Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
 
             // EXTR     Не для Д3 Направление (госпитализация), 1 - плановая; 2 - экстренная
-            if (rec.Section != AppendixSection.D3 && ReasonHelper.IsHospitalization(rec.Reason))
+            if (ReasonHelper.IsHospitalization(rec.Reason))
                 xml.Writer.WriteElementString("EXTR", marks.Resulting.UrgentHospitalization ? "2" : "1");
 
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
             // LPU_1    Подразделение МО лечения из регионального справочника
 
-            // Выездная бригада - только Д3 (0/1):
-            if (rec.Section == AppendixSection.D3 && marks.Resulting.VisitingBrigade)
-                xml.Writer.WriteElementString("VBR", "1");
-
             // PODR     Не для Д3 Отделение МО лечения из регионального справочника
-            if (rec.Section != AppendixSection.D3)
-                xml.Writer.WriteElementString("PODR", rec.Department);
+            xml.Writer.WriteElementString("PODR", rec.Department);
 
             // Профиль МП V002
-            if (rec.Section != AppendixSection.D3) {
-                xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile); // Не для Д3
-                xml.WriteBool("DET", Options.Pediatric);                        // Не для Д3
-            }
-
-            // Только для ВМП (Д2): TAL_D, TAL_P
-            // Дата талона ВМП
-            //xml.Writer.WriteElementString("TAL_D", string.Empty);
-            // Дата запланир. госпит.
-            //xml.Writer.WriteElementString("TAL_P", string.Empty);
+            xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile); // Не для Д3
+            xml.WriteBool("DET", Options.Pediatric);                        // Не для Д3
 
             xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
-
-            // Признак отказа - только Д3
-            if (rec.Section == AppendixSection.D3)
-                xml.WriteBool("P_OTK", services.Any(s => s.Refusal));
 
             // TODO: Признак поступления/перевода. Наш ФОМС игнорирует(?)
             // Обязательно для дневного и круглосуточного стационара. Только для Д1
@@ -207,7 +195,7 @@ namespace civox.Model {
             //4 – Перевод внутри МО с другого профиля
             //xml.Writer.WriteElementString("P_PER", "3");
 
-            if (rec.Reason == Reason.DayHosp || rec.Reason == Reason.SurgeryDayHosp) {
+            if (ReasonHelper.IsHospitalization(rec.Reason)) {
                 xml.Writer.WriteElementString("DATE_1", marks.Resulting.BeginDate.AsXml());
                 xml.Writer.WriteElementString("DATE_2", marks.Resulting.EndDate.AsXml());
             } else {
@@ -222,52 +210,29 @@ namespace civox.Model {
             // DS2      УМ Не для Д3 Диагноз сопутствующего заболевания
             // DS3      УМ Не для Д3 Диагноз осложнения заболевания
 
-            // V017
-            if (rec.Section == AppendixSection.D3) {
-                // Диагноз первичный. Только для Д3
-                if (rec.FirstRevealed)
-                    xml.Writer.WriteElementString("DS1_PR", "1");
+            // VNOV_M   УМ Вес при рождении, Указывается при оказании медицинской помощи недоношенным и маловесным детям.
+            //             Поле заполняется, если в качестве пациента указана мать
 
-                // DS2_N - Сопутствующие заболевания
-                //      DS2         Код из справочника МКБ до уровня подрубрики
-                //      DS2_PR      Обязательно указывается «1», если данный сопутствующий диагноз выявлен впервые
-                
-                // V009 ФОМС требует это поле и для диспансеризации. Хоть и не по приказу
-                xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
+            // CODE_MES1    УМ Код МЭС
+            // CODE_MES2    У  Код МЭС сопутствующего заболевания
 
-                // V017
-                xml.Writer.WriteElementString("RSLT_D", marks.Resulting.DispResultCode);
+            // V009
+            xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
 
-                // Направления по итогам диспансеризации
-                foreach (DispDirection d in repo.LoadDispanserisationRoute(marks.Resulting.ID))
-                    d.Write(xml, repo);
+            // Исход заболевания V012
+            xml.Writer.WriteElementString("ISHOD", rec.Outcome);
 
-                // PR_D_N - сведения о диспансерном наблюдении по поводу основного заболевания: 0 - нет; 1 - да
-            } else {
-                // VNOV_M   УМ Вес при рождении, Указывается при оказании медицинской помощи недоношенным и маловесным детям.
-                //             Поле заполняется, если в качестве пациента указана мать
+            // Специальность врача V015
+            xml.Writer.WriteElementString("PRVS", marks.Resulting.DoctorProfile);
+            xml.Writer.WriteElementString("VERS_SPEC", "V015");
+            xml.Writer.WriteElementString("IDDOKT", services.OrderBy(s => s.EndDate).Last().DoctorCode);
 
-                // CODE_MES1    УМ Код МЭС
-                // CODE_MES2    У  Код МЭС сопутствующего заболевания
-
-                // V009
-                xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
-
-                // Исход заболевания V012
-                xml.Writer.WriteElementString("ISHOD", rec.Outcome);
-
-                // Специальность врача V015
-                xml.Writer.WriteElementString("PRVS", marks.Resulting.DoctorProfile);
-                xml.Writer.WriteElementString("VERS_SPEC", "V015");
-                xml.Writer.WriteElementString("IDDOKT", services.OrderBy(s => s.EndDate).Last().DoctorCode);
-
-                // Список особых случаев from D_TYPE
-                // TODO: ХКФОМС вкладывает в OS_SLUCH свой особый смысл. Не тот, что ФФОМС:
-                //1 - медицинская помощь оказана новорожденному ребенку до государственной регистрации рождения при многоплодных родах;
-                //2 - в документе, удостоверяющем личность пациента/родителя (представителя) пациента, отсутствует отчество
-                foreach (string sc in services.Select(s => s.SpecialCase).Where(s => !string.IsNullOrEmpty(s)).Distinct())
-                    xml.Writer.WriteElementString("OS_SLUCH", sc);
-            }
+            // Список особых случаев from D_TYPE
+            // TODO: ХКФОМС вкладывает в OS_SLUCH свой особый смысл. Не тот, что ФФОМС:
+            //1 - медицинская помощь оказана новорожденному ребенку до государственной регистрации рождения при многоплодных родах;
+            //2 - в документе, удостоверяющем личность пациента/родителя (представителя) пациента, отсутствует отчество
+            foreach (string sc in services.Select(s => s.SpecialCase).Where(s => !string.IsNullOrEmpty(s)).Distinct())
+                xml.Writer.WriteElementString("OS_SLUCH", sc);
 
             // Способ оплаты V010
             xml.Writer.WriteElementString("IDSP", marks.Resulting.PayKind);
@@ -292,7 +257,218 @@ namespace civox.Model {
             //3 - частичный отказ
             xml.Writer.WriteElementString("OPLATA", "1");
 
-            foreach (Service s in services) s.Write(rec, xml, repo);
+            foreach (Service s in services) s.WriteD12(rec, xml, repo);
+
+            xml.Writer.WriteEndElement();
+        }
+
+        void WriteD2(Recourse rec, Lib.XmlExporter xml, List<Service> services, Data.IInvoice repo) {
+            if (services.Count == 0) return;
+
+            RecourseLandmarks marks = Service.ArrangeServices(services);
+            if (!marks.Valid) {
+                Lib.Logger.Log(string.Format("Услуги не формируют случай обращения:\r\n\t'{0}', DS {1}, отделение {2}, повод обращения {3}",
+                    policyCompound,
+                    rec.Diagnosis,
+                    rec.Department,
+                    rec.Reason));
+                return;
+            }
+
+            xml.Writer.WriteStartElement("SLUCH");
+
+            xml.Writer.WriteElementString("IDCASE", marks.Resulting.ID.ToString());
+
+            // V006 Условия оказания МП (нет при дисп и проф Д3):
+            xml.Writer.WriteElementString("USL_OK", rec.Condition);
+
+            // Вид - Первичная МСП V008
+            xml.Writer.WriteElementString("VIDPOM", marks.Resulting.AidKind);
+
+            // Форма - Плановая V014 (нет при проф и дисп Д3)
+            xml.Writer.WriteElementString("FOR_POM", marks.Resulting.AidForm);
+
+            // Только для ВМП (Д2): VID_HMP, METOD_HMP
+            xml.Writer.WriteElementString("VID_HMP", string.Empty);            // TODO: Вид ВМП - нет
+            xml.Writer.WriteElementString("METOD_HMP", string.Empty);          // TODO: Метод ВМП - нет
+
+            // NPR_MO   Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
+
+            // EXTR     Не для Д3 Направление (госпитализация), 1 - плановая; 2 - экстренная
+            if (ReasonHelper.IsHospitalization(rec.Reason))
+                xml.Writer.WriteElementString("EXTR", marks.Resulting.UrgentHospitalization ? "2" : "1");
+
+            xml.Writer.WriteElementString("LPU", Options.LpuCode);
+            // LPU_1    Подразделение МО лечения из регионального справочника
+
+            // PODR     Отделение МО лечения из регионального справочника
+            xml.Writer.WriteElementString("PODR", rec.Department);
+
+            // Профиль МП V002
+            xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile);
+            xml.WriteBool("DET", Options.Pediatric);
+
+            // Дата талона ВМП
+            xml.Writer.WriteElementString("TAL_D", string.Empty);
+            // Дата запланир. госпит.
+            xml.Writer.WriteElementString("TAL_P", string.Empty);
+
+            xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
+
+            // TODO: Признак поступления/перевода. Наш ФОМС игнорирует(?)
+            // Обязательно для дневного и круглосуточного стационара. Только для Д1
+            //1 – Самостоятельно
+            //2 – СМП
+            //3 – Перевод из другой МО
+            //4 – Перевод внутри МО с другого профиля
+            //xml.Writer.WriteElementString("P_PER", "3");
+
+            if (ReasonHelper.IsHospitalization(rec.Reason)) {
+                xml.Writer.WriteElementString("DATE_1", marks.Resulting.BeginDate.AsXml());
+                xml.Writer.WriteElementString("DATE_2", marks.Resulting.EndDate.AsXml());
+            } else {
+                xml.Writer.WriteElementString("DATE_1", marks.First.BeginDate.AsXml());
+                xml.Writer.WriteElementString("DATE_2", marks.Last.EndDate.AsXml());
+            }
+
+            // DS0      Н Не для Д3 Диагноз первичный
+
+            xml.Writer.WriteElementString("DS1", rec.Diagnosis);
+
+            // DS2      УМ Не для Д3 Диагноз сопутствующего заболевания
+            // DS3      УМ Не для Д3 Диагноз осложнения заболевания
+
+            // VNOV_M   УМ Вес при рождении, Указывается при оказании медицинской помощи недоношенным и маловесным детям.
+            //             Поле заполняется, если в качестве пациента указана мать
+
+            // CODE_MES1    УМ Код МЭС
+            // CODE_MES2    У  Код МЭС сопутствующего заболевания
+
+            // V009
+            xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
+
+            // Исход заболевания V012
+            xml.Writer.WriteElementString("ISHOD", rec.Outcome);
+
+            // Специальность врача V015
+            xml.Writer.WriteElementString("PRVS", marks.Resulting.DoctorProfile);
+            xml.Writer.WriteElementString("VERS_SPEC", "V015");
+            xml.Writer.WriteElementString("IDDOKT", services.OrderBy(s => s.EndDate).Last().DoctorCode);
+
+            // Список особых случаев from D_TYPE
+            // TODO: ХКФОМС вкладывает в OS_SLUCH свой особый смысл. Не тот, что ФФОМС:
+            //1 - медицинская помощь оказана новорожденному ребенку до государственной регистрации рождения при многоплодных родах;
+            //2 - в документе, удостоверяющем личность пациента/родителя (представителя) пациента, отсутствует отчество
+            foreach (string sc in services.Select(s => s.SpecialCase).Where(s => !string.IsNullOrEmpty(s)).Distinct())
+                xml.Writer.WriteElementString("OS_SLUCH", sc);
+
+            // Способ оплаты V010
+            xml.Writer.WriteElementString("IDSP", marks.Resulting.PayKind);
+
+            // К-во единиц оплаты
+            xml.Writer.WriteElementString("ED_COL", marks.Resulting.Quantity.ToString());
+
+            // TODO: Тариф
+            // UPDATE: В релаксе подушевые суммы по нулям. Где его брать?
+            // PATU.TARIF Код тарифа услуги (1-себестоимость ОМС по ИП, 2- полная себестоимость по ИП, 3-цена по ИП, 4 –территориальный тариф)
+            //xml.Writer.WriteElementString("TARIF", string.Empty);
+
+            // Цель обращения
+            xml.Writer.WriteElementString("CEL", marks.Resulting.RecourseAim);
+
+            // Сумма к оплате
+            xml.Writer.WriteElementString("SUMV", string.Format(Options.NumberFormat, "{0:f2}", services.Sum(s => s.Price)));
+
+            // Оплата 0 - не принято решение об оплате
+            //1 - полная;
+            //2 - полный отказ;
+            //3 - частичный отказ
+            xml.Writer.WriteElementString("OPLATA", "1");
+
+            foreach (Service s in services) s.WriteD12(rec, xml, repo);
+
+            xml.Writer.WriteEndElement();
+        }
+
+        void WriteD3(Recourse rec, Lib.XmlExporter xml, List<Service> services, Data.IInvoice repo) {
+            if (services.Count == 0) return;
+
+            RecourseLandmarks marks = Service.ArrangeServices(services);
+            if (!marks.Valid) {
+                Lib.Logger.Log(string.Format("Услуги не формируют случай обращения:\r\n\t'{0}', DS {1}, отделение {2}, повод обращения {3}",
+                    policyCompound,
+                    rec.Diagnosis,
+                    rec.Department,
+                    rec.Reason));
+                return;
+            }
+
+            xml.Writer.WriteStartElement("SLUCH");
+
+            xml.Writer.WriteElementString("IDCASE", marks.Resulting.ID.ToString());
+
+            // Вид - Первичная МСП V008
+            xml.Writer.WriteElementString("VIDPOM", marks.Resulting.AidKind);
+
+            xml.Writer.WriteElementString("LPU", Options.LpuCode);
+            // LPU_1    Подразделение МО лечения из регионального справочника
+
+            // Выездная бригада (0/1):
+            if (marks.Resulting.VisitingBrigade)
+                xml.Writer.WriteElementString("VBR", "1");
+
+            xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
+
+            // Признак отказа
+            xml.WriteBool("P_OTK", services.Any(s => s.Refusal));
+
+            xml.Writer.WriteElementString("DATE_1", marks.First.BeginDate.AsXml());
+            xml.Writer.WriteElementString("DATE_2", marks.Last.EndDate.AsXml());
+
+            xml.Writer.WriteElementString("DS1", rec.Diagnosis);
+
+            // Диагноз первичный
+            if (rec.FirstRevealed)
+                xml.Writer.WriteElementString("DS1_PR", "1");
+
+            // DS2_N - Сопутствующие заболевания
+            //      DS2         Код из справочника МКБ до уровня подрубрики
+            //      DS2_PR      Обязательно указывается «1», если данный сопутствующий диагноз выявлен впервые
+
+            // V009 ФОМС требует это поле и для диспансеризации. Хоть и не по приказу
+            xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
+
+            // V017
+            xml.Writer.WriteElementString("RSLT_D", marks.Resulting.DispResultCode);
+
+            // Направления по итогам диспансеризации
+            foreach (DispDirection d in repo.LoadDispanserisationRoute(marks.Resulting.ID))
+                d.Write(xml, repo);
+
+            // PR_D_N - сведения о диспансерном наблюдении по поводу основного заболевания: 0 - нет; 1 - да
+
+            // Способ оплаты V010
+            xml.Writer.WriteElementString("IDSP", marks.Resulting.PayKind);
+
+            // К-во единиц оплаты
+            xml.Writer.WriteElementString("ED_COL", marks.Resulting.Quantity.ToString());
+
+            // TODO: Тариф
+            //xml.Writer.WriteElementString("TARIF", string.Empty);
+
+            // Цель обращения
+            xml.Writer.WriteElementString("CEL", marks.Resulting.RecourseAim);
+
+            // Сумма к оплате
+            xml.Writer.WriteElementString("SUMV", string.Format(Options.NumberFormat, "{0:f2}", services.Sum(s => s.Price)));
+
+            // Оплата 0 - не принято решение об оплате
+            //1 - полная;
+            //2 - полный отказ;
+            //3 - частичный отказ
+            xml.Writer.WriteElementString("OPLATA", "1");
+
+            foreach (Service s in services) s.WriteD3(rec, xml, repo);
 
             xml.Writer.WriteEndElement();
         }
