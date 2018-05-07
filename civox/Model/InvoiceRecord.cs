@@ -146,7 +146,7 @@ namespace civox.Model {
         void WriteD1(Recourse rec, Lib.XmlExporter xml, List<Service> services, Data.IInvoice repo) {
             if (services.Count == 0) return;
 
-            RecourseLandmarks marks = Service.ArrangeServices(services);
+            RecourseLandmarks marks = Service.ArrangeServicesD12(services);
             if (!marks.Valid) {
                 Lib.Logger.Log(string.Format("Услуги не формируют случай обращения:\r\n\t'{0}', DS {1}, отделение {2}, повод обращения {3}",
                     policyCompound,
@@ -265,7 +265,7 @@ namespace civox.Model {
         void WriteD2(Recourse rec, Lib.XmlExporter xml, List<Service> services, Data.IInvoice repo) {
             if (services.Count == 0) return;
 
-            RecourseLandmarks marks = Service.ArrangeServices(services);
+            RecourseLandmarks marks = Service.ArrangeServicesD12(services);
             if (!marks.Valid) {
                 Lib.Logger.Log(string.Format("Услуги не формируют случай обращения:\r\n\t'{0}', DS {1}, отделение {2}, повод обращения {3}",
                     policyCompound,
@@ -393,7 +393,7 @@ namespace civox.Model {
         void WriteD3(Recourse rec, Lib.XmlExporter xml, List<Service> services, Data.IInvoice repo) {
             if (services.Count == 0) return;
 
-            RecourseLandmarks marks = Service.ArrangeServices(services);
+            RecourseLandmarks marks = Service.ArrangeServicesD3(services);
             if (!marks.Valid) {
                 Lib.Logger.Log(string.Format("Услуги не формируют случай обращения:\r\n\t'{0}', DS {1}, отделение {2}, повод обращения {3}",
                     policyCompound,

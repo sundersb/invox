@@ -88,25 +88,14 @@ namespace civox.Model {
         }
 
         /// <summary>
-        /// Mark relevant services as resulting, first or last
+        /// Mark relevant services of usual case (not dispanserisation or prophylax) as resulting, first or last
         /// </summary>
         /// <param name="services">List of recourse services</param>
-        public static RecourseLandmarks ArrangeServices(List<Service> services) {
+        public static RecourseLandmarks ArrangeServicesD12(List<Service> services) {
             if (services == null) return null;
             RecourseLandmarks result = new RecourseLandmarks();
 
-            if (services.Any(s => DISP_I_CODES.Contains(s.ServiceCode / 1000))) {
-                // Dispanserisation I stage
-                result.First = services.FirstOrDefault(s => s.ServiceCode == DISP_I_START_CODE);
-                result.Last = services.FirstOrDefault(s => DISP_I_RESULT_CODES.Contains(s.ServiceCode / 1000));
-                result.Resulting = result.Last;
-            } else if (services.Any(s => DISP_II_CODES.Contains(s.ServiceCode / 1000))) {
-                // Dispanserisation II stage
-                DateTime date = services.Min(s => s.EndDate);
-                result.First = services.FirstOrDefault(s => s.EndDate == date);
-                result.Last = services.FirstOrDefault(s => s.ServiceCode / 1000 == DISP_II_RESULT_CODE);
-                result.Resulting = result.Last;
-            } else if (services.Any(s => s.ServiceCode / 100 == DAY_HOSP_CODE)) {
+            if (services.Any(s => s.ServiceCode / 100 == DAY_HOSP_CODE)) {
                 // Day hospital
                 result.Resulting = services.FirstOrDefault(s => s.ServiceCode / 100 == DAY_HOSP_CODE);
 
@@ -122,6 +111,41 @@ namespace civox.Model {
                     return sc == RECOURSE_RESULT_CODE || sc == PROPHYLAX_CODE;
                 });
                 
+                DateTime date = services.Max(s => s.EndDate);
+                result.Last = services.FirstOrDefault(s => s.EndDate == date);
+
+                date = services.Min(s => s.EndDate);
+                result.First = services.FirstOrDefault(s => s.EndDate == date);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Mark relevant services of dispanserisation or prophylaxis as resulting, first or last
+        /// </summary>
+        /// <param name="services">List of recourse services</param>
+        public static RecourseLandmarks ArrangeServicesD3(List<Service> services) {
+            if (services == null) return null;
+            RecourseLandmarks result = new RecourseLandmarks();
+
+            if (services.Any(s => DISP_I_CODES.Contains(s.ServiceCode / 1000))) {
+                // Dispanserisation I stage
+                result.First = services.FirstOrDefault(s => s.ServiceCode == DISP_I_START_CODE);
+                result.Last = services.FirstOrDefault(s => DISP_I_RESULT_CODES.Contains(s.ServiceCode / 1000));
+                result.Resulting = result.Last;
+            } else if (services.Any(s => DISP_II_CODES.Contains(s.ServiceCode / 1000))) {
+                // Dispanserisation II stage
+                DateTime date = services.Min(s => s.EndDate);
+                result.First = services.FirstOrDefault(s => s.EndDate == date);
+                result.Last = services.FirstOrDefault(s => s.ServiceCode / 1000 == DISP_II_RESULT_CODE);
+                result.Resulting = result.Last;
+            } else {
+                // Set resulting service by code 50xxx, 27xxx
+                result.Resulting = services.FirstOrDefault(s => {
+                    int sc = s.ServiceCode / 1000;
+                    return sc == RECOURSE_RESULT_CODE || sc == PROPHYLAX_CODE;
+                });
+
                 DateTime date = services.Max(s => s.EndDate);
                 result.Last = services.FirstOrDefault(s => s.EndDate == date);
 
@@ -154,7 +178,7 @@ namespace civox.Model {
         }
 
         /// <summary>
-        /// XML-stream the service
+        /// XML-stream the service of a non-dispanserisation/prophylaxis visit
         /// </summary>
         /// <param name="rec">Recourse to which this service is bound to</param>
         /// <param name="xml">XML streaming helper</param>
@@ -193,6 +217,12 @@ namespace civox.Model {
             xml.Writer.WriteEndElement();
         }
 
+        /// <summary>
+        /// XML-stream the service of dispanserisation or prophylaxis
+        /// </summary>
+        /// <param name="rec">Recourse to which this service is bound to</param>
+        /// <param name="xml">XML streaming helper</param>
+        /// <param name="repo">Data repository</param>
         public void WriteD3(Recourse rec, Lib.XmlExporter xml, Data.IInvoice repo) {
             xml.Writer.WriteStartElement("USL");
 
