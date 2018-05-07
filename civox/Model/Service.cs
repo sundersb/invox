@@ -74,6 +74,11 @@ namespace civox.Model {
         public bool UrgentHospitalization;
         public bool VisitingBrigade; // Выездная бригада
 
+        /// <summary>
+        /// Set last recourse date and its' duration
+        /// </summary>
+        /// <param name="serviceDate">Recourse end date</param>
+        /// <param name="days">Recourse duration (working days)</param>
         public void SetDates(DateTime serviceDate, int days) {
             if (days < 0) return;
 
@@ -119,7 +124,7 @@ namespace civox.Model {
         }
 
         /// <summary>
-        /// Mark relevant services of dispanserisation or prophylaxis as resulting, first or last
+        /// Mark relevant services of dispanserisation (prophylaxis) as resulting, first or last
         /// </summary>
         /// <param name="services">List of recourse services</param>
         public static RecourseLandmarks ArrangeServicesD3(List<Service> services) {
@@ -188,7 +193,7 @@ namespace civox.Model {
             // LPU_1    У Подразделение МО лечения из регионального справочника
 
             xml.Writer.WriteElementString("PODR", rec.Department);
-            xml.Writer.WriteElementString("PROFIL", AidProfile);
+            xml.Writer.WriteElementString("PROFIL", AidProfile); // V002
             // VID_VME  У Вид медицинского вмешательства V001
             xml.WriteBool("DET", Options.Pediatric);
 
@@ -206,6 +211,13 @@ namespace civox.Model {
 
             xml.Writer.WriteElementString("PRVS", DoctorProfile);        // V015
             xml.Writer.WriteElementString("CODE_MD", DoctorCode);
+
+            // NPL      У Неполный объем Только Д1
+            //1 - документированный отказ больного,
+            //2 - медицинские противопоказания,
+            //3 - прочие причины (умер, переведен в другое отделение и пр.)
+            //4 - ранее проведенные услуги в пределах установленных сроков
+            //xml.Writer.WriteElementString("NPL", string.Empty);
 
             // Нате вам пасхалку
             xml.WriteIfValid("COMENTU", Options.ReadingBot.Read());
@@ -232,27 +244,23 @@ namespace civox.Model {
 
             xml.Writer.WriteElementString("DATE_IN", BeginDate.AsXml());
             xml.Writer.WriteElementString("DATE_OUT", EndDate.AsXml());
+            
+            // О Признак отказа. ФОМС дает ошибку
+            //xml.Writer.WriteElementString("P_OTK", Refusal ? "1" : string.Empty);
 
-            // ФОМС требует диагноз даже для ДД и проф. Не по приказу
+            // ФОМС требует здесь диагноз даже для ДД и проф. Не по приказу
             xml.Writer.WriteElementString("DS", rec.Diagnosis);
 
-            // Признак отказа. ФОМС дает ошибку
-            //xml.Writer.WriteElementString("P_OTK", s.Refusal ? "1" : string.Empty);
             xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString("D6"));
-            xml.Writer.WriteElementString("KOL_USL", Quantity.ToString());
+            
+            // Check - D3 doesn't require KOL_USL
+            //xml.Writer.WriteElementString("KOL_USL", Quantity.ToString());
 
             //xml.Writer.WriteElementString("TARIF", "1");          // TODO:
             xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", Price));
 
             xml.Writer.WriteElementString("PRVS", DoctorProfile);        // V015
             xml.Writer.WriteElementString("CODE_MD", DoctorCode);
-
-            // NPL      У Неполный объем Только Д1
-            //1 - документированный отказ больного,
-            //2 - медицинские противопоказания,
-            //3 - прочие причины (умер, переведен в другое отделение и пр.)
-            //4 - ранее проведенные услуги в пределах установленных сроков
-            //xml.Writer.WriteElementString("NPL", string.Empty);
 
             xml.WriteIfValid("COMENTU", Options.ReadingBot.Read());
 

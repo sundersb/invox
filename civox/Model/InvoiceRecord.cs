@@ -140,6 +140,14 @@ namespace civox.Model {
             }
         }
 
+        void InvalidRecourse(Recourse rec) {
+            Lib.Logger.Log(string.Format("Услуги не формируют случай обращения:\r\n\t'{0}', DS {1}, отделение {2}, повод обращения {3}",
+                policyCompound,
+                rec.Diagnosis,
+                rec.Department,
+                rec.Reason));
+        }
+
         /// <summary>
         /// Write SLUCH record for appendix D1 recourse
         /// </summary>
@@ -148,11 +156,7 @@ namespace civox.Model {
 
             RecourseLandmarks marks = Service.ArrangeServicesD12(services);
             if (!marks.Valid) {
-                Lib.Logger.Log(string.Format("Услуги не формируют случай обращения:\r\n\t'{0}', DS {1}, отделение {2}, повод обращения {3}",
-                    policyCompound,
-                    rec.Diagnosis,
-                    rec.Department,
-                    rec.Reason));
+                InvalidRecourse(rec);
                 return;
             }
 
@@ -169,33 +173,35 @@ namespace civox.Model {
             // Форма - Плановая V014
             xml.Writer.WriteElementString("FOR_POM", marks.Resulting.AidForm);
 
-            // NPR_MO   Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
+            // NPR_MO   У Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
 
-            // EXTR     Не для Д3 Направление (госпитализация), 1 - плановая; 2 - экстренная
+            // EXTR     У Направление (госпитализация), 1 - плановая; 2 - экстренная
             if (ReasonHelper.IsHospitalization(rec.Reason))
                 xml.Writer.WriteElementString("EXTR", marks.Resulting.UrgentHospitalization ? "2" : "1");
 
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
-            // LPU_1    Подразделение МО лечения из регионального справочника
+            // LPU_1    У Подразделение МО лечения из регионального справочника
 
-            // PODR     Не для Д3 Отделение МО лечения из регионального справочника
+            // PODR     У Отделение МО лечения из регионального справочника
             xml.Writer.WriteElementString("PODR", rec.Department);
 
-            // Профиль МП V002
-            xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile); // Не для Д3
-            xml.WriteBool("DET", Options.Pediatric);                        // Не для Д3
+            // О Профиль МП V002
+            xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile);
+
+            // О Детский профиль 0 - нет, 1 - да
+            xml.WriteBool("DET", Options.Pediatric);
 
             xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
 
-            // TODO: Признак поступления/перевода. Наш ФОМС игнорирует(?)
-            // Обязательно для дневного и круглосуточного стационара. Только для Д1
-            //1 – Самостоятельно
-            //2 – СМП
-            //3 – Перевод из другой МО
-            //4 – Перевод внутри МО с другого профиля
-            //xml.Writer.WriteElementString("P_PER", "3");
-
             if (ReasonHelper.IsHospitalization(rec.Reason)) {
+                // TODO: Признак поступления/перевода. Наш ФОМС игнорирует(?)
+                // У Обязательно для дневного и круглосуточного стационара
+                //1 – Самостоятельно
+                //2 – СМП
+                //3 – Перевод из другой МО
+                //4 – Перевод внутри МО с другого профиля
+                //xml.Writer.WriteElementString("P_PER", "1");
+
                 xml.Writer.WriteElementString("DATE_1", marks.Resulting.BeginDate.AsXml());
                 xml.Writer.WriteElementString("DATE_2", marks.Resulting.EndDate.AsXml());
             } else {
@@ -203,12 +209,12 @@ namespace civox.Model {
                 xml.Writer.WriteElementString("DATE_2", marks.Last.EndDate.AsXml());
             }
 
-            // DS0      Н Не для Д3 Диагноз первичный
+            // DS0      Н Диагноз первичный
 
             xml.Writer.WriteElementString("DS1", rec.Diagnosis);
 
-            // DS2      УМ Не для Д3 Диагноз сопутствующего заболевания
-            // DS3      УМ Не для Д3 Диагноз осложнения заболевания
+            // DS2      УМ Диагноз сопутствующего заболевания
+            // DS3      УМ Диагноз осложнения заболевания
 
             // VNOV_M   УМ Вес при рождении, Указывается при оказании медицинской помощи недоношенным и маловесным детям.
             //             Поле заполняется, если в качестве пациента указана мать
@@ -234,21 +240,21 @@ namespace civox.Model {
             foreach (string sc in services.Select(s => s.SpecialCase).Where(s => !string.IsNullOrEmpty(s)).Distinct())
                 xml.Writer.WriteElementString("OS_SLUCH", sc);
 
-            // Способ оплаты V010
+            // О Способ оплаты V010
             xml.Writer.WriteElementString("IDSP", marks.Resulting.PayKind);
 
-            // К-во единиц оплаты
+            // У К-во единиц оплаты
             xml.Writer.WriteElementString("ED_COL", marks.Resulting.Quantity.ToString());
 
-            // TODO: Тариф
+            // TODO: У Тариф
             // UPDATE: В релаксе подушевые суммы по нулям. Где его брать?
             // PATU.TARIF Код тарифа услуги (1-себестоимость ОМС по ИП, 2- полная себестоимость по ИП, 3-цена по ИП, 4 –территориальный тариф)
             //xml.Writer.WriteElementString("TARIF", string.Empty);
 
-            // Цель обращения
+            // Цель обращения (приказ ХКФОМС)
             xml.Writer.WriteElementString("CEL", marks.Resulting.RecourseAim);
 
-            // Сумма к оплате
+            // О Сумма к оплате
             xml.Writer.WriteElementString("SUMV", string.Format(Options.NumberFormat, "{0:f2}", services.Sum(s => s.Price)));
 
             // Оплата 0 - не принято решение об оплате
@@ -267,11 +273,7 @@ namespace civox.Model {
 
             RecourseLandmarks marks = Service.ArrangeServicesD12(services);
             if (!marks.Valid) {
-                Lib.Logger.Log(string.Format("Услуги не формируют случай обращения:\r\n\t'{0}', DS {1}, отделение {2}, повод обращения {3}",
-                    policyCompound,
-                    rec.Diagnosis,
-                    rec.Department,
-                    rec.Reason));
+                InvalidRecourse(rec);
                 return;
             }
 
@@ -292,9 +294,9 @@ namespace civox.Model {
             xml.Writer.WriteElementString("VID_HMP", string.Empty);            // TODO: Вид ВМП - нет
             xml.Writer.WriteElementString("METOD_HMP", string.Empty);          // TODO: Метод ВМП - нет
 
-            // NPR_MO   Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
+            // NPR_MO   У Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
 
-            // EXTR     Не для Д3 Направление (госпитализация), 1 - плановая; 2 - экстренная
+            // EXTR     У Направление (госпитализация), 1 - плановая; 2 - экстренная
             if (ReasonHelper.IsHospitalization(rec.Reason))
                 xml.Writer.WriteElementString("EXTR", marks.Resulting.UrgentHospitalization ? "2" : "1");
 
@@ -308,9 +310,9 @@ namespace civox.Model {
             xml.Writer.WriteElementString("PROFIL", marks.Last.AidProfile);
             xml.WriteBool("DET", Options.Pediatric);
 
-            // Дата талона ВМП
+            // О Дата талона ВМП
             xml.Writer.WriteElementString("TAL_D", string.Empty);
-            // Дата запланир. госпит.
+            // О Дата запланир. госпит.
             xml.Writer.WriteElementString("TAL_P", string.Empty);
 
             xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
@@ -395,11 +397,7 @@ namespace civox.Model {
 
             RecourseLandmarks marks = Service.ArrangeServicesD3(services);
             if (!marks.Valid) {
-                Lib.Logger.Log(string.Format("Услуги не формируют случай обращения:\r\n\t'{0}', DS {1}, отделение {2}, повод обращения {3}",
-                    policyCompound,
-                    rec.Diagnosis,
-                    rec.Department,
-                    rec.Reason));
+                InvalidRecourse(rec);
                 return;
             }
 
@@ -419,7 +417,7 @@ namespace civox.Model {
 
             xml.Writer.WriteElementString("NHISTORY", marks.Resulting.CardNumber);
 
-            // Признак отказа
+            // О Признак отказа
             xml.WriteBool("P_OTK", services.Any(s => s.Refusal));
 
             xml.Writer.WriteElementString("DATE_1", marks.First.BeginDate.AsXml());
@@ -431,9 +429,9 @@ namespace civox.Model {
             if (rec.FirstRevealed)
                 xml.Writer.WriteElementString("DS1_PR", "1");
 
-            // DS2_N - Сопутствующие заболевания
-            //      DS2         Код из справочника МКБ до уровня подрубрики
-            //      DS2_PR      Обязательно указывается «1», если данный сопутствующий диагноз выявлен впервые
+            // DS2_N - УМ Сопутствующие заболевания
+            //      DS2         О Код из справочника МКБ до уровня подрубрики
+            //      DS2_PR      У Обязательно указывается «1», если данный сопутствующий диагноз выявлен впервые
 
             // V009 ФОМС требует это поле и для диспансеризации. Хоть и не по приказу
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
