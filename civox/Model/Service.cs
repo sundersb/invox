@@ -95,10 +95,8 @@ namespace civox.Model {
             if (services == null) return null;
             RecourseLandmarks result = new RecourseLandmarks();
 
-            if (services.Any(s => s.ServiceCode / 100 == DAY_HOSP_CODE)) {
+            if (null != (result.Resulting = services.FirstOrDefault(s => s.ServiceCode / 100 == DAY_HOSP_CODE))) {
                 // Day hospital
-                result.Resulting = services.FirstOrDefault(s => s.ServiceCode / 100 == DAY_HOSP_CODE);
-
                 DateTime date = services.Max(s => s.EndDate);
                 result.Last = services.FirstOrDefault(s => s.EndDate == date);
 
@@ -127,17 +125,15 @@ namespace civox.Model {
         public static RecourseLandmarks ArrangeServicesD3(List<Service> services) {
             if (services == null) return null;
             RecourseLandmarks result = new RecourseLandmarks();
-
-            if (services.Any(s => DISP_I_CODES.Contains(s.ServiceCode / 1000))) {
+            
+            if (null != (result.Last = services.FirstOrDefault(s => DISP_I_RESULT_CODES.Contains(s.ServiceCode / 1000)))) {
                 // Dispanserisation I stage
                 result.First = services.FirstOrDefault(s => s.ServiceCode == DISP_I_START_CODE);
-                result.Last = services.FirstOrDefault(s => DISP_I_RESULT_CODES.Contains(s.ServiceCode / 1000));
                 result.Resulting = result.Last;
-            } else if (services.Any(s => DISP_II_CODES.Contains(s.ServiceCode / 1000))) {
+            } else if (null != (result.Last = services.FirstOrDefault(s => s.ServiceCode / 1000 == DISP_II_RESULT_CODE))) {
                 // Dispanserisation II stage
                 DateTime date = services.Min(s => s.EndDate);
                 result.First = services.FirstOrDefault(s => s.EndDate == date);
-                result.Last = services.FirstOrDefault(s => s.ServiceCode / 1000 == DISP_II_RESULT_CODE);
                 result.Resulting = result.Last;
             } else {
                 // Set resulting service by code 50xxx, 27xxx
