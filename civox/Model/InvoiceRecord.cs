@@ -29,6 +29,12 @@ namespace civox.Model {
         public string PolicyNumber { get; private set; }
         public string SmoCode;
         public string OKATO;
+
+        /// <summary>
+        /// Код льготы
+        /// </summary>
+        public string Privilege;
+
         public bool IsNewborn;
 
         /// <summary>
@@ -64,6 +70,15 @@ namespace civox.Model {
                 PolicyNumber = parts[1];
             }
         }
+
+        string GetDisability() {
+            if (Privilege.Length == 2
+                && Privilege[0] == '0'
+                && Privilege[1] >= '1'
+                && Privilege[1] <= '4') {
+                return Privilege.Substring(1);
+            } else return string.Empty;
+        }
         
         /// <summary>
         /// Save record
@@ -85,14 +100,13 @@ namespace civox.Model {
             xml.Writer.WriteElementString("ST_OKATO", OKATO);
             xml.Writer.WriteElementString("SMO", SmoCode);
 
-            // TODO: INV -
             //0 - нет инвалидности;
             //1 - 1 группа;
             //2 - 2 группа;
             //3 - 3 группа;
             //4 - дети-инвалиды.
             //Заполняется только при впервые установленной инвалидности (1 - 4) или в случае отказа в признании лица инвалидом (0)
-            //xml.WriteIfValid("INV", Disability);
+            xml.WriteIfValid("INV", GetDisability());
 
             // TODO: NOVOR - Это не булево значение:
             //Указывается в случае оказания медицинской помощи ребенку до государственной регистрации рождения.

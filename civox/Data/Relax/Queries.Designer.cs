@@ -107,6 +107,7 @@ namespace civox.Data.Relax {
         ///  P.T_POL,
         ///  P.SN_POL,
         ///  P.Q,
+        ///  P.KT,
         ///  P.NOVOR
         /// from {period}P{lpu} P
         ///  join {period}S{lpu} S on S.SN_POL = P.SN_POL
