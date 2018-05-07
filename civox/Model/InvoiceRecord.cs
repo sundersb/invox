@@ -10,6 +10,7 @@ namespace civox.Model {
     /// </summary>
     class InvoiceRecord : Model {
         int number;
+        int sex;
 
         // Original SN_POL value
         string policyCompound = string.Empty;
@@ -29,6 +30,17 @@ namespace civox.Model {
         public string PolicyNumber { get; private set; }
         public string SmoCode;
         public string OKATO;
+        public DateTime BirthDate;
+
+        public int Sex {
+            get { return sex; }
+            set {
+                if (value != 1 && value != 2)
+                    throw new ArgumentException("Неправильный пол: " + value.ToString());
+                sex = value;
+            }
+        }
+
 
         /// <summary>
         /// Код льготы
@@ -108,22 +120,33 @@ namespace civox.Model {
             //Заполняется только при впервые установленной инвалидности (1 - 4) или в случае отказа в признании лица инвалидом (0)
             xml.WriteIfValid("INV", GetDisability());
 
-            // TODO: NOVOR - Это не булево значение:
-            //Указывается в случае оказания медицинской помощи ребенку до государственной регистрации рождения.
-            //0 - признак отсутствует.
-            //Если значение признака отлично от нуля, он заполняется по следующему шаблону:
-            //ПДДММГГН, где
-            //П - пол ребенка в соответствии с классификатором V005 Приложения А;
-            //ДД - день рождения; ММ - месяц рождения;
-            //ГГ - последние две цифры года рождения;
-            //Н - порядковый номер ребенка (до двух знаков).
-            xml.WriteBool("NOVOR", IsNewborn);
+            // NOVOR
+            if (IsNewborn) {
+                //Указывается в случае оказания медицинской помощи ребенку до государственной регистрации рождения.
+                //0 - признак отсутствует.
+                //Если значение признака отлично от нуля, он заполняется по следующему шаблону:
+                //ПДДММГГН, где
+                //П - пол ребенка в соответствии с классификатором V005 Приложения А;
+                //ДД - день рождения; ММ - месяц рождения;
+                //ГГ - последние две цифры года рождения;
+                //Н - порядковый номер ребенка (до двух знаков).
+                StringBuilder sb = new StringBuilder();
+                
+                sb.Append(sex);
+                sb.Append(BirthDate.Day.ToString("D2"));
+                sb.Append(BirthDate.Month.ToString("D2"));
+                sb.Append((BirthDate.Year % 100).ToString("D2"));
+                //TODO: порядковый номер ребенка (до двух знаков).
+                sb.Append("1");
+
+                xml.Writer.WriteElementString("NOVOR", sb.ToString());
+            } else {
+                xml.Writer.WriteElementString("NOVOR", "0");
+            }
 
             // VNOV_D - Вес при рождении, г
 
             xml.Writer.WriteEndElement();
-
-            // SLUCH records
 
             // ToList() soasto check lazyness and free the connection for subqueries
             List<Recourse> rs = repo.LoadRecourceCases(policyCompound).ToList();
