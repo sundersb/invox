@@ -152,10 +152,10 @@
  where RECID = ?</value>
   </data>
   <data name="SELECT_INVOICE_RECS" xml:space="preserve">
-    <value>select distinct top 50
+    <value>select distinct
   P.RECID,
   P.T_POL,
-  P.SN_POL,
+  cpconvert(866,1251,P.SN_POL) SN_POL,
   P.Q,
   P.KT,
   P.W,
@@ -163,10 +163,10 @@
   P.NOVOR
  from {period}P{lpu} P
   join {period}S{lpu} S on S.SN_POL = P.SN_POL
- order by P.SN_POL</value>
+ order by 3</value>
   </data>
   <data name="SELECT_PEOPLE" xml:space="preserve">
-    <value>select distinct top 50
+    <value>select distinct
   P.SN_POL,
   P.RECID,
   cpconvert(866, 1251, P.FAM) FAM,
