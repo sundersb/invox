@@ -118,5 +118,17 @@ namespace civox.Properties {
                 this["PathTo7Zip"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int DebugSelectionLimit {
+            get {
+                return ((int)(this["DebugSelectionLimit"]));
+            }
+            set {
+                this["DebugSelectionLimit"] = value;
+            }
+        }
     }
 }

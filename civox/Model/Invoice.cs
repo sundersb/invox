@@ -49,12 +49,23 @@ namespace civox.Model {
 
             xml.Writer.WriteEndElement();
 
+#if DEBUG
+            int c = Properties.Settings.Default.DebugSelectionLimit;
+            Lib.Progress progress = new Progress("Случаи обращения", c);
+            foreach (InvoiceRecord irec in repo.LoadInvoiceRecords()) {
+                irec.Write(xml, repo);
+                progress.Step();
+                if (--c <= 0) break;
+            }
+            progress.Close();
+#else
             Lib.Progress progress = new Progress("Случаи обращения", repo.GetPeopleCount());
             foreach (InvoiceRecord irec in repo.LoadInvoiceRecords()) {
                 irec.Write(xml, repo);
                 progress.Step();
             }
             progress.Close();
+#endif
 
             xml.Writer.WriteEndElement();
         }

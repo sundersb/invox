@@ -34,14 +34,24 @@ namespace civox.Model {
 
             xml.Writer.WriteEndElement();
 
+#if DEBUG
+            int count = Properties.Settings.Default.DebugSelectionLimit;
+            Lib.Progress progress = new Progress("Пациенты", count);
+            foreach (Person p in repo.LoadPeople()) {
+                p.Write(xml, null);
+                progress.Step();
+                if (--count <= 0) break;
+            }
+            progress.Close();
+#else
             int count = repo.GetPeopleCount();
             Lib.Progress progress = new Progress("Пациенты", count);
-
             foreach (Person p in repo.LoadPeople()) {
                 p.Write(xml, null);
                 progress.Step();
             }
             progress.Close();
+#endif
 
             xml.Writer.WriteEndElement();
         }

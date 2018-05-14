@@ -254,7 +254,7 @@ namespace civox.Model {
             xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString("D6"));
             
             // Check - D3 doesn't require KOL_USL
-            //xml.Writer.WriteElementString("KOL_USL", Quantity.ToString());
+            xml.Writer.WriteElementString("KOL_USL", Quantity.ToString());
 
             //xml.Writer.WriteElementString("TARIF", "1");          // TODO:
             xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", Price));
@@ -262,7 +262,8 @@ namespace civox.Model {
             xml.Writer.WriteElementString("PRVS", DoctorProfile);        // V015
             xml.Writer.WriteElementString("CODE_MD", DoctorCode);
 
-            xml.WriteIfValid("COMENTU", Options.ReadingBot.Read());
+            //xml.WriteIfValid("COMENTU", Options.ReadingBot.Read());
+            xml.WriteIfValid("COMENTU", "Комментарий \"комментарий");
 
             xml.Writer.WriteEndElement();
         }
