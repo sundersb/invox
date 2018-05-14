@@ -167,7 +167,7 @@
   </data>
   <data name="SELECT_PEOPLE" xml:space="preserve">
     <value>select distinct
-  P.SN_POL,
+  cpconver(866, 1251, P.SN_POL) SN_POL,
   P.RECID,
   cpconvert(866, 1251, P.FAM) FAM,
   cpconvert(866, 1251, P.IM) IM,

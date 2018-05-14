@@ -123,7 +123,7 @@ namespace civox.Data.Relax {
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на select distinct
-        ///  P.SN_POL,
+        ///  cpconver(866, 1251, P.SN_POL) SN_POL,
         ///  P.RECID,
         ///  cpconvert(866, 1251, P.FAM) FAM,
         ///  cpconvert(866, 1251, P.IM) IM,

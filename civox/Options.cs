@@ -81,6 +81,7 @@ namespace civox {
         /// <summary>
         /// Report month
         /// </summary>
+        /// <remarks>ФОМС чихать хотел на период, указанный в пакете</remarks>
         public static int Month { get { return options.Month; } }
 
         /// <summary>
