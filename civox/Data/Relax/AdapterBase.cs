@@ -22,30 +22,30 @@ namespace civox.Data.Relax {
         /// <param name="command">SQL command with select statement</param>
         /// <returns>Models' collection</returns>
         public IEnumerable<T> Load(DbCommand command) {
-            command.Connection.Open();
-            try {
-                DbDataReader r = null;
-                try {
-                    r = command.ExecuteReader();
-                } catch (Exception ex) {
-                    Lib.Logger.Log(ex.Message + "\r\n" + Provider.ShowCommand(command));
-                    if (r != null) r.Close();
-                }
+            if (command.Connection.State == System.Data.ConnectionState.Closed)
+                command.Connection.Open();
 
-                try {
-                    int i = 0;
-                    while (r.Read()) {
-                        ++i;
-                        T record = Read(r, i);
-                        if (record != null)
-                            yield return record;
-                    }
-                } finally {
-                    r.Dispose();
-                }
-            } finally {
+            DbDataReader r = null;
+
+            try {
+                r = command.ExecuteReader();
+            } catch (Exception ex) {
+                Lib.Logger.Log(ex.Message + "\r\n" + Provider.ShowCommand(command));
+                if (r != null) r.Close();
                 command.Connection.Close();
+                yield break;
             }
+
+            int i = 0;
+            while (r.Read()) {
+                ++i;
+                T record = Read(r, i);
+                if (record != null)
+                    yield return record;
+            }
+            r.Dispose();
+
+            command.Connection.Close();
         }
 
         protected int ReadInt(object value) {
