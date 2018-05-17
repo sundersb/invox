@@ -129,14 +129,14 @@
   S.TN1,
   S.BE,
   K.MSP,
-  nvl(SP.OKSO, 'xxx') PROFILE,
+  nvl(MP.CODEFSS, 'xxx') PROFILE,
   K.OPL,
   S.EXTR
  from {period}S{lpu} S
   left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
   left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD
   left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
-  left outer join BASE/COMMON/SLSPEC SP on SP.CODE = M.PROFILE
+  left outer join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
  where (S.SN_POL = cpconvert(1251, 866, ?))
   and (S.DS = ?)
   and (icase(S.OTD = '0001', '1',
