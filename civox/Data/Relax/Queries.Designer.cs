@@ -72,17 +72,16 @@ namespace civox.Data.Relax {
         ///  S.TN1,
         ///  S.BE,
         ///  K.MSP,
-        ///  nvl(M.PROFILE, &apos;xxx&apos;) PROFILE,
+        ///  nvl(SP.OKSO, &apos;xxx&apos;) PROFILE,
         ///  K.OPL,
         ///  S.EXTR
         /// from {period}S{lpu} S
         ///  left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
         ///  left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD
         ///  left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
+        ///  left outer join BASE/COMMON/SLSPEC SP on SP.CODE = M.PROFILE
         /// where (S.SN_POL = cpconvert(1251, 866, ?))
-        ///  and (S.DS = ?)
-        ///  and (icase(S.OTD = &apos;0001&apos;, &apos;1&apos;,
-        ///   S.OTD =  [остаток строки не уместился]&quot;;.
+        ///   [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_CASE_TREAT {
             get {

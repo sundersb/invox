@@ -15,7 +15,7 @@ namespace civox.Data.Relax {
                 Price = (decimal) reader["S_ALL"],
                 DoctorCode = ReadString(reader["TN1"]),
                 AidProfile = Dict.AidKind.Instance.Get(ReadString(reader["MSP"])),
-                DoctorProfile = Dict.Profile.Instance.Get(ReadString(reader["PROFILE"])),
+                DoctorProfile = ReadString(reader["PROFILE"])
             };
             string dummy = ReadString(reader["D_TYPE"]);
             if (!string.IsNullOrEmpty(dummy) && dummy != "0")

@@ -265,9 +265,9 @@ namespace civox.Model {
             // Исход заболевания V012
             xml.Writer.WriteElementString("ISHOD", rec.Outcome);
 
-            // Специальность врача V015
+            // Специальность врача V015 (V021 с 20180518)
             xml.Writer.WriteElementString("PRVS", marks.Resulting.DoctorProfile);
-            xml.Writer.WriteElementString("VERS_SPEC", "V015");
+            xml.Writer.WriteElementString("VERS_SPEC", "V021");
             xml.Writer.WriteElementString("IDDOKT", services.OrderBy(s => s.EndDate).Last().DoctorCode);
 
             // Список особых случаев from D_TYPE
@@ -389,9 +389,9 @@ namespace civox.Model {
             // Исход заболевания V012
             xml.Writer.WriteElementString("ISHOD", rec.Outcome);
 
-            // Специальность врача V015
+            // Специальность врача V021
             xml.Writer.WriteElementString("PRVS", marks.Resulting.DoctorProfile);
-            xml.Writer.WriteElementString("VERS_SPEC", "V015");
+            xml.Writer.WriteElementString("VERS_SPEC", "V021");
             xml.Writer.WriteElementString("IDDOKT", services.OrderBy(s => s.EndDate).Last().DoctorCode);
 
             // Список особых случаев from D_TYPE
@@ -481,6 +481,9 @@ namespace civox.Model {
                 d.Write(xml, repo);
 
             // PR_D_N - сведения о диспансерном наблюдении по поводу основного заболевания: 0 - нет; 1 - да
+
+            // Самодеятельность ХКФОМС - приказ 169 не требует
+            xml.Writer.WriteElementString("IDDOKT", marks.Resulting.DoctorCode);
 
             // Способ оплаты V010
             xml.Writer.WriteElementString("IDSP", marks.Resulting.PayKind);

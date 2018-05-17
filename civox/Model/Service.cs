@@ -67,7 +67,7 @@ namespace civox.Model {
         public string ResultCode;    // V009
         public string DispResultCode;// V017
         public string AidProfile;    // V002
-        public string DoctorProfile; // V015
+        public string DoctorProfile; // V015, V021 since 20180518
         public string PayKind;       // V010
         public string RecourseAim;   // CEL (territory)
         public bool Refusal;
@@ -209,7 +209,7 @@ namespace civox.Model {
             //xml.Writer.WriteElementString("TARIF", "1");          // TODO:
             xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", Price));
 
-            xml.Writer.WriteElementString("PRVS", DoctorProfile);        // V015
+            xml.Writer.WriteElementString("PRVS", DoctorProfile);        // V021
             xml.Writer.WriteElementString("CODE_MD", DoctorCode);
 
             // NPL      У Неполный объем Только Д1
@@ -253,17 +253,17 @@ namespace civox.Model {
 
             xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString("D6"));
             
-            // Check - D3 doesn't require KOL_USL
+            // Опять наработки местного ФОМС - пр. 169 не требует USL.KOL_USL в прил. Д3
             xml.Writer.WriteElementString("KOL_USL", Quantity.ToString());
 
             //xml.Writer.WriteElementString("TARIF", "1");          // TODO:
             xml.Writer.WriteElementString("SUMV_USL", string.Format(Options.NumberFormat, "{0:f2}", Price));
 
-            xml.Writer.WriteElementString("PRVS", DoctorProfile);        // V015
+            xml.Writer.WriteElementString("PRVS", DoctorProfile);        // V021
             xml.Writer.WriteElementString("CODE_MD", DoctorCode);
 
             //xml.WriteIfValid("COMENTU", Options.ReadingBot.Read());
-            xml.WriteIfValid("COMENTU", "Комментарий \"комментарий");
+            //xml.WriteIfValid("COMENTU", "Комментарий \n!\"'()*,-.:;?[]`комментарий");
 
             xml.Writer.WriteEndElement();
         }
