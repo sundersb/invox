@@ -14,11 +14,13 @@ namespace civox.Lib {
         /// </summary>
         /// <param name="names">Invoice filenames' instance</param>
         public static void RemoveFiles(InvoiceNames names) {
+#if !DEBUG
             string fname = Options.OutputLocation + names.PeopleFileName + ".xml";
             if (File.Exists(fname)) File.Delete(fname);
 
             fname = Options.OutputLocation + names.InvoiceFileName + ".xml";
             if (File.Exists(fname)) File.Delete(fname);
+#endif
         }
     }
 }
