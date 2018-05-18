@@ -473,6 +473,10 @@ namespace civox.Model {
             //      DS2         О Код из справочника МКБ до уровня подрубрики
             //      DS2_PR      У Обязательно указывается «1», если данный сопутствующий диагноз выявлен впервые
 
+            // V009
+            // TODO: Убрать, когда В БАРС исправят. Сейчас требуют RSLT и RSLT_D одновременно
+            xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
+
             // V017
             xml.Writer.WriteElementString("RSLT_D", marks.Resulting.DispResultCode);
 
