@@ -318,7 +318,7 @@ namespace civox.Model {
 
             xml.Writer.WriteElementString("IDCASE", marks.Resulting.ID.ToString());
 
-            // V006 Условия оказания МП (нет при дисп и проф Д3):
+            // V006 Условия оказания МП:
             xml.Writer.WriteElementString("USL_OK", rec.Condition);
 
             // Вид - Первичная МСП V008
@@ -442,6 +442,9 @@ namespace civox.Model {
 
             xml.Writer.WriteElementString("IDCASE", marks.Resulting.ID.ToString());
 
+            // V006 Условия оказания МП
+            xml.Writer.WriteElementString("USL_OK", rec.Condition);
+
             // Вид - Первичная МСП V008
             xml.Writer.WriteElementString("VIDPOM", marks.Resulting.AidKind);
 
@@ -469,9 +472,6 @@ namespace civox.Model {
             // DS2_N - УМ Сопутствующие заболевания
             //      DS2         О Код из справочника МКБ до уровня подрубрики
             //      DS2_PR      У Обязательно указывается «1», если данный сопутствующий диагноз выявлен впервые
-
-            // V009 ФОМС требует это поле и для диспансеризации. Хоть и не по приказу
-            xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
 
             // V017
             xml.Writer.WriteElementString("RSLT_D", marks.Resulting.DispResultCode);
