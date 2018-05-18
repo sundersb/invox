@@ -64,7 +64,6 @@
     <Compile Include="Dict\Outcome.cs" />
     <Compile Include="Dict\PayKind.cs" />
     <Compile Include="Dict\RecourseAim.cs" />
-    <Compile Include="Dict\Rezobr.cs" />
     <Compile Include="Lib\CivoxOptions.cs" />
     <Compile Include="Lib\CommandLine.cs" />
     <Compile Include="Lib\Progress.cs" />
@@ -127,9 +126,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Dict\V006-SLUSL.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Dict\V009-REZOBR.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Dict\F002-Q.xml">

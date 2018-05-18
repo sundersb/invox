@@ -15,7 +15,9 @@ namespace civox.Data.Relax {
                 Price = (decimal) reader["S_ALL"],
                 DoctorCode = ReadString(reader["TN1"]),
                 AidProfile = Dict.AidKind.Instance.Get(ReadString(reader["MSP"])),
-                DoctorProfile = ReadString(reader["PROFILE"])
+                DoctorProfile = ReadString(reader["PROFILE"]),
+                ResultCode = ReadString(reader["RESCODE"]),
+                DispResultCode = Dict.DispResult.Instance.Get(ReadString(reader["BE"]))
             };
             string dummy = ReadString(reader["D_TYPE"]);
             if (!string.IsNullOrEmpty(dummy) && dummy != "0")
@@ -28,10 +30,6 @@ namespace civox.Data.Relax {
             result.SetDates(ReadDate(reader["D_U"]), (int)(decimal)reader["K_U"]);
 
             result.Refusal = REFUSAL_RESULTS.Contains(result.ResultCode);
-
-            dummy = ReadString(reader["BE"]);
-            result.ResultCode = Dict.Rezobr.Instance.Get(dummy);
-            result.DispResultCode = Dict.DispResult.Instance.Get(dummy);
 
             dummy = ReadString(reader["EXTR"]);
 
