@@ -154,6 +154,17 @@
  from {period}S{lpu}
  where RECID = ?</value>
   </data>
+  <data name="SELECT_ERROR_PRVS" xml:space="preserve">
+    <value>select distinct
+  S.OTD,
+  S.TN1
+ from {period}S{lpu} S
+  left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD
+  left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
+  left outer join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
+ where MP.CODEFSS is null</value>
+    <comment>Ошибка - врач не привязан к отделению</comment>
+  </data>
   <data name="SELECT_INVOICE_RECS" xml:space="preserve">
     <value>select distinct
   P.RECID,

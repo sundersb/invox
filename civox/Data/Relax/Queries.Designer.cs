@@ -102,6 +102,22 @@ namespace civox.Data.Relax {
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на select distinct
+        ///  S.OTD,
+        ///  S.TN1
+        /// from {period}S{lpu} S
+        ///  left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD
+        ///  left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
+        ///  left outer join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
+        /// where MP.CODEFSS is null.
+        /// </summary>
+        internal static string SELECT_ERROR_PRVS {
+            get {
+                return ResourceManager.GetString("SELECT_ERROR_PRVS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на select distinct
         ///  P.RECID,
         ///  P.T_POL,
         ///  cpconvert(866,1251,P.SN_POL) SN_POL,
