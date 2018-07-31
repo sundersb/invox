@@ -48,6 +48,7 @@
     <Compile Include="Data\Relax\AdapterBase.cs" />
     <Compile Include="Data\Relax\AdapterInvoice.cs" />
     <Compile Include="Data\Relax\AdapterPerson.cs" />
+    <Compile Include="Data\Relax\AdapterPrvsError.cs" />
     <Compile Include="Data\Relax\AdapterRecourse.cs" />
     <Compile Include="Data\Relax\AdapterService.cs" />
     <Compile Include="Data\Relax\Provider.cs" />

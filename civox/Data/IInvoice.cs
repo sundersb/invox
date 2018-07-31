@@ -53,5 +53,11 @@ namespace civox.Data {
         /// <param name="serviceId">ID of the dispanserisation resulting service</param>
         /// <returns>Collection of disp routes</returns>
         List<Model.DispDirection> LoadDispanserisationRoute(long serviceId);
+
+        /// <summary>
+        /// Get list of doctors not included to the departaments
+        /// </summary>
+        /// <returns>List of error messages</returns>
+        IEnumerable<string> LoadNoDeptDoctors();
     }
 }

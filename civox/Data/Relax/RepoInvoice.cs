@@ -22,6 +22,7 @@ namespace civox.Data.Relax {
         AdapterInvoice aInvoice;
         AdapterRecourse aRecourse;
         AdapterService aService;
+        AdapterPrvsError aPrvsError;
 
         OleDbCommand selectPeople;
         OleDbCommand selectPeopleCount;
@@ -31,6 +32,7 @@ namespace civox.Data.Relax {
         OleDbCommand selectRecoursesCount;
         OleDbCommand selectService;
         OleDbCommand selectDispDirections;
+        OleDbCommand selectPrvsError;
 
         public RepoInvoice(Provider provider) {
             this.provider = provider;
@@ -38,6 +40,7 @@ namespace civox.Data.Relax {
             aInvoice = new AdapterInvoice();
             aRecourse = new AdapterRecourse();
             aService = new AdapterService();
+            aPrvsError = new AdapterPrvsError();
 
             Func<string, OleDbCommand> helper =
                 s => provider.CreateCommand(LocalizeQuery(s));
@@ -50,6 +53,7 @@ namespace civox.Data.Relax {
             selectTotalToPay = helper(Queries.SELECT_TOTAL_TO_PAY);
             selectInvoiceRecs = helper(Queries.SELECT_INVOICE_RECS);
             selectRecoursesCount = helper(Queries.SELECT_RECOURSES_COUNT);
+            selectPrvsError = helper(Queries.SELECT_ERROR_PRVS);
 
             selectRecourses = helperAlt(Queries.SELECT_RECOURSE_CASES);
             provider.AddStringParameters(selectRecourses, SELECT_RECOURSE_CASES_PARAMS);
@@ -122,6 +126,10 @@ namespace civox.Data.Relax {
 
             provider.ExecuteReader(selectDispDirections, onRead);
             return result;
+        }
+
+        public IEnumerable<string> LoadNoDeptDoctors() {
+            return aPrvsError.Load(selectPrvsError);
         }
 
         // **************************

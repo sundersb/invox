@@ -51,7 +51,16 @@ namespace civox {
                 Console.WriteLine("Данный период не содержит файла диагнозов");
                 return false;
             }
-            
+
+            List<string> errors = Options.DataProvider.GetInvoiceRepository().LoadNoDeptDoctors().ToList();
+            if (errors.Count > 0) {
+                Console.WriteLine("\r\nИмеются формальные ошибки:");
+                foreach(string e in errors) {
+                    Console.WriteLine("\t" + e);
+                }
+                return false;
+            }
+
             return true;
         }
 
