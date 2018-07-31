@@ -481,8 +481,14 @@ namespace civox.Model {
             xml.Writer.WriteElementString("RSLT_D", marks.Resulting.DispResultCode);
 
             // Направления по итогам диспансеризации
-            foreach (DispDirection d in repo.LoadDispanserisationRoute(marks.Resulting.ID))
-                d.Write(xml, repo);
+            // 20180731 - ФОМС банит случаи, где направлений больше одного на этапе ФЛК!
+            
+            //foreach (DispDirection d in repo.LoadDispanserisationRoute(marks.Resulting.ID))
+            //    d.Write(xml, repo);
+
+            // Inde irae:
+            DispDirection d = repo.LoadDispanserisationRoute(marks.Resulting.ID).FirstOrDefault();
+            if (d != null) d.Write(xml, repo);
 
             // PR_D_N - сведения о диспансерном наблюдении по поводу основного заболевания: 0 - нет; 1 - да
 
