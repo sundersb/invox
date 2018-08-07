@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<packet>
+  <zglv>
+    <type>OnkM</type>
+    <version>1.0</version>
+    <date>11.04.2018</date>
+  </zglv>
+  <zap>
+    <ID_M>1</ID_M>
+    <DS_M>C16</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>2</ID_M>
+    <DS_M>C16</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>3</ID_M>
+    <DS_M>C56</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>4</ID_M>
+    <DS_M>C56</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>5</ID_M>
+    <DS_M>C18</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>6</ID_M>
+    <DS_M>C18</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>7</ID_M>
+    <DS_M>C18</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов в одном органе</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>8</ID_M>
+    <DS_M>C18</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов более чем в одном органе или по брюшине</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>9</ID_M>
+    <DS_M>C19</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>10</ID_M>
+    <DS_M>C19</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>11</ID_M>
+    <DS_M>C19</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов в одном органе</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>12</ID_M>
+    <DS_M>C19</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов более чем в одном органе или по брюшине</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>13</ID_M>
+    <DS_M>C22</DS_M>
+    <KOD_M>Mx</KOD_M>
+    <M_NAME>Недостаточно данных для определения отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>14</ID_M>
+    <DS_M>C22</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>15</ID_M>
+    <DS_M>C22</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>16</ID_M>
+    <DS_M>C25</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>17</ID_M>
+    <DS_M>C25</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>18</ID_M>
+    <DS_M>C43</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>19</ID_M>
+    <DS_M>C43</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>20</ID_M>
+    <DS_M>C43</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME>Метастазы в кожу, подкожную клетчатку или лимфатические узлы (за исключением регионарных) при нормальном уровне ЛДГ крови</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>21</ID_M>
+    <DS_M>C43</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME>Метастазы в легкие при нормальном уровне ЛДГ крови;</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>22</ID_M>
+    <DS_M>C43</DS_M>
+    <KOD_M>M1c</KOD_M>
+    <M_NAME>Метастазы в любые другие органы, или любая локализация метастазов при уровне ЛДГ выше верхней границы нормального диапазона.</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>23</ID_M>
+    <DS_M>C44</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>24</ID_M>
+    <DS_M>C44</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>25</ID_M>
+    <DS_M>C53</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>26</ID_M>
+    <DS_M>C53</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>27</ID_M>
+    <DS_M>C54</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>28</ID_M>
+    <DS_M>C54</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>29</ID_M>
+    <DS_M>C61</DS_M>
+    <KOD_M>Mx</KOD_M>
+    <M_NAME>Недостаточно данных для определения отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>30</ID_M>
+    <DS_M>C61</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>31</ID_M>
+    <DS_M>C61</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>32</ID_M>
+    <DS_M>C61</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME>Метастазы в лимфатические узлы, не относящиеся к регионарным</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>33</ID_M>
+    <DS_M>C61</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME>Метастазы в кости</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>34</ID_M>
+    <DS_M>C61</DS_M>
+    <KOD_M>M1c</KOD_M>
+    <M_NAME>Метастазы в другие органы</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>35</ID_M>
+    <DS_M>C64</DS_M>
+    <KOD_M>Mx</KOD_M>
+    <M_NAME>Недостаточно данных для определения отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>36</ID_M>
+    <DS_M>C64</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>37</ID_M>
+    <DS_M>C64</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>38</ID_M>
+    <DS_M>C67</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>39</ID_M>
+    <DS_M>C67</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>40</ID_M>
+    <DS_M>C73</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>41</ID_M>
+    <DS_M>C73</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>42</ID_M>
+    <DS_M>C20</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>43</ID_M>
+    <DS_M>C20</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>44</ID_M>
+    <DS_M>C20</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов в одном органе</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>45</ID_M>
+    <DS_M>C20</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов более чем в одном органе или по брюшине</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>47</ID_M>
+    <DS_M>C15</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>48</ID_M>
+    <DS_M>C34</DS_M>
+    <KOD_M>Mx</KOD_M>
+    <M_NAME>Недостаточно данных для определения отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>49</ID_M>
+    <DS_M>C34</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>50</ID_M>
+    <DS_M>C34</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>51</ID_M>
+    <DS_M>C34</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME>Опухолевые очаги в противоположном легком; опухоль с плевральными очагами или сопровождается злокачественным плевральным или перикардиальным выпотом</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>52</ID_M>
+    <DS_M>C34</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>53</ID_M>
+    <DS_M>C32</DS_M>
+    <KOD_M>Mx</KOD_M>
+    <M_NAME>Недостаточно данных для определения отдалённых метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>54</ID_M>
+    <DS_M>C32</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>55</ID_M>
+    <DS_M>C32</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME>Наличие отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>56</ID_M>
+    <DS_M/>
+    <KOD_M>Mx</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>57</ID_M>
+    <DS_M/>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>58</ID_M>
+    <DS_M/>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+</packet>
