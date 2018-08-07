@@ -71,7 +71,7 @@ namespace onkobuf.model {
                 if (DS.Length == 3)
                     ss = Instance.tumors.Where(s => s.Diagnosis == DS).ToArray();
                 else
-                    ss = Instance.tumors.Where(s => s.Diagnosis.StartsWith(DS)).ToArray();
+                    ss = Instance.tumors.Where(s => s.Diagnosis.Contains(DS)).ToArray();
             }
 
             if (ss == null || ss.Length == 0)

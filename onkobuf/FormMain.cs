@@ -11,6 +11,7 @@ using System.Globalization;
 namespace onkobuf {
     public partial class FormMain : Form {
         DataTable table;
+        string filter;
 
         public FormMain() {
             InitializeComponent();
@@ -59,14 +60,12 @@ namespace onkobuf {
             edICD.Focus();
         }
 
-        private void UpdateCode() {
-            if (table == null) return;
-
-            string filter = "(Diagnosis like '%" + edICD.Text.Replace("'", "''") + "%')";
+        void BuildFilter() {
+            filter = "(Diagnosis like '%" + edICD.Text.Replace("'", "''") + "%')";
 
             model.Stage s = (model.Stage)cmbStage.SelectedItem;
             if (s != null) filter += " and (Stage = '" + s.Code + "')";
-            
+
             model.Tumor t = (model.Tumor)cmbTumor.SelectedItem;
             if (t != null) filter += " and (Tumor = '" + t.Code + "')";
 
@@ -75,8 +74,10 @@ namespace onkobuf {
 
             model.Metastasis m = (model.Metastasis)cmbMetastases.SelectedItem;
             if (m != null) filter += " and (Metastasis = '" + m.Code + "')";
+        }
 
-            table.DefaultView.RowFilter = filter;
+        private void UpdateCode() {
+            if (table != null) table.DefaultView.RowFilter = filter;
         }
 
         private void tbtnSearch_Click(object sender, EventArgs e) {
@@ -96,6 +97,7 @@ namespace onkobuf {
         }
 
         private void cmbStage_SelectedIndexChanged(object sender, EventArgs e) {
+            BuildFilter();
             UpdateCode();
         }
 
@@ -105,6 +107,7 @@ namespace onkobuf {
                 lblTumor.Text = t.Title;
             else
                 lblTumor.Text = "нет";
+            BuildFilter();
             UpdateCode();
         }
 
@@ -114,6 +117,7 @@ namespace onkobuf {
                 lblNodules.Text = n.Title;
             else
                 lblNodules.Text = "нет";
+            BuildFilter();
             UpdateCode();
         }
 
@@ -123,6 +127,7 @@ namespace onkobuf {
                 lblMetastases.Text = n.Title;
             else
                 lblMetastases.Text = "нет";
+            BuildFilter();
             UpdateCode();
         }
 

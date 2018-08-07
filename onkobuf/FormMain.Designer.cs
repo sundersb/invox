@@ -55,7 +55,7 @@
             this.tbtnSearch});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(651, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(453, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -77,7 +77,7 @@
             this.stbrMain});
             this.statusStrip1.Location = new System.Drawing.Point(0, 495);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(651, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(453, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -234,7 +234,7 @@
             this.sgData.ShowCellToolTips = false;
             this.sgData.ShowEditingIcon = false;
             this.sgData.ShowRowErrors = false;
-            this.sgData.Size = new System.Drawing.Size(651, 318);
+            this.sgData.Size = new System.Drawing.Size(453, 318);
             this.sgData.TabIndex = 16;
             // 
             // label6
@@ -250,7 +250,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 517);
+            this.ClientSize = new System.Drawing.Size(453, 517);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.sgData);
             this.Controls.Add(this.lblMetastases);
