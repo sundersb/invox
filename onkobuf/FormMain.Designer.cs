@@ -76,7 +76,7 @@
             this.tbtnSearch});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(507, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(913, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -96,9 +96,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stbrMain});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 495);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 533);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(507, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(913, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -273,7 +273,7 @@
             this.pcMain.Location = new System.Drawing.Point(0, 25);
             this.pcMain.Name = "pcMain";
             this.pcMain.SelectedIndex = 0;
-            this.pcMain.Size = new System.Drawing.Size(507, 470);
+            this.pcMain.Size = new System.Drawing.Size(913, 508);
             this.pcMain.TabIndex = 18;
             this.pcMain.SelectedIndexChanged += new System.EventHandler(this.pcMain_SelectedIndexChanged);
             // 
@@ -294,7 +294,7 @@
             this.tcSuspect.Location = new System.Drawing.Point(4, 22);
             this.tcSuspect.Name = "tcSuspect";
             this.tcSuspect.Padding = new System.Windows.Forms.Padding(3);
-            this.tcSuspect.Size = new System.Drawing.Size(499, 444);
+            this.tcSuspect.Size = new System.Drawing.Size(905, 482);
             this.tcSuspect.TabIndex = 1;
             this.tcSuspect.Text = "Z03.1";
             this.tcSuspect.UseVisualStyleBackColor = true;
@@ -317,7 +317,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.sgDirections);
-            this.splitContainer1.Size = new System.Drawing.Size(493, 438);
+            this.splitContainer1.Size = new System.Drawing.Size(899, 476);
             this.splitContainer1.SplitterDistance = 61;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -327,7 +327,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.edFilter.Location = new System.Drawing.Point(58, 3);
             this.edFilter.Name = "edFilter";
-            this.edFilter.Size = new System.Drawing.Size(430, 20);
+            this.edFilter.Size = new System.Drawing.Size(836, 20);
             this.edFilter.TabIndex = 2;
             // 
             // label7
@@ -388,7 +388,7 @@
             this.sgDirections.ReadOnly = true;
             this.sgDirections.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.sgDirections.ShowEditingIcon = false;
-            this.sgDirections.Size = new System.Drawing.Size(493, 373);
+            this.sgDirections.Size = new System.Drawing.Size(899, 411);
             this.sgDirections.TabIndex = 1;
             // 
             // lblDirection
@@ -407,7 +407,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 517);
+            this.ClientSize = new System.Drawing.Size(913, 555);
             this.Controls.Add(this.pcMain);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
