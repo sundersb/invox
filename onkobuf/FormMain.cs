@@ -10,7 +10,8 @@ using System.Globalization;
 
 namespace onkobuf {
     public partial class FormMain : Form {
-        DataTable table;
+        DataTable tableClassif;
+        DataTable tableDirections;
         string filter;
 
         public FormMain() {
@@ -47,17 +48,23 @@ namespace onkobuf {
                     Code = ClassesRecord.GetCode(cs.Stage, cs.Tumor, cs.Nodus, cs.Metastasis)
                 };
 
-            table = lib.DataTableHelper.ConvertToDatatable(query);
-            sgData.DataSource = table;
+            tableClassif = lib.DataTableHelper.ConvertToDatatable(query);
+            sgData.DataSource = tableClassif;
             sgData.Columns["Code"].Visible = false;
             lblCaseCode.DataBindings.Add("Text", sgData.DataSource, "Code");
+
+            tableDirections = lib.DataTableHelper.ConvertToDatatable(model.Directions.All);
+            tableDirections.DefaultView.Sort = "Title";
+            sgDirections.DataSource = tableDirections;
+            lblDirection.DataBindings.Add("Text", sgDirections.DataSource, "ID");
 
             CultureInfo TypeOfLanguage = CultureInfo.CreateSpecificCulture("en-US");
             System.Threading.Thread.CurrentThread.CurrentCulture = TypeOfLanguage;
             InputLanguage l = InputLanguage.FromCulture(TypeOfLanguage);
             InputLanguage.CurrentInputLanguage = l;
 
-            edICD.Focus();
+            pcMain.SelectedIndex = 0;
+            edICD.Select();
         }
 
         void BuildFilter() {
@@ -77,23 +84,34 @@ namespace onkobuf {
         }
 
         private void UpdateCode() {
-            if (table != null) table.DefaultView.RowFilter = filter;
+            if (tableClassif != null) tableClassif.DefaultView.RowFilter = filter;
         }
 
         private void tbtnSearch_Click(object sender, EventArgs e) {
-            DataTable t = table;
-            table = null;
+            if (pcMain.SelectedIndex == 0) {
+                // Cxx.x
+                DataTable t = tableClassif;
+                tableClassif = null;
 
-            cmbStage.DataSource = model.Stages.byDiagnosis(edICD.Text);
-            cmbTumor.DataSource = model.Tumors.byDiagnosis(edICD.Text);
-            cmbNodus.DataSource = model.Nodules.byDiagnosis(edICD.Text);
-            cmbMetastases.DataSource = model.Metastases.byDiagnosis(edICD.Text);
+                cmbStage.DataSource = model.Stages.byDiagnosis(edICD.Text);
+                cmbTumor.DataSource = model.Tumors.byDiagnosis(edICD.Text);
+                cmbNodus.DataSource = model.Nodules.byDiagnosis(edICD.Text);
+                cmbMetastases.DataSource = model.Metastases.byDiagnosis(edICD.Text);
 
-            cmbStage.SelectedItem = null;
-            cmbTumor.SelectedItem = null;
-            cmbNodus.SelectedItem = null;
-            table = t;
-            cmbMetastases.SelectedItem = null;
+                cmbStage.SelectedItem = null;
+                cmbTumor.SelectedItem = null;
+                cmbNodus.SelectedItem = null;
+                tableClassif = t;
+                cmbMetastases.SelectedItem = null;
+                edICD.Focus();
+                edICD.SelectAll();
+            } else {
+                // Z03.1
+                string title = filter = "(Title like '%" + edFilter.Text.Replace("'", "''") + "%')";
+                if (tableDirections != null) tableDirections.DefaultView.RowFilter = title;
+                edFilter.Focus();
+                edFilter.SelectAll();
+            }
         }
 
         private void cmbStage_SelectedIndexChanged(object sender, EventArgs e) {
@@ -134,6 +152,20 @@ namespace onkobuf {
         private void FormMain_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.F2) {
                 tbtnSearch_Click(null, null);
+            }
+        }
+
+        private void pcMain_SelectedIndexChanged(object sender, EventArgs e) {
+            switch (pcMain.SelectedIndex) {
+                case 0:
+                    edICD.Focus();
+                    edICD.SelectAll();
+                    break;
+
+                case 1:
+                    edFilter.Focus();
+                    edFilter.SelectAll();
+                    break;
             }
         }
     }
