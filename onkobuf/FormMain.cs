@@ -68,7 +68,11 @@ namespace onkobuf {
         }
 
         void BuildFilter() {
-            filter = "(Diagnosis like '%" + edICD.Text.Replace("'", "''") + "%')";
+            string ds = edICD.Text.Replace("'", "''");
+            if (!string.IsNullOrEmpty(ds))
+                filter = "(Diagnosis like '%" + ds + "%')";
+            else
+                filter = "(Diagnosis = '')";
 
             model.Stage s = (model.Stage)cmbStage.SelectedItem;
             if (s != null) filter += " and (Stage = '" + s.Code + "')";
