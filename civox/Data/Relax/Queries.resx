@@ -149,6 +149,9 @@
    '0') = ?)</value>
     <comment>Обращение с лечебной целью</comment>
   </data>
+  <data name="SELECT_DIAGNOSES" xml:space="preserve">
+    <value>select distinct DIAGIN from {period}DIAGNOZ where SN_POL = ?</value>
+  </data>
   <data name="SELECT_DISP_DIRECTIONS" xml:space="preserve">
     <value>select KSG, KSG2
  from {period}S{lpu}
@@ -236,5 +239,8 @@
   <data name="SELECT_TOTAL_TO_PAY" xml:space="preserve">
     <value>select sum(S_ALL) TOTAL from {period}S{lpu}</value>
     <comment>Предьявить к оплате</comment>
+  </data>
+  <data name="SELECT_TRAUMA_CODE" xml:space="preserve">
+    <value>select TR from {period}S{lpu} where RECID = ?</value>
   </data>
 </root>

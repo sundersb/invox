@@ -8,7 +8,11 @@ namespace civox.Model {
     /// Случай обращения за МП
     /// </summary>
     class Recourse {
+        const string SUSP_NEO_DIAGNOSIS = "Z03.1";
+
         Reason reason;
+        string diagnosis;
+        bool suspNeo;
 
         /// <summary>
         /// Повод обращения
@@ -46,7 +50,15 @@ namespace civox.Model {
         /// </summary>
         public AppendixSection Section { get; private set; }
 
-        public string Diagnosis;
+        public string Diagnosis {
+            get { return diagnosis; }
+            set {
+                diagnosis = value;
+                suspNeo = diagnosis == SUSP_NEO_DIAGNOSIS;
+            }
+        }
+
+        public bool SuspNeo { get { return suspNeo; } }
 
         /// <summary>
         /// Признак впервые выявленного заболевания

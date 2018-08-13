@@ -184,6 +184,16 @@ namespace civox.Model {
                 rec.Department,
                 rec.Reason));
         }
+        
+        bool NeedsDirection(Recourse rec, Service service) {
+            return rec.SuspNeo
+                
+                // Плановая в круглосуточном стационаре или СДП
+                || (service.AidForm == "3" && (rec.Condition == "1" || rec.Condition == "2"))
+
+                // Неотложная в круглосуточном стационаре
+                || (service.AidForm == "2" && rec.Condition == "1");
+        }
 
         /// <summary>
         /// Write SLUCH record for appendix D1 recourse
@@ -210,7 +220,14 @@ namespace civox.Model {
             // Форма - Плановая V014
             xml.Writer.WriteElementString("FOR_POM", marks.Resulting.AidForm);
 
-            // NPR_MO   У Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
+            if (NeedsDirection(rec, marks.Resulting)) {
+                // NPR_MO   У Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
+                // TODO: Мы направляем в СДП себе только сами. Где другим ЛПУ брать код направившей МО?
+                xml.Writer.WriteElementString("NPR_MO", Options.LpuCode);
+
+                // TODO: NPR_DATE
+                //xml.Writer.WriteElementString("NPR_DATE", ???);
+            }
 
             // EXTR     У Направление (госпитализация), 1 - плановая; 2 - экстренная
             if (ReasonHelper.IsHospitalization(rec.Reason))
@@ -252,12 +269,21 @@ namespace civox.Model {
 
             // DS2      УМ Диагноз сопутствующего заболевания
             // DS3      УМ Диагноз осложнения заболевания
+            
+            // Приказ 59 30.03.2018
+            xml.WriteBool("DS_ONK", rec.SuspNeo);
 
             // VNOV_M   УМ Вес при рождении, Указывается при оказании медицинской помощи недоношенным и маловесным детям.
             //             Поле заполняется, если в качестве пациента указана мать
 
             // CODE_MES1    УМ Код МЭС
             // CODE_MES2    У  Код МЭС сопутствующего заболевания
+
+            // Приказ 59 от 30.03.2018 - онкология
+            if (OnkologyTreat.IsOnkologyTreat(rec, policyCompound, repo)) {
+                OnkologyTreat treat = repo.GetOnkologyTreat(marks.Resulting.ID);
+                treat.Write(xml, repo);
+            }
 
             // V009
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
@@ -331,7 +357,12 @@ namespace civox.Model {
             xml.Writer.WriteElementString("VID_HMP", string.Empty);            // TODO: Вид ВМП - нет
             xml.Writer.WriteElementString("METOD_HMP", string.Empty);          // TODO: Метод ВМП - нет
 
-            // NPR_MO   У Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
+
+            if (NeedsDirection(rec, marks.Resulting)) {
+                // NPR_MO   У Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
+                // TODO: Мы направляем в СДП себе только сами. Где другим ЛПУ брать код направившей МО?
+                xml.Writer.WriteElementString("NPR_MO", Options.LpuCode);
+            }
 
             // EXTR     У Направление (госпитализация), 1 - плановая; 2 - экстренная
             if (ReasonHelper.IsHospitalization(rec.Reason))
@@ -377,11 +408,20 @@ namespace civox.Model {
             // DS2      УМ Не для Д3 Диагноз сопутствующего заболевания
             // DS3      УМ Не для Д3 Диагноз осложнения заболевания
 
+            // Приказ 59 30.03.2018
+            xml.WriteBool("DS_ONK", rec.SuspNeo);
+
             // VNOV_M   УМ Вес при рождении, Указывается при оказании медицинской помощи недоношенным и маловесным детям.
             //             Поле заполняется, если в качестве пациента указана мать
 
             // CODE_MES1    УМ Код МЭС
             // CODE_MES2    У  Код МЭС сопутствующего заболевания
+
+            // Приказ 59 от 30.03.2018 - онкология
+            if (OnkologyTreat.IsOnkologyTreat(rec, policyCompound, repo)) {
+                OnkologyTreat treat = repo.GetOnkologyTreat(marks.Resulting.ID);
+                treat.Write(xml, repo);
+            }
 
             // V009
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
@@ -468,6 +508,9 @@ namespace civox.Model {
             // Диагноз первичный
             if (rec.FirstRevealed)
                 xml.Writer.WriteElementString("DS1_PR", "1");
+
+            // Приказ 59 30.03.2018
+            xml.WriteBool("DS_ONK", rec.SuspNeo);
 
             // DS2_N - УМ Сопутствующие заболевания
             //      DS2         О Код из справочника МКБ до уровня подрубрики

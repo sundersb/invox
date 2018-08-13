@@ -15,6 +15,8 @@ namespace civox.Data.Relax {
         static string[] SELECT_RECOURSE_CASES_PARAMS = { "SN_POL" };
         static string[] SELECT_CASE_TREAT_PARAMS = { "SN_POL", "DS", "REASON" };
         static string[] SELECT_DISP_DIRECTIONS_PARAMS = { "RECID" };
+        static string[] SELECT_DIAGNOSES_PARAMS = { "SN_POL" };
+        static string[] SELECT_TRAUMA_PARAMS = { "RECID" };
 
         Provider provider;
 
@@ -33,6 +35,8 @@ namespace civox.Data.Relax {
         OleDbCommand selectService;
         OleDbCommand selectDispDirections;
         OleDbCommand selectPrvsError;
+        OleDbCommand selectDiagnoses;
+        OleDbCommand selectTrauma;
 
         public RepoInvoice(Provider provider) {
             this.provider = provider;
@@ -63,6 +67,12 @@ namespace civox.Data.Relax {
 
             selectDispDirections = helperAlt(Queries.SELECT_DISP_DIRECTIONS);
             provider.AddStringParameters(selectDispDirections, SELECT_DISP_DIRECTIONS_PARAMS);
+
+            selectDiagnoses = helper(Queries.SELECT_DIAGNOSES);
+            provider.AddStringParameters(selectDiagnoses, SELECT_DIAGNOSES_PARAMS);
+
+            selectTrauma = helper(Queries.SELECT_TRAUMA_CODE);
+            provider.AddStringParameters(selectTrauma, SELECT_TRAUMA_PARAMS);
         }
 
         /// <summary>
@@ -130,6 +140,38 @@ namespace civox.Data.Relax {
 
         public IEnumerable<string> LoadNoDeptDoctors() {
             return aPrvsError.Load(selectPrvsError);
+        }
+
+        public Model.OnkologyTreat GetOnkologyTreat(long serviceId) {
+            string id = string.Format("{0,6}", serviceId);
+            selectDispDirections.Parameters[0].Value = id;
+
+            Model.OnkologyTreat result = null;
+
+            Action<System.Data.Common.DbDataReader> onRead = r => {
+                string codes = (string)r["KSG"];
+                result = new Model.OnkologyTreat(codes);
+            };
+
+            provider.ExecuteReader(selectDispDirections, onRead);
+            return result;
+        }
+
+
+        public List<string> GetPersonDiagnoses(string policy) {
+            selectDiagnoses.Parameters[0].Value = policy;
+            List<string> result = new List<string>();
+            provider.ExecuteReader(selectDiagnoses, r => result.Add((string)r["DIAGIN"]));
+            return result;
+        }
+
+        public Model.OnkologyDirection GetOnkologyDirection(long serviceId, System.DateTime directionDate) {
+            string id = string.Format("{0,6}", serviceId);
+            selectTrauma.Parameters[0].Value = id;
+            Model.OnkologyDirection result = null;
+            provider.ExecuteReader(selectTrauma,
+                r => result = new Model.OnkologyDirection((string)r["TR"], directionDate));
+            return result;
         }
 
         // **************************

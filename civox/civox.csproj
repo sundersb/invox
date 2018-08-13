@@ -72,6 +72,8 @@
     <Compile Include="Lib\Unlinker.cs" />
     <Compile Include="Lib\Zip.cs" />
     <Compile Include="Model\DispDirection.cs" />
+    <Compile Include="Model\OnkologyDirection.cs" />
+    <Compile Include="Model\OnkologyTreat.cs" />
     <Compile Include="Model\Reason.cs" />
     <Compile Include="Data\Relax\RepoInvoice.cs" />
     <Compile Include="Dict\SMO.cs" />

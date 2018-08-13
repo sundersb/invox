@@ -90,6 +90,15 @@ namespace civox.Data.Relax {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на select distinct DIAGIN from {period}DIAGNOZ where SN_POL = ?.
+        /// </summary>
+        internal static string SELECT_DIAGNOSES {
+            get {
+                return ResourceManager.GetString("SELECT_DIAGNOSES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на select KSG, KSG2
         /// from {period}S{lpu}
         /// where RECID = ?.
@@ -213,6 +222,15 @@ namespace civox.Data.Relax {
         internal static string SELECT_TOTAL_TO_PAY {
             get {
                 return ResourceManager.GetString("SELECT_TOTAL_TO_PAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на select TR from {period}S{lpu} where RECID = ?.
+        /// </summary>
+        internal static string SELECT_TRAUMA_CODE {
+            get {
+                return ResourceManager.GetString("SELECT_TRAUMA_CODE", resourceCulture);
             }
         }
     }

@@ -59,5 +59,22 @@ namespace civox.Data {
         /// </summary>
         /// <returns>List of error messages</returns>
         IEnumerable<string> LoadNoDeptDoctors();
+
+        /// <summary>
+        /// Get onkology treatment record
+        /// </summary>
+        /// <param name="serviceId">RECID of the service</param>
+        Model.OnkologyTreat GetOnkologyTreat(long serviceId);
+
+        /// <summary>
+        /// Load all person's diagnoses in the period
+        /// </summary>
+        /// <param name="policy">Person policy number</param>
+        List<string> GetPersonDiagnoses(string policy);
+
+        /// <summary>
+        /// Get direction information on onkology suspicion
+        /// </summary>
+        Model.OnkologyDirection GetOnkologyDirection(long serviceId, System.DateTime directionDate);
     }
 }

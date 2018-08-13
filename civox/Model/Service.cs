@@ -212,6 +212,11 @@ namespace civox.Model {
             xml.Writer.WriteElementString("PRVS", DoctorProfile);        // V021
             xml.Writer.WriteElementString("CODE_MD", DoctorCode);
 
+            if (rec.SuspNeo) {
+                OnkologyDirection direction = repo.GetOnkologyDirection(ID, EndDate);
+                direction.Write(xml, repo);
+            }
+
             // NPL      У Неполный объем Только Д1
             //1 - документированный отказ больного,
             //2 - медицинские противопоказания,
