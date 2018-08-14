@@ -71,6 +71,7 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="lib\DataTableHelper.cs" />
+    <Compile Include="lib\StageParser.cs" />
     <Compile Include="model\Classifier.cs" />
     <Compile Include="model\Directions.cs" />
     <Compile Include="model\Metastasis.cs" />

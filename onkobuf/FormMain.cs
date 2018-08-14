@@ -172,6 +172,13 @@ namespace onkobuf {
                     break;
             }
         }
+
+        private void btnParse_Click(object sender, EventArgs e) {
+            lib.StageParser parsed = new lib.StageParser(edICD.Text);
+            lblParsed.Text = parsed.ToString();
+            filter = parsed.GetFilter(tableClassif);
+            UpdateCode();
+        }
     }
 
     class ClassesRecord {

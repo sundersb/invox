@@ -46,27 +46,29 @@
             this.label6 = new System.Windows.Forms.Label();
             this.pcMain = new System.Windows.Forms.TabControl();
             this.tcDiagnosis = new System.Windows.Forms.TabPage();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.btnParse = new System.Windows.Forms.Button();
             this.tcSuspect = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lblDirection = new System.Windows.Forms.Label();
             this.edFilter = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.sgDirections = new System.Windows.Forms.DataGridView();
-            this.lblDirection = new System.Windows.Forms.Label();
+            this.lblParsed = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sgData)).BeginInit();
             this.pcMain.SuspendLayout();
             this.tcDiagnosis.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.tcSuspect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sgDirections)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,7 +255,7 @@
             this.sgData.ShowCellToolTips = false;
             this.sgData.ShowEditingIcon = false;
             this.sgData.ShowRowErrors = false;
-            this.sgData.Size = new System.Drawing.Size(493, 269);
+            this.sgData.Size = new System.Drawing.Size(899, 307);
             this.sgData.TabIndex = 16;
             // 
             // label6
@@ -283,10 +285,56 @@
             this.tcDiagnosis.Location = new System.Drawing.Point(4, 22);
             this.tcDiagnosis.Name = "tcDiagnosis";
             this.tcDiagnosis.Padding = new System.Windows.Forms.Padding(3);
-            this.tcDiagnosis.Size = new System.Drawing.Size(499, 444);
+            this.tcDiagnosis.Size = new System.Drawing.Size(905, 482);
             this.tcDiagnosis.TabIndex = 0;
             this.tcDiagnosis.Text = "C00";
             this.tcDiagnosis.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer2.IsSplitterFixed = true;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.lblParsed);
+            this.splitContainer2.Panel1.Controls.Add(this.btnParse);
+            this.splitContainer2.Panel1.Controls.Add(this.label1);
+            this.splitContainer2.Panel1.Controls.Add(this.lblTumor);
+            this.splitContainer2.Panel1.Controls.Add(this.label6);
+            this.splitContainer2.Panel1.Controls.Add(this.cmbTumor);
+            this.splitContainer2.Panel1.Controls.Add(this.edICD);
+            this.splitContainer2.Panel1.Controls.Add(this.label4);
+            this.splitContainer2.Panel1.Controls.Add(this.lblMetastases);
+            this.splitContainer2.Panel1.Controls.Add(this.label3);
+            this.splitContainer2.Panel1.Controls.Add(this.cmbNodus);
+            this.splitContainer2.Panel1.Controls.Add(this.cmbMetastases);
+            this.splitContainer2.Panel1.Controls.Add(this.lblCaseCode);
+            this.splitContainer2.Panel1.Controls.Add(this.label2);
+            this.splitContainer2.Panel1.Controls.Add(this.lblNodules);
+            this.splitContainer2.Panel1.Controls.Add(this.label5);
+            this.splitContainer2.Panel1.Controls.Add(this.cmbStage);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.sgData);
+            this.splitContainer2.Size = new System.Drawing.Size(899, 476);
+            this.splitContainer2.SplitterDistance = 165;
+            this.splitContainer2.TabIndex = 18;
+            // 
+            // btnParse
+            // 
+            this.btnParse.Location = new System.Drawing.Point(167, 9);
+            this.btnParse.Name = "btnParse";
+            this.btnParse.Size = new System.Drawing.Size(75, 23);
+            this.btnParse.TabIndex = 18;
+            this.btnParse.Text = "Parse";
+            this.btnParse.UseVisualStyleBackColor = true;
+            this.btnParse.Click += new System.EventHandler(this.btnParse_Click);
             // 
             // tcSuspect
             // 
@@ -321,6 +369,18 @@
             this.splitContainer1.SplitterDistance = 61;
             this.splitContainer1.TabIndex = 3;
             // 
+            // lblDirection
+            // 
+            this.lblDirection.AutoEllipsis = true;
+            this.lblDirection.AutoSize = true;
+            this.lblDirection.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblDirection.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.lblDirection.Location = new System.Drawing.Point(51, 26);
+            this.lblDirection.Name = "lblDirection";
+            this.lblDirection.Size = new System.Drawing.Size(92, 31);
+            this.lblDirection.TabIndex = 3;
+            this.lblDirection.Text = "label8";
+            // 
             // edFilter
             // 
             this.edFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -338,40 +398,6 @@
             this.label7.Size = new System.Drawing.Size(47, 13);
             this.label7.TabIndex = 1;
             this.label7.Text = "Фильтр";
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer2.IsSplitterFixed = true;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.label1);
-            this.splitContainer2.Panel1.Controls.Add(this.lblTumor);
-            this.splitContainer2.Panel1.Controls.Add(this.label6);
-            this.splitContainer2.Panel1.Controls.Add(this.cmbTumor);
-            this.splitContainer2.Panel1.Controls.Add(this.edICD);
-            this.splitContainer2.Panel1.Controls.Add(this.label4);
-            this.splitContainer2.Panel1.Controls.Add(this.lblMetastases);
-            this.splitContainer2.Panel1.Controls.Add(this.label3);
-            this.splitContainer2.Panel1.Controls.Add(this.cmbNodus);
-            this.splitContainer2.Panel1.Controls.Add(this.cmbMetastases);
-            this.splitContainer2.Panel1.Controls.Add(this.lblCaseCode);
-            this.splitContainer2.Panel1.Controls.Add(this.label2);
-            this.splitContainer2.Panel1.Controls.Add(this.lblNodules);
-            this.splitContainer2.Panel1.Controls.Add(this.label5);
-            this.splitContainer2.Panel1.Controls.Add(this.cmbStage);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.sgData);
-            this.splitContainer2.Size = new System.Drawing.Size(493, 438);
-            this.splitContainer2.SplitterDistance = 165;
-            this.splitContainer2.TabIndex = 18;
             // 
             // sgDirections
             // 
@@ -391,17 +417,13 @@
             this.sgDirections.Size = new System.Drawing.Size(899, 411);
             this.sgDirections.TabIndex = 1;
             // 
-            // lblDirection
+            // lblParsed
             // 
-            this.lblDirection.AutoEllipsis = true;
-            this.lblDirection.AutoSize = true;
-            this.lblDirection.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblDirection.ForeColor = System.Drawing.Color.DarkMagenta;
-            this.lblDirection.Location = new System.Drawing.Point(51, 26);
-            this.lblDirection.Name = "lblDirection";
-            this.lblDirection.Size = new System.Drawing.Size(92, 31);
-            this.lblDirection.TabIndex = 3;
-            this.lblDirection.Text = "label8";
+            this.lblParsed.AutoSize = true;
+            this.lblParsed.Location = new System.Drawing.Point(257, 14);
+            this.lblParsed.Name = "lblParsed";
+            this.lblParsed.Size = new System.Drawing.Size(0, 13);
+            this.lblParsed.TabIndex = 19;
             // 
             // FormMain
             // 
@@ -424,17 +446,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.sgData)).EndInit();
             this.pcMain.ResumeLayout(false);
             this.tcDiagnosis.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.tcSuspect.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sgDirections)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -472,6 +494,8 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DataGridView sgDirections;
         private System.Windows.Forms.Label lblDirection;
+        private System.Windows.Forms.Button btnParse;
+        private System.Windows.Forms.Label lblParsed;
     }
 }
 
