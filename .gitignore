@@ -6,6 +6,7 @@
 Backup/
 Lib/
 !civox/Lib/
+!onkobuf/Lib/
 *.dll
 *.exe
 
