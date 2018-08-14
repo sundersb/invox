@@ -10,7 +10,11 @@ namespace civox.Model {
     /// </summary>
     class People : Model {
         // Приказ 59 ФФОМС от 30.03.2018 (онкология) - про версию в части Д.4 не сказано ни слова. Вероятно д/б тоже 3.1
-        const string VERSION = "3.1";// "2.1";
+#if !NO59
+        const string VERSION = "3.1";
+#else
+        const string VERSION = "2.1";
+#endif
 
         Lib.InvoiceNames invoiceNames;
 

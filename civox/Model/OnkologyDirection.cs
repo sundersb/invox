@@ -36,10 +36,18 @@ namespace civox.Model {
                 method = OnkologyDirectionMethod.None;
                 serviceCode = "0";
             } else {
-                kind = (OnkologyDirectionKind)((int)tr[0] - (int)'0');
-                method = (OnkologyDirectionMethod)((int)tr[1] - (int)'0');
+                kind = (OnkologyDirectionKind)charToEnum(tr[0], 3);
+                method = (OnkologyDirectionMethod)charToEnum(tr[1], 4);
                 serviceCode = tr.Substring(2);
             }
+        }
+
+        int charToEnum(char c, int max) {
+            int result = (int)c - (int)'0';
+            if (result > max)
+                return 0;
+            else
+                return result;
         }
 
         public override void Write(Lib.XmlExporter xml, Data.IInvoice repo) {

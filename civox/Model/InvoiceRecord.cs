@@ -270,20 +270,25 @@ namespace civox.Model {
             // DS2      УМ Диагноз сопутствующего заболевания
             // DS3      УМ Диагноз осложнения заболевания
             
+#if !NO59
             // Приказ 59 30.03.2018
-            xml.WriteBool("DS_ONK", rec.SuspNeo);
-
+            if (rec.SuspNeo) xml.Writer.WriteElementString("DS_ONK", "1");
+#endif
             // VNOV_M   УМ Вес при рождении, Указывается при оказании медицинской помощи недоношенным и маловесным детям.
             //             Поле заполняется, если в качестве пациента указана мать
 
             // CODE_MES1    УМ Код МЭС
             // CODE_MES2    У  Код МЭС сопутствующего заболевания
 
+#if !NO59
+            // GY{ уроды, когда они договорятся по какому приказу работать?!!
+
             // Приказ 59 от 30.03.2018 - онкология
             if (OnkologyTreat.IsOnkologyTreat(rec, policyCompound, repo)) {
                 OnkologyTreat treat = repo.GetOnkologyTreat(marks.Resulting.ID);
                 treat.Write(xml, repo);
             }
+#endif
 
             // V009
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
@@ -357,7 +362,6 @@ namespace civox.Model {
             xml.Writer.WriteElementString("VID_HMP", string.Empty);            // TODO: Вид ВМП - нет
             xml.Writer.WriteElementString("METOD_HMP", string.Empty);          // TODO: Метод ВМП - нет
 
-
             if (NeedsDirection(rec, marks.Resulting)) {
                 // NPR_MO   У Код МО, направившего на лечение (диагностику, консультацию) F003 Приложения А. При отсутствии сведений может не заполняться
                 // TODO: Мы направляем в СДП себе только сами. Где другим ЛПУ брать код направившей МО?
@@ -408,21 +412,23 @@ namespace civox.Model {
             // DS2      УМ Не для Д3 Диагноз сопутствующего заболевания
             // DS3      УМ Не для Д3 Диагноз осложнения заболевания
 
+#if !NO59
             // Приказ 59 30.03.2018
-            xml.WriteBool("DS_ONK", rec.SuspNeo);
-
+            if (rec.SuspNeo) xml.Writer.WriteElementString("DS_ONK", "1");
+#endif
             // VNOV_M   УМ Вес при рождении, Указывается при оказании медицинской помощи недоношенным и маловесным детям.
             //             Поле заполняется, если в качестве пациента указана мать
 
             // CODE_MES1    УМ Код МЭС
             // CODE_MES2    У  Код МЭС сопутствующего заболевания
 
+#if !NO59
             // Приказ 59 от 30.03.2018 - онкология
             if (OnkologyTreat.IsOnkologyTreat(rec, policyCompound, repo)) {
                 OnkologyTreat treat = repo.GetOnkologyTreat(marks.Resulting.ID);
                 treat.Write(xml, repo);
             }
-
+#endif
             // V009
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
 
@@ -509,9 +515,10 @@ namespace civox.Model {
             if (rec.FirstRevealed)
                 xml.Writer.WriteElementString("DS1_PR", "1");
 
+#if !NO59
             // Приказ 59 30.03.2018
-            xml.WriteBool("DS_ONK", rec.SuspNeo);
-
+            if (rec.SuspNeo) xml.Writer.WriteElementString("DS_ONK", "1");
+#endif
             // DS2_N - УМ Сопутствующие заболевания
             //      DS2         О Код из справочника МКБ до уровня подрубрики
             //      DS2_PR      У Обязательно указывается «1», если данный сопутствующий диагноз выявлен впервые
@@ -520,8 +527,9 @@ namespace civox.Model {
             // TODO: Убрать, когда В БАРС исправят. Сейчас требуют RSLT и RSLT_D одновременно
             xml.Writer.WriteElementString("RSLT", marks.Resulting.ResultCode);
 
-            // V017
-            xml.Writer.WriteElementString("RSLT_D", marks.Resulting.DispResultCode);
+            // V017 - По приказу наличие поля обязательно, но ХКФОМС для не-диспансеризации банит
+            if (rec.IsDispanserisation())
+                xml.Writer.WriteElementString("RSLT_D", marks.Resulting.DispResultCode);
 
             // Направления по итогам диспансеризации
             // 20180731 - ФОМС банит случаи, где направлений больше одного на этапе ФЛК!

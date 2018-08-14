@@ -44,21 +44,13 @@ namespace civox.Model {
                 mts = "0";
             }
             remoteMts = false;
-            
-            char i = stage[0];
-            switch (i) {
-                case '1':
-                    reason = OnkologyReason.Relapse;
-                    break;
 
-                case '2':
-                    reason = OnkologyReason.Progression;
-                    break;
+            int i = (int)stage.First() - (int)'0';
+            if (i < 3)
+                reason = (OnkologyReason)i;
+            else
+                reason = OnkologyReason.None;
 
-                default:
-                    reason = OnkologyReason.None;
-                    break;
-            }
             stage = stage.Substring(1);
         }
 
@@ -84,17 +76,6 @@ namespace civox.Model {
                 return repo.GetPersonDiagnoses(policy).Any(IsSuppOnkology);
 
             return false;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="xml"></param>
-        /// <param name="resultingService"></param>
-        /// <param name="repo"></param>
-        public static void WriteTreat(Lib.XmlExporter xml, Service resultingService, Data.IInvoice repo) {
-            OnkologyTreat treat = repo.GetOnkologyTreat(resultingService.ID);
-            treat.Write(xml, repo);
         }
 
         public override void Write(Lib.XmlExporter xml, Data.IInvoice repo) {

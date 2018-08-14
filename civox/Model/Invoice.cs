@@ -6,8 +6,14 @@ using civox.Lib;
 
 namespace civox.Model {
     class Invoice : Model {
+
+#if !NO59
         // Приказ 59 ФФОМС от 30.03.2018 (онкология) = "3.1";
-        const string VERSION = "3.1"; //"2.1";
+        const string VERSION = "3.1";
+#else
+        const string VERSION = "2.1";
+#endif
+
         const int PROGRESS_WIDTH = 74;
 
         Lib.InvoiceNames invoiceNames;
