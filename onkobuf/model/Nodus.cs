@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using onkobuf.lib;
 
 namespace onkobuf.model {
     /// <summary>
-    /// N004.xml
+    /// N004.xml nodulus stages classifier
     /// </summary>
     class Nodus {
         int id;
@@ -30,6 +28,9 @@ namespace onkobuf.model {
         }
     }
 
+    /// <summary>
+    /// Dictionary for the Nodus neoplazma stages
+    /// </summary>
     class Nodules {
         const string XML_NAME = "N004.xml";
 
@@ -49,6 +50,9 @@ namespace onkobuf.model {
 
         List<Nodus> nodules = null;
 
+        /// <summary>
+        /// Get all dictionary records
+        /// </summary>
         public static List<Nodus> All { get { return Instance.nodules; } }
 
         Nodules(string xmlName) {
@@ -65,6 +69,13 @@ namespace onkobuf.model {
             }
         }
 
+        /// <summary>
+        /// Select nodules for a diagnosis
+        /// </summary>
+        /// <param name="DS">Diagnosis to limit selection</param>
+        /// <returns>List of Nodulus stages relevant to the diagnosis provided</returns>
+        /// <remarks>If there is no such diagnosis in the dictionary
+        /// list of "no-diagnosis" records is returned</remarks>
         public static List<Nodus> byDiagnosis(string DS) {
             Nodus[] ss = null;
 

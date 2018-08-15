@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using onkobuf.lib;
 
 namespace onkobuf.model {
     /// <summary>
-    /// N005.xml
+    /// N005.xml metastases stage record
     /// </summary>
     class Metastasis {
         int id;
@@ -30,6 +28,9 @@ namespace onkobuf.model {
         }
     }
 
+    /// <summary>
+    /// Metastases classification dictionary
+    /// </summary>
     class Metastases {
         const string XML_NAME = "N005.xml";
 
@@ -49,6 +50,9 @@ namespace onkobuf.model {
 
         List<Metastasis> nodules = null;
 
+        /// <summary>
+        /// Get all articles of the dictionary
+        /// </summary>
         public static List<Metastasis> All { get { return Instance.nodules; } }
 
         Metastases(string xmlName) {
@@ -65,6 +69,13 @@ namespace onkobuf.model {
             }
         }
 
+        /// <summary>
+        /// List possible metastasis stages for a diagnosis
+        /// </summary>
+        /// <param name="DS">Nozology to look for</param>
+        /// <returns>List of metastasis stages relevant to the diagnosis provided</returns>
+        /// <remarks>If no such diagnosis found in the dictionary
+        /// list of "no-diagnosis" records is returned</remarks>
         public static List<Metastasis> byDiagnosis(string DS) {
             Metastasis[] ss = null;
 

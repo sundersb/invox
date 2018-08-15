@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
 namespace onkobuf.lib {
+    /// <summary>
+    /// List of something to DataTable convertion helper
+    /// </summary>
     class DataTableHelper {
+        /// <summary>
+        /// Convert list of ClassesRecord to DataTable representation
+        /// </summary>
         public static DataTable ConvertToDatatable(IEnumerable<ClassesRecord> list) {
             DataTable dt = new DataTable();
 
@@ -36,6 +39,9 @@ namespace onkobuf.lib {
             return dt;
         }
 
+        /// <summary>
+        /// Convert list of directions to DataTable
+        /// </summary>
         public static DataTable ConvertToDatatable(IEnumerable<model.Direction> list) {
             DataTable dt = new DataTable();
 

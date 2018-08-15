@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml.Serialization;
-using System.IO;
 using System.Xml;
 
 namespace onkobuf.model {
     /// <summary>
-    /// N002.xml
+    /// N002.xml clinical stage record
     /// </summary>
     class Stage {
         int id;
@@ -28,6 +24,9 @@ namespace onkobuf.model {
         }
     }
 
+    /// <summary>
+    /// Dictionary for clinical stages
+    /// </summary>
     class Stages {
         const string XML_NAME = "N002.xml";
 
@@ -47,6 +46,9 @@ namespace onkobuf.model {
 
         List<Stage> stages = null;
 
+        /// <summary>
+        /// Get all records of the dictionary
+        /// </summary>
         public static List<Stage> All { get { return Instance.stages; } }
 
         Stages(string xmlName) {
@@ -62,6 +64,13 @@ namespace onkobuf.model {
             }
         }
 
+        /// <summary>
+        /// Get stages relevant to a diagnosis
+        /// </summary>
+        /// <param name="DS">Diagnosis to limit dictionary</param>
+        /// <returns>List of stages relevent to the diagnosis</returns>
+        /// <remarks>If the diagnosis supplied doesn't exist in the dictionary
+        /// list of stages for "empty" diagnosis is returned</remarks>
         public static List<Stage> byDiagnosis(string DS) {
             Stage[] ss = null;
 

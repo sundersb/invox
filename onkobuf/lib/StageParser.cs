@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Data;
 
 namespace onkobuf.lib {
+    /// <summary>
+    /// User input to classification helper
+    /// </summary>
     class StageParser {
         const int MATCH_RATING = 3;
         const int MINOR_MATCH_RATING = 2;
@@ -60,6 +60,7 @@ namespace onkobuf.lib {
         public StageParser(string line) {
             // Line could be regexped as
             // c?\d\d(\.\d)?\s+([^\s]+)t([0-4](a[12]?|b|c)|a|is|x)\s*n([0123][abc]?|x)\s*m([01][abc]?|x)
+            //      ...which is irrelevant anyway
             Parse(line.ToUpper());
         }
 
@@ -79,6 +80,8 @@ namespace onkobuf.lib {
 
         // Helper to form StageParser fields from a string
         void Parse(string line) {
+            // This one resembles gode-code but it's not Haskell which manages things like this natively
+
             // Separate ICD code
             int pos = line.IndexOf(' ');
             if (pos < 0) return;
@@ -190,24 +193,34 @@ namespace onkobuf.lib {
             SecureFields();
         }
 
+        /// <summary>
+        /// Human readable diagnosis depiction
+        /// </summary>
         public override string ToString() {
             return string.Format("Диагноз {0}, стадия {1}, {2} {3} {4}", Diagnosis, Stage, Tumor, Nodus, Metastasis);
         }
 
+        /// <summary>
+        /// Correlation rating counter
+        /// </summary>
+        /// <param name="rec">Classification dictionary record to rate against this instance</param>
+        /// <returns>Affinity rating: the bigger the rating, the more the record matches this instance's criteria</returns>
         int CountRating(ClassesRecord rec) {
             int result = 0;
             
             if (stage == rec.Stage)
+                // Exact match criterium weighs more
                 result += MINOR_MATCH_RATING;
             else if (rec.Stage.StartsWith(stage))
+                // Not precise match weighs less
                 ++result;
-            //20 3a 2 1 1
 
             if (tumor == rec.Tumor)
                 result += MATCH_RATING;
             else if (rec.Tumor.StartsWith(tumor))
                 ++result;
 
+            // Noduli and metastases are more valuable than say stage
             if (nodus == rec.Nodus)
                 result += MATCH_RATING;
             else if (rec.Nodus.StartsWith(nodus))
@@ -223,6 +236,10 @@ namespace onkobuf.lib {
             return result;
         }
 
+        /// <summary>
+        /// Get list of dictionary records rated and ordered in dependence to this instance's criteria
+        /// </summary>
+        /// <returns>List of dictionary articles to show user</returns>
         public IEnumerable<ClassesRecord> GetDataset() {
             string ds = icd;
             if (!Diagnoses.Contains(icd))

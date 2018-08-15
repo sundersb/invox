@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Xml;
 
 namespace onkobuf.model {
     /// <summary>
-    /// SLTRAVM.xml
+    /// SLTRAVM.xml neo suspicion directions dictionary
     /// </summary>
     class Direction {
         int id;
@@ -31,6 +28,9 @@ namespace onkobuf.model {
         }
     }
 
+    /// <summary>
+    /// Dictionary of directions
+    /// </summary>
     class Directions {
         const string XML_NAME = "SLTRAVM.xml";
         const int LIMIT = 50;
@@ -49,6 +49,9 @@ namespace onkobuf.model {
             }
         }
 
+        /// <summary>
+        /// Get all articles
+        /// </summary>
         List<Direction> directions = null;
 
         public static List<Direction> All { get { return Instance.directions; } }

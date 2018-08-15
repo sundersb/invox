@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using onkobuf.lib;
 
 namespace onkobuf.model {
     /// <summary>
-    /// N003.xml
+    /// N003.xml record encapsulation
     /// </summary>
     class Tumor {
         int id;
@@ -30,6 +28,9 @@ namespace onkobuf.model {
         }
     }
 
+    /// <summary>
+    /// Tumor dictionary
+    /// </summary>
     class Tumors {
         const string XML_NAME = "N003.xml";
 
@@ -49,6 +50,9 @@ namespace onkobuf.model {
 
         List<Tumor> tumors = null;
 
+        /// <summary>
+        /// Get tumor dictionary records
+        /// </summary>
         public static List<Tumor> All { get { return Instance.tumors; } }
 
         Tumors(string xmlName) {
@@ -65,6 +69,12 @@ namespace onkobuf.model {
             }
         }
 
+        /// <summary>
+        /// Select tumor classes for a diagnosis
+        /// </summary>
+        /// <param name="DS">Diagnosis to filter</param>
+        /// <returns>List of tumor dictinoary articles for the diagnosis</returns>
+        /// <remarks>If the diagnosis has not been found, tumor records for "empty" diagnosis are returned</remarks>
         public static List<Tumor> byDiagnosis(string DS) {
             Tumor[] ss = null;
 

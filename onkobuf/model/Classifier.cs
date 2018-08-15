@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace onkobuf.model {
+    /// <summary>
+    /// Integral onkology stage classification record
+    /// </summary>
     class Class {
         int id;
         string ds;
@@ -43,6 +44,9 @@ namespace onkobuf.model {
         }
     }
 
+    /// <summary>
+    /// Onkology stage dictionary
+    /// </summary>
     class Classifier {
         const string XML_NAME = "N006.xml";
 
@@ -62,6 +66,9 @@ namespace onkobuf.model {
 
         List<Class> classifier = null;
 
+        /// <summary>
+        ///  Get all dictionary records
+        /// </summary>
         public static List<Class> All { get { return Instance.classifier; } }
 
         Classifier(string xmlName) {
@@ -78,27 +85,6 @@ namespace onkobuf.model {
                 string m = node.SelectSingleNode("ID_M").InnerText;
                 classifier.Add(new Class(id, ds, s, t, n, m));
             }
-        }
-
-        //public static int Get(int s, int t, int n, int m) {
-        //    Class found = Instance.classifier.FirstOrDefault(c => {
-        //        return c.Stage == s
-        //            && c.Tumor == t
-        //            && c.Nodus == n
-        //            && c.Metastasis == m;
-        //    });
-
-        //    if (found != null)
-        //        return found.ID;
-        //    else
-        //        return 0;
-        //}
-
-        public static List<Class> Get(Stage s, Tumor t, Nodus n, Metastasis m) {
-            var selection = from c in Instance.classifier
-                            where c.Matches(s, t, n, m)
-                            select c;
-            return selection.ToList();
         }
     }
 }
