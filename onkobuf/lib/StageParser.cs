@@ -6,17 +6,39 @@ using System.Data;
 
 namespace onkobuf.lib {
     class StageParser {
+        const int MATCH_RATING = 3;
+        const int MINOR_MATCH_RATING = 2;
+        
         string icd;
         string stage;
         string tumor;
         string nodus;
         string mts;
+        int maxRating;
 
         public string Diagnosis { get { return icd; } }
         public string Stage { get { return stage; } }
         public string Tumor { get { return tumor; } }
         public string Nodus { get { return nodus; } }
         public string Metastasis { get { return mts; } }
+        public int MaximumRating { get { return maxRating; } }
+
+        static string[] diagnoses;
+        static object locker = new object();
+
+        static string[] Diagnoses {
+            get {
+                if (diagnoses == null) lock (locker) {
+                    if (diagnoses == null) {
+                        diagnoses = model.Classifier.All
+                            .GroupBy(s => s.Diagnosis)
+                            .Select(v => v.First().Diagnosis)
+                            .ToArray();
+                    }
+                }
+                return diagnoses;
+            }
+        }
 
         /// <summary>
         /// 
@@ -160,7 +182,7 @@ namespace onkobuf.lib {
 
             if (!string.IsNullOrEmpty(mts)) {
                 if (mts.First() != 'M')
-                    mts = 'M' + mts;
+                    mts = 'M' + mts.ToLower();
                 else
                     mts = 'M' + mts.Substring(1).ToLower();
             }
@@ -172,14 +194,39 @@ namespace onkobuf.lib {
             return string.Format("Диагноз {0}, стадия {1}, {2} {3} {4}", Diagnosis, Stage, Tumor, Nodus, Metastasis);
         }
 
-        public string GetFilter(DataTable table) {
-            if (table == null) return string.Empty;
+        int CountRating(ClassesRecord rec) {
+            int result = 0;
+            
+            if (stage == rec.Stage)
+                result += MINOR_MATCH_RATING;
+            else if (rec.Stage.StartsWith(stage))
+                ++result;
+            //20 3a 2 1 1
 
-            string filter = string.Format("(Diagnosis = '{0}')", icd);
+            if (tumor == rec.Tumor)
+                result += MATCH_RATING;
+            else if (rec.Tumor.StartsWith(tumor))
+                ++result;
 
-            int count = table.Select(filter).Count();
-            if (count == 0)
-                filter = "(Diagnosis = '')";
+            if (nodus == rec.Nodus)
+                result += MATCH_RATING;
+            else if (rec.Nodus.StartsWith(nodus))
+                result += MINOR_MATCH_RATING;
+
+            if (mts == rec.Metastasis)
+                result += MATCH_RATING;
+            else if (rec.Metastasis.StartsWith(mts))
+                result += MATCH_RATING;
+
+            if (maxRating < result) maxRating = result;
+
+            return result;
+        }
+
+        public IEnumerable<ClassesRecord> GetDataset() {
+            string ds = icd;
+            if (!Diagnoses.Contains(icd))
+                ds = string.Empty;
 
             var query =
                 from cs in model.Classifier.All
@@ -187,7 +234,7 @@ namespace onkobuf.lib {
                 join ts in model.Tumors.All on cs.Tumor equals ts.ID
                 join ns in model.Nodules.All on cs.Nodus equals ns.ID
                 join ms in model.Metastases.All on cs.Metastasis equals ms.ID
-                where cs.Diagnosis.ToUpper() == icd
+                where cs.Diagnosis == ds
                 select new ClassesRecord {
                     ID = cs.ID,
                     Diagnosis = cs.Diagnosis,
@@ -195,25 +242,14 @@ namespace onkobuf.lib {
                     Tumor = ts.Code,
                     Nodus = ns.Code,
                     Metastasis = ms.Code,
-                    // TODODODO
                     Code = ClassesRecord.GetCode(cs.Stage, cs.Tumor, cs.Nodus, cs.Metastasis)
                 };
 
-            //rows[0]["Stage"]
+            maxRating = 0;
+            var result = query.ToList();
+            result.ForEach(rec => rec.Rating = CountRating(rec));
 
-            //model.Stage s = (model.Stage)cmbStage.SelectedItem;
-            //if (s != null) filter += " and (Stage = '" + s.Code + "')";
-
-            //model.Tumor t = (model.Tumor)cmbTumor.SelectedItem;
-            //if (t != null) filter += " and (Tumor = '" + t.Code + "')";
-
-            //model.Nodus n = (model.Nodus)cmbNodus.SelectedItem;
-            //if (n != null) filter += " and (Nodus = '" + n.Code + "')";
-
-            //model.Metastasis m = (model.Metastasis)cmbMetastases.SelectedItem;
-            //if (m != null) filter += " and (Metastasis = '" + m.Code + "')";
-
-            return filter;
+            return result.OrderByDescending(r => r.Rating);
         }
     }
 }

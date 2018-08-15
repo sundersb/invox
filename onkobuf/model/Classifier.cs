@@ -71,7 +71,7 @@ namespace onkobuf.model {
             XmlElement root = xml.DocumentElement;
             foreach (XmlNode node in root.SelectNodes("zap")) {
                 string id = node.SelectSingleNode("ID_gr").InnerText;
-                string ds = node.SelectSingleNode("DS_gr").InnerText;
+                string ds = node.SelectSingleNode("DS_gr").InnerText.ToUpper();
                 string s = node.SelectSingleNode("ID_St").InnerText;
                 string t = node.SelectSingleNode("ID_T").InnerText;
                 string n = node.SelectSingleNode("ID_N").InnerText;

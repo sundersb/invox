@@ -10,27 +10,12 @@ using System.Globalization;
 
 namespace onkobuf {
     public partial class FormMain : Form {
-        DataTable tableClassif;
+        const string README_FILENAME = "readme.txt";
+
         DataTable tableDirections;
-        string filter;
 
         public FormMain() {
             InitializeComponent();
-            cmbStage.DataSource = model.Stages.byDiagnosis(string.Empty);
-            cmbStage.DisplayMember = "DiagnosisCode";
-            cmbStage.ValueMember = "ID";
-
-            cmbTumor.DataSource = model.Tumors.byDiagnosis(string.Empty);
-            cmbTumor.DisplayMember = "DiagnosisCode";
-            cmbTumor.ValueMember = "ID";
-
-            cmbNodus.DataSource = model.Nodules.byDiagnosis(string.Empty);
-            cmbNodus.DisplayMember = "DiagnosisCode";
-            cmbNodus.ValueMember = "ID";
-
-            cmbMetastases.DataSource = model.Metastases.byDiagnosis(string.Empty);
-            cmbMetastases.DisplayMember = "DiagnosisCode";
-            cmbMetastases.ValueMember = "ID";
 
             var query =
                 from cs in model.Classifier.All
@@ -48,8 +33,8 @@ namespace onkobuf {
                     Code = ClassesRecord.GetCode(cs.Stage, cs.Tumor, cs.Nodus, cs.Metastasis)
                 };
 
-            tableClassif = lib.DataTableHelper.ConvertToDatatable(query);
-            sgData.DataSource = tableClassif;
+            DataTable table = lib.DataTableHelper.ConvertToDatatable(query);
+            sgData.DataSource = table;
             sgData.Columns["Code"].Visible = false;
             lblCaseCode.DataBindings.Add("Text", sgData.DataSource, "Code");
 
@@ -67,92 +52,25 @@ namespace onkobuf {
             edICD.Select();
         }
 
-        void BuildFilter() {
-            string ds = edICD.Text.Replace("'", "''");
-            if (!string.IsNullOrEmpty(ds))
-                filter = "(Diagnosis like '%" + ds + "%')";
-            else
-                filter = "(Diagnosis = '')";
-
-            model.Stage s = (model.Stage)cmbStage.SelectedItem;
-            if (s != null) filter += " and (Stage = '" + s.Code + "')";
-
-            model.Tumor t = (model.Tumor)cmbTumor.SelectedItem;
-            if (t != null) filter += " and (Tumor = '" + t.Code + "')";
-
-            model.Nodus n = (model.Nodus)cmbNodus.SelectedItem;
-            if (n != null) filter += " and (Nodus = '" + n.Code + "')";
-
-            model.Metastasis m = (model.Metastasis)cmbMetastases.SelectedItem;
-            if (m != null) filter += " and (Metastasis = '" + m.Code + "')";
-        }
-
-        private void UpdateCode() {
-            if (tableClassif != null) tableClassif.DefaultView.RowFilter = filter;
-        }
-
         private void tbtnSearch_Click(object sender, EventArgs e) {
             if (pcMain.SelectedIndex == 0) {
                 // Cxx.x
-                DataTable t = tableClassif;
-                tableClassif = null;
+                lib.StageParser parsed = new lib.StageParser(edICD.Text);
+                lblParsed.Text = parsed.ToString();
 
-                cmbStage.DataSource = model.Stages.byDiagnosis(edICD.Text);
-                cmbTumor.DataSource = model.Tumors.byDiagnosis(edICD.Text);
-                cmbNodus.DataSource = model.Nodules.byDiagnosis(edICD.Text);
-                cmbMetastases.DataSource = model.Metastases.byDiagnosis(edICD.Text);
-
-                cmbStage.SelectedItem = null;
-                cmbTumor.SelectedItem = null;
-                cmbNodus.SelectedItem = null;
-                tableClassif = t;
-                cmbMetastases.SelectedItem = null;
-                edICD.Focus();
-                edICD.SelectAll();
+                DataTable table = lib.DataTableHelper.ConvertToDatatable(parsed.GetDataset());
+                sgData.DataSource = table;
+                lblCaseCode.DataBindings.Clear();
+                lblCaseCode.DataBindings.Add("Text", sgData.DataSource, "Code");
             } else {
                 // Z03.1
-                string title = filter = "(Title like '%" + edFilter.Text.Replace("'", "''") + "%')";
+                string title = "(Title like '%" + edFilter.Text.Replace("'", "''") + "%')";
                 if (tableDirections != null) tableDirections.DefaultView.RowFilter = title;
                 edFilter.Focus();
                 edFilter.SelectAll();
             }
         }
-
-        private void cmbStage_SelectedIndexChanged(object sender, EventArgs e) {
-            BuildFilter();
-            UpdateCode();
-        }
-
-        private void cmbTumor_SelectedIndexChanged(object sender, EventArgs e) {
-            model.Tumor t = (model.Tumor)cmbTumor.SelectedItem;
-            if (t != null)
-                lblTumor.Text = t.Title;
-            else
-                lblTumor.Text = "нет";
-            BuildFilter();
-            UpdateCode();
-        }
-
-        private void cmbNodus_SelectedIndexChanged(object sender, EventArgs e) {
-            model.Nodus n = (model.Nodus)cmbNodus.SelectedItem;
-            if (n != null)
-                lblNodules.Text = n.Title;
-            else
-                lblNodules.Text = "нет";
-            BuildFilter();
-            UpdateCode();
-        }
-
-        private void cmbMetastases_SelectedIndexChanged(object sender, EventArgs e) {
-            model.Metastasis n = (model.Metastasis)cmbMetastases.SelectedItem;
-            if (n != null)
-                lblMetastases.Text = n.Title;
-            else
-                lblMetastases.Text = "нет";
-            BuildFilter();
-            UpdateCode();
-        }
-
+        
         private void FormMain_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.F2) {
                 tbtnSearch_Click(null, null);
@@ -173,11 +91,8 @@ namespace onkobuf {
             }
         }
 
-        private void btnParse_Click(object sender, EventArgs e) {
-            lib.StageParser parsed = new lib.StageParser(edICD.Text);
-            lblParsed.Text = parsed.ToString();
-            filter = parsed.GetFilter(tableClassif);
-            UpdateCode();
+        private void OnHelp(object sender, EventArgs e) {
+            System.Diagnostics.Process.Start(Options.ResourceDirectory + README_FILENAME);
         }
     }
 
@@ -189,6 +104,7 @@ namespace onkobuf {
         public string Nodus { get; set; }
         public string Metastasis { get; set; }
         public string Code { get; set; }
+        public int Rating { get; set; }
 
         public static string GetCode(int s, int t, int n, int m) {
             return string.Format("x{0}-{1}-{2}-{3}", s, t, n, m);

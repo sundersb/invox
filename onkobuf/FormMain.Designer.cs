@@ -30,31 +30,21 @@
             this.stbrMain = new System.Windows.Forms.ToolStripStatusLabel();
             this.edICD = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbStage = new System.Windows.Forms.ComboBox();
             this.lblCaseCode = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbTumor = new System.Windows.Forms.ComboBox();
-            this.lblTumor = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbNodus = new System.Windows.Forms.ComboBox();
-            this.lblNodules = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cmbMetastases = new System.Windows.Forms.ComboBox();
-            this.lblMetastases = new System.Windows.Forms.Label();
             this.sgData = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.pcMain = new System.Windows.Forms.TabControl();
             this.tcDiagnosis = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.btnParse = new System.Windows.Forms.Button();
+            this.lblParsed = new System.Windows.Forms.Label();
             this.tcSuspect = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lblDirection = new System.Windows.Forms.Label();
             this.edFilter = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.sgDirections = new System.Windows.Forms.DataGridView();
-            this.lblParsed = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbtnHelp = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sgData)).BeginInit();
@@ -75,7 +65,8 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tbtnSearch});
+            this.tbtnSearch,
+            this.tbtnHelp});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(913, 25);
@@ -112,8 +103,7 @@
             // 
             // edICD
             // 
-            this.edICD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.edICD.Location = new System.Drawing.Point(61, 11);
+            this.edICD.Location = new System.Drawing.Point(49, 27);
             this.edICD.Name = "edICD";
             this.edICD.Size = new System.Drawing.Size(100, 20);
             this.edICD.TabIndex = 2;
@@ -121,122 +111,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 14);
+            this.label1.Location = new System.Drawing.Point(4, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "К&од МКБ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Стадия";
-            // 
-            // cmbStage
-            // 
-            this.cmbStage.AllowDrop = true;
-            this.cmbStage.FormattingEnabled = true;
-            this.cmbStage.Location = new System.Drawing.Point(61, 35);
-            this.cmbStage.Name = "cmbStage";
-            this.cmbStage.Size = new System.Drawing.Size(100, 21);
-            this.cmbStage.TabIndex = 5;
-            this.cmbStage.SelectedIndexChanged += new System.EventHandler(this.cmbStage_SelectedIndexChanged);
+            this.label1.Text = "Поиск";
             // 
             // lblCaseCode
             // 
             this.lblCaseCode.AutoSize = true;
             this.lblCaseCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblCaseCode.ForeColor = System.Drawing.Color.DarkMagenta;
-            this.lblCaseCode.Location = new System.Drawing.Point(84, 136);
+            this.lblCaseCode.Location = new System.Drawing.Point(108, 51);
             this.lblCaseCode.Name = "lblCaseCode";
             this.lblCaseCode.Size = new System.Drawing.Size(118, 24);
             this.lblCaseCode.TabIndex = 6;
             this.lblCaseCode.Text = "lblCaseCode";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 63);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Tumor";
-            // 
-            // cmbTumor
-            // 
-            this.cmbTumor.FormattingEnabled = true;
-            this.cmbTumor.Location = new System.Drawing.Point(61, 60);
-            this.cmbTumor.Name = "cmbTumor";
-            this.cmbTumor.Size = new System.Drawing.Size(100, 21);
-            this.cmbTumor.TabIndex = 8;
-            this.cmbTumor.SelectedIndexChanged += new System.EventHandler(this.cmbTumor_SelectedIndexChanged);
-            // 
-            // lblTumor
-            // 
-            this.lblTumor.AutoSize = true;
-            this.lblTumor.Location = new System.Drawing.Point(167, 63);
-            this.lblTumor.Name = "lblTumor";
-            this.lblTumor.Size = new System.Drawing.Size(35, 13);
-            this.lblTumor.TabIndex = 9;
-            this.lblTumor.Text = "label4";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 88);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Nodus";
-            // 
-            // cmbNodus
-            // 
-            this.cmbNodus.FormattingEnabled = true;
-            this.cmbNodus.Location = new System.Drawing.Point(61, 85);
-            this.cmbNodus.Name = "cmbNodus";
-            this.cmbNodus.Size = new System.Drawing.Size(100, 21);
-            this.cmbNodus.TabIndex = 11;
-            this.cmbNodus.SelectedIndexChanged += new System.EventHandler(this.cmbNodus_SelectedIndexChanged);
-            // 
-            // lblNodules
-            // 
-            this.lblNodules.AutoSize = true;
-            this.lblNodules.Location = new System.Drawing.Point(167, 88);
-            this.lblNodules.Name = "lblNodules";
-            this.lblNodules.Size = new System.Drawing.Size(35, 13);
-            this.lblNodules.TabIndex = 12;
-            this.lblNodules.Text = "label5";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 113);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Metastases";
-            // 
-            // cmbMetastases
-            // 
-            this.cmbMetastases.FormattingEnabled = true;
-            this.cmbMetastases.Location = new System.Drawing.Point(61, 110);
-            this.cmbMetastases.Name = "cmbMetastases";
-            this.cmbMetastases.Size = new System.Drawing.Size(100, 21);
-            this.cmbMetastases.TabIndex = 14;
-            this.cmbMetastases.SelectedIndexChanged += new System.EventHandler(this.cmbMetastases_SelectedIndexChanged);
-            // 
-            // lblMetastases
-            // 
-            this.lblMetastases.AutoSize = true;
-            this.lblMetastases.Location = new System.Drawing.Point(167, 113);
-            this.lblMetastases.Name = "lblMetastases";
-            this.lblMetastases.Size = new System.Drawing.Size(35, 13);
-            this.lblMetastases.TabIndex = 15;
-            this.lblMetastases.Text = "label6";
             // 
             // sgData
             // 
@@ -255,13 +145,13 @@
             this.sgData.ShowCellToolTips = false;
             this.sgData.ShowEditingIcon = false;
             this.sgData.ShowRowErrors = false;
-            this.sgData.Size = new System.Drawing.Size(899, 307);
+            this.sgData.Size = new System.Drawing.Size(899, 393);
             this.sgData.TabIndex = 16;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 144);
+            this.label6.Location = new System.Drawing.Point(5, 59);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 13);
             this.label6.TabIndex = 17;
@@ -301,40 +191,27 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.lblParsed);
-            this.splitContainer2.Panel1.Controls.Add(this.btnParse);
-            this.splitContainer2.Panel1.Controls.Add(this.label1);
-            this.splitContainer2.Panel1.Controls.Add(this.lblTumor);
-            this.splitContainer2.Panel1.Controls.Add(this.label6);
-            this.splitContainer2.Panel1.Controls.Add(this.cmbTumor);
-            this.splitContainer2.Panel1.Controls.Add(this.edICD);
-            this.splitContainer2.Panel1.Controls.Add(this.label4);
-            this.splitContainer2.Panel1.Controls.Add(this.lblMetastases);
-            this.splitContainer2.Panel1.Controls.Add(this.label3);
-            this.splitContainer2.Panel1.Controls.Add(this.cmbNodus);
-            this.splitContainer2.Panel1.Controls.Add(this.cmbMetastases);
-            this.splitContainer2.Panel1.Controls.Add(this.lblCaseCode);
             this.splitContainer2.Panel1.Controls.Add(this.label2);
-            this.splitContainer2.Panel1.Controls.Add(this.lblNodules);
-            this.splitContainer2.Panel1.Controls.Add(this.label5);
-            this.splitContainer2.Panel1.Controls.Add(this.cmbStage);
+            this.splitContainer2.Panel1.Controls.Add(this.lblParsed);
+            this.splitContainer2.Panel1.Controls.Add(this.label1);
+            this.splitContainer2.Panel1.Controls.Add(this.label6);
+            this.splitContainer2.Panel1.Controls.Add(this.edICD);
+            this.splitContainer2.Panel1.Controls.Add(this.lblCaseCode);
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.sgData);
             this.splitContainer2.Size = new System.Drawing.Size(899, 476);
-            this.splitContainer2.SplitterDistance = 165;
+            this.splitContainer2.SplitterDistance = 79;
             this.splitContainer2.TabIndex = 18;
             // 
-            // btnParse
+            // lblParsed
             // 
-            this.btnParse.Location = new System.Drawing.Point(167, 9);
-            this.btnParse.Name = "btnParse";
-            this.btnParse.Size = new System.Drawing.Size(75, 23);
-            this.btnParse.TabIndex = 18;
-            this.btnParse.Text = "Parse";
-            this.btnParse.UseVisualStyleBackColor = true;
-            this.btnParse.Click += new System.EventHandler(this.btnParse_Click);
+            this.lblParsed.AutoSize = true;
+            this.lblParsed.Location = new System.Drawing.Point(165, 30);
+            this.lblParsed.Name = "lblParsed";
+            this.lblParsed.Size = new System.Drawing.Size(0, 13);
+            this.lblParsed.TabIndex = 19;
             // 
             // tcSuspect
             // 
@@ -417,13 +294,26 @@
             this.sgDirections.Size = new System.Drawing.Size(899, 411);
             this.sgDirections.TabIndex = 1;
             // 
-            // lblParsed
+            // label2
             // 
-            this.lblParsed.AutoSize = true;
-            this.lblParsed.Location = new System.Drawing.Point(257, 14);
-            this.lblParsed.Name = "lblParsed";
-            this.lblParsed.Size = new System.Drawing.Size(0, 13);
-            this.lblParsed.TabIndex = 19;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(10, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(534, 17);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "В поле поиска через пробел: код МКБ, клиническая стадия, значения T, N и M";
+            // 
+            // tbtnHelp
+            // 
+            this.tbtnHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnHelp.Image = ((System.Drawing.Image)(resources.GetObject("tbtnHelp.Image")));
+            this.tbtnHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnHelp.Name = "tbtnHelp";
+            this.tbtnHelp.Size = new System.Drawing.Size(23, 22);
+            this.tbtnHelp.Text = "toolStripButton1";
+            this.tbtnHelp.ToolTipText = "Показать справку";
+            this.tbtnHelp.Click += new System.EventHandler(this.OnHelp);
             // 
             // FormMain
             // 
@@ -471,18 +361,7 @@
         private System.Windows.Forms.ToolStripStatusLabel stbrMain;
         private System.Windows.Forms.TextBox edICD;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbStage;
         private System.Windows.Forms.Label lblCaseCode;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbTumor;
-        private System.Windows.Forms.Label lblTumor;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cmbNodus;
-        private System.Windows.Forms.Label lblNodules;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmbMetastases;
-        private System.Windows.Forms.Label lblMetastases;
         private System.Windows.Forms.DataGridView sgData;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TabControl pcMain;
@@ -494,8 +373,9 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DataGridView sgDirections;
         private System.Windows.Forms.Label lblDirection;
-        private System.Windows.Forms.Button btnParse;
         private System.Windows.Forms.Label lblParsed;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripButton tbtnHelp;
     }
 }
 

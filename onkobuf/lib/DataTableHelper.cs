@@ -16,6 +16,7 @@ namespace onkobuf.lib {
             dt.Columns.Add("Nodus", typeof(string));
             dt.Columns.Add("Metastasis", typeof(string));
             dt.Columns.Add("Code", typeof(string));
+            dt.Columns.Add("Rating", typeof(int));
 
             foreach (var item in list) {
                 var row = dt.NewRow();
@@ -27,6 +28,7 @@ namespace onkobuf.lib {
                 row["Nodus"] = item.Nodus;
                 row["Metastasis"] = item.Metastasis;
                 row["Code"] = item.Code;
+                row["Rating"] = item.Rating;
 
                 dt.Rows.Add(row);
             }

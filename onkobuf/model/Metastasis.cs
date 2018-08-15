@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using onkobuf.lib;
 
 namespace onkobuf.model {
     /// <summary>
@@ -58,7 +59,7 @@ namespace onkobuf.model {
             foreach (XmlNode node in root.SelectNodes("zap")) {
                 string id = node.SelectSingleNode("ID_M").InnerText;
                 string ds = node.SelectSingleNode("DS_M").InnerText;
-                string code = node.SelectSingleNode("KOD_M").InnerText;
+                string code = node.SelectSingleNode("KOD_M").InnerText.Capitalized();
                 string title = node.SelectSingleNode("M_NAME").InnerText;
                 nodules.Add(new Metastasis(id, ds, code, title));
             }

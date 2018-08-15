@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using onkobuf.lib;
 
 namespace onkobuf.model {
     /// <summary>
@@ -58,7 +59,7 @@ namespace onkobuf.model {
             foreach (XmlNode node in root.SelectNodes("zap")) {
                 string id = node.SelectSingleNode("ID_T").InnerText;
                 string ds = node.SelectSingleNode("DS_T").InnerText;
-                string code = node.SelectSingleNode("KOD_T").InnerText;
+                string code = node.SelectSingleNode("KOD_T").InnerText.Capitalized();
                 string title = node.SelectSingleNode("T_NAME").InnerText;
                 tumors.Add(new Tumor(id, ds, code, title));
             }

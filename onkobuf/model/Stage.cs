@@ -57,7 +57,7 @@ namespace onkobuf.model {
             foreach (XmlNode node in root.SelectNodes("zap")) {
                 string id = node.SelectSingleNode("ID_St").InnerText;
                 string ds = node.SelectSingleNode("DS_St").InnerText;
-                string code = node.SelectSingleNode("KOD_St").InnerText;
+                string code = node.SelectSingleNode("KOD_St").InnerText.ToUpper();
                 stages.Add(new Stage(id, ds, code));
             }
         }

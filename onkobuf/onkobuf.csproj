@@ -70,6 +70,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="lib\Capitalizer.cs" />
     <Compile Include="lib\DataTableHelper.cs" />
     <Compile Include="lib\StageParser.cs" />
     <Compile Include="model\Classifier.cs" />
@@ -125,6 +126,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <EmbeddedResource Include="resources\help16.bmp" />
+    <None Include="resources\readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="resources\SLTRAVM.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
