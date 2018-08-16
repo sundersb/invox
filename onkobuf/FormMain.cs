@@ -115,6 +115,10 @@ namespace onkobuf {
                 nagging = null;
             }
         }
+
+        private void OnExit(object sender, EventArgs e) {
+            Close();
+        }
     }
 
     /// <summary>

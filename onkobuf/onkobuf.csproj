@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <EmbeddedResource Include="resources\exit16.bmp" />
     <Content Include="resources\splash.jpg" />
     <EmbeddedResource Include="resources\help16.bmp" />
     <None Include="resources\readme.txt">

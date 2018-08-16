@@ -45,6 +45,8 @@
             this.edFilter = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.sgDirections = new System.Windows.Forms.DataGridView();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sgData)).BeginInit();
@@ -66,7 +68,9 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbtnSearch,
-            this.tbtnHelp});
+            this.tbtnHelp,
+            this.toolStripSeparator1,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(913, 25);
@@ -316,6 +320,21 @@
             this.sgDirections.Size = new System.Drawing.Size(899, 411);
             this.sgDirections.TabIndex = 1;
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "Выйти из программы";
+            this.toolStripButton1.Click += new System.EventHandler(this.OnExit);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,6 +397,8 @@
         private System.Windows.Forms.Label lblParsed;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripButton tbtnHelp;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 
