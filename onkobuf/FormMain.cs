@@ -8,10 +8,14 @@ namespace onkobuf {
     public partial class FormMain : Form {
         const string README_FILENAME = "readme.txt";
 
+        FormNag nagging = null;
         DataTable tableDirections;
 
         public FormMain() {
             InitializeComponent();
+
+            nagging = new FormNag();
+            nagging.Show(this);
 
             var query =
                 from cs in model.Classifier.All
@@ -64,6 +68,11 @@ namespace onkobuf {
                 sgData.DataSource = table;
                 lblCaseCode.DataBindings.Clear();
                 lblCaseCode.DataBindings.Add("Text", sgData.DataSource, "Code");
+
+                foreach (DataGridViewRow row in sgData.Rows) {
+                    if ((int)row.Cells["Rating"].Value == parsed.MaximumRating)
+                        row.DefaultCellStyle.BackColor = System.Drawing.Color.PaleGreen;
+                }
             } else {
                 // Z03.1
                 string title = "(Title like '%" + edFilter.Text.Replace("'", "''") + "%')";
@@ -98,6 +107,13 @@ namespace onkobuf {
         // Show readme
         private void OnHelp(object sender, EventArgs e) {
             System.Diagnostics.Process.Start(Options.ResourceDirectory + README_FILENAME);
+        }
+
+        private void FormMain_Load(object sender, EventArgs e) {
+            if (nagging != null) {
+                nagging.Close();
+                nagging = null;
+            }
         }
     }
 
