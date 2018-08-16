@@ -2,8 +2,8 @@
 <packet>
   <zglv>
     <type>OnkT</type>
-    <version>1.0</version>
-    <date>11.04.2018</date>
+    <version>2.0</version>
+    <date>13.08.2018</date>
   </zglv>
   <zap>
     <ID_T>1</ID_T>
@@ -466,7 +466,7 @@
     <ID_T>58</ID_T>
     <DS_T>C43</DS_T>
     <KOD_T>T1</KOD_T>
-    <T_NAME>Опухоль толщиной по Бреслоу  &#8804; 1 мм</T_NAME>
+    <T_NAME>Опухоль толщиной по Бреслоу  &#x2264; 1 мм</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -490,7 +490,7 @@
     <ID_T>61</ID_T>
     <DS_T>C43</DS_T>
     <KOD_T>T2</KOD_T>
-    <T_NAME>Опухоль толщиной по Бреслоу  &gt; 1 мм и &#8804; 2 мм</T_NAME>
+    <T_NAME>Опухоль толщиной по Бреслоу  &gt; 1 мм и &#x2264; 2 мм</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -514,7 +514,7 @@
     <ID_T>64</ID_T>
     <DS_T>C43</DS_T>
     <KOD_T>T3</KOD_T>
-    <T_NAME>Опухоль толщиной по Бреслоу  &gt; 2 мм и &#8804; 4 мм</T_NAME>
+    <T_NAME>Опухоль толщиной по Бреслоу  &gt; 2 мм и &#x2264; 4 мм</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -903,7 +903,7 @@
     <ID_T>118</ID_T>
     <DS_T>C64</DS_T>
     <KOD_T>T1</KOD_T>
-    <T_NAME>Опухоль &#8804;7 см в наибольшем измерении, не выходит за пределы почки</T_NAME>
+    <T_NAME>Опухоль &#x2264;7 см в наибольшем измерении, не выходит за пределы почки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -911,7 +911,7 @@
     <ID_T>119</ID_T>
     <DS_T>C64</DS_T>
     <KOD_T>T1a</KOD_T>
-    <T_NAME>опухоль &#8804;4 см в наибольшем измерении, не выходит за пределы почки;</T_NAME>
+    <T_NAME>опухоль &#x2264;4 см в наибольшем измерении, не выходит за пределы почки;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -927,7 +927,7 @@
     <ID_T>121</ID_T>
     <DS_T>C64</DS_T>
     <KOD_T>T2</KOD_T>
-    <T_NAME>Опухоль &#8805;7 см, в наибольшем измерении, не выходит за пределы почки:</T_NAME>
+    <T_NAME>Опухоль &#x2265;7 см, в наибольшем измерении, не выходит за пределы почки:</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -935,7 +935,7 @@
     <ID_T>122</ID_T>
     <DS_T>C64</DS_T>
     <KOD_T>T2a</KOD_T>
-    <T_NAME>Опухоль &gt;7 см, но &#8804;10 см, не выходит за пределы почки;</T_NAME>
+    <T_NAME>Опухоль &gt;7 см, но &#x2264;10 см, не выходит за пределы почки;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -1481,6 +1481,174 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <ID_T>188</ID_T>
     <DS_T/>
     <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>189</ID_T>
+    <DS_T>C97</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>190</ID_T>
+    <DS_T>C81</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>191</ID_T>
+    <DS_T>C82</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>192</ID_T>
+    <DS_T>C83</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>193</ID_T>
+    <DS_T>C84</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>194</ID_T>
+    <DS_T>C85</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>195</ID_T>
+    <DS_T>C86</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>196</ID_T>
+    <DS_T>C88</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>197</ID_T>
+    <DS_T>C90</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>198</ID_T>
+    <DS_T>C91</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>199</ID_T>
+    <DS_T>C92</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>200</ID_T>
+    <DS_T>C93</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>201</ID_T>
+    <DS_T>C94</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>202</ID_T>
+    <DS_T>C95</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>203</ID_T>
+    <DS_T>C96</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>204</ID_T>
+    <DS_T>C70</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>205</ID_T>
+    <DS_T>C71</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>206</ID_T>
+    <DS_T>C72</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>207</ID_T>
+    <DS_T>C69.1</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>208</ID_T>
+    <DS_T>C69.8</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>209</ID_T>
+    <DS_T>C69.9</DS_T>
+    <KOD_T>Нет</KOD_T>
     <T_NAME/>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>

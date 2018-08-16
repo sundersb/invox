@@ -2,8 +2,8 @@
 <packet>
   <zglv>
     <type>OnkStad</type>
-    <version>1.0</version>
-    <date>11.04.2018</date>
+    <version>2.0</version>
+    <date>13.08.2018</date>
   </zglv>
   <zap>
     <ID_St>1</ID_St>
@@ -204,14 +204,14 @@
   <zap>
     <ID_St>29</ID_St>
     <DS_St>C18</DS_St>
-    <KOD_St>IVa</KOD_St>
+    <KOD_St>IVA</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>30</ID_St>
     <DS_St>C18</DS_St>
-    <KOD_St>IVb</KOD_St>
+    <KOD_St>IVB</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -274,14 +274,14 @@
   <zap>
     <ID_St>39</ID_St>
     <DS_St>C19</DS_St>
-    <KOD_St>IVa</KOD_St>
+    <KOD_St>IVA</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>40</ID_St>
     <DS_St>C19</DS_St>
-    <KOD_St>IVb</KOD_St>
+    <KOD_St>IVB</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -687,7 +687,7 @@
   <zap>
     <ID_St>98</ID_St>
     <DS_St>C67</DS_St>
-    <KOD_St>0a</KOD_St>
+    <KOD_St>0A</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -827,14 +827,14 @@
   <zap>
     <ID_St>118</ID_St>
     <DS_St>C20</DS_St>
-    <KOD_St>IVa</KOD_St>
+    <KOD_St>IVA</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>119</ID_St>
     <DS_St>C20</DS_St>
-    <KOD_St>IVb</KOD_St>
+    <KOD_St>IVB</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -1129,6 +1129,181 @@
     <ID_St>161</ID_St>
     <DS_St/>
     <KOD_St>IVC</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>162</ID_St>
+    <DS_St>C97</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>163</ID_St>
+    <DS_St>C81</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>164</ID_St>
+    <DS_St>C82</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>165</ID_St>
+    <DS_St>C83</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>166</ID_St>
+    <DS_St>C84</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>167</ID_St>
+    <DS_St>C85</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>168</ID_St>
+    <DS_St>C86</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>169</ID_St>
+    <DS_St>C88</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>170</ID_St>
+    <DS_St>C90</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>171</ID_St>
+    <DS_St>C91</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>172</ID_St>
+    <DS_St>C92</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>173</ID_St>
+    <DS_St>C93</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>174</ID_St>
+    <DS_St>C94</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>175</ID_St>
+    <DS_St>C95</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>176</ID_St>
+    <DS_St>C96</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>177</ID_St>
+    <DS_St>C70</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>178</ID_St>
+    <DS_St>C71</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>179</ID_St>
+    <DS_St>C72</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>180</ID_St>
+    <DS_St>C69.3</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>181</ID_St>
+    <DS_St>C69.5</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>182</ID_St>
+    <DS_St>C69.6</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>183</ID_St>
+    <DS_St>C69.0</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>184</ID_St>
+    <DS_St>C69.1</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>185</ID_St>
+    <DS_St>C69.8</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>186</ID_St>
+    <DS_St>C69.9</DS_St>
+    <KOD_St>Нет</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
