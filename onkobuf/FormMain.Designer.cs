@@ -26,6 +26,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbtnSearch = new System.Windows.Forms.ToolStripButton();
+            this.tbtnHelp = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stbrMain = new System.Windows.Forms.ToolStripStatusLabel();
             this.edICD = new System.Windows.Forms.TextBox();
@@ -36,6 +37,7 @@
             this.pcMain = new System.Windows.Forms.TabControl();
             this.tcDiagnosis = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblParsed = new System.Windows.Forms.Label();
             this.tcSuspect = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -43,8 +45,6 @@
             this.edFilter = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.sgDirections = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbtnHelp = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sgData)).BeginInit();
@@ -84,6 +84,17 @@
             this.tbtnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.tbtnSearch.ToolTipText = "Обновить списки кодов по диагнозу (F2)";
             this.tbtnSearch.Click += new System.EventHandler(this.tbtnSearch_Click);
+            // 
+            // tbtnHelp
+            // 
+            this.tbtnHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnHelp.Image = ((System.Drawing.Image)(resources.GetObject("tbtnHelp.Image")));
+            this.tbtnHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnHelp.Name = "tbtnHelp";
+            this.tbtnHelp.Size = new System.Drawing.Size(23, 22);
+            this.tbtnHelp.Text = "toolStripButton1";
+            this.tbtnHelp.ToolTipText = "Показать справку";
+            this.tbtnHelp.Click += new System.EventHandler(this.OnHelp);
             // 
             // statusStrip1
             // 
@@ -134,6 +145,7 @@
             this.sgData.AllowUserToDeleteRows = false;
             this.sgData.AllowUserToResizeRows = false;
             this.sgData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.sgData.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.sgData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sgData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sgData.Location = new System.Drawing.Point(0, 0);
@@ -204,6 +216,16 @@
             this.splitContainer2.Size = new System.Drawing.Size(899, 476);
             this.splitContainer2.SplitterDistance = 79;
             this.splitContainer2.TabIndex = 18;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(10, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(534, 17);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "В поле поиска через пробел: код МКБ, клиническая стадия, значения T, N и M";
             // 
             // lblParsed
             // 
@@ -294,27 +316,6 @@
             this.sgDirections.Size = new System.Drawing.Size(899, 411);
             this.sgDirections.TabIndex = 1;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(10, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(534, 17);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "В поле поиска через пробел: код МКБ, клиническая стадия, значения T, N и M";
-            // 
-            // tbtnHelp
-            // 
-            this.tbtnHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbtnHelp.Image = ((System.Drawing.Image)(resources.GetObject("tbtnHelp.Image")));
-            this.tbtnHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbtnHelp.Name = "tbtnHelp";
-            this.tbtnHelp.Size = new System.Drawing.Size(23, 22);
-            this.tbtnHelp.Text = "toolStripButton1";
-            this.tbtnHelp.ToolTipText = "Показать справку";
-            this.tbtnHelp.Click += new System.EventHandler(this.OnHelp);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,6 +329,7 @@
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Онкология: коды";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormMain_KeyDown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
