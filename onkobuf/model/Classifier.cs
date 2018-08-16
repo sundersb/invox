@@ -82,6 +82,8 @@ namespace onkobuf.model {
 
         Classifier(string xmlName) {
             classifier = new List<Class>();
+
+            // Load from N006 dictionary
             XmlDocument xml = new XmlDocument();
             xml.Load(xmlName);
             XmlElement root = xml.DocumentElement;
@@ -95,28 +97,40 @@ namespace onkobuf.model {
                 classifier.Add(new Class(id, ds, s, t, n, m));
             }
 
-            List<Stage> ss = Stages.byDiagnosis(string.Empty);
-            List<Tumor> ts = Tumors.byDiagnosis(string.Empty);
-            List<Nodus> ns = Nodules.byDiagnosis(string.Empty);
-            List<Metastasis> ms = Metastases.byDiagnosis(string.Empty);
+            // Fill dictionary with possible combinations for empty diagnoses
+
+            // 1. Get all possible codes combinations
+            var validStages =
+                from g in classifier
+
+                join ss in model.Stages.All on g.Stage equals ss.ID
+                join ts in model.Tumors.All on g.Tumor equals ts.ID
+                join ns in model.Nodules.All on g.Nodus equals ns.ID
+                join ms in model.Metastases.All on g.Metastasis equals ms.ID
+
+                select new {
+                    Stage = ss.CodeArabic,
+                    Tumor = ts.Code,
+                    Nodus = ns.Code,
+                    Mts = ms.Code
+                };
 
             int i = classifier.Max(c => c.ID);
-            foreach (Stage stage in ss) {
-                foreach (Tumor tumor in ts) {
-                    foreach (Nodus nodus in ns) {
-                        foreach (Metastasis mts in ms) {
-                            ++i;
-                            classifier.Add(new Class(i,
-                                string.Empty,
-                                stage.ID,
-                                tumor.ID,
-                                nodus.ID,
-                                mts.ID));
-                        }
-                    }
-                }
-            }
 
+            // 2. Form new values
+            var aux =
+                from tpl in validStages.Distinct()
+
+                join ss in Stages.byDiagnosis(string.Empty) on tpl.Stage equals ss.CodeArabic
+                join ts in Tumors.byDiagnosis(string.Empty) on tpl.Tumor equals ts.Code
+                join ns in Nodules.byDiagnosis(string.Empty) on tpl.Nodus equals ns.Code
+                join ms in Metastases.byDiagnosis(string.Empty) on tpl.Mts equals ms.Code
+
+                select new Class(++i, string.Empty, ss.ID, ts.ID, ns.ID, ms.ID);
+
+            classifier.AddRange(aux.ToList());
+
+            // Free subsidiary dictionaries' resources
             Stages.Clear();
             Tumors.Clear();
             Nodules.Clear();

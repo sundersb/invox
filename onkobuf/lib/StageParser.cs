@@ -211,7 +211,7 @@ namespace onkobuf.lib {
         int CountRating(ClassesRecord rec) {
             int result = 0;
             
-            if (stage == rec.Stage || stageArabic == rec.StageArabic)
+            if (stageArabic == rec.StageArabic)
                 // Exact match criterium weighs more
                 result += MINOR_MATCH_RATING;
             else if (rec.StageArabic.StartsWith(stageArabic))

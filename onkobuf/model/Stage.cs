@@ -15,8 +15,17 @@ namespace onkobuf.model {
 
         public int ID { get { return id; } }
         public string Diagnosis { get { return ds; } }
+
+        /// <summary>
+        /// Clinical stage code
+        /// </summary>
         public string Code { get { return stageCode; } }
+
+        /// <summary>
+        /// Clinical stage code in arabic digits (more reliable for imprecise search)
+        /// </summary>
         public string CodeArabic { get { return codeArabic; } }
+
         public string DiagnosisCode { get { return stageCode + " (" + (string.IsNullOrEmpty(ds) ? "все" : ds) + ")"; } }
 
         public Stage(string anId, string aDS, string aCode) {
