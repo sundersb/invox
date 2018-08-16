@@ -90,5 +90,9 @@ namespace onkobuf.model {
 
             return ss.ToList();
         }
+
+        public static void Clear() {
+            instance = null;
+        }
     }
 }

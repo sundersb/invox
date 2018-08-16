@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using onkobuf.lib;
 
 namespace onkobuf.model {
     /// <summary>
@@ -10,10 +11,12 @@ namespace onkobuf.model {
         int id;
         string ds;
         string stageCode;
+        string codeArabic;
 
         public int ID { get { return id; } }
         public string Diagnosis { get { return ds; } }
         public string Code { get { return stageCode; } }
+        public string CodeArabic { get { return codeArabic; } }
         public string DiagnosisCode { get { return stageCode + " (" + (string.IsNullOrEmpty(ds) ? "все" : ds) + ")"; } }
 
         public Stage(string anId, string aDS, string aCode) {
@@ -21,6 +24,7 @@ namespace onkobuf.model {
             int.TryParse(anId, out id);
             ds = aDS;
             stageCode = aCode;
+            codeArabic = aCode.RomanToArabic();
         }
     }
 
@@ -85,6 +89,10 @@ namespace onkobuf.model {
                 ss = Instance.stages.Where(s => string.IsNullOrEmpty(s.Diagnosis)).ToArray();
 
             return ss.ToList();
+        }
+
+        public static void Clear() {
+            instance = null;
         }
     }
 }

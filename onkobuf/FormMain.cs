@@ -23,6 +23,7 @@ namespace onkobuf {
                     ID = cs.ID,
                     Diagnosis = cs.Diagnosis,
                     Stage = ss.Code,
+                    StageArabic = ss.CodeArabic,
                     Tumor = ts.Code,
                     Nodus = ns.Code,
                     Metastasis = ms.Code,
@@ -107,6 +108,7 @@ namespace onkobuf {
         public int ID { get; set; }
         public string Diagnosis { get; set; }
         public string Stage { get; set; }
+        public string StageArabic { get; set; }
         public string Tumor { get; set; }
         public string Nodus { get; set; }
         public string Metastasis { get; set; }

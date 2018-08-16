@@ -11,6 +11,7 @@ namespace onkobuf.lib {
         
         string icd;
         string stage;
+        string stageArabic;
         string tumor;
         string nodus;
         string mts;
@@ -18,6 +19,7 @@ namespace onkobuf.lib {
 
         public string Diagnosis { get { return icd; } }
         public string Stage { get { return stage; } }
+        public string StageArabic { get { return stageArabic; } }
         public string Tumor { get { return tumor; } }
         public string Nodus { get { return nodus; } }
         public string Metastasis { get { return mts; } }
@@ -167,6 +169,7 @@ namespace onkobuf.lib {
                         break;
                 }
             }
+            stageArabic = stage.ArabicToRoman();
 
             // Prettying up TNM fields
             if (!string.IsNullOrEmpty(tumor)) {
@@ -208,10 +211,10 @@ namespace onkobuf.lib {
         int CountRating(ClassesRecord rec) {
             int result = 0;
             
-            if (stage == rec.Stage)
+            if (stage == rec.Stage || stageArabic == rec.StageArabic)
                 // Exact match criterium weighs more
                 result += MINOR_MATCH_RATING;
-            else if (rec.Stage.StartsWith(stage))
+            else if (rec.StageArabic.StartsWith(stageArabic))
                 // Not precise match weighs less
                 ++result;
 
@@ -256,6 +259,7 @@ namespace onkobuf.lib {
                     ID = cs.ID,
                     Diagnosis = cs.Diagnosis,
                     Stage = ss.Code,
+                    StageArabic = ss.CodeArabic,
                     Tumor = ts.Code,
                     Nodus = ns.Code,
                     Metastasis = ms.Code,

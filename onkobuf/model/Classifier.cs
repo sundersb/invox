@@ -36,6 +36,15 @@ namespace onkobuf.model {
             int.TryParse(m, out metastasis);
         }
 
+        public Class(int anId, string aDS, int s, int t, int n, int m) {
+            id = anId;
+            ds = aDS;
+            stage = s;
+            tumor = t;
+            nodus = n;
+            metastasis = m;
+        }
+
         public bool Matches(Stage s, Tumor t, Nodus n, Metastasis m) {
             return (s == null || s.ID == stage)
                 && (t == null || t.ID == tumor)
@@ -85,6 +94,33 @@ namespace onkobuf.model {
                 string m = node.SelectSingleNode("ID_M").InnerText;
                 classifier.Add(new Class(id, ds, s, t, n, m));
             }
+
+            List<Stage> ss = Stages.byDiagnosis(string.Empty);
+            List<Tumor> ts = Tumors.byDiagnosis(string.Empty);
+            List<Nodus> ns = Nodules.byDiagnosis(string.Empty);
+            List<Metastasis> ms = Metastases.byDiagnosis(string.Empty);
+
+            int i = classifier.Max(c => c.ID);
+            foreach (Stage stage in ss) {
+                foreach (Tumor tumor in ts) {
+                    foreach (Nodus nodus in ns) {
+                        foreach (Metastasis mts in ms) {
+                            ++i;
+                            classifier.Add(new Class(i,
+                                string.Empty,
+                                stage.ID,
+                                tumor.ID,
+                                nodus.ID,
+                                mts.ID));
+                        }
+                    }
+                }
+            }
+
+            Stages.Clear();
+            Tumors.Clear();
+            Nodules.Clear();
+            Metastases.Clear();
         }
     }
 }
