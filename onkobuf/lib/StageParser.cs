@@ -63,6 +63,7 @@ namespace onkobuf.lib {
             // Line could be regexped as
             // c?\d\d(\.\d)?\s+([^\s]+)t([0-4](a[12]?|b|c)|a|is|x)\s*n([0123][abc]?|x)\s*m([01][abc]?|x)
             //      ...which is irrelevant anyway
+            stage = stageArabic = tumor = nodus = mts = string.Empty;
             Parse(line.ToUpper());
         }
 
@@ -169,7 +170,7 @@ namespace onkobuf.lib {
                         break;
                 }
             }
-            stageArabic = stage.ArabicToRoman();
+            stageArabic = stage.RomanToArabic();
 
             // Prettying up TNM fields
             if (!string.IsNullOrEmpty(tumor)) {
