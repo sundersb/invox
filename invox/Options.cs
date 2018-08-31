@@ -10,6 +10,7 @@ namespace invox {
     static class Options {
         const string PERIOD_LOCATION = "OUTS{0:d4}\\PERIOD{1:d2}\\";
         const string OUTPUT_LOCATION = "OUTPUT\\";
+        const string SPECIALITY_CLASSIFIER = "V021";
 
         static string baseDirectory;
         static string lpuLocation;
@@ -22,7 +23,6 @@ namespace invox {
         static string okato;
         static string defaultDocument;
         static Lib.Options options;
-        static Model.OrderSection section;
 
         public static NumberFormatInfo NumberFormat { get; private set; }
 
@@ -37,7 +37,7 @@ namespace invox {
         public static string LocalLpuCode { get { return localLpuCode; } }
         public static string InvoiceNumber { get { return options.InvoiceNumber; } }
         public static string PacketNumber { get { return options.PackageNumber; } }
-        public static Model.OrderSection Section { get { return section; } }
+        public static string SpecialityClassifier { get { return SPECIALITY_CLASSIFIER; } }
 
         static string GetVersion() {
             return Assembly.GetExecutingAssembly().GetName().Version.ToString();

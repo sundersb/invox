@@ -13,7 +13,16 @@ namespace invox.Model {
         Child
     }
 
-    class InvoicePerson : Base {
+    /// <summary>
+    /// Сведения о пациенте (SL_LIST/ZAP/PACIENT)
+    /// <remarks>
+    /// Вложен в
+    ///     InvoiceRecord ZAP (Single)
+    /// Содержит
+    /// </remarks>
+    /// D1, D2, D3 - OK
+    /// </summary>
+    class InvoicePerson {
         string id;
         string policyType;
         string policySerial;
@@ -31,7 +40,7 @@ namespace invox.Model {
         string newbornCode;
         int newbornWeight;
 
-        public override void Write(Lib.XmlExporter xml, Data.IInvoice pool) {
+        public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section, InvoiceRecord irec) {
             xml.Writer.WriteStartElement("PACIENT");
 
             xml.Writer.WriteElementString("ID_PAC", id);
@@ -46,7 +55,7 @@ namespace invox.Model {
             xml.WriteIfValid("SMO_OK", smoOkato);
             xml.WriteIfValid("SMO_NAM", smoName);
 
-            switch(Options.Section) {
+            switch(section) {
                 case OrderSection.D1:
                     WriteD1(xml);
                     break;
