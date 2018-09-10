@@ -14,7 +14,7 @@ namespace invox.Model {
     }
 
     /// <summary>
-    /// Сведения о пациенте (SL_LIST/ZAP/PACIENT)
+    /// Сведения о пациенте (ZL_LIST/ZAP/PACIENT)
     /// <remarks>
     /// Вложен в
     ///     InvoiceRecord ZAP (Single)
@@ -40,7 +40,31 @@ namespace invox.Model {
         string newbornCode;
         int newbornWeight;
 
-        public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section, InvoiceRecord irec) {
+        /// <summary>
+        /// Save person data to invoice XML
+        /// </summary>
+        /// <param name="xml">XML exporter to write to</param>
+        /// <param name="section">Order #59 section</param>
+        public void Write(Lib.XmlExporter xml, OrderSection section) {
+            switch(section) {
+                case OrderSection.D1:
+                    WriteD1(xml);
+                    break;
+                case OrderSection.D2:
+                    WriteD2(xml);
+                    break;
+                case OrderSection.D3:
+                    if (!string.IsNullOrEmpty(newbornCode))
+                        xml.Writer.WriteElementString("NOVOR", newbornCode);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Save person data to treatment invoice
+        /// </summary>
+        /// <param name="xml">XML exporter to use</param>
+        public void WriteD1(Lib.XmlExporter xml) {
             xml.Writer.WriteStartElement("PACIENT");
 
             xml.Writer.WriteElementString("ID_PAC", id);
@@ -55,23 +79,6 @@ namespace invox.Model {
             xml.WriteIfValid("SMO_OK", smoOkato);
             xml.WriteIfValid("SMO_NAM", smoName);
 
-            switch(section) {
-                case OrderSection.D1:
-                    WriteD1(xml);
-                    break;
-                case OrderSection.D2:
-                    WriteD2(xml);
-                    break;
-                case OrderSection.D3:
-                    if (!string.IsNullOrEmpty(newbornCode))
-                        xml.Writer.WriteElementString("NOVOR", newbornCode);
-                    break;
-            }
-
-            xml.Writer.WriteEndElement();
-        }
-
-        void WriteD1(Lib.XmlExporter xml) {
             if (disability != Disability.NA)
                 xml.Writer.WriteElementString("INV", ((int)disability).ToString());
 
@@ -82,9 +89,29 @@ namespace invox.Model {
                 xml.Writer.WriteElementString("NOVOR", newbornCode);
                 xml.Writer.WriteElementString("VNOV_D", newbornWeight.ToString("D4"));
             }
+
+            xml.Writer.WriteEndElement();
         }
 
-        void WriteD2(Lib.XmlExporter xml) {
+        /// <summary>
+        /// Save person data to hi-tech invoice
+        /// </summary>
+        /// <param name="xml">XML exporter to use</param>
+        public void WriteD2(Lib.XmlExporter xml) {
+            xml.Writer.WriteStartElement("PACIENT");
+
+            xml.Writer.WriteElementString("ID_PAC", id);
+
+            xml.Writer.WriteElementString("VPOLIS", policyType);
+            xml.WriteIfValid("SPOLIS", policySerial);
+            xml.WriteIfValid("NPOLIS", policyNumber);
+
+            xml.WriteIfValid("ST_OKATO", assuranceOkato);
+            xml.WriteIfValid("SMO", smoCode);
+            xml.WriteIfValid("SMO_OGRN", smoOgrn);
+            xml.WriteIfValid("SMO_OK", smoOkato);
+            xml.WriteIfValid("SMO_NAM", smoName);
+
             if (directedToSE)
                 xml.Writer.WriteElementString("MSE", "1");
 
@@ -92,6 +119,32 @@ namespace invox.Model {
                 xml.Writer.WriteElementString("NOVOR", newbornCode);
                 xml.Writer.WriteElementString("VNOV_D", newbornWeight.ToString("D4"));
             }
+
+            xml.Writer.WriteEndElement();
+        }
+
+        /// <summary>
+        /// Save person data to dispanserisation invoice
+        /// </summary>
+        /// <param name="xml">XML exporter to use</param>
+        public void WriteD3(Lib.XmlExporter xml) {
+            xml.Writer.WriteStartElement("PACIENT");
+
+            xml.Writer.WriteElementString("ID_PAC", id);
+
+            xml.Writer.WriteElementString("VPOLIS", policyType);
+            xml.WriteIfValid("SPOLIS", policySerial);
+            xml.WriteIfValid("NPOLIS", policyNumber);
+
+            xml.WriteIfValid("ST_OKATO", assuranceOkato);
+            xml.WriteIfValid("SMO", smoCode);
+            xml.WriteIfValid("SMO_OGRN", smoOgrn);
+            xml.WriteIfValid("SMO_OK", smoOkato);
+            xml.WriteIfValid("SMO_NAM", smoName);
+            if (!string.IsNullOrEmpty(newbornCode))
+                xml.Writer.WriteElementString("NOVOR", newbornCode);
+
+            xml.Writer.WriteEndElement();
         }
     }
 }

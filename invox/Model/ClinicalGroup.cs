@@ -5,7 +5,7 @@ using System.Text;
 
 namespace invox.Model {
     /// <summary>
-    /// Коэффициенты сложности лечения пациента  (SL_LIST/ZAP/Z_SL/SL/KSG_KPG/SL_KOEF)
+    /// Коэффициенты сложности лечения пациента  (ZL_LIST/ZAP/Z_SL/SL/KSG_KPG/SL_KOEF)
     /// Сведения о примененных коэффициентах сложности лечения пациента.
     /// Указывается при наличии IT_SL.
     /// </summary>
@@ -35,7 +35,7 @@ namespace invox.Model {
     }
 
     /// <summary>
-    /// Сведения о КСГ/КПГ (SL_LIST/ZAP/Z_SL/SL/KSG_KPG)
+    /// Сведения о КСГ/КПГ (ZL_LIST/ZAP/Z_SL/SL/KSG_KPG)
     /// Заполняется при оплате случая лечения по КСГ или КПГ
     /// <remarks>
     /// Вложен в

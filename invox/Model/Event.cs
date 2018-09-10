@@ -26,7 +26,7 @@ namespace invox.Model {
     }
 
     /// <summary>
-    /// Сведения о случае (SL_LIST/ZAP/Z_SL/SL)
+    /// Сведения о случае (ZL_LIST/ZAP/Z_SL/SL)
     /// Может указываться несколько раз для случаев с внутрибольничным переводом при оплате по КСГ, обращениях по заболеваниям в амбулаторных условиях.
     /// <remarks>
     /// Вложен в
@@ -67,6 +67,12 @@ namespace invox.Model {
         double tariff;
         double total;
         string comment;
+
+        string hiTechKind;
+        string hiTechMethod;
+        DateTime hiTechCheckDate;
+        string hiTechCheckNumber;
+        DateTime hiTechPlannedHospitalizationDate;
 
         bool isOncology;
 
@@ -239,9 +245,42 @@ namespace invox.Model {
         /// </summary>
         public string Comment { get { return comment; } }
 
+        /// <summary>
+        /// Вид высокотехнологичной медицинской помощи
+        /// Классификатор видов высокотехнологичной медицинской помощи. Справочник V018 Приложения А
+        /// </summary>
+        public string HiTechKind { get { return hiTechKind; } }
+        
+        /// <summary>
+        /// Метод высокотехнологичной медицинской помощи
+        /// Классификатор методов высокотехнологичной медицинской помощи. Справочник V019 Приложения А
+        /// </summary>
+        public string HiTechMethod { get { return hiTechMethod; } }
+
+        /// <summary>
+        /// Дата выдачи талона на ВМП
+        /// Заполняется на основании талона на ВМП
+        /// </summary>
+        public DateTime HiTechCheckDate { get { return hiTechCheckDate; } }
+
+        /// <summary>
+        /// Номер талона на ВМП
+        /// </summary>
+        public string HiTechCheckNumber { get { return hiTechCheckNumber; } }
+
+        /// <summary>
+        /// Дата планируемой госпитализации
+        /// </summary>
+        public DateTime HiTechPlannedHospitalizationDate { get { return hiTechPlannedHospitalizationDate; } }
+
+        /// <summary>
+        /// Save invoice event to XML
+        /// </summary>
+        /// <param name="xml">XML exporter to save into</param>
+        /// <param name="pool">Datapool</param>
+        /// <param name="section">Section of the order #59</param>
+        /// <param name="irec">Invoice record to which this event belongs</param>
         public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section, InvoiceRecord irec) {
-            xml.Writer.WriteStartElement("SL");
-            xml.Writer.WriteElementString("SL_ID", id);
             switch (section) {
                 case OrderSection.D1:
                     WriteD1(xml, pool, irec);
@@ -253,35 +292,18 @@ namespace invox.Model {
                     WriteD3(xml, pool, irec);
                     break;
             }
-
-            if (quantity > 0)
-                xml.Writer.WriteElementString("ED_COL", quantity.ToString("F2", Options.NumberFormat));
-
-            if (tariff > 0)
-                xml.Writer.WriteElementString("ED_COL", tariff.ToString("F2", Options.NumberFormat));
-
-            xml.Writer.WriteElementString("SUM_M", total.ToString("F2", Options.NumberFormat));
-
-            // Сведения о санкциях
-            // Описывает санкции, примененные в рамках данного случая.
-            foreach (Sanction s in pool.LoadSanctions())
-                s.Write(xml, pool, this);
-
-            // Сведения об услуге
-            // Описывает услуги, оказанные в рамках данного случая.
-            // Допускается указание услуг с нулевой стоимостью.
-            // Указание услуг с нулевой стоимостью обязательно, если условие их оказания является тарифообразующим (например, при оплате по КСГ).
-            foreach (Service s in pool.LoadServices()) {
-                s.Oncology = isOncology;
-                s.SuspectOncology = suspectOncology;
-                s.Write(xml, pool, section, irec, this);
-            }
-
-            xml.WriteIfValid("COMENTSL", comment);
-            xml.Writer.WriteEndElement();
         }
 
-        void WriteD1 (Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+        /// <summary>
+        /// Save treatment case to XML
+        /// </summary>
+        /// <param name="xml">XML exporter to save into</param>
+        /// <param name="pool">Datapool</param>
+        /// <param name="irec">Invoice record to which this event belongs</param>
+        public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+            xml.Writer.WriteStartElement("SL");
+
+            xml.Writer.WriteElementString("SL_ID", id);
             xml.WriteIfValid("LPU_1", unit);
             xml.WriteIfValid("PODR", dept);
             xml.Writer.WriteElementString("PROFIL", profile);
@@ -328,7 +350,7 @@ namespace invox.Model {
             isOncology = OnkologyTreat.IsOnkologyTreat(this, pool);
             if (isOncology) {
                 OnkologyTreat treat = pool.GetOnkologyTreat();
-                if (treat != null) treat.Write(xml, pool, OrderSection.D1);
+                if (treat != null) treat.Write(xml, pool);
             }
 
             if (clinicalGroup != null) clinicalGroup.Write(xml, pool, this);
@@ -343,12 +365,121 @@ namespace invox.Model {
             xml.Writer.WriteElementString("VERS_SPEC", Options.SpecialityClassifier);
 
             xml.Writer.WriteElementString("IDDOKT", doctorCode);
+
+            if (quantity > 0)
+                xml.Writer.WriteElementString("ED_COL", quantity.ToString("F2", Options.NumberFormat));
+
+            if (tariff > 0)
+                xml.Writer.WriteElementString("TARIF", tariff.ToString("F2", Options.NumberFormat));
+
+            xml.Writer.WriteElementString("SUM_M", total.ToString("F2", Options.NumberFormat));
+
+            // Сведения о санкциях
+            // Описывает санкции, примененные в рамках данного случая.
+            foreach (Sanction s in pool.LoadSanctions())
+                s.Write(xml, pool, this);
+
+            // Сведения об услуге
+            // Описывает услуги, оказанные в рамках данного случая.
+            // Допускается указание услуг с нулевой стоимостью.
+            // Указание услуг с нулевой стоимостью обязательно, если условие их оказания является тарифообразующим (например, при оплате по КСГ).
+            foreach (Service s in pool.LoadServices()) {
+                s.Oncology = isOncology;
+                s.SuspectOncology = suspectOncology;
+                s.WriteD1(xml, pool, irec, this);
+            }
+
+            xml.WriteIfValid("COMENTSL", comment);
+            xml.Writer.WriteEndElement();
         }
 
-        void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+        /// <summary>
+        /// Save hi-tech aid case to XML
+        /// </summary>
+        /// <param name="xml">XML exporter to save into</param>
+        /// <param name="pool">Datapool</param>
+        /// <param name="irec">Invoice record to which this event belongs</param>
+        public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+            xml.Writer.WriteStartElement("SL");
+            xml.Writer.WriteElementString("SL_ID", id);
+            xml.Writer.WriteElementString("VID_HMP", hiTechKind);
+            xml.Writer.WriteElementString("METOD_HMP", hiTechMethod);
+            xml.WriteIfValid("LPU_1", unit);
+            xml.WriteIfValid("PODR", dept);
+            xml.Writer.WriteElementString("PROFIL", profile);
+            xml.WriteIfValid("PROFIL_K", bedProfile);
+            xml.WriteBool("DET", child);
+
+            xml.Writer.WriteElementString("TAL_D", hiTechCheckDate.AsXml());
+            xml.Writer.WriteElementString("TAL_NUM", hiTechCheckNumber);
+            xml.Writer.WriteElementString("TAL_P", hiTechPlannedHospitalizationDate.AsXml());
+
+            xml.Writer.WriteElementString("NHISTORY", cardNumber);
+            xml.Writer.WriteElementString("DATE_1", dateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_2", dateTill.AsXml());
+            xml.WriteIfValid("DS0", dsPrimary);
+            xml.Writer.WriteElementString("DS1", dsMain);
+
+            foreach (string ds in pool.LoadConcurrentDiagnoses())
+                xml.Writer.WriteElementString("DS2", ds);
+
+            foreach (string ds in pool.LoadComplicationDiagnoses())
+                xml.Writer.WriteElementString("DS3", ds);
+
+            if (suspectOncology)
+                xml.Writer.WriteElementString("DS_ONK", "1");
+
+            foreach (string mes in pool.LoadMesCodes())
+                xml.Writer.WriteElementString("CODE_MES1", mes);
+
+            xml.WriteIfValid("CODE_MES2", concurrentMesCode);
+
+            isOncology = OnkologyTreat.IsOnkologyTreat(this, pool);
+            if (isOncology) {
+                OnkologyTreat treat = pool.GetOnkologyTreat();
+                if (treat != null) treat.Write(xml, pool);
+            }
+
+            xml.Writer.WriteElementString("PRVS", specialityCode);
+            xml.Writer.WriteElementString("VERS_SPEC", Options.SpecialityClassifier);
+            xml.Writer.WriteElementString("IDDOKT", doctorCode);
+
+            if (quantity > 0)
+                xml.Writer.WriteElementString("ED_COL", quantity.ToString("F2", Options.NumberFormat));
+
+            if (tariff > 0)
+                xml.Writer.WriteElementString("TARIF", tariff.ToString("F2", Options.NumberFormat));
+
+            xml.Writer.WriteElementString("SUM_M", total.ToString("F2", Options.NumberFormat));
+
+            // Сведения о санкциях
+            // Описывает санкции, примененные в рамках данного случая.
+            foreach (Sanction s in pool.LoadSanctions())
+                s.Write(xml, pool, this);
+
+            // Сведения об услуге
+            // Описывает услуги, оказанные в рамках данного случая.
+            // Допускается указание услуг с нулевой стоимостью.
+            // Указание услуг с нулевой стоимостью обязательно, если условие их оказания является тарифообразующим (например, при оплате по КСГ).
+            foreach (Service s in pool.LoadServices()) {
+                s.Oncology = isOncology;
+                s.SuspectOncology = suspectOncology;
+                s.WriteD2(xml, pool, irec, this);
+            }
+
+            xml.WriteIfValid("COMENTSL", comment);
+            xml.Writer.WriteEndElement();
         }
 
-        void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+        /// <summary>
+        /// Save dispanserisation case to XML
+        /// </summary>
+        /// <param name="xml">XML exporter to save into</param>
+        /// <param name="pool">Datapool</param>
+        /// <param name="irec">Invoice record to which this event belongs</param>
+        public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+            xml.Writer.WriteStartElement("SL");
+            xml.Writer.WriteElementString("SL_ID", id);
             xml.WriteIfValid("LPU_1", unit);
             xml.Writer.WriteElementString("NHISTORY", cardNumber);
             xml.Writer.WriteElementString("DATE_1", dateFrom.AsXml());
@@ -363,6 +494,37 @@ namespace invox.Model {
 
             xml.Writer.WriteElementString("PR_D_N", ((int)dispSupervision).ToString());
 
+            foreach (ConcomitantDisease d in pool.GetConcomitantDiseases())
+                d.Write(xml);
+
+            foreach (DispAssignment d in pool.GetDispanserisationAssignmetns())
+                d.Write(xml);
+
+            if (quantity > 0)
+                xml.Writer.WriteElementString("ED_COL", quantity.ToString("F2", Options.NumberFormat));
+
+            if (tariff > 0)
+                xml.Writer.WriteElementString("TARIF", tariff.ToString("F2", Options.NumberFormat));
+
+            xml.Writer.WriteElementString("SUM_M", total.ToString("F2", Options.NumberFormat));
+
+            // Сведения о санкциях
+            // Описывает санкции, примененные в рамках данного случая.
+            foreach (Sanction s in pool.LoadSanctions())
+                s.Write(xml, pool, this);
+
+            // Сведения об услуге
+            // Описывает услуги, оказанные в рамках данного случая.
+            // Допускается указание услуг с нулевой стоимостью.
+            // Указание услуг с нулевой стоимостью обязательно, если условие их оказания является тарифообразующим (например, при оплате по КСГ).
+            foreach (Service s in pool.LoadServices()) {
+                s.Oncology = isOncology;
+                s.SuspectOncology = suspectOncology;
+                s.WriteD3(xml, pool, irec, this);
+            }
+
+            xml.WriteIfValid("COMENTSL", comment);
+            xml.Writer.WriteEndElement();
         }
     }
 }

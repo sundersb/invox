@@ -6,7 +6,7 @@ using invox.Lib;
 
 namespace invox.Model {
     /// <summary>
-    /// Сведения об услуге (SL_LIST/ZAP/Z_SL/SL/USL)
+    /// Сведения об услуге (ZL_LIST/ZAP/Z_SL/SL/USL)
     /// <remarks>
     /// Вложен в
     ///     Event SL (Multiple)
@@ -45,6 +45,8 @@ namespace invox.Model {
         string doctorCode;
         IncompleteServiceReason incomplete;
         string comment;
+
+        bool refusal;
 
         public bool Oncology;
         public bool SuspectOncology;
@@ -147,7 +149,43 @@ namespace invox.Model {
         /// </summary>
         public string Comment { get { return comment; } }
 
+        /// <summary>
+        /// Признак отказа от услуги
+        /// Значение по умолчанию: "0".
+        /// В случае отказа указывается значение "1".
+        /// </summary>
+        public bool Refusal { get { return refusal; } }
+
+        /// <summary>
+        /// Save service instance to a XML
+        /// </summary>
+        /// <param name="xml">XML exporter to use</param>
+        /// <param name="pool">Datapool</param>
+        /// <param name="section">Section of the order #59</param>
+        /// <param name="irec">Invoice record parental to the event</param>
+        /// <param name="evt">Event to which this service belongs</param>
         public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section, InvoiceRecord irec, Event evt) {
+            switch (section) {
+                case OrderSection.D1:
+                    WriteD1(xml, pool, irec, evt);
+                    break;
+                case OrderSection.D2:
+                    WriteD2(xml, pool, irec, evt);
+                    break;
+                case OrderSection.D3:
+                    WriteD3(xml, pool, irec, evt);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Save service for a treatment case
+        /// </summary>
+        /// <param name="xml">XML exporter to use</param>
+        /// <param name="pool">Datapool</param>
+        /// <param name="irec">Invoice record parental to the event</param>
+        /// <param name="evt">Event to which this service belongs</param>
+        public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Event evt) {
             xml.Writer.WriteStartElement("USL");
 
             xml.Writer.WriteElementString("IDSERV", id);
@@ -190,6 +228,80 @@ namespace invox.Model {
 
             xml.WriteIfValid("COMENTU", comment);
 
+            xml.Writer.WriteEndElement();
+        }
+
+        /// <summary>
+        /// Save service for a hi-tech case
+        /// </summary>
+        /// <param name="xml">XML exporter to use</param>
+        /// <param name="pool">Datapool</param>
+        /// <param name="irec">Invoice record parental to the event</param>
+        /// <param name="evt">Event to which this service belongs</param>
+        public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Event evt) {
+            xml.Writer.WriteStartElement("USL");
+
+            xml.Writer.WriteElementString("IDSERV", id);
+            xml.Writer.WriteElementString("LPU", Options.LpuCode);
+            xml.WriteIfValid("LPU_1", unit);
+            xml.WriteIfValid("PODR", dept);
+            xml.Writer.WriteElementString("PROFIL", profileCode);
+            xml.WriteIfValid("VID_VME", interventionKind);
+            xml.WriteBool("DET", child);
+            xml.Writer.WriteElementString("DATE_IN", dateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_OUT", dateTill.AsXml());
+            xml.Writer.WriteElementString("DS", diagnosis);
+            xml.Writer.WriteElementString("CODE_USL", serviceCode);
+            xml.Writer.WriteElementString("KOL_USL", quantity.ToString("F2", Options.NumberFormat));
+
+            if (tariff > 0)
+                xml.Writer.WriteElementString("TARIF", tariff.ToString("F2", Options.NumberFormat));
+
+            xml.Writer.WriteElementString("SUMV_USL", total.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("PRVS", specialityCode);
+            xml.Writer.WriteElementString("CODE_MD", doctorCode);
+
+            if (SuspectOncology) {
+                // Направления
+                // Заполняется только в случае оформления направления при подозрении на злокачественное новообразование (DS_ONK=1)
+                foreach (OncologyDirection d in pool.LoadOncologyDirections())
+                    d.Write(xml);
+            }
+
+            if (Oncology) {
+                OncologyService o = pool.GetOncologyService();
+                if (o != null) o.Write(xml);
+            }
+            xml.WriteIfValid("COMENTU", comment);
+
+            xml.Writer.WriteEndElement();
+        }
+
+        /// <summary>
+        /// Save service for a dispanserisation case
+        /// </summary>
+        /// <param name="xml">XML exporter to use</param>
+        /// <param name="pool">Datapool</param>
+        /// <param name="irec">Invoice record parental to the event</param>
+        /// <param name="evt">Event to which this service belongs</param>
+        public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Event evt) {
+            xml.Writer.WriteStartElement("USL");
+
+            xml.Writer.WriteElementString("IDSERV", id);
+            xml.Writer.WriteElementString("LPU", Options.LpuCode);
+            xml.WriteIfValid("LPU_1", unit);
+            xml.Writer.WriteElementString("DATE_IN", dateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_OUT", dateTill.AsXml());
+            xml.WriteBool("P_OTK", refusal);
+            xml.Writer.WriteElementString("CODE_USL", serviceCode);
+
+            if (tariff > 0)
+                xml.Writer.WriteElementString("TARIF", tariff.ToString("F2", Options.NumberFormat));
+
+            xml.Writer.WriteElementString("SUMV_USL", total.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("PRVS", specialityCode);
+            xml.Writer.WriteElementString("CODE_MD", doctorCode);
+            xml.WriteIfValid("COMENTU", comment);
             xml.Writer.WriteEndElement();
         }
     }

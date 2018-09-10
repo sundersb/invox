@@ -37,7 +37,7 @@ namespace invox.Model {
         /// </summary>
         public string Result { get { return result; } }
 
-        public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section) {
+        public void Write(Lib.XmlExporter xml) {
             xml.Writer.WriteStartElement("B_DIAG");
 
             xml.Writer.WriteElementString("DIAG_TIP", ((int)type).ToString());
@@ -80,7 +80,7 @@ namespace invox.Model {
         /// </summary>
         public DateTime Date { get { return date; } }
 
-        public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section) {
+        public void Write(Lib.XmlExporter xml) {
             xml.Writer.WriteStartElement("B_PROT");
 
             xml.Writer.WriteElementString("PROT", ((int)code).ToString());
@@ -100,7 +100,7 @@ namespace invox.Model {
     }
 
     /// <summary>
-    /// Приказ 59 от 30.03.2018 - Онкология SL_LIST/ZAP/SL/Z_SL/ONK_SL
+    /// Приказ 59 от 30.03.2018 - Онкология ZL_LIST/ZAP/SL/Z_SL/ONK_SL
     /// <remarks>Сведения о случае лечения онкологического заболевания
     ///Обязательно для заполнения при установленном основном диагнозе злокачественного новообразования (первый символ кода диагноза по МКБ-10 - "С") и нейтропении (код диагноза по МКБ-10 D70 с сопутствующим диагнозом C00-C80 или C97).
     ///Не подлежит заполнению при DS_ONK=1 или P_CEL=1.3 (диспансерное наблюдение (коды услуг – 050013, 050014))
@@ -215,7 +215,7 @@ namespace invox.Model {
             return false;
         }
 
-        public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section) {
+        public void Write(Lib.XmlExporter xml, Data.IInvoice pool) {
             xml.Writer.WriteStartElement("ONK_SL");
 
             if (reason != OnkologyReason.None)
@@ -232,10 +232,10 @@ namespace invox.Model {
                 xml.Writer.WriteElementString("MTSTZ", "1");
 
             foreach (OnkologyDiagnosticType dt in pool.LoadOnkologicalDiagnosticTypes())
-                dt.Write(xml, pool, section);
+                dt.Write(xml);
 
             foreach (OnkologyRefusal r in pool.LoadOnkologicalRefusal())
-                r.Write(xml, pool, section);
+                r.Write(xml);
 
             if (beamLoad > 0)
                 xml.Writer.WriteElementString("SOD", beamLoad.ToString("F2", Options.NumberFormat));

@@ -48,9 +48,13 @@
     <Compile Include="Lib\DateHelper.cs" />
     <Compile Include="Lib\Logger.cs" />
     <Compile Include="Lib\Options.cs" />
+    <Compile Include="Lib\Progress.cs" />
     <Compile Include="Lib\XmlExporter.cs" />
     <Compile Include="Model\ClinicalGroup.cs" />
+    <Compile Include="Model\ConcomitantDisease.cs" />
+    <Compile Include="Model\DispAssignment.cs" />
     <Compile Include="Model\Event.cs" />
+    <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\InvoicePerson.cs" />
     <Compile Include="Model\InvoiceRecord.cs" />
     <Compile Include="Model\OncologyDirection.cs" />

@@ -23,13 +23,13 @@ namespace invox.Model {
     }
 
     /// <summary>
-    /// Сведения о законченном случае (SL_LIST/ZAP/Z_SL)
+    /// Сведения о законченном случае (ZL_LIST/ZAP/Z_SL)
     /// Сведения о законченном случае оказания медицинской помощи
     /// <remarks>
     /// Вложен в
     ///     InvoiceRecord ZAP (Single)
     /// Содержит
-    ///     Event Z_SL (Multiple)
+    ///     Event SL (Multiple)
     /// </remarks>
     /// </summary>
     class Recourse {
@@ -52,6 +52,10 @@ namespace invox.Model {
         PayType payType;
         double acceptedSum;
         double deniedSum;
+
+        bool mobileBrigade;
+        bool dispRefusal;
+        string dispResult;
 
         /// <summary>
         /// Номер записи в реестре законченных случаев
@@ -167,20 +171,53 @@ namespace invox.Model {
         /// Итоговые санкции определяются на основании санкций, описанных ниже
         /// </summary>
         public double DeniedSum { get { return deniedSum; } }
+
+        /// <summary>
+        /// Признак мобильной медицинской бригады (для Д3)
+        /// </summary>
+        public bool MobileBrigade { get { return mobileBrigade; } }
+
+        /// <summary>
+        /// Признак отказа (D3)
+        /// </summary>
+        public bool DispanserisationRefusal { get { return dispRefusal; } }
         
+        /// <summary>
+        /// Результат диспансеризации
+        /// Классификатор результатов диспансеризации V017
+        /// </summary>
+        public string DispanserisationResult { get { return dispResult; } }
+
         public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section, InvoiceRecord irec) {
+            switch (section) {
+                case OrderSection.D1:
+                    WriteD1(xml, pool, irec);
+                    break;
+                case OrderSection.D2:
+                    WriteD2(xml, pool, irec);
+                    break;
+                case OrderSection.D3:
+                    WriteD3(xml, pool, irec);
+                    break;
+            }
+        }
+
+        public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
             xml.Writer.WriteStartElement("Z_SL");
 
             xml.Writer.WriteElementString("IDCASE", id);
             xml.Writer.WriteElementString("USL_OK", conditions.ToString());
             xml.Writer.WriteElementString("VIDPOM", aidKind.ToString());
+
             xml.Writer.WriteElementString("FOR_POM", aidForm.ToString());
-            
+
             if (!string.IsNullOrEmpty(directedFrom)) {
                 xml.Writer.WriteElementString("NPR_MO", directedFrom);
                 xml.Writer.WriteElementString("NPR_DATE", directionDate.AsXml());
             }
+
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
+
             xml.Writer.WriteElementString("DATE_Z_1", dateFrom.AsXml());
             xml.Writer.WriteElementString("DATE_Z_2", dateTill.AsXml());
 
@@ -194,15 +231,15 @@ namespace invox.Model {
             xml.Writer.WriteElementString("ISHOD", outcome.ToString());
 
             if (specialCase != null) {
-                foreach(SpecialCase c in specialCase)
+                foreach (SpecialCase c in specialCase)
                     xml.Writer.WriteElementString("OS_SLUCH", ((int)c).ToString());
             }
-            
+
             if (unitShift)
                 xml.Writer.WriteElementString("VB_P", "1");
-      
-            foreach(Event e in pool.LoadEvents())
-                e.Write(xml, pool, section, irec);
+
+            foreach (Event e in pool.LoadEvents())
+                e.WriteD1(xml, pool, irec);
 
             xml.Writer.WriteElementString("IDSP", payKind.ToString());
             xml.Writer.WriteElementString("SUMV", total.ToString("F2", Options.NumberFormat));
@@ -215,7 +252,96 @@ namespace invox.Model {
 
             if (deniedSum > 0)
                 xml.Writer.WriteElementString("SANKIT", deniedSum.ToString("F2", Options.NumberFormat));
-      
+
+            xml.Writer.WriteEndElement();
+        }
+
+        public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+            xml.Writer.WriteStartElement("Z_SL");
+
+            xml.Writer.WriteElementString("IDCASE", id);
+            xml.Writer.WriteElementString("USL_OK", conditions.ToString());
+            xml.Writer.WriteElementString("VIDPOM", aidKind.ToString());
+
+            xml.Writer.WriteElementString("FOR_POM", aidForm.ToString());
+
+            if (!string.IsNullOrEmpty(directedFrom))
+                xml.Writer.WriteElementString("NPR_MO", directedFrom);
+
+            xml.Writer.WriteElementString("LPU", Options.LpuCode);
+
+            xml.Writer.WriteElementString("DATE_Z_1", dateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_Z_2", dateTill.AsXml());
+
+            if (bedDays > 0)
+                xml.Writer.WriteElementString("KD_Z", bedDays.ToString());
+
+            if (birthWeight > 0)
+                xml.Writer.WriteElementString("VNOV_M", birthWeight.ToString());
+
+            xml.Writer.WriteElementString("RSLT", result.ToString());
+            xml.Writer.WriteElementString("ISHOD", outcome.ToString());
+
+            if (specialCase != null) {
+                foreach (SpecialCase c in specialCase)
+                    xml.Writer.WriteElementString("OS_SLUCH", ((int)c).ToString());
+            }
+
+            foreach (Event e in pool.LoadEvents())
+                e.WriteD2(xml, pool, irec);
+
+            xml.Writer.WriteElementString("IDSP", payKind.ToString());
+            xml.Writer.WriteElementString("SUMV", total.ToString("F2", Options.NumberFormat));
+
+            if (payType != Model.PayType.None)
+                xml.Writer.WriteElementString("OPLATA", ((int)payType).ToString());
+
+            if (acceptedSum > 0)
+                xml.Writer.WriteElementString("SUMP", acceptedSum.ToString("F2", Options.NumberFormat));
+
+            if (deniedSum > 0)
+                xml.Writer.WriteElementString("SANKIT", deniedSum.ToString("F2", Options.NumberFormat));
+
+            xml.Writer.WriteEndElement();
+        }
+
+        public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+            xml.Writer.WriteStartElement("Z_SL");
+
+            xml.Writer.WriteElementString("IDCASE", id);
+            xml.Writer.WriteElementString("USL_OK", conditions.ToString());
+            xml.Writer.WriteElementString("VIDPOM", aidKind.ToString());
+
+            xml.Writer.WriteElementString("LPU", Options.LpuCode);
+
+            xml.WriteBool("VBR", mobileBrigade);
+
+            xml.Writer.WriteElementString("DATE_Z_1", dateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_Z_2", dateTill.AsXml());
+
+            xml.WriteBool("P_OTK", dispRefusal);
+            xml.Writer.WriteElementString("RSLT_D", dispResult);
+
+            if (specialCase != null) {
+                foreach (SpecialCase c in specialCase)
+                    xml.Writer.WriteElementString("OS_SLUCH", ((int)c).ToString());
+            }
+
+            foreach (Event e in pool.LoadEvents())
+                e.WriteD3(xml, pool, irec);
+
+            xml.Writer.WriteElementString("IDSP", payKind.ToString());
+            xml.Writer.WriteElementString("SUMV", total.ToString("F2", Options.NumberFormat));
+
+            if (payType != Model.PayType.None)
+                xml.Writer.WriteElementString("OPLATA", ((int)payType).ToString());
+
+            if (acceptedSum > 0)
+                xml.Writer.WriteElementString("SUMP", acceptedSum.ToString("F2", Options.NumberFormat));
+
+            if (deniedSum > 0)
+                xml.Writer.WriteElementString("SANKIT", deniedSum.ToString("F2", Options.NumberFormat));
+
             xml.Writer.WriteEndElement();
         }
     }

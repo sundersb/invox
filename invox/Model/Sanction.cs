@@ -5,7 +5,7 @@ using System.Text;
 
 namespace invox.Model {
     /// <summary>
-    /// Сведения о санкциях (SL_LIST/ZAP/Z_SL/SL/SANK)
+    /// Сведения о санкциях (ZL_LIST/ZAP/Z_SL/SL/SANK)
     /// Описывает санкции, примененные в рамках данного случая.
     /// <remarks>
     /// Вложен в

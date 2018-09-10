@@ -60,7 +60,7 @@ namespace invox.Model {
     }
 
     /// <summary>
-    /// Сведения об услуге при лечении онкологического заболевания (SL_LIST/ZAP/Z_SL/SL/USL/ONK_USL)
+    /// Сведения об услуге при лечении онкологического заболевания (ZL_LIST/ZAP/Z_SL/SL/USL/ONK_USL)
     /// <remarks>
     /// Вложен в
     ///     Service USL (Single)

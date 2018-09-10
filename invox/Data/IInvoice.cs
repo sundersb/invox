@@ -20,5 +20,7 @@ namespace invox.Data {
         IEnumerable<Model.OncologyDirection> LoadOncologyDirections();
         Model.OncologyService GetOncologyService();
         IEnumerable<Model.Event> LoadEvents();
+        IEnumerable<Model.ConcomitantDisease> GetConcomitantDiseases();
+        IEnumerable<Model.DispAssignment> GetDispanserisationAssignmetns();
     }
 }

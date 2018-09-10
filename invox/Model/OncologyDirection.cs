@@ -21,7 +21,7 @@ namespace invox.Model {
     }
 
     /// <summary>
-    /// Приказ 59 от 30.03.2018 (SL_LIST/ZAP/Z_SL/SL/USL/NAPR)
+    /// Приказ 59 от 30.03.2018 (ZL_LIST/ZAP/Z_SL/SL/USL/NAPR)
     /// <remarks>
     /// Вложен в
     ///     Service USL (Multiple)
