@@ -27,6 +27,7 @@ namespace invox {
         public static NumberFormatInfo NumberFormat { get; private set; }
 
         public static string BaseDirectory { get { return baseDirectory; } }
+        public static string OutputLocation { get { return outputLocation; } }
         public static string LpuCode { get { return lpuCode; } }
         public static string FomsCode { get { return fomsCode; } }
         public static string LpuLocation { get { return lpuLocation; } }
@@ -36,8 +37,11 @@ namespace invox {
         public static string Version { get { return GetVersion(); } }
         public static string LocalLpuCode { get { return localLpuCode; } }
         public static string InvoiceNumber { get { return options.InvoiceNumber; } }
-        public static string PacketNumber { get { return options.PackageNumber; } }
+        public static int PacketNumber { get { return options.PackageNumber; } }
         public static string SpecialityClassifier { get { return SPECIALITY_CLASSIFIER; } }
+        public static DateTime InvoiceDate { get { return options.InvoiceDate; } }
+        public static int Year { get { return options.Year; } }
+        public static int Month { get { return options.Month; } }
 
         static string GetVersion() {
             return Assembly.GetExecutingAssembly().GetName().Version.ToString();

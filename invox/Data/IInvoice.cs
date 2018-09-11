@@ -22,5 +22,14 @@ namespace invox.Data {
         IEnumerable<Model.Event> LoadEvents();
         IEnumerable<Model.ConcomitantDisease> GetConcomitantDiseases();
         IEnumerable<Model.DispAssignment> GetDispanserisationAssignmetns();
+
+        int GetPeopleCount(Model.OrderSection section);
+        IEnumerable<Model.Person> LoadPeople(Model.OrderSection section);
+
+        int GetInvoiceRecordsCount(Model.OrderSection section);
+        float Total(Model.OrderSection section);
+
+        IEnumerable<Model.InvoiceRecord> LoadInvoiceRecords(Model.OrderSection section);
+        IEnumerable<string> LoadNoDeptDoctors();
     }
 }

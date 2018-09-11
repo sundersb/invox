@@ -8,7 +8,7 @@ namespace invox.Model {
     /// Записи о законченных случаях оказания медицинской помощи (ZL_LIST/ZAP)
     /// <remarks>
     /// Вложен в
-    ///     ZAP (Multiple)
+    ///     ZL_LIST (Multiple)
     /// Содержит
     ///     InvoicePerson PACIENT (Single)
     ///     Recourse Z_SL (Single)

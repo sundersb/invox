@@ -22,7 +22,7 @@ namespace invox {
                                };
 
 
-        static bool Checkup() {
+        static bool Checkup(Data.IInvoice pool) {
             if (!Directory.Exists(Options.LpuLocation)) {
                 Console.WriteLine("Каталог не найден: " + Options.LpuLocation);
                 return false;
@@ -54,14 +54,14 @@ namespace invox {
                 return false;
             }
 
-            //List<string> errors = Options.DataProvider.GetInvoiceRepository().LoadNoDeptDoctors().ToList();
-            //if (errors.Count > 0) {
-            //    Console.WriteLine("\r\nИмеются формальные ошибки:");
-            //    foreach (string e in errors) {
-            //        Console.WriteLine("\t" + e);
-            //    }
-            //    return false;
-            //}
+            List<string> errors = pool.LoadNoDeptDoctors().ToList();
+            if (errors.Count > 0) {
+                Console.WriteLine("\r\nИмеются формальные ошибки:");
+                foreach (string e in errors) {
+                    Console.WriteLine("\t" + e);
+                }
+                return false;
+            }
 
             return true;
         }
@@ -83,20 +83,44 @@ namespace invox {
                 Console.WriteLine(Options.Help);
                 Console.WriteLine();
             } else {
-                if (Checkup()) {
-                //    Lib.InvoiceNames names = Lib.InvoiceNames.InvoiceToFoms(Options.PacketNumber,
-                //        Model.InvoiceKind.GeneralTreatment);
+                Data.IInvoice pool = new Data.Relax.Pool(Options.PeriodLocation);
 
-                //    if (Run(names))
-                //        Console.WriteLine("\r\nОК\r\n");
-                //    else
-                //        Console.WriteLine("\r\nОшибка!\r\n");
+                if (Checkup(pool)) {
+                    Model.OrderSection[] ss = new Model.OrderSection[] {
+                        Model.OrderSection.D1,
+                        Model.OrderSection.D2,
+                        Model.OrderSection.D3
+                    };
+                    int packet = Options.PacketNumber - 1;
+
+                    foreach (Model.OrderSection section in ss) {
+                        if (!Run(pool, section, ++packet)) break;
+                    }
                 } else {
                     Console.WriteLine("\r\nВыгрузка не произведена!");
                 }
             }
 
             Console.ReadKey();
+        }
+
+        static bool Run(Data.IInvoice pool, Model.OrderSection section, int packet) {
+            Lib.InvoiceFilename files = Lib.InvoiceFilename.ToAssuranceFund(
+                Options.LpuCode,
+                Options.FomsCode,
+                Options.Year,
+                Options.Month,
+                packet,
+                section);
+
+            Model.Invoice invoice = new Model.Invoice(files);
+
+            if (!invoice.Export(pool, Options.OutputLocation)) {
+                Console.WriteLine("\r\nОшибка!\r\n");
+                return false;
+            }
+            
+            return true;
         }
     }
 }

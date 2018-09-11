@@ -44,12 +44,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\IInvoice.cs" />
+    <Compile Include="Data\Relax\AdapterBase.cs" />
+    <Compile Include="Data\Relax\AdapterStrings.cs" />
+    <Compile Include="Data\Relax\Pool.cs" />
     <Compile Include="Lib\CommandLine.cs" />
     <Compile Include="Lib\DateHelper.cs" />
+    <Compile Include="Lib\InvoiceFilename.cs" />
     <Compile Include="Lib\Logger.cs" />
     <Compile Include="Lib\Options.cs" />
     <Compile Include="Lib\Progress.cs" />
+    <Compile Include="Lib\Unlinker.cs" />
     <Compile Include="Lib\XmlExporter.cs" />
+    <Compile Include="Lib\Zip.cs" />
     <Compile Include="Model\ClinicalGroup.cs" />
     <Compile Include="Model\ConcomitantDisease.cs" />
     <Compile Include="Model\DispAssignment.cs" />
