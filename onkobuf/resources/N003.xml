@@ -2,8 +2,8 @@
 <packet>
   <zglv>
     <type>OnkT</type>
-    <version>2.0</version>
-    <date>13.08.2018</date>
+    <version>2.1</version>
+    <date>12.09.2018</date>
   </zglv>
   <zap>
     <ID_T>1</ID_T>
@@ -555,62 +555,6 @@
     <DS_T>C43</DS_T>
     <KOD_T>T4b</KOD_T>
     <T_NAME>Наличие изъязвления опухоли</T_NAME>
-    <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
-  </zap>
-  <zap>
-    <ID_T>70</ID_T>
-    <DS_T>C44</DS_T>
-    <KOD_T>Tx</KOD_T>
-    <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
-    <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
-  </zap>
-  <zap>
-    <ID_T>71</ID_T>
-    <DS_T>C44</DS_T>
-    <KOD_T>T0</KOD_T>
-    <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
-    <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
-  </zap>
-  <zap>
-    <ID_T>72</ID_T>
-    <DS_T>C44</DS_T>
-    <KOD_T>Tis</KOD_T>
-    <T_NAME>Карцинома in situ;</T_NAME>
-    <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
-  </zap>
-  <zap>
-    <ID_T>73</ID_T>
-    <DS_T>C44</DS_T>
-    <KOD_T>T1</KOD_T>
-    <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
-    <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
-  </zap>
-  <zap>
-    <ID_T>74</ID_T>
-    <DS_T>C44</DS_T>
-    <KOD_T>T2</KOD_T>
-    <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
-    <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
-  </zap>
-  <zap>
-    <ID_T>75</ID_T>
-    <DS_T>C44</DS_T>
-    <KOD_T>T3</KOD_T>
-    <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
-    <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
-  </zap>
-  <zap>
-    <ID_T>76</ID_T>
-    <DS_T>C44</DS_T>
-    <KOD_T>T4</KOD_T>
-    <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -1650,6 +1594,728 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <DS_T>C69.9</DS_T>
     <KOD_T>Нет</KOD_T>
     <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>210</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>211</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>212</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>213</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>214</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>215</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>216</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>217</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>218</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>219</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>220</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>221</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>222</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>223</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>224</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>225</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>226</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>227</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>228</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>229</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>230</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>231</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>232</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>233</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>234</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>235</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>236</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>237</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>238</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>239</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>240</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>241</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>242</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>243</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>244</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>245</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>246</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>247</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>248</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>249</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>250</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>251</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>252</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>253</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>254</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>255</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>256</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>257</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>258</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>259</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>260</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>261</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>262</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>263</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>264</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>265</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>266</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>267</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>268</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>269</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>270</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>271</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>272</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>273</ID_T>
+    <DS_T>D04.0</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>274</ID_T>
+    <DS_T>D04.2</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>275</ID_T>
+    <DS_T>D04.3</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>276</ID_T>
+    <DS_T>D04.4</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>277</ID_T>
+    <DS_T>D04.5</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>278</ID_T>
+    <DS_T>D04.6</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>279</ID_T>
+    <DS_T>D04.7</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>280</ID_T>
+    <DS_T>D04.8</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>281</ID_T>
+    <DS_T>D04.9</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>282</ID_T>
+    <DS_T>D00.1</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ/дисплазия высокой степени</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>283</ID_T>
+    <DS_T>D00.2</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома insitu (опухоль в пределах слизистой без инвазии собственной пластинки). Тяжелая дисплазия</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>284</ID_T>
+    <DS_T>D01.7</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>285</ID_T>
+    <DS_T>D02.2</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Рак in situ</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>286</ID_T>
+    <DS_T>D06</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Опухоль in situ</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>287</ID_T>
+    <DS_T>D07.0</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Рак insitu</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>288</ID_T>
+    <DS_T>D09.0</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Карцинома in situ</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>289</ID_T>
+    <DS_T>D01.2</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Преинвазивный рак (интраэителиальная инвазия или инвазия собственной пластинки слизистой оболочки)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>290</ID_T>
+    <DS_T>D01.0</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Преинвазивный рак (интраэителиальная инвазия или инвазия собственной
+пластинки слизистой оболочки)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>291</ID_T>
+    <DS_T>D01.1</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Преинвазивный рак (интраэителиальная инвазия или инвазия собственной
+пластинки слизистой оболочки)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>292</ID_T>
+    <DS_T>D03</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Меланома in situ (уровень инвазии по Кларку I) (атипическая меланоцитарная гиперплазия, тяжелая меланоцитарная дисплазия, неинвазивная злокачественная опухоль).</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>293</ID_T>
+    <DS_T>D05</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>C50</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>294</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME>Рак in situ;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>295</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>296</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME>Опухоль от 0,1 до 2 см в наибольшем измерении</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>297</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME>Опухоль от 2 см до 5 см в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>298</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME>Опухоль более 5 см в наибольшем измерении;</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>299</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME>Опухоль любого размера с прямым распространением на грудную стенку[2]или кожу</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
