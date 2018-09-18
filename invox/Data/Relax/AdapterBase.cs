@@ -56,32 +56,44 @@ namespace invox.Data.Relax {
             DbCommand command = connection.CreateCommand();
             command.CommandText = sql;
 
-            command.Connection.Open();
-
-            DbDataReader r = null;
+            if (connection.State != System.Data.ConnectionState.Open) connection.Open();
             try {
-                r = command.ExecuteReader();
-            } catch (Exception ex) {
-                Lib.Logger.Log(ex.Message + "\r\n" + Pool.DescribeCommand(command));
-                if (r != null) r.Close();
-            }
 
-            try {
-                int i = 0;
-                while (r.Read()) {
-                    ++i;
-                    T record = Read(r, i);
-                    if (record != null)
-                        yield return record;
+                DbDataReader r = null;
+                try {
+                    r = command.ExecuteReader();
+                } catch (Exception ex) {
+                    Lib.Logger.Log(ex.Message + "\r\n" + Pool.DescribeCommand(command));
+                    if (r != null) r.Close();
+                    yield break;
+                }
+
+                try {
+                    int i = 0;
+                    while (r.Read()) {
+                        ++i;
+                        T record = Read(r, i);
+                        if (record != null)
+                            yield return record;
+                    }
+                } finally {
+                    r.Dispose();
                 }
             } finally {
-                r.Dispose();
+                connection.Close();
             }
         }
 
         protected int ReadInt(object value) {
+            if (value == DBNull.Value) return 0;
+            Type t = value.GetType();
+
             int result = 0;
-            if (value != DBNull.Value) int.TryParse((string)value, out result);
+
+            if (t == typeof(int)) return (int) value;
+            if (t == typeof(decimal)) return (int)(decimal)value;
+            if (t == typeof(string)) int.TryParse((string)value, out result);
+
             return result;
         }
 
@@ -97,6 +109,21 @@ namespace invox.Data.Relax {
                 return (DateTime)value;
             else
                 return new DateTime(1900, 1, 1);
+        }
+
+        protected bool ReadBool(object value) {
+            if (value == DBNull.Value) return false;
+
+            if (value.GetType() == typeof(bool)) return (bool)value;
+            if (value.GetType() == typeof(decimal)) return 0 != (decimal)value;
+            if (value.GetType() == typeof(int)) return 0 != (int)value;
+            if (value.GetType() == typeof(string)) {
+                if (string.IsNullOrEmpty((string)value)) return false;
+                int i;
+                if (int.TryParse((string)value, out i)) return i != 0;
+            }
+
+            return false;
         }
     }
 }

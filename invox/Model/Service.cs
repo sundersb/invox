@@ -30,8 +30,6 @@ namespace invox.Model {
 
         string id;
         string unit;
-        string dept;
-        string profileCode;
         string interventionKind;
         bool child;
         DateTime dateFrom;
@@ -49,7 +47,6 @@ namespace invox.Model {
         bool refusal;
 
         public bool Oncology;
-        public bool SuspectOncology;
 
         /// <summary>
         /// Номер записи в реестре услуг
@@ -67,13 +64,13 @@ namespace invox.Model {
         /// Код отделения
         /// Отделение МО лечения из регионального справочника
         /// </summary>
-        public string Department { get { return dept; } }
+        //public string Department { get { return dept; } }
 
         /// <summary>
         /// Профиль медицинской помощи
         /// Классификатор V002 Приложения А.
         /// </summary>
-        public string ProfileCode { get { return profileCode; } }
+        // public string ProfileCode { get { return profileCode; } }
 
         /// <summary>
         /// Вид медицинского вмешательства
@@ -164,16 +161,16 @@ namespace invox.Model {
         /// <param name="section">Section of the order #59</param>
         /// <param name="irec">Invoice record parental to the event</param>
         /// <param name="evt">Event to which this service belongs</param>
-        public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section, InvoiceRecord irec, Event evt) {
+        public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section, InvoiceRecord irec, Recourse rec, Event evt) {
             switch (section) {
                 case OrderSection.D1:
-                    WriteD1(xml, pool, irec, evt);
+                    WriteD1(xml, pool, irec, rec, evt);
                     break;
                 case OrderSection.D2:
-                    WriteD2(xml, pool, irec, evt);
+                    WriteD2(xml, pool, irec, rec, evt);
                     break;
                 case OrderSection.D3:
-                    WriteD3(xml, pool, irec, evt);
+                    WriteD3(xml, pool, irec, rec, evt);
                     break;
             }
         }
@@ -185,14 +182,14 @@ namespace invox.Model {
         /// <param name="pool">Datapool</param>
         /// <param name="irec">Invoice record parental to the event</param>
         /// <param name="evt">Event to which this service belongs</param>
-        public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Event evt) {
+        public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec, Event evt) {
             xml.Writer.WriteStartElement("USL");
 
             xml.Writer.WriteElementString("IDSERV", id);
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
             xml.WriteIfValid("LPU_1", unit);
-            xml.WriteIfValid("PODR", dept);
-            xml.Writer.WriteElementString("PROFIL", profileCode);
+            xml.WriteIfValid("PODR", rec.Department);
+            xml.Writer.WriteElementString("PROFIL", rec.Profile);
             xml.WriteIfValid("VID_VME", interventionKind);
             xml.WriteBool("DET", child);
             xml.Writer.WriteElementString("DATE_IN", dateFrom.AsXml());
@@ -208,7 +205,7 @@ namespace invox.Model {
             xml.Writer.WriteElementString("PRVS", specialityCode);
             xml.Writer.WriteElementString("CODE_MD", doctorCode);
 
-            if (SuspectOncology) {
+            if (rec.SuspectOncology) {
                 // Направления
                 // Заполняется только в случае оформления направления при подозрении на злокачественное новообразование (DS_ONK=1)
                 foreach (OncologyDirection d in pool.LoadOncologyDirections())
@@ -238,14 +235,14 @@ namespace invox.Model {
         /// <param name="pool">Datapool</param>
         /// <param name="irec">Invoice record parental to the event</param>
         /// <param name="evt">Event to which this service belongs</param>
-        public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Event evt) {
+        public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec, Event evt) {
             xml.Writer.WriteStartElement("USL");
 
             xml.Writer.WriteElementString("IDSERV", id);
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
             xml.WriteIfValid("LPU_1", unit);
-            xml.WriteIfValid("PODR", dept);
-            xml.Writer.WriteElementString("PROFIL", profileCode);
+            xml.WriteIfValid("PODR", rec.Department);
+            xml.Writer.WriteElementString("PROFIL", rec.Profile);
             xml.WriteIfValid("VID_VME", interventionKind);
             xml.WriteBool("DET", child);
             xml.Writer.WriteElementString("DATE_IN", dateFrom.AsXml());
@@ -261,7 +258,7 @@ namespace invox.Model {
             xml.Writer.WriteElementString("PRVS", specialityCode);
             xml.Writer.WriteElementString("CODE_MD", doctorCode);
 
-            if (SuspectOncology) {
+            if (rec.SuspectOncology) {
                 // Направления
                 // Заполняется только в случае оформления направления при подозрении на злокачественное новообразование (DS_ONK=1)
                 foreach (OncologyDirection d in pool.LoadOncologyDirections())
@@ -284,7 +281,7 @@ namespace invox.Model {
         /// <param name="pool">Datapool</param>
         /// <param name="irec">Invoice record parental to the event</param>
         /// <param name="evt">Event to which this service belongs</param>
-        public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Event evt) {
+        public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec, Event evt) {
             xml.Writer.WriteStartElement("USL");
 
             xml.Writer.WriteElementString("IDSERV", id);

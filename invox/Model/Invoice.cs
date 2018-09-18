@@ -106,7 +106,8 @@ namespace invox.Model {
             xml.Writer.WriteElementString("DATA", DateTime.Today.AsXml());
             xml.Writer.WriteElementString("FILENAME", invoiceFilename.InvoiceFile);
             
-            int count = pool.GetPeopleCount(invoiceFilename.Section);
+            // TODO: Invoices count, not people
+            int count = pool.GetInvoiceRecordsCount(invoiceFilename.Section);
 #if DEBUG
             count = Math.Min(Properties.Settings.Default.DebugSelectionLimit, count);
 #endif
@@ -122,7 +123,7 @@ namespace invox.Model {
             xml.Writer.WriteElementString("NSCHET", invox.Options.InvoiceNumber);
             xml.Writer.WriteElementString("DSCHET", invox.Options.InvoiceDate.AsXml());
             xml.WriteIfValid("PLAT", invoiceFilename.CompanyCode);
-            xml.Writer.WriteElementString("SUMMAV", pool.Total(invoiceFilename.Section).ToString("D2"));
+            xml.Writer.WriteElementString("SUMMAV", pool.Total(invoiceFilename.Section).ToString("F2"));
             xml.Writer.WriteEndElement();
 
             Lib.Progress progress = new Progress("Случаи обращения", count);

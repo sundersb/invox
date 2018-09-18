@@ -23,22 +23,105 @@ namespace invox.Model {
     /// D1, D2, D3 - OK
     /// </summary>
     class InvoicePerson {
-        string id;
-        string policyType;
-        string policySerial;
-        string policyNumber;
+        /// <summary>
+        /// Код записи о пациенте	Возможно использование уникального идентификатора (учетного кода) пациента.
+        /// Необходим для связи с файлом персональных данных.
+        /// </summary>
+        public string Identity;
 
-        string assuranceOkato;
-        string smoCode;
-        string smoOgrn;
-        string smoOkato;
-        string smoName;
+        /// <summary>
+        /// Тип документа, подтверждающего факт страхования по ОМС
+        /// Заполняется в соответствии с F008 Приложения А.
+        /// </summary>
+        public int PolicyType;
 
-        Disability disability;
-        bool directedToSE;
+        /// <summary>
+        /// Серия документа, подтверждающего факт страхования по ОМС
+        /// </summary>
+        public string PolicySerial;
 
-        string newbornCode;
-        int newbornWeight;
+        /// <summary>
+        /// Номер документа, подтверждающего факт страхования по ОМС
+        /// Для полисов единого образца указывается ЕНП
+        /// </summary>
+        public string PolicyNumber;
+        
+        /// <summary>
+        /// Регион страхования
+        /// Указывается ОКАТО территории выдачи ДПФС для полисов старого образца при наличии данных
+        /// </summary>
+        public string AssuranceOkato;
+        
+        /// <summary>
+        /// Реестровый номер СМО.
+        /// Заполняется в соответствии со справочником F002 Приложения А. При отсутствии сведений может не заполняться.
+        /// </summary>
+        public string SmoCode;
+        
+        /// <summary>
+        /// ОГРН СМО
+        /// Заполняются при невозможности указать реестровый номер СМО.
+        /// </summary>
+        public string SmoOgrn;
+
+        /// <summary>
+        /// ОКАТО территории страхования
+        /// </summary>
+        public string SmoOkato;
+
+        /// <summary>
+        /// Наименование СМО
+        /// Заполняется при невозможности указать ни реестровый номер, ни ОГРН СМО.
+        /// </summary>
+        public string SmoName;
+        
+        /// <summary>
+        /// Группа инвалидности
+        /// 0 - нет инвалидности;
+        /// 1 - 1 группа;
+        /// 2 - 2 группа;
+        /// 3 - 3 группа;
+        /// 4 - дети-инвалиды.
+        /// Заполняется только при впервые установленной инвалидности (1 - 4) или в случае отказа в признании лица инвалидом (0).
+        /// </summary>
+        public Disability Disability;
+
+        /// <summary>
+        /// Направление на МСЭ
+        /// Указывается "1" в случае передачи направления на МСЭ медицинской организацией в бюро медико-социальной экспертизы.
+        /// </summary>
+        public bool DirectedToSE;
+
+        /// <summary>
+        /// Признак новорожденного
+        /// Указывается в случае оказания медицинской помощи ребенку до государственной регистрации рождения.
+        /// 0 - признак отсутствует. Если значение признака отлично от нуля, он заполняется по следующему шаблону: ПДДММГГН, где
+        /// П - пол ребенка в соответствии с классификатором V005 Приложения А;
+        /// ДД - день рождения;
+        /// ММ - месяц рождения;
+        /// ГГ - последние две цифры года рождения;
+        /// Н - порядковый номер ребенка (до двух знаков).
+        /// </summary>
+        public string NewbornCode;
+
+        /// <summary>
+        /// Вес при рождении
+        /// Указывается при оказании медицинской помощи недоношенным и маловесным детям. Поле заполняется, если в качестве пациента указан ребенок.
+        /// </summary>
+        public int NewbornWeight;
+
+        /// <summary>
+        /// Полис пациента
+        /// </summary>
+        public string Policy {
+            get {
+                if (string.IsNullOrEmpty(PolicySerial))
+                    return PolicyNumber;
+                else
+                    return PolicySerial + " " + PolicyNumber;
+            }
+            set { SetPolicy(value); }
+        }
 
         /// <summary>
         /// Save person data to invoice XML
@@ -54,8 +137,7 @@ namespace invox.Model {
                     WriteD2(xml);
                     break;
                 case OrderSection.D3:
-                    if (!string.IsNullOrEmpty(newbornCode))
-                        xml.Writer.WriteElementString("NOVOR", newbornCode);
+                    WriteD3(xml);
                     break;
             }
         }
@@ -67,27 +149,27 @@ namespace invox.Model {
         public void WriteD1(Lib.XmlExporter xml) {
             xml.Writer.WriteStartElement("PACIENT");
 
-            xml.Writer.WriteElementString("ID_PAC", id);
+            xml.Writer.WriteElementString("ID_PAC", Identity);
 
-            xml.Writer.WriteElementString("VPOLIS", policyType);
-            xml.WriteIfValid("SPOLIS", policySerial);
-            xml.WriteIfValid("NPOLIS", policyNumber);
+            xml.Writer.WriteElementString("VPOLIS", PolicyType.ToString());
+            xml.WriteIfValid("SPOLIS", PolicySerial);
+            xml.WriteIfValid("NPOLIS", PolicyNumber);
 
-            xml.WriteIfValid("ST_OKATO", assuranceOkato);
-            xml.WriteIfValid("SMO", smoCode);
-            xml.WriteIfValid("SMO_OGRN", smoOgrn);
-            xml.WriteIfValid("SMO_OK", smoOkato);
-            xml.WriteIfValid("SMO_NAM", smoName);
+            xml.WriteIfValid("ST_OKATO", AssuranceOkato);
+            xml.WriteIfValid("SMO", SmoCode);
+            xml.WriteIfValid("SMO_OGRN", SmoOgrn);
+            xml.WriteIfValid("SMO_OK", SmoOkato);
+            xml.WriteIfValid("SMO_NAM", SmoName);
 
-            if (disability != Disability.NA)
-                xml.Writer.WriteElementString("INV", ((int)disability).ToString());
+            if (Disability != Disability.NA)
+                xml.Writer.WriteElementString("INV", ((int)Disability).ToString());
 
-            if (directedToSE)
+            if (DirectedToSE)
                 xml.Writer.WriteElementString("MSE", "1");
 
-            if (!string.IsNullOrEmpty(newbornCode)) {
-                xml.Writer.WriteElementString("NOVOR", newbornCode);
-                xml.Writer.WriteElementString("VNOV_D", newbornWeight.ToString("D4"));
+            if (!string.IsNullOrEmpty(NewbornCode)) {
+                xml.Writer.WriteElementString("NOVOR", NewbornCode);
+                xml.Writer.WriteElementString("VNOV_D", NewbornWeight.ToString("D4"));
             }
 
             xml.Writer.WriteEndElement();
@@ -100,24 +182,24 @@ namespace invox.Model {
         public void WriteD2(Lib.XmlExporter xml) {
             xml.Writer.WriteStartElement("PACIENT");
 
-            xml.Writer.WriteElementString("ID_PAC", id);
+            xml.Writer.WriteElementString("ID_PAC", Identity);
 
-            xml.Writer.WriteElementString("VPOLIS", policyType);
-            xml.WriteIfValid("SPOLIS", policySerial);
-            xml.WriteIfValid("NPOLIS", policyNumber);
+            xml.Writer.WriteElementString("VPOLIS", PolicyType.ToString());
+            xml.WriteIfValid("SPOLIS", PolicySerial);
+            xml.WriteIfValid("NPOLIS", PolicyNumber);
 
-            xml.WriteIfValid("ST_OKATO", assuranceOkato);
-            xml.WriteIfValid("SMO", smoCode);
-            xml.WriteIfValid("SMO_OGRN", smoOgrn);
-            xml.WriteIfValid("SMO_OK", smoOkato);
-            xml.WriteIfValid("SMO_NAM", smoName);
+            xml.WriteIfValid("ST_OKATO", AssuranceOkato);
+            xml.WriteIfValid("SMO", SmoCode);
+            xml.WriteIfValid("SMO_OGRN", SmoOgrn);
+            xml.WriteIfValid("SMO_OK", SmoOkato);
+            xml.WriteIfValid("SMO_NAM", SmoName);
 
-            if (directedToSE)
+            if (DirectedToSE)
                 xml.Writer.WriteElementString("MSE", "1");
 
-            if (!string.IsNullOrEmpty(newbornCode)) {
-                xml.Writer.WriteElementString("NOVOR", newbornCode);
-                xml.Writer.WriteElementString("VNOV_D", newbornWeight.ToString("D4"));
+            if (!string.IsNullOrEmpty(NewbornCode)) {
+                xml.Writer.WriteElementString("NOVOR", NewbornCode);
+                xml.Writer.WriteElementString("VNOV_D", NewbornWeight.ToString("D4"));
             }
 
             xml.Writer.WriteEndElement();
@@ -130,21 +212,37 @@ namespace invox.Model {
         public void WriteD3(Lib.XmlExporter xml) {
             xml.Writer.WriteStartElement("PACIENT");
 
-            xml.Writer.WriteElementString("ID_PAC", id);
+            xml.Writer.WriteElementString("ID_PAC", Identity);
 
-            xml.Writer.WriteElementString("VPOLIS", policyType);
-            xml.WriteIfValid("SPOLIS", policySerial);
-            xml.WriteIfValid("NPOLIS", policyNumber);
+            xml.Writer.WriteElementString("VPOLIS", PolicyType.ToString());
+            xml.WriteIfValid("SPOLIS", PolicySerial);
+            xml.WriteIfValid("NPOLIS", PolicyNumber);
 
-            xml.WriteIfValid("ST_OKATO", assuranceOkato);
-            xml.WriteIfValid("SMO", smoCode);
-            xml.WriteIfValid("SMO_OGRN", smoOgrn);
-            xml.WriteIfValid("SMO_OK", smoOkato);
-            xml.WriteIfValid("SMO_NAM", smoName);
-            if (!string.IsNullOrEmpty(newbornCode))
-                xml.Writer.WriteElementString("NOVOR", newbornCode);
+            xml.WriteIfValid("ST_OKATO", AssuranceOkato);
+            xml.WriteIfValid("SMO", SmoCode);
+            xml.WriteIfValid("SMO_OGRN", SmoOgrn);
+            xml.WriteIfValid("SMO_OK", SmoOkato);
+            xml.WriteIfValid("SMO_NAM", SmoName);
+            if (!string.IsNullOrEmpty(NewbornCode))
+                xml.Writer.WriteElementString("NOVOR", NewbornCode);
 
             xml.Writer.WriteEndElement();
+        }
+        
+        void SetPolicy(string value) {
+            if (Lib.UniqueNumber.Valid(value)) {
+                PolicySerial = string.Empty;
+                PolicyNumber = new string(value.Where(c => c != ' ').ToArray());
+            } else {
+                string[] parts = value.Split(' ');
+                if (parts.Length > 1) {
+                    PolicySerial = parts[0];
+                    PolicyNumber = string.Join(string.Empty, parts.Skip(1));
+                } else {
+                    PolicySerial = string.Empty;
+                    PolicyNumber = string.Join(string.Empty, parts);
+                }
+            }
         }
     }
 }

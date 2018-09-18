@@ -16,24 +16,18 @@ namespace invox.Model {
     /// D1, D2, D3 - OK
     /// </summary>
     class InvoiceRecord {
-        string id;
-        bool revised;
-        InvoicePerson person;
-        Recourse recourse;
-
         /// <summary>
         /// Номер позиции записи
         /// Уникально идентифицирует запись в пределах счета.
         /// </summary>
-        public string Identity { get { return id; } }
+        public string Identity { get; set; }
         
         /// <summary>
         /// Признак исправленной записи
         /// </summary>
-        public bool Revised { get { return revised; } }
+        public bool Revised { get; set; }
 
-        public InvoicePerson Person { get { return person; } }
-        public Recourse Recourse { get { return recourse; } }
+        public InvoicePerson Person { get; set; }
 
         /// <summary>
         /// Save invoice record to XML
@@ -42,39 +36,51 @@ namespace invox.Model {
         /// <param name="pool">Datapool</param>
         /// <param name="section">Order #59 section</param>
         public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section) {
-            xml.Writer.WriteStartElement("ZAP");
-            xml.Writer.WriteElementString("N_ZAP", id);
-            xml.WriteBool("PR_NOV", revised);
-            person.Write(xml, section);
-            recourse.Write(xml, pool, section, this);
-            xml.Writer.WriteEndElement();
+            foreach (Recourse recourse in pool.LoadRecourses(this, section)) {
+                xml.Writer.WriteStartElement("ZAP");
+                xml.Writer.WriteElementString("N_ZAP", Identity);
+                xml.WriteBool("PR_NOV", Revised);
+                Person.Write(xml, section);
+                recourse.LoadEvents(this, pool);
+                recourse.Write(xml, pool, section, this);
+                xml.Writer.WriteEndElement();
+            }
         }
 
         public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool) {
-            xml.Writer.WriteStartElement("ZAP");
-            xml.Writer.WriteElementString("N_ZAP", id);
-            xml.WriteBool("PR_NOV", revised);
-            person.WriteD1(xml);
-            recourse.WriteD1(xml, pool, this);
-            xml.Writer.WriteEndElement();
+            foreach (Recourse recourse in pool.LoadRecourses(this, OrderSection.D1)) {
+                xml.Writer.WriteStartElement("ZAP");
+                xml.Writer.WriteElementString("N_ZAP", Identity);
+                xml.WriteBool("PR_NOV", Revised);
+                Person.WriteD1(xml);
+                recourse.LoadEvents(this, pool);
+                recourse.WriteD1(xml, pool, this);
+                xml.Writer.WriteEndElement();
+            }
         }
 
         public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool) {
-            xml.Writer.WriteStartElement("ZAP");
-            xml.Writer.WriteElementString("N_ZAP", id);
-            xml.WriteBool("PR_NOV", revised);
-            person.WriteD2(xml);
-            recourse.WriteD2(xml, pool, this);
-            xml.Writer.WriteEndElement();
+            foreach (Recourse recourse in pool.LoadRecourses(this, OrderSection.D2)) {
+                xml.Writer.WriteStartElement("ZAP");
+                xml.Writer.WriteElementString("N_ZAP", Identity);
+                xml.WriteBool("PR_NOV", Revised);
+                Person.WriteD2(xml);
+                recourse.LoadEvents(this, pool);
+                recourse.WriteD2(xml, pool, this);
+                xml.Writer.WriteEndElement();
+            }
         }
 
         public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool) {
-            xml.Writer.WriteStartElement("ZAP");
-            xml.Writer.WriteElementString("N_ZAP", id);
-            xml.WriteBool("PR_NOV", revised);
-            person.WriteD3(xml);
-            recourse.WriteD3(xml, pool, this);
-            xml.Writer.WriteEndElement();
+            foreach (Recourse recourse in pool.LoadRecourses(this, OrderSection.D3)) {
+                xml.Writer.WriteStartElement("ZAP");
+                xml.Writer.WriteElementString("N_ZAP", Identity);
+                xml.WriteBool("PR_NOV", Revised);
+                Person.WriteD3(xml);
+                recourse.LoadEvents(this, pool);
+                recourse.WriteD3(xml, pool, this);
+                xml.Writer.WriteEndElement();
+            }
         }
     }
 }

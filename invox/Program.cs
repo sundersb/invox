@@ -83,7 +83,7 @@ namespace invox {
                 Console.WriteLine(Options.Help);
                 Console.WriteLine();
             } else {
-                Data.IInvoice pool = new Data.Relax.Pool(Options.PeriodLocation);
+                Data.IInvoice pool = new Data.Relax.Pool(Options.LpuLocation, Options.LocalLpuCode, Options.PeriodLocation);
 
                 if (Checkup(pool)) {
                     Model.OrderSection[] ss = new Model.OrderSection[] {

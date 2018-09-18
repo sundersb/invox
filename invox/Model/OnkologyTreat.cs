@@ -204,8 +204,8 @@ namespace invox.Model {
         /// <summary>
         /// Нужно ли заполнять раздел SL.ONK_SL?
         /// </summary>
-        public static bool IsOnkologyTreat(Event e, Data.IInvoice pool) {
-            if (e.SuspectOncology) return false;
+        public static bool IsOnkologyTreat(Recourse rec, Event e, Data.IInvoice pool) {
+            if (rec.SuspectOncology) return false;
 
             if (e.MainDiagnosis.First() == 'C') return true;
 

@@ -1,6 +1,29 @@
 ﻿using System;
 using invox.Lib;
 
+//select distinct
+//  S.RECID,
+//  S.COD,
+//  S.K_U,
+//  K.OPL,
+//  S.D_U,
+//  ST.PROF BED_PROFILE,
+//  K.LDET DET,
+//  S.C_I
+// from S2101003 S
+//  join P2101003 P on P.SN_POL = S.SN_POL
+//  left outer join DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGIN = S.DS)
+//  left outer join ../../BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
+//  left outer join ../../BASE/COMMON/SLUMP UMP on UMP.CODE = K.UMP
+//  left outer join ../../BASE/COMMON/REZOBR RO on RO.CODE = S.BE
+//  left outer join ../../BASE/DESCR/STRUCT ST on ST.BUXC = S.OTD
+// where (ltrim(P.RECID) = '1')
+//  and (S.OTD = '0001')
+//  and (S.DS = 'H27.0')
+
+//  and (S.OTD in ('0001', '0003', '0004', '0005'))
+// order by 1, 2
+
 namespace invox.Model {
     /// <summary>
     /// Признак поступления/перевода
@@ -39,239 +62,204 @@ namespace invox.Model {
     /// </remarks>
     /// </summary>
     class Event {
-        string id;
-        string unit;
-        string dept;
-        string profile;
-        string bedProfile;
-        bool child;
-        string reason;
-        string cardNumber;
-        Transfer transfer;
-        DateTime dateFrom;
-        DateTime dateTill;
-        int bedDays;
-        string dsPrimary;
-        string dsMain;
-        bool firstIdentified;
-        string dsConcurrent;
-        string dsComplication;
-        bool suspectOncology;
-        DispensarySupervision dispSupervision;
-        string concurrentMesCode;
-        ClinicalGroup clinicalGroup;
-        bool rehabilitation;
-        string specialityCode;
-        string doctorCode;
-        double quantity;
-        double tariff;
-        double total;
-        string comment;
-
-        string hiTechKind;
-        string hiTechMethod;
-        DateTime hiTechCheckDate;
-        string hiTechCheckNumber;
-        DateTime hiTechPlannedHospitalizationDate;
-
         bool isOncology;
 
         /// <summary>
         /// Идентификатор
         /// Уникально идентифицирует элемент SL в пределах законченного случая.
         /// </summary>
-        public string ID { get { return id; } }
+        public string Identity { get; set; }
 
         /// <summary>
         /// Подразделение МО
         /// Подразделение МО лечения из регионального справочника.
         /// </summary>
-        public string Unit { get { return unit; } }
+        public string Unit { get; set; }
 
         /// <summary>
         /// Код отделения
         /// Отделение МО лечения из регионального справочника.
         /// </summary>
-        public string Department { get { return dept; } }
+        // public string Department { get; set; }
 
         /// <summary>
         /// Профиль медицинской помощи
         /// Классификатор V002 Приложения А.
         /// </summary>
-        public string Profile { get { return profile; } }
+        // public string Profile { get; set; }
 
         /// <summary>
         /// Профиль койки
         /// Классификатор V020 Приложения А.
         /// Обязательно к заполнению для стационара и дневного стационара.
         /// </summary>
-        public string BedProfile { get { return bedProfile; } }
+        public string BedProfile { get; set; }
 
         /// <summary>
         /// Признак детского профиля
         /// 0 - нет, 1 - да.
         /// Заполняется в зависимости от профиля оказанной медицинской помощи.
         /// </summary>
-        public bool Child { get { return child; } }
+        public bool Child { get; set; }
 
         /// <summary>
         /// Цель посещения
         /// Классификатор целей посещения V025 Приложения А. Обязательно к заполнению для амбулаторных условий.
         /// </summary>
-        public string Reason { get { return reason; } }
+        public string Reason { get; set; }
 
         /// <summary>
         /// Номер истории болезни/талона амбулаторного пациента/карты вызова скорой медицинской помощи
         /// </summary>
-        public string CardNumber { get { return cardNumber; } }
+        public string CardNumber { get; set; }
 
         /// <summary>
         /// Признак поступления/перевода
         /// Обязательно для дневного и круглосуточного стационара.
         /// </summary>
-        public Transfer Transfer { get { return transfer; } }
+        public Transfer Transfer { get; set; }
 
         /// <summary>
         /// Дата начала лечения
         /// </summary>
-        public DateTime DateFrom { get { return dateFrom; } }
+        public DateTime DateFrom { get; set; }
 
         /// <summary>
         /// Дата окончания лечения
         /// </summary>
-        public DateTime DateTill { get { return dateTill; } }
+        public DateTime DateTill { get; set; }
 
         /// <summary>
         /// Продолжительность госпитализации (койко-дни/пациенто-дни)
         /// Обязательно для заполнения для стационара и дневного стационара
         /// </summary>
-        public int BedDays { get { return bedDays; } }
+        public int BedDays { get; set; }
 
         /// <summary>
         /// Диагноз первичный
         /// Код из справочника МКБ-10 до уровня подрубрики, если она предусмотрена МКБ-10 (неуказание подрубрики допускается для случаев оказания скорой медицинской помощи (USL_OK=4).
         /// Указывается при наличии
         /// </summary>
-        public string PrimaryDiagnosis { get { return dsPrimary; } }
+        public string PrimaryDiagnosis { get; set; }
 
         /// <summary>
         /// Диагноз основной
         /// Код из справочника МКБ-10 до уровня подрубрики, если она предусмотрена МКБ-10 (неуказание подрубрики допускается для случаев оказания скорой медицинской помощи).
         /// </summary>
-        public string MainDiagnosis { get { return dsMain; } }
+        public string MainDiagnosis { get; set; }
 
         /// <summary>
         /// Установлен впервые (основной)
         /// Обязательно указывается "1", если основной диагноз выявлен впервые в результате проведенной диспансеризации/профилактического медицинского осмотра
         /// </summary>
-        public bool FirstIdentified { get { return firstIdentified; } }
+        public bool FirstIdentified { get; set; }
 
         /// <summary>
         ///  Диагноз сопутствующего заболевания
         /// Код из справочника МКБ-10 до уровня подрубрики, если она предусмотрена МКБ-10 (неуказание подрубрики допускается для случаев оказания скорой медицинской помощи).
         /// Указывается в случае установления в соответствии с медицинской документацией.
         /// </summary>
-        public string ConcurrentDiagnosis { get { return dsConcurrent; } }
+        public string ConcurrentDiagnosis { get; set; }
 
         /// <summary>
         /// Диагноз осложнения заболевания
         /// Код из справочника МКБ-10 до уровня подрубрики, если она предусмотрена МКБ-10 (неуказание подрубрики допускается для случаев оказания скорой медицинской помощи).
         /// Указывается в случае установления в соответствии с медицинской документацией.
         /// </summary>
-        public string ComplicationDiagnosis { get { return dsComplication; } }
+        public string ComplicationDiagnosis { get; set; }
 
         /// <summary>
         /// Признак подозрения на злокачественное новообразование
         /// Указывается "1" при подозрении на злокачественное новообразование.
         /// </summary>
-        public bool SuspectOncology { get { return suspectOncology; } }
+        // public bool SuspectOncology { get; set; }
 
         /// <summary>
         /// Диспансерное наблюдение
         /// Указываются сведения о диспансерном наблюдении по поводу основного заболевания (состояния)
         /// Обязательно для заполнения, если P_CEL = 1.3
         /// </summary>
-        public DispensarySupervision DispensarySupervision { get { return dispSupervision; } }
+        public DispensarySupervision DispensarySupervision { get { return DispensarySupervision; } }
 
         /// <summary>
         /// Код МЭС сопутствующего заболевания
         /// </summary>
-        public string ConcurrentMesCode { get { return concurrentMesCode; } }
+        public string ConcurrentMesCode { get { return ConcurrentMesCode; } }
 
         /// <summary>
         /// Сведения о КСГ/КПГ
         /// Заполняется при оплате случая лечения по КСГ или КПГ
         /// </summary>
-        public ClinicalGroup ClinicalGroup { get { return clinicalGroup; } }
+        public ClinicalGroup ClinicalGroup { get { return ClinicalGroup; } }
 
         /// <summary>
         /// Признак реабилитации
         /// Указывается значение "1" для случаев реабилитации
         /// </summary>
-        public bool Rehabilitation { get { return rehabilitation; } }
+        public bool Rehabilitation { get { return Rehabilitation; } }
 
         /// <summary>
         /// Специальность лечащего врача/врача, закрывшего талон (историю болезни)
         /// Классификатор медицинских специальностей (Приложение А V021). Указывается значение IDSPEC
         /// </summary>
-        public string SpecialityCode { get { return specialityCode; } }
+        public string SpecialityCode { get { return SpecialityCode; } }
 
         /// <summary>
         /// Код лечащего врача/врача, закрывшего талон (историю болезни)
         /// Территориальный справочник
         /// </summary>
-        public string DoctorCode { get { return doctorCode; } }
+        public string DoctorCode { get { return DoctorCode; } }
 
         /// <summary>
         /// Количество единиц оплаты медицинской помощи
         /// </summary>
-        public double Quantity { get { return quantity; } }
+        public double Quantity { get { return Quantity; } }
 
         /// <summary>
         /// Тариф
         /// Тариф с учетом всех примененных коэффициентов (при оплате случая по КСГ с внутрибольничным переводом - стоимость, рассчитанная в соответствии с Методическими рекомендациями по способам оплаты медицинской помощи за счет средств ОМС)
         /// </summary>
-        public double Tariff { get { return tariff; } }
+        public double Tariff { get { return Tariff; } }
 
         /// <summary>
         /// Стоимость случая, выставленная к оплате
         /// Может указываться нулевое значение.
         /// Может состоять из тарифа и стоимости некоторых услуг.
         /// </summary>
-        public double Total { get { return total; } }
+        public double Total { get { return Total; } }
 
         /// <summary>
         /// Служебное поле
         /// </summary>
-        public string Comment { get { return comment; } }
+        public string Comment { get { return Comment; } }
 
         /// <summary>
         /// Вид высокотехнологичной медицинской помощи
         /// Классификатор видов высокотехнологичной медицинской помощи. Справочник V018 Приложения А
         /// </summary>
-        public string HiTechKind { get { return hiTechKind; } }
+        public string HiTechKind { get { return HiTechKind; } }
         
         /// <summary>
         /// Метод высокотехнологичной медицинской помощи
         /// Классификатор методов высокотехнологичной медицинской помощи. Справочник V019 Приложения А
         /// </summary>
-        public string HiTechMethod { get { return hiTechMethod; } }
+        public string HiTechMethod { get { return HiTechMethod; } }
 
         /// <summary>
         /// Дата выдачи талона на ВМП
         /// Заполняется на основании талона на ВМП
         /// </summary>
-        public DateTime HiTechCheckDate { get { return hiTechCheckDate; } }
+        public DateTime HiTechCheckDate { get { return HiTechCheckDate; } }
 
         /// <summary>
         /// Номер талона на ВМП
         /// </summary>
-        public string HiTechCheckNumber { get { return hiTechCheckNumber; } }
+        public string HiTechCheckNumber { get { return HiTechCheckNumber; } }
 
         /// <summary>
         /// Дата планируемой госпитализации
         /// </summary>
-        public DateTime HiTechPlannedHospitalizationDate { get { return hiTechPlannedHospitalizationDate; } }
+        public DateTime HiTechPlannedHospitalizationDate { get { return HiTechPlannedHospitalizationDate; } }
 
         /// <summary>
         /// Save invoice event to XML
@@ -280,16 +268,16 @@ namespace invox.Model {
         /// <param name="pool">Datapool</param>
         /// <param name="section">Section of the order #59</param>
         /// <param name="irec">Invoice record to which this event belongs</param>
-        public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section, InvoiceRecord irec) {
+        public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section, InvoiceRecord irec, Recourse rec) {
             switch (section) {
                 case OrderSection.D1:
-                    WriteD1(xml, pool, irec);
+                    WriteD1(xml, pool, irec, rec);
                     break;
                 case OrderSection.D2:
-                    WriteD2(xml, pool, irec);
+                    WriteD2(xml, pool, irec, rec);
                     break;
                 case OrderSection.D3:
-                    WriteD3(xml, pool, irec);
+                    WriteD3(xml, pool, irec, rec);
                     break;
             }
         }
@@ -300,27 +288,27 @@ namespace invox.Model {
         /// <param name="xml">XML exporter to save into</param>
         /// <param name="pool">Datapool</param>
         /// <param name="irec">Invoice record to which this event belongs</param>
-        public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+        public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec) {
             xml.Writer.WriteStartElement("SL");
 
-            xml.Writer.WriteElementString("SL_ID", id);
-            xml.WriteIfValid("LPU_1", unit);
-            xml.WriteIfValid("PODR", dept);
-            xml.Writer.WriteElementString("PROFIL", profile);
-            xml.WriteIfValid("PROFIL_K", bedProfile);
-            xml.WriteBool("DET", child);
-            xml.WriteIfValid("P_CEL", reason);
-            xml.Writer.WriteElementString("NHISTORY", cardNumber);
+            xml.Writer.WriteElementString("SL_ID", Identity);
+            xml.WriteIfValid("LPU_1", Unit);
+            xml.WriteIfValid("PODR", rec.Department);
+            xml.Writer.WriteElementString("PROFIL", rec.Profile);
+            xml.WriteIfValid("PROFIL_K", BedProfile);
+            xml.WriteBool("DET", Child);
+            xml.WriteIfValid("P_CEL", Reason);
+            xml.Writer.WriteElementString("NHISTORY", CardNumber);
 
-            if (transfer != Model.Transfer.None)
-                xml.Writer.WriteElementString("P_PER", ((int)transfer).ToString());
+            if (Transfer != Model.Transfer.None)
+                xml.Writer.WriteElementString("P_PER", ((int)Transfer).ToString());
 
-            xml.Writer.WriteElementString("DATE_1", dateFrom.AsXml());
-            xml.Writer.WriteElementString("DATE_2", dateTill.AsXml());
-            if (bedDays > 0) xml.Writer.WriteElementString("KD", bedDays.ToString());
+            xml.Writer.WriteElementString("DATE_1", DateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_2", DateTill.AsXml());
+            if (BedDays > 0) xml.Writer.WriteElementString("KD", BedDays.ToString());
        
-            xml.WriteIfValid("DS0", dsPrimary);
-            xml.Writer.WriteElementString("DS1", dsMain);
+            xml.WriteIfValid("DS0", PrimaryDiagnosis);
+            xml.Writer.WriteElementString("DS1", MainDiagnosis);
 
             // Диагноз сопутствующего заболевания
             // Код из справочника МКБ-10 до уровня подрубрики, если она предусмотрена МКБ-10 (неуказание подрубрики допускается для случаев оказания скорой медицинской помощи).
@@ -334,45 +322,45 @@ namespace invox.Model {
             foreach(string ds in pool.LoadComplicationDiagnoses())
                 xml.Writer.WriteElementString("DS3", ds);
 
-            if (suspectOncology)
+            if (rec.SuspectOncology)
                 xml.Writer.WriteElementString("DS_ONK", "1");
 
-            if (dispSupervision != Model.DispensarySupervision.None)
-                xml.Writer.WriteElementString("DN", ((int)dispSupervision).ToString());
+            if (DispensarySupervision != Model.DispensarySupervision.None)
+                xml.Writer.WriteElementString("DN", ((int)DispensarySupervision).ToString());
 
             // Код МЭС
             // Классификатор МЭС. Указывается при наличии утвержденного стандарта.
             foreach(string mes in pool.LoadMesCodes())
                 xml.Writer.WriteElementString("CODE_MES1", mes);
 
-            xml.WriteIfValid("CODE_MES2", concurrentMesCode);
+            xml.WriteIfValid("CODE_MES2", ConcurrentMesCode);
 
-            isOncology = OnkologyTreat.IsOnkologyTreat(this, pool);
+            isOncology = OnkologyTreat.IsOnkologyTreat(rec, this, pool);
             if (isOncology) {
                 OnkologyTreat treat = pool.GetOnkologyTreat();
                 if (treat != null) treat.Write(xml, pool);
             }
 
-            if (clinicalGroup != null) clinicalGroup.Write(xml, pool, this);
+            if (ClinicalGroup != null) ClinicalGroup.Write(xml, pool, this);
 
-            if (rehabilitation)
+            if (Rehabilitation)
                 xml.Writer.WriteElementString("REAB", "1");
 
-            xml.Writer.WriteElementString("PRVS", specialityCode);
+            xml.Writer.WriteElementString("PRVS", SpecialityCode);
 
             // Код классификатора медицинских специальностей
             // Указывается имя используемого классификатора медицинских специальностей
             xml.Writer.WriteElementString("VERS_SPEC", Options.SpecialityClassifier);
 
-            xml.Writer.WriteElementString("IDDOKT", doctorCode);
+            xml.Writer.WriteElementString("IDDOKT", DoctorCode);
 
-            if (quantity > 0)
-                xml.Writer.WriteElementString("ED_COL", quantity.ToString("F2", Options.NumberFormat));
+            if (Quantity > 0)
+                xml.Writer.WriteElementString("ED_COL", Quantity.ToString("F2", Options.NumberFormat));
 
-            if (tariff > 0)
-                xml.Writer.WriteElementString("TARIF", tariff.ToString("F2", Options.NumberFormat));
+            if (Tariff > 0)
+                xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));
 
-            xml.Writer.WriteElementString("SUM_M", total.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("SUM_M", Total.ToString("F2", Options.NumberFormat));
 
             // Сведения о санкциях
             // Описывает санкции, примененные в рамках данного случая.
@@ -385,11 +373,10 @@ namespace invox.Model {
             // Указание услуг с нулевой стоимостью обязательно, если условие их оказания является тарифообразующим (например, при оплате по КСГ).
             foreach (Service s in pool.LoadServices()) {
                 s.Oncology = isOncology;
-                s.SuspectOncology = suspectOncology;
-                s.WriteD1(xml, pool, irec, this);
+                s.WriteD1(xml, pool, irec, rec, this);
             }
 
-            xml.WriteIfValid("COMENTSL", comment);
+            xml.WriteIfValid("COMENTSL", Comment);
             xml.Writer.WriteEndElement();
         }
 
@@ -399,26 +386,26 @@ namespace invox.Model {
         /// <param name="xml">XML exporter to save into</param>
         /// <param name="pool">Datapool</param>
         /// <param name="irec">Invoice record to which this event belongs</param>
-        public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+        public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec) {
             xml.Writer.WriteStartElement("SL");
-            xml.Writer.WriteElementString("SL_ID", id);
-            xml.Writer.WriteElementString("VID_HMP", hiTechKind);
-            xml.Writer.WriteElementString("METOD_HMP", hiTechMethod);
-            xml.WriteIfValid("LPU_1", unit);
-            xml.WriteIfValid("PODR", dept);
-            xml.Writer.WriteElementString("PROFIL", profile);
-            xml.WriteIfValid("PROFIL_K", bedProfile);
-            xml.WriteBool("DET", child);
+            xml.Writer.WriteElementString("SL_ID", Identity);
+            xml.Writer.WriteElementString("VID_HMP", HiTechKind);
+            xml.Writer.WriteElementString("METOD_HMP", HiTechMethod);
+            xml.WriteIfValid("LPU_1", Unit);
+            xml.WriteIfValid("PODR", rec.Department);
+            xml.Writer.WriteElementString("PROFIL", rec.Profile);
+            xml.WriteIfValid("PROFIL_K", BedProfile);
+            xml.WriteBool("DET", Child);
 
-            xml.Writer.WriteElementString("TAL_D", hiTechCheckDate.AsXml());
-            xml.Writer.WriteElementString("TAL_NUM", hiTechCheckNumber);
-            xml.Writer.WriteElementString("TAL_P", hiTechPlannedHospitalizationDate.AsXml());
+            xml.Writer.WriteElementString("TAL_D", HiTechCheckDate.AsXml());
+            xml.Writer.WriteElementString("TAL_NUM", HiTechCheckNumber);
+            xml.Writer.WriteElementString("TAL_P", HiTechPlannedHospitalizationDate.AsXml());
 
-            xml.Writer.WriteElementString("NHISTORY", cardNumber);
-            xml.Writer.WriteElementString("DATE_1", dateFrom.AsXml());
-            xml.Writer.WriteElementString("DATE_2", dateTill.AsXml());
-            xml.WriteIfValid("DS0", dsPrimary);
-            xml.Writer.WriteElementString("DS1", dsMain);
+            xml.Writer.WriteElementString("NHISTORY", CardNumber);
+            xml.Writer.WriteElementString("DATE_1", DateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_2", DateTill.AsXml());
+            xml.WriteIfValid("DS0", PrimaryDiagnosis);
+            xml.Writer.WriteElementString("DS1", MainDiagnosis);
 
             foreach (string ds in pool.LoadConcurrentDiagnoses())
                 xml.Writer.WriteElementString("DS2", ds);
@@ -426,31 +413,31 @@ namespace invox.Model {
             foreach (string ds in pool.LoadComplicationDiagnoses())
                 xml.Writer.WriteElementString("DS3", ds);
 
-            if (suspectOncology)
+            if (rec.SuspectOncology)
                 xml.Writer.WriteElementString("DS_ONK", "1");
 
             foreach (string mes in pool.LoadMesCodes())
                 xml.Writer.WriteElementString("CODE_MES1", mes);
 
-            xml.WriteIfValid("CODE_MES2", concurrentMesCode);
+            xml.WriteIfValid("CODE_MES2", ConcurrentMesCode);
 
-            isOncology = OnkologyTreat.IsOnkologyTreat(this, pool);
+            isOncology = OnkologyTreat.IsOnkologyTreat(rec, this, pool);
             if (isOncology) {
                 OnkologyTreat treat = pool.GetOnkologyTreat();
                 if (treat != null) treat.Write(xml, pool);
             }
 
-            xml.Writer.WriteElementString("PRVS", specialityCode);
+            xml.Writer.WriteElementString("PRVS", SpecialityCode);
             xml.Writer.WriteElementString("VERS_SPEC", Options.SpecialityClassifier);
-            xml.Writer.WriteElementString("IDDOKT", doctorCode);
+            xml.Writer.WriteElementString("IDDOKT", DoctorCode);
 
-            if (quantity > 0)
-                xml.Writer.WriteElementString("ED_COL", quantity.ToString("F2", Options.NumberFormat));
+            if (Quantity > 0)
+                xml.Writer.WriteElementString("ED_COL", Quantity.ToString("F2", Options.NumberFormat));
 
-            if (tariff > 0)
-                xml.Writer.WriteElementString("TARIF", tariff.ToString("F2", Options.NumberFormat));
+            if (Tariff > 0)
+                xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));
 
-            xml.Writer.WriteElementString("SUM_M", total.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("SUM_M", Total.ToString("F2", Options.NumberFormat));
 
             // Сведения о санкциях
             // Описывает санкции, примененные в рамках данного случая.
@@ -463,11 +450,10 @@ namespace invox.Model {
             // Указание услуг с нулевой стоимостью обязательно, если условие их оказания является тарифообразующим (например, при оплате по КСГ).
             foreach (Service s in pool.LoadServices()) {
                 s.Oncology = isOncology;
-                s.SuspectOncology = suspectOncology;
-                s.WriteD2(xml, pool, irec, this);
+                s.WriteD2(xml, pool, irec, rec, this);
             }
 
-            xml.WriteIfValid("COMENTSL", comment);
+            xml.WriteIfValid("COMENTSL", Comment);
             xml.Writer.WriteEndElement();
         }
 
@@ -477,22 +463,22 @@ namespace invox.Model {
         /// <param name="xml">XML exporter to save into</param>
         /// <param name="pool">Datapool</param>
         /// <param name="irec">Invoice record to which this event belongs</param>
-        public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+        public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec) {
             xml.Writer.WriteStartElement("SL");
-            xml.Writer.WriteElementString("SL_ID", id);
-            xml.WriteIfValid("LPU_1", unit);
-            xml.Writer.WriteElementString("NHISTORY", cardNumber);
-            xml.Writer.WriteElementString("DATE_1", dateFrom.AsXml());
-            xml.Writer.WriteElementString("DATE_2", dateTill.AsXml());
-            xml.Writer.WriteElementString("DS1", dsMain);
+            xml.Writer.WriteElementString("SL_ID", Identity);
+            xml.WriteIfValid("LPU_1", Unit);
+            xml.Writer.WriteElementString("NHISTORY", CardNumber);
+            xml.Writer.WriteElementString("DATE_1", DateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_2", DateTill.AsXml());
+            xml.Writer.WriteElementString("DS1", MainDiagnosis);
 
-            if (firstIdentified)
+            if (FirstIdentified)
                 xml.Writer.WriteElementString("DS1_PR", "1");
             
-            if (suspectOncology)
+            if (rec.SuspectOncology)
                 xml.Writer.WriteElementString("DS_ONK", "1");
 
-            xml.Writer.WriteElementString("PR_D_N", ((int)dispSupervision).ToString());
+            xml.Writer.WriteElementString("PR_D_N", ((int)DispensarySupervision).ToString());
 
             foreach (ConcomitantDisease d in pool.GetConcomitantDiseases())
                 d.Write(xml);
@@ -500,13 +486,13 @@ namespace invox.Model {
             foreach (DispAssignment d in pool.GetDispanserisationAssignmetns())
                 d.Write(xml);
 
-            if (quantity > 0)
-                xml.Writer.WriteElementString("ED_COL", quantity.ToString("F2", Options.NumberFormat));
+            if (Quantity > 0)
+                xml.Writer.WriteElementString("ED_COL", Quantity.ToString("F2", Options.NumberFormat));
 
-            if (tariff > 0)
-                xml.Writer.WriteElementString("TARIF", tariff.ToString("F2", Options.NumberFormat));
+            if (Tariff > 0)
+                xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));
 
-            xml.Writer.WriteElementString("SUM_M", total.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("SUM_M", Total.ToString("F2", Options.NumberFormat));
 
             // Сведения о санкциях
             // Описывает санкции, примененные в рамках данного случая.
@@ -519,11 +505,10 @@ namespace invox.Model {
             // Указание услуг с нулевой стоимостью обязательно, если условие их оказания является тарифообразующим (например, при оплате по КСГ).
             foreach (Service s in pool.LoadServices()) {
                 s.Oncology = isOncology;
-                s.SuspectOncology = suspectOncology;
-                s.WriteD3(xml, pool, irec, this);
+                s.WriteD3(xml, pool, irec, rec, this);
             }
 
-            xml.WriteIfValid("COMENTSL", comment);
+            xml.WriteIfValid("COMENTSL", Comment);
             xml.Writer.WriteEndElement();
         }
     }

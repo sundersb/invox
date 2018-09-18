@@ -8,18 +8,49 @@ using System.Data.Common;
 namespace invox.Data.Relax {
     class Pool : IInvoice {
         const string CONNECTION_STRING = "Provider=vfpoledb;Data Source={0};Collating Sequence=machine;Mode=ReadWrite|Share Deny None;";
+
+        static string[] SELECT_RECOURSE_CASES_PARAMS = { "PERSON_RECID" };
+        
         const string PERIOD_MARKER = "{period}";
         const string LPU_MARKER = "{lpu}";
+        const string APPENDIX_SECTION_MARKER = "{section}";
+        
+        const string D1_DEPARTMENTS = "'0001', '0003', '0004', '0005'";
+        const string D2_DEPARTMENTS = "'8000'";
+        const string D3_DEPARTMENTS = "'0000', '0009'";
 
         string period;
+        string lpuCode;
+        Model.OrderSection lastRecoursesSection;
+
         OleDbConnection connectionMain;
+        OleDbConnection connectionAlt;
+
+        OleDbCommand selectRecourses = null;
 
         AdapterStrings aStrings;
+        AdapterPerson aPerson;
+        AdapterInvoice aInvoice;
+        AdapterRecourse aRecourse;
 
-        public Pool(string location, string period) {
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="location">Каталог Релакс</param>
+        /// <param name="lpuCode">Код ЛПУ (релаксовский)</param>
+        /// <param name="period">Каталог текущего периода (от корневого каталога Релакс)</param>
+        public Pool(string location, string lpuCode, string period) {
             this.period = period;
+            this.lpuCode = lpuCode;
+
+            aStrings = new AdapterStrings();
+            aPerson = new AdapterPerson();
+            aInvoice = new AdapterInvoice();
+            aRecourse = new AdapterRecourse();
+
             string cs = string.Format(CONNECTION_STRING, location);
             connectionMain = new OleDbConnection(cs);
+            connectionAlt = new OleDbConnection(cs);
         }
 
         /// <summary>
@@ -82,6 +113,27 @@ namespace invox.Data.Relax {
         }
 
         /// <summary>
+        /// Execute SQL select command to get a single value
+        /// </summary>
+        static object ExecuteScalar(DbConnection connection, string sql) {
+            DbCommand command = connection.CreateCommand();
+            command.CommandText = sql;
+            
+            if (connection.State != System.Data.ConnectionState.Open)
+                connection.Open();
+            
+            object result = null;
+            try {
+                result = command.ExecuteScalar();
+            } catch (Exception ex) {
+                Lib.Logger.Log(ex.Message + "\r\n" + DescribeCommand(command));
+            } finally {
+                connection.Close();
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Execute arbitrary select query
         /// </summary>
         /// <param name="command">Command to execute</param>
@@ -117,20 +169,26 @@ namespace invox.Data.Relax {
         static void ExecuteReader(DbConnection connection, string sql, Action<DbDataReader> onRead) {
             DbCommand command = connection.CreateCommand();
             command.CommandText = sql;
-            command.Connection.Open();
-            DbDataReader r = null;
-            try {
-                r = command.ExecuteReader();
-            } catch (Exception ex) {
-                Lib.Logger.Log(ex.Message + "\r\n" + DescribeCommand(command));
-                if (r != null) r.Close();
-            }
 
+            if (connection.State != System.Data.ConnectionState.Open)
+                connection.Open();
             try {
-                while (r.Read())
-                    onRead(r);
+                DbDataReader r = null;
+                try {
+                    r = command.ExecuteReader();
+                } catch (Exception ex) {
+                    Lib.Logger.Log(ex.Message + "\r\n" + DescribeCommand(command));
+                    if (r != null) r.Close();
+                }
+
+                try {
+                    while (r.Read())
+                        onRead(r);
+                } finally {
+                    r.Dispose();
+                }
             } finally {
-                r.Dispose();
+                connection.Close();
             }
         }
 
@@ -140,8 +198,22 @@ namespace invox.Data.Relax {
         /// <param name="sql">SQL with period and clinic macros</param>
         /// <returns>SQL with macros extended</returns>
         string LocalizeQuery(string sql) {
-            return sql.Replace(PERIOD_MARKER, Options.PeriodLocation)
-                .Replace(LPU_MARKER, Options.LocalLpuCode);
+            return sql.Replace(PERIOD_MARKER, period)
+                .Replace(LPU_MARKER, lpuCode);
+        }
+
+        string SectionizeQuery(string sql, Model.OrderSection section) {
+            switch (section) {
+                case Model.OrderSection.D1:
+                    return sql.Replace(APPENDIX_SECTION_MARKER, D1_DEPARTMENTS);
+
+                case Model.OrderSection.D2:
+                    return sql.Replace(APPENDIX_SECTION_MARKER, D2_DEPARTMENTS);
+
+                case Model.OrderSection.D3:
+                    return sql.Replace(APPENDIX_SECTION_MARKER, D3_DEPARTMENTS);
+            }
+            return sql;
         }
 
         public IEnumerable<Model.OnkologyDiagnosticType> LoadOnkologicalDiagnosticTypes() {
@@ -192,7 +264,8 @@ namespace invox.Data.Relax {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Model.Event> LoadEvents() {
+        public IEnumerable<Model.Event> LoadEvents(Model.InvoiceRecord irec, Model.Recourse rec) {
+            yield break;
             throw new NotImplementedException();
         }
 
@@ -205,27 +278,53 @@ namespace invox.Data.Relax {
         }
 
         public int GetPeopleCount(Model.OrderSection section) {
-            throw new NotImplementedException();
+            string sql = SectionizeQuery(Queries.SELECT_PEOPLE_COUNT, section);
+            object result = ExecuteScalar(connectionMain, LocalizeQuery(sql));
+            return result != DBNull.Value ? (int)(decimal)result : 0;
         }
 
         public IEnumerable<Model.Person> LoadPeople(Model.OrderSection section) {
-            throw new NotImplementedException();
+            string sql = SectionizeQuery(Queries.SELECT_PEOPLE, section);
+            return aPerson.Load(connectionMain, LocalizeQuery(sql));
         }
 
         public int GetInvoiceRecordsCount(Model.OrderSection section) {
-            throw new NotImplementedException();
+            string sql = SectionizeQuery(Queries.SELECT_INVOICE_RECORDS_COUNT, section);
+            object result = ExecuteScalar(connectionMain, LocalizeQuery(sql));
+            return result != DBNull.Value ? (int)(decimal)result : 0;
         }
 
-        public float Total(Model.OrderSection section) {
-            throw new NotImplementedException();
+        public decimal Total(Model.OrderSection section) {
+            string sql = SectionizeQuery(Queries.SELECT_TOTAL, section);
+            object result = ExecuteScalar(connectionMain, LocalizeQuery(sql));
+            return result != DBNull.Value ? (decimal)result : 0;
         }
 
         public IEnumerable<Model.InvoiceRecord> LoadInvoiceRecords(Model.OrderSection section) {
-            throw new NotImplementedException();
+            string sql = SectionizeQuery(Queries.SELECT_INVOICE_PEOPLE, section);
+            return aInvoice.Load(connectionMain, LocalizeQuery(sql));
         }
 
         public IEnumerable<string> LoadNoDeptDoctors() {
-            return aStrings.Load(connectionMain, "");
+            string sql = LocalizeQuery(Queries.SELECT_NO_DOCTOR_DEPT);
+            return aStrings.Load(connectionMain, sql);
+        }
+    
+
+        public IEnumerable<Model.Recourse>  LoadRecourses(Model.InvoiceRecord irec, Model.OrderSection section) {
+            if (section != lastRecoursesSection) {
+                selectRecourses = null;
+                lastRecoursesSection = section;
+            }
+
+            if (selectRecourses == null) {
+                string sql = LocalizeQuery(Queries.SELECT_RECOURSES);
+                selectRecourses = connectionAlt.CreateCommand();
+                selectRecourses.CommandText = SectionizeQuery(sql, section);
+                AddStringParameters(selectRecourses, SELECT_RECOURSE_CASES_PARAMS);
+            }
+            selectRecourses.Parameters[0].Value = irec.Person.Identity;
+            return aRecourse.Load(selectRecourses);
         }
     }
 }

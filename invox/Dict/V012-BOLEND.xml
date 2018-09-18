@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dict title="Исходы заболевания" in="SLUSL+BOLEND" out="V012">
+  <item slusl="1" bolend="8" in="1-8" out="101" title="Выздоровление"/>
+  <item slusl="1" bolend="9" in="1-9" out="102" title="Улучшение"/>
+  <item slusl="1" bolend="11" in="1-11" out="103" title="Без перемен"/>
+  <item slusl="1" bolend="12" in="1-12" out="104" title="Ухудшение"/>
+  <item slusl="2" bolend="14" in="2-14" out="201" title="Выздоровление"/>
+  <item slusl="2" bolend="15" in="2-15" out="202" title="Улучшение"/>
+  <item slusl="2" bolend="16" in="2-16" out="203" title="Без перемен"/>
+  <item slusl="2" bolend="17" in="2-17" out="204" title="Ухудшение"/>
+  <item slusl="2" bolend="8" in="2-8" out="201" title="Выздоровление"/>
+  <item slusl="2" bolend="9" in="2-9" out="202" title="Улучшение"/>
+  <item slusl="2" bolend="11" in="2-11" out="203" title="Без перемен"/>
+  <item slusl="2" bolend="12" in="2-12" out="204" title="Ухудшение"/>
+  <item slusl="3" bolend="8" in="3-8" out="301" title="Выздоровление"/>
+  <item slusl="3" bolend="9" in="3-9" out="303" title="Улучшение"/>
+  <item slusl="3" bolend="11" in="3-11" out="304" title="Без перемен"/>
+  <item slusl="3" bolend="12" in="3-12" out="305" title="Ухудшение"/>
+  <item slusl="4" bolend="9" in="4-9" out="401" title="Улучшение"/>
+  <item slusl="4" bolend="11" in="4-11" out="402" title="Без эффекта"/>
+  <item slusl="4" bolend="12" in="4-12" out="403" title="Ухудшение"/>
+  <item slusl="3" bolend="???" in="3-hez1" out="302" title="Ремиссия"/>
+  <item slusl="3" bolend="???" in="3-hez2" out="306" title="Осмотр"/>
+</dict>

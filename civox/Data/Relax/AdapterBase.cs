@@ -67,5 +67,20 @@ namespace civox.Data.Relax {
             else
                 return new DateTime(1900, 1, 1);
         }
+
+        protected bool ReadBool(object value) {
+            if (value == DBNull.Value) return false;
+
+            if (value.GetType() == typeof(bool)) return (bool)value;
+            if (value.GetType() == typeof(decimal)) return 0 != (decimal)value;
+            if (value.GetType() == typeof(int)) return 0 != (int)value;
+            if (value.GetType() == typeof(string)) {
+                if (string.IsNullOrEmpty((string)value)) return false;
+                int i;
+                if (int.TryParse((string)value, out i)) return i != 0;
+            }
+
+            return false;
+        }
     }
 }

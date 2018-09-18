@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using invox.Lib;
 
@@ -33,53 +34,52 @@ namespace invox.Model {
     /// </remarks>
     /// </summary>
     class Recourse {
-        string id;
-        int conditions;
-        int aidKind;
-        int aidForm;
-        string directedFrom;
-        DateTime directionDate;
-        DateTime dateFrom;
-        DateTime dateTill;
-        int bedDays;
-        int birthWeight;
-        int result;
-        int outcome;
         List<SpecialCase> specialCase;
-        bool unitShift;
-        int payKind;
-        double total;
-        PayType payType;
-        double acceptedSum;
-        double deniedSum;
+        
+        string condition;
+        bool isHospitalization;
+        
+        public List<Event> Events { get; private set; }
 
-        bool mobileBrigade;
-        bool dispRefusal;
-        string dispResult;
+        /// <summary>
+        /// Подозрение на онко. Не используется в выгрузке
+        /// </summary>
+        public bool SuspectOncology { get; set; }
 
+        public bool IsHospitalization { get { return isHospitalization; } }
+
+        public string Department { get; set; }
+        public string Profile { get; set; }
+        
         /// <summary>
         /// Номер записи в реестре законченных случаев
         /// Соответствует порядковому номеру записи реестра счета на бумажном носителе при его предоставлении.
         /// </summary>
-        public string Identity { get { return id; } }
+        public string Identity { get; set; }
 
         /// <summary>
         /// Условия оказания медицинской помощи
         /// Классификатор условий оказания медицинской помощи (V006 Приложения А).
         /// </summary>
-        public int Conditions { get { return conditions; } }
+        public string Conditions {
+            get { return condition; }
+            set {
+                condition = value;
+                isHospitalization = value == "1" || value == "2";
+            }
+        }
         
         /// <summary>
         /// Вид медицинской помощи
         /// Классификатор видов медицинской помощи. Справочник V008 Приложения А.
         /// </summary>
-        public int AidKind { get { return aidKind; } }
+        public int AidKind { get; set; }
         
         /// <summary>
         /// Форма оказания медицинской помощи
         /// Классификатор форм оказания медицинской помощи. Справочник V014 Приложения А
         /// </summary>
-        public int AidForm { get { return aidForm; } }
+        public int AidForm { get; set; }
 
         /// <summary>
         /// Код МО, направившей на лечение (диагностику, консультацию, госпитализацию)
@@ -89,7 +89,7 @@ namespace invox.Model {
         /// 2. неотложной медицинской помощи в условиях стационара (FOR_POM=2 и USL_OK=1);
         /// 3. медицинской помощи при подозрении на злокачественное новообразование (DS_ONK=l)
         /// </summary>
-        public string DirectedFrom { get { return directedFrom; } }
+        public string DirectedFrom { get; set; }
 
         /// <summary>
         /// Дата направления на лечение (диагностику, консультацию, госпитализацию)
@@ -99,94 +99,94 @@ namespace invox.Model {
         /// 2. неотложной медицинской помощи в условиях стационара (FOR_POM=2 и USL_OK=1);
         /// 3. медицинской помощи при подозрении на злокачественное новообразование (DS_ONK=l)
         /// </summary>
-        public DateTime DirectionDate { get { return directionDate; } }
+        public DateTime DirectionDate { get; set; }
 
         /// <summary>
         /// Дата начала лечения
         /// </summary>
-        public DateTime DateFrom { get { return dateFrom; } }
+        public DateTime DateFrom { get; set; }
 
         /// <summary>
         /// Дата окончания лечения
         /// </summary>
-        public DateTime DateTill { get { return dateTill; } }
+        public DateTime DateTill { get; set; }
 
         /// <summary>
         /// Продолжительность госпитализации (койко-дни/пациенто-дни)
         /// Обязательно для заполнения для стационара и дневного стационара
         /// </summary>
-        public int BedDays { get { return bedDays; } }
+        public int BedDays { get; set; }
 
         /// <summary>
         /// Вес при рождении
         /// Указывается при оказании медицинской помощи недоношенным и маловесным детям.
         /// Поле заполняется, если в качестве пациента указана мать.
         /// </summary>
-        public int BirthWeight { get { return birthWeight; } }
+        public int BirthWeight { get; set; }
 
         /// <summary>
         /// Результат обращения
         /// Классификатор результатов обращения за медицинской помощью (Приложение А V009).
         /// </summary>
-        public int Result { get { return result; } }
+        public int Result { get; set; }
 
         /// <summary>
         /// Исход заболевания
         /// Классификатор исходов заболевания (Приложение А V012).
         /// </summary>
-        public int Outcome { get { return outcome; } }
+        public string Outcome { get; set; }
         
         //List<SpecialCase> specialCase { get { return ; } }
 
         /// <summary>
         /// Признак внутрибольничного перевода	Указывается" 1" только при оплате случая по КСГ с внутрибольничным переводом.
         /// </summary>
-        public bool UnitShift { get { return unitShift; } }
+        public bool UnitShift { get; set; }
 
         /// <summary>
         /// Код способа оплаты медицинской помощи
         /// Классификатор способов оплаты медицинской помощи V010
         /// </summary>
-        public int PayKind { get { return payKind; } }
+        public string PayKind { get; set; }
 
         /// <summary>
         /// Сумма, выставленная к оплате
         /// Равна сумме значений SUM_M вложенных элементов SL, не может иметь нулевое значение.
         /// </summary>
-        public double Total { get { return total; } }
+        public double Total { get; set; }
 
         /// <summary>
         /// Тип оплаты
         /// </summary>
-        public PayType PayType { get { return payType; } }
+        public PayType PayType { get; set; }
 
         /// <summary>
         /// Сумма, принятая к оплате СМО (ТФОМС)
         /// Заполняется СМО (ТФОМС).
         /// </summary>
-        public double AcceptedSum { get { return acceptedSum; } }
+        public double AcceptedSum { get; set; }
 
         /// <summary>
         /// Сумма санкций по законченному случаю
         /// Итоговые санкции определяются на основании санкций, описанных ниже
         /// </summary>
-        public double DeniedSum { get { return deniedSum; } }
+        public double DeniedSum { get; set; }
 
         /// <summary>
         /// Признак мобильной медицинской бригады (для Д3)
         /// </summary>
-        public bool MobileBrigade { get { return mobileBrigade; } }
+        public bool MobileBrigade { get; set; }
 
         /// <summary>
         /// Признак отказа (D3)
         /// </summary>
-        public bool DispanserisationRefusal { get { return dispRefusal; } }
+        public bool DispanserisationRefusal { get; set; }
         
         /// <summary>
         /// Результат диспансеризации
         /// Классификатор результатов диспансеризации V017
         /// </summary>
-        public string DispanserisationResult { get { return dispResult; } }
+        public string DispanserisationResult { get; set; }
 
         public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section, InvoiceRecord irec) {
             switch (section) {
@@ -202,56 +202,72 @@ namespace invox.Model {
             }
         }
 
+        public void LoadEvents(InvoiceRecord irec, Data.IInvoice pool) {
+            Events = pool.LoadEvents(irec, this).ToList();
+
+            if (Events.Count > 0) {
+                DateFrom = Events.Select(e => e.DateFrom).Min();
+                DateTill = Events.Select(e => e.DateFrom).Max();
+                
+                if (isHospitalization)
+                    BedDays = Events.Select(e => e.BedDays).Sum();
+
+                Total = Events.Select(e => e.Total).Sum();
+
+                UnitShift = Events.Any(e => e.Transfer == Transfer.ProfileShift);
+            }
+        }
+
         public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
             xml.Writer.WriteStartElement("Z_SL");
 
-            xml.Writer.WriteElementString("IDCASE", id);
-            xml.Writer.WriteElementString("USL_OK", conditions.ToString());
-            xml.Writer.WriteElementString("VIDPOM", aidKind.ToString());
+            xml.Writer.WriteElementString("IDCASE", Identity);
+            xml.Writer.WriteElementString("USL_OK", Conditions);
+            xml.Writer.WriteElementString("VIDPOM", AidKind.ToString());
 
-            xml.Writer.WriteElementString("FOR_POM", aidForm.ToString());
+            xml.Writer.WriteElementString("FOR_POM", AidForm.ToString());
 
-            if (!string.IsNullOrEmpty(directedFrom)) {
-                xml.Writer.WriteElementString("NPR_MO", directedFrom);
-                xml.Writer.WriteElementString("NPR_DATE", directionDate.AsXml());
+            if (!string.IsNullOrEmpty(DirectedFrom)) {
+                xml.Writer.WriteElementString("NPR_MO", DirectedFrom);
+                xml.Writer.WriteElementString("NPR_DATE", DirectionDate.AsXml());
             }
 
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
 
-            xml.Writer.WriteElementString("DATE_Z_1", dateFrom.AsXml());
-            xml.Writer.WriteElementString("DATE_Z_2", dateTill.AsXml());
+            xml.Writer.WriteElementString("DATE_Z_1", DateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_Z_2", DateTill.AsXml());
 
-            if (bedDays > 0)
-                xml.Writer.WriteElementString("KD_Z", bedDays.ToString());
+            if (BedDays > 0)
+                xml.Writer.WriteElementString("KD_Z", BedDays.ToString());
 
-            if (birthWeight > 0)
-                xml.Writer.WriteElementString("VNOV_M", birthWeight.ToString());
+            if (BirthWeight > 0)
+                xml.Writer.WriteElementString("VNOV_M", BirthWeight.ToString());
 
-            xml.Writer.WriteElementString("RSLT", result.ToString());
-            xml.Writer.WriteElementString("ISHOD", outcome.ToString());
+            xml.Writer.WriteElementString("RSLT", Result.ToString());
+            xml.Writer.WriteElementString("ISHOD", Outcome);
 
             if (specialCase != null) {
                 foreach (SpecialCase c in specialCase)
                     xml.Writer.WriteElementString("OS_SLUCH", ((int)c).ToString());
             }
 
-            if (unitShift)
+            if (UnitShift)
                 xml.Writer.WriteElementString("VB_P", "1");
 
-            foreach (Event e in pool.LoadEvents())
-                e.WriteD1(xml, pool, irec);
+            foreach (Event e in Events)
+                e.WriteD1(xml, pool, irec, this);
 
-            xml.Writer.WriteElementString("IDSP", payKind.ToString());
-            xml.Writer.WriteElementString("SUMV", total.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("IDSP", PayKind);
+            xml.Writer.WriteElementString("SUMV", Total.ToString("F2", Options.NumberFormat));
 
-            if (payType != Model.PayType.None)
-                xml.Writer.WriteElementString("OPLATA", ((int)payType).ToString());
+            if (PayType != Model.PayType.None)
+                xml.Writer.WriteElementString("OPLATA", ((int)PayType).ToString());
 
-            if (acceptedSum > 0)
-                xml.Writer.WriteElementString("SUMP", acceptedSum.ToString("F2", Options.NumberFormat));
+            if (AcceptedSum > 0)
+                xml.Writer.WriteElementString("SUMP", AcceptedSum.ToString("F2", Options.NumberFormat));
 
-            if (deniedSum > 0)
-                xml.Writer.WriteElementString("SANKIT", deniedSum.ToString("F2", Options.NumberFormat));
+            if (DeniedSum > 0)
+                xml.Writer.WriteElementString("SANKIT", DeniedSum.ToString("F2", Options.NumberFormat));
 
             xml.Writer.WriteEndElement();
         }
@@ -259,48 +275,48 @@ namespace invox.Model {
         public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
             xml.Writer.WriteStartElement("Z_SL");
 
-            xml.Writer.WriteElementString("IDCASE", id);
-            xml.Writer.WriteElementString("USL_OK", conditions.ToString());
-            xml.Writer.WriteElementString("VIDPOM", aidKind.ToString());
+            xml.Writer.WriteElementString("IDCASE", Identity);
+            xml.Writer.WriteElementString("USL_OK", Conditions.ToString());
+            xml.Writer.WriteElementString("VIDPOM", AidKind.ToString());
 
-            xml.Writer.WriteElementString("FOR_POM", aidForm.ToString());
+            xml.Writer.WriteElementString("FOR_POM", AidForm.ToString());
 
-            if (!string.IsNullOrEmpty(directedFrom))
-                xml.Writer.WriteElementString("NPR_MO", directedFrom);
+            if (!string.IsNullOrEmpty(DirectedFrom))
+                xml.Writer.WriteElementString("NPR_MO", DirectedFrom);
 
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
 
-            xml.Writer.WriteElementString("DATE_Z_1", dateFrom.AsXml());
-            xml.Writer.WriteElementString("DATE_Z_2", dateTill.AsXml());
+            xml.Writer.WriteElementString("DATE_Z_1", DateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_Z_2", DateTill.AsXml());
 
-            if (bedDays > 0)
-                xml.Writer.WriteElementString("KD_Z", bedDays.ToString());
+            if (BedDays > 0)
+                xml.Writer.WriteElementString("KD_Z", BedDays.ToString());
 
-            if (birthWeight > 0)
-                xml.Writer.WriteElementString("VNOV_M", birthWeight.ToString());
+            if (BirthWeight > 0)
+                xml.Writer.WriteElementString("VNOV_M", BirthWeight.ToString());
 
-            xml.Writer.WriteElementString("RSLT", result.ToString());
-            xml.Writer.WriteElementString("ISHOD", outcome.ToString());
+            xml.Writer.WriteElementString("RSLT", Result.ToString());
+            xml.Writer.WriteElementString("ISHOD", Outcome.ToString());
 
             if (specialCase != null) {
                 foreach (SpecialCase c in specialCase)
                     xml.Writer.WriteElementString("OS_SLUCH", ((int)c).ToString());
             }
 
-            foreach (Event e in pool.LoadEvents())
-                e.WriteD2(xml, pool, irec);
+            foreach (Event e in Events)
+                e.WriteD2(xml, pool, irec, this);
 
-            xml.Writer.WriteElementString("IDSP", payKind.ToString());
-            xml.Writer.WriteElementString("SUMV", total.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("IDSP", PayKind.ToString());
+            xml.Writer.WriteElementString("SUMV", Total.ToString("F2", Options.NumberFormat));
 
-            if (payType != Model.PayType.None)
-                xml.Writer.WriteElementString("OPLATA", ((int)payType).ToString());
+            if (PayType != Model.PayType.None)
+                xml.Writer.WriteElementString("OPLATA", ((int)PayType).ToString());
 
-            if (acceptedSum > 0)
-                xml.Writer.WriteElementString("SUMP", acceptedSum.ToString("F2", Options.NumberFormat));
+            if (AcceptedSum > 0)
+                xml.Writer.WriteElementString("SUMP", AcceptedSum.ToString("F2", Options.NumberFormat));
 
-            if (deniedSum > 0)
-                xml.Writer.WriteElementString("SANKIT", deniedSum.ToString("F2", Options.NumberFormat));
+            if (DeniedSum > 0)
+                xml.Writer.WriteElementString("SANKIT", DeniedSum.ToString("F2", Options.NumberFormat));
 
             xml.Writer.WriteEndElement();
         }
@@ -308,39 +324,41 @@ namespace invox.Model {
         public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
             xml.Writer.WriteStartElement("Z_SL");
 
-            xml.Writer.WriteElementString("IDCASE", id);
-            xml.Writer.WriteElementString("USL_OK", conditions.ToString());
-            xml.Writer.WriteElementString("VIDPOM", aidKind.ToString());
+            xml.Writer.WriteElementString("IDCASE", Identity);
+            xml.Writer.WriteElementString("USL_OK", Conditions.ToString());
+            xml.Writer.WriteElementString("VIDPOM", AidKind.ToString());
 
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
 
-            xml.WriteBool("VBR", mobileBrigade);
+            // Dinamically?
+            xml.WriteBool("VBR", MobileBrigade);
 
-            xml.Writer.WriteElementString("DATE_Z_1", dateFrom.AsXml());
-            xml.Writer.WriteElementString("DATE_Z_2", dateTill.AsXml());
+            xml.Writer.WriteElementString("DATE_Z_1", DateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_Z_2", DateTill.AsXml());
 
-            xml.WriteBool("P_OTK", dispRefusal);
-            xml.Writer.WriteElementString("RSLT_D", dispResult);
+            // Dynamically
+            xml.WriteBool("P_OTK", DispanserisationRefusal);
+            xml.Writer.WriteElementString("RSLT_D", DispanserisationResult);
 
             if (specialCase != null) {
                 foreach (SpecialCase c in specialCase)
                     xml.Writer.WriteElementString("OS_SLUCH", ((int)c).ToString());
             }
 
-            foreach (Event e in pool.LoadEvents())
-                e.WriteD3(xml, pool, irec);
+            foreach (Event e in Events)
+                e.WriteD3(xml, pool, irec, this);
 
-            xml.Writer.WriteElementString("IDSP", payKind.ToString());
-            xml.Writer.WriteElementString("SUMV", total.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("IDSP", PayKind.ToString());
+            xml.Writer.WriteElementString("SUMV", Total.ToString("F2", Options.NumberFormat));
 
-            if (payType != Model.PayType.None)
-                xml.Writer.WriteElementString("OPLATA", ((int)payType).ToString());
+            if (PayType != Model.PayType.None)
+                xml.Writer.WriteElementString("OPLATA", ((int)PayType).ToString());
 
-            if (acceptedSum > 0)
-                xml.Writer.WriteElementString("SUMP", acceptedSum.ToString("F2", Options.NumberFormat));
+            if (AcceptedSum > 0)
+                xml.Writer.WriteElementString("SUMP", AcceptedSum.ToString("F2", Options.NumberFormat));
 
-            if (deniedSum > 0)
-                xml.Writer.WriteElementString("SANKIT", deniedSum.ToString("F2", Options.NumberFormat));
+            if (DeniedSum > 0)
+                xml.Writer.WriteElementString("SANKIT", DeniedSum.ToString("F2", Options.NumberFormat));
 
             xml.Writer.WriteEndElement();
         }

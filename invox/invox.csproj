@@ -45,14 +45,33 @@
   <ItemGroup>
     <Compile Include="Data\IInvoice.cs" />
     <Compile Include="Data\Relax\AdapterBase.cs" />
+    <Compile Include="Data\Relax\AdapterEvent.cs" />
+    <Compile Include="Data\Relax\AdapterInvoice.cs" />
+    <Compile Include="Data\Relax\AdapterPerson.cs" />
+    <Compile Include="Data\Relax\AdapterRecourse.cs" />
     <Compile Include="Data\Relax\AdapterStrings.cs" />
     <Compile Include="Data\Relax\Pool.cs" />
+    <Compile Include="Data\Relax\Queries.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Queries.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Dict\AidProfile.cs" />
+    <Compile Include="Dict\Base.cs" />
+    <Compile Include="Dict\BedProfile.cs" />
+    <Compile Include="Dict\Condition.cs" />
+    <Compile Include="Dict\DispResult.cs" />
+    <Compile Include="Dict\DocumentType.cs" />
+    <Compile Include="Dict\Outcome.cs" />
+    <Compile Include="Dict\PayKind.cs" />
+    <Compile Include="Dict\SMO.cs" />
     <Compile Include="Lib\CommandLine.cs" />
     <Compile Include="Lib\DateHelper.cs" />
     <Compile Include="Lib\InvoiceFilename.cs" />
     <Compile Include="Lib\Logger.cs" />
     <Compile Include="Lib\Options.cs" />
     <Compile Include="Lib\Progress.cs" />
+    <Compile Include="Lib\UniqueNumber.cs" />
     <Compile Include="Lib\Unlinker.cs" />
     <Compile Include="Lib\XmlExporter.cs" />
     <Compile Include="Lib\Zip.cs" />
@@ -95,7 +114,37 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Data\Relax\Queries.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Queries.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dict\F002-Q.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\F011-TPDOC.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\V002-SLMSP.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\V006-SLUSL.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\V010-OPLMSP.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\V012-BOLEND.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\V017-REZOBR.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\V020-SLPROF.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

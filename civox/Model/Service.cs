@@ -157,7 +157,7 @@ namespace civox.Model {
         }
 
         string GetAidKind() {
-            switch (ServiceCode / 10000) {
+            switch (ServiceCode / 100000) {
                 case 7:
                     return AID_KIND_HITECH;
 

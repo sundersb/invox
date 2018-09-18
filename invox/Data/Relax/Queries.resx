@@ -117,74 +117,65 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SELECT_CASE_TREAT" xml:space="preserve">
+  <data name="SELECT_INVOICE_PEOPLE" xml:space="preserve">
     <value>select distinct
-  S.RECID,
-  S.D_U,
-  S.COD,
-  S.C_I,
-  S.K_U,
-  S.S_ALL,
-  S.D_TYPE,
-  S.TN1,
-  S.BE,
-  nvl(RO.SLIZ, 'xxx') RESCODE,
-  K.MSP,
-  nvl(MP.CODEFSS, 'xxx') PROFILE,
-  K.OPL,
-  S.EXTR
+  P.RECID,
+  P.T_POL,
+  cpconvert (866, 1251, P.SN_POL) SN_POL,
+  P.Q,
+  P.KT,
+  P.W,
+  P.DR,
+  P.NOVOR,
+  cpconvert (866, 1251, MSO.NAME) MSO_NAME,
+  MSO.OGRN MSO_OGRN,
+  MSO.OKATO MSO_OKATO
  from {period}S{lpu} S
-  left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
-  left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD
-  left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
-  left outer join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
-  left outer join BASE/COMMON/REZOBR RO on RO.CODE = S.BE
- where (S.SN_POL = cpconvert(1251, 866, ?))
-  and (S.DS = ?)
-  and (icase(S.OTD = '0001', '1',
-   S.OTD = '0003', iif(S.COD = 3001 or S.COD = 3034, '2', '3'),
-   S.OTD = '0004', iif(S.COD = 50002 or S.COD = 50001 or floor(S.COD / 10000) = 6, '4', '5'),
-   S.OTD = '0005', '6',
-   S.OTD = '0009', icase(floor(S.COD / 1000) = 27, '7', floor(S.COD / 1000) = 25 or floor(COD / 1000) = 28, '9', '8'),
-   '0') = ?)</value>
-    <comment>Обращение с лечебной целью</comment>
+  join {period}P{lpu} P on P.SN_POL = S.SN_POL
+  join BASE/COMMON/SLMSO MSO on MSO.CODE = P.Q
+ where (S.OTD in ({section}))
+  and (floor(S.COD/1000) in (3, 27, 28, 29, 22, 50))</value>
+    <comment>Пациенты для счетов</comment>
   </data>
-  <data name="SELECT_DIAGNOSES" xml:space="preserve">
-    <value>select distinct DIAGIN from {period}DIAGNOZ where SN_POL = ?</value>
-  </data>
-  <data name="SELECT_DISP_DIRECTIONS" xml:space="preserve">
-    <value>select KSG, KSG2
- from {period}S{lpu}
- where RECID = ?</value>
-  </data>
-  <data name="SELECT_ERROR_PRVS" xml:space="preserve">
+  <data name="SELECT_INVOICE_PEOPLE_FOREIGN" xml:space="preserve">
     <value>select distinct
-  S.OTD,
-  S.TN1
+  P.RECID,
+  P.T_POL,
+  cpconvert (866, 1251, P.SN_POL) SN_POL,
+  P.Q,
+  PAT.KT,
+  P.W,
+  P.DR,
+  P.NOVOR,
+  cpconvert (866, 1251, MSO.FULLNAME) MSO_NAME,
+  MSO.OGRN MSO_OGRN,
+  MSO.OKATO MSO_OKATO
+ from {period}C{lpu} S
+  join {period}I{lpu} P on P.SN_POL = S.SN_POL
+  join {period}PAT on PAT.SN_POL = I.SN_POL
+  left outer join BASE/COMMON/MSOIN MSO on MSO.CODE = P.Q_VCODE
+ where (S.OTD in ({section}))
+  and (floor(S.COD/1000) in (3, 27, 28, 29, 22, 50))</value>
+  </data>
+  <data name="SELECT_INVOICE_RECORDS_COUNT" xml:space="preserve">
+    <value>select count(*)
+ from {period}S{lpu}
+ where (floor(COD/1000) in (3, 27, 28, 29, 22, 50))
+  and (OTD in ({section}))</value>
+    <comment>Число законченных случаев</comment>
+  </data>
+  <data name="SELECT_NO_DOCTOR_DEPT" xml:space="preserve">
+    <value>select distinct
+  'Врач ' + ltrim(S.TN1) + ' не прописан в отделении ' + S.OTD EMSG
  from {period}S{lpu} S
   left outer join BASE/DESCR/STRUCT X on X.BUXC = S.OTD
   left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = X.CODE + S.TN1
   left outer join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
  where MP.CODEFSS is null</value>
-    <comment>Ошибка - врач не привязан к отделению</comment>
-  </data>
-  <data name="SELECT_INVOICE_RECS" xml:space="preserve">
-    <value>select distinct
-  P.RECID,
-  P.T_POL,
-  cpconvert(866,1251,P.SN_POL) SN_POL,
-  P.Q,
-  P.KT,
-  P.W,
-  P.DR,
-  P.NOVOR
- from {period}P{lpu} P
-  join {period}S{lpu} S on S.SN_POL = P.SN_POL
- order by 3</value>
+    <comment>Выборка ошибки - врач не привязан к отделению</comment>
   </data>
   <data name="SELECT_PEOPLE" xml:space="preserve">
     <value>select distinct
-  cpconver(866, 1251, P.SN_POL) SN_POL,
   P.RECID,
   cpconvert(866, 1251, P.FAM) FAM,
   cpconvert(866, 1251, P.IM) IM,
@@ -192,55 +183,55 @@
   P.W,
   P.DR,
   P.SS,
+  cpconver(866, 1251, P.SN_POL) SN_POL,
+  PP.Q_PASP,
+  PP.SN_PASP,
+  cpconvert(866, 1251, P.PR) BP,
+  cpconvert(866, 1251, P.ADRES) ADRES,
   P.SP,
   P.KT,
-  cpconvert(866, 1251, P.SN_POL) SN_POL,
-  cpconvert(866, 1251, P.ADRES) ADRES,
-  PP.Q_PASP,
-  PP.SN_PASP
+  cpconvert(866, 1251, P.FAM1) FAMP,
+  cpconvert(866, 1251, P.IM1) IMP,
+  cpconvert(866, 1251, P.OT1) OTP,
+  P.WP,
+  P.DRP
  from {period}P{lpu} P
   join {period}S{lpu} S on S.SN_POL = P.SN_POL
   left outer join {period}PAT PP on PP.SN_POL = P.SN_POL
+ where S.OTD in ({section})
  order by 1</value>
   </data>
   <data name="SELECT_PEOPLE_COUNT" xml:space="preserve">
-    <value>select count(distinct P.SN_POL)
- from {period}P{lpu} P
-  join {period}S{lpu} S on S.SN_POL = P.SN_POL</value>
-    <comment>Join с услугами, чтобы отсеять пациентов без услуг</comment>
-  </data>
-  <data name="SELECT_RECOURSES_COUNT" xml:space="preserve">
-    <value>select count(*)
+    <value>select count(distinct SN_POL)
  from {period}S{lpu}
- where floor(COD/1000) in (3, 27, 28, 29, 22, 50)</value>
+ where OTD in ({section})</value>
+    <comment>К-во пациентов</comment>
   </data>
-  <data name="SELECT_RECOURSE_CASES" xml:space="preserve">
+  <data name="SELECT_RECOURSES" xml:space="preserve">
     <value>select distinct
+  S.RECID,
   S.OTD,
-  icase(S.OTD = '0001', 1,
-   S.OTD = '0003', iif(S.COD = 3001 or S.COD = 3034, 2, 3),
-   S.OTD = '0004', iif(S.COD = 50002 or S.COD = 50001 or floor(S.COD / 10000) = 6, 4, 5),
-   S.OTD = '0005', 6,
-   S.OTD = '0009', icase(floor(S.COD / 1000) = 27, 7, floor(S.COD / 1000) = 25 or floor(COD / 1000) = 28, 9, 8),
-   0) REASON,
+  UMP.SLUSL COND,
+  S.COD,
   S.DS,
-  max(D.F) F,
-  max(UMP.SLUSL) COND,
-  max(S.IG) IG
+  S.IG IG,
+  nvl(RO.SLIZ, 'xxx') RESCODE,
+  K.OPL, K.MSP,
+  S.BE
  from {period}S{lpu} S
+  join {period}P{lpu} P on P.SN_POL = S.SN_POL
   left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGIN = S.DS)
   left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
   left outer join BASE/COMMON/SLUMP UMP on UMP.CODE = K.UMP
- where S.SN_POL = cpconvert(1251, 866, ?)
- group by 1, 2, 3
+  left outer join BASE/COMMON/REZOBR RO on RO.CODE = S.BE
+ where (ltrim(P.RECID) = ?)
+  and (floor(S.COD/1000) in (3, 27, 28, 29, 22, 50))
+  and (S.OTD in ({section}))
  order by 1, 2</value>
-    <comment>Случаи обращения. NB: В одну запись могут попасть два случая обращения, если одинаковый диагноз и REASON</comment>
+    <comment>Выборка законченных случаев для пациента</comment>
   </data>
-  <data name="SELECT_TOTAL_TO_PAY" xml:space="preserve">
-    <value>select sum(S_ALL) TOTAL from {period}S{lpu}</value>
-    <comment>Предьявить к оплате</comment>
-  </data>
-  <data name="SELECT_TRAUMA_CODE" xml:space="preserve">
-    <value>select TR from {period}S{lpu} where RECID = ?</value>
+  <data name="SELECT_TOTAL" xml:space="preserve">
+    <value>select sum(S_ALL) TOTAL from {period}S{lpu} where OTD in ({section})</value>
+    <comment>Сумма к оплате по счету</comment>
   </data>
 </root>
