@@ -16,10 +16,11 @@ namespace invox.Data {
         IEnumerable<string> LoadPersonDiagnoses();
         Model.OnkologyTreat GetOnkologyTreat();
         IEnumerable<Model.Sanction> LoadSanctions();
-        IEnumerable<Model.Service> LoadServices();
+        //IEnumerable<Model.Service> LoadServices();
         IEnumerable<Model.OncologyDirection> LoadOncologyDirections();
         Model.OncologyService GetOncologyService();
-        IEnumerable<Model.Event> LoadEvents(Model.InvoiceRecord irec, Model.Recourse rec);
+
+        //IEnumerable<Model.Event> LoadEvents(Model.InvoiceRecord irec, Model.Recourse rec);
         IEnumerable<Model.ConcomitantDisease> GetConcomitantDiseases();
         IEnumerable<Model.DispAssignment> GetDispanserisationAssignmetns();
 

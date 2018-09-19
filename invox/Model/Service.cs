@@ -28,37 +28,17 @@ namespace invox.Model {
 
         }
 
-        string id;
-        string unit;
-        string interventionKind;
-        bool child;
-        DateTime dateFrom;
-        DateTime dateTill;
-        string diagnosis;
-        string serviceCode;
-        double quantity;
-        double tariff;
-        double total;
-        string specialityCode;
-        string doctorCode;
-        IncompleteServiceReason incomplete;
-        string comment;
-
-        bool refusal;
-
-        public bool Oncology;
-
         /// <summary>
         /// Номер записи в реестре услуг
         /// Уникален в пределах случая
         /// </summary>
-        public string Identity { get { return id; } }
+        public string Identity;
 
         /// <summary>
         /// Подразделение МО
         /// Подразделение МО лечения из регионального справочника
         /// </summary>
-        public string Unit { get { return unit; } }
+        public string Unit;
 
         /// <summary>
         /// Код отделения
@@ -76,82 +56,82 @@ namespace invox.Model {
         /// Вид медицинского вмешательства
         /// Указывается в соответствии с номенклатурой медицинских услуг (V001), в том числе для услуг диализа.
         /// </summary>
-        public string InterventionKind { get { return interventionKind; } }
+        public string InterventionKind;
 
         /// <summary>
         /// Признак детского профиля
         /// 0 - нет, 1 - да.
         /// Заполняется в зависимости от профиля оказанной медицинской помощи.
         /// </summary>
-        public bool Child { get { return child; } }
+        public bool Child;
 
         /// <summary>
         /// Дата начала оказания услуги
         /// </summary>
-        public DateTime DateFrom { get { return dateFrom; } }
+        public DateTime DateFrom;
         
         /// <summary>
         /// Дата окончания оказания услуги
         /// </summary>
-        public DateTime DateTill { get { return dateTill; } }
+        public DateTime DateTill;
 
         /// <summary>
         /// Диагноз
         /// Код из справочника МКБ до уровня подрубрики
         /// </summary>
-        public string Diagnosis { get { return diagnosis; } }
+        public string Diagnosis;
 
         /// <summary>
         /// Код услуги
         /// Заполняется в соответствии с территориальным классификатором услуг.
         /// </summary>
-        public string ServiceCode { get { return serviceCode; } }
+        public int ServiceCode;
 
         /// <summary>
         /// Количество услуг (кратность услуги)
         /// </summary>
-        public double Quantity { get { return quantity; } }
+        public int Quantity;
 
         /// <summary>
         /// Тариф
         /// </summary>
-        public double Tariff { get { return tariff; } }
+        public decimal Tariff;
 
         /// <summary>
         /// Стоимость медицинской услуги, принятая к оплате (руб.)
         /// Может принимать значение 0
         /// </summary>
-        public double Total { get { return total; } }
+        public decimal Total;
 
         /// <summary>
         /// Специальность медработника, выполнившего услугу
         /// Классификатор медицинских специальностей (Приложение А V021). Указывается значение IDSPEC
         /// </summary>
-        public string SpecialityCode { get { return specialityCode; } }
+        public string SpecialityCode;
 
         /// <summary>
         /// Код медицинского работника, оказавшего медицинскую услугу
         /// В соответствии с территориальным справочником
         /// </summary>
-        public string DoctorCode { get { return doctorCode; } }
+        public string DoctorCode;
 
         /// <summary>
         /// Неполный объем
         /// Указывается причина, по которой услуга не оказана или оказана не в полном объеме.
         /// </summary>
-        public IncompleteServiceReason Incomplete { get { return incomplete; } }
+        public IncompleteServiceReason Incomplete;
 
         /// <summary>
         /// Служебное поле
         /// </summary>
-        public string Comment { get { return comment; } }
+        public string Comment;
 
         /// <summary>
         /// Признак отказа от услуги
         /// Значение по умолчанию: "0".
         /// В случае отказа указывается значение "1".
         /// </summary>
-        public bool Refusal { get { return refusal; } }
+        public bool Refusal;
 
         /// <summary>
         /// Save service instance to a XML
@@ -185,25 +165,25 @@ namespace invox.Model {
         public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec, Event evt) {
             xml.Writer.WriteStartElement("USL");
 
-            xml.Writer.WriteElementString("IDSERV", id);
+            xml.Writer.WriteElementString("IDSERV", Identity);
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
-            xml.WriteIfValid("LPU_1", unit);
+            xml.WriteIfValid("LPU_1", Unit);
             xml.WriteIfValid("PODR", rec.Department);
             xml.Writer.WriteElementString("PROFIL", rec.Profile);
-            xml.WriteIfValid("VID_VME", interventionKind);
-            xml.WriteBool("DET", child);
-            xml.Writer.WriteElementString("DATE_IN", dateFrom.AsXml());
-            xml.Writer.WriteElementString("DATE_OUT", dateTill.AsXml());
-            xml.Writer.WriteElementString("DS", diagnosis);
-            xml.Writer.WriteElementString("CODE_USL", serviceCode);
-            xml.Writer.WriteElementString("KOL_USL", quantity.ToString("F2", Options.NumberFormat));
+            xml.WriteIfValid("VID_VME", InterventionKind);
+            xml.WriteBool("DET", Child);
+            xml.Writer.WriteElementString("DATE_IN", DateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_OUT", DateTill.AsXml());
+            xml.Writer.WriteElementString("DS", Diagnosis);
+            xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString());
+            xml.Writer.WriteElementString("KOL_USL", Quantity.ToString("D2", Options.NumberFormat));
 
-            if (tariff > 0)
-                xml.Writer.WriteElementString("TARIF", tariff.ToString("F2", Options.NumberFormat));
+            if (Tariff > 0)
+                xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));
 
-            xml.Writer.WriteElementString("SUMV_USL", total.ToString("F2", Options.NumberFormat));
-            xml.Writer.WriteElementString("PRVS", specialityCode);
-            xml.Writer.WriteElementString("CODE_MD", doctorCode);
+            xml.Writer.WriteElementString("SUMV_USL", Total.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("PRVS", SpecialityCode);
+            xml.Writer.WriteElementString("CODE_MD", DoctorCode);
 
             if (rec.SuspectOncology) {
                 // Направления
@@ -212,7 +192,7 @@ namespace invox.Model {
                     d.Write(xml);
             }
 
-            if (Oncology) {
+            if (evt.IsOncology) {
                 OncologyService o = pool.GetOncologyService();
                 // Сведения об услуге при лечении онкологического заболевания
                 // Обязательно к заполнению при заполненном элементе ONK_SL.
@@ -220,10 +200,10 @@ namespace invox.Model {
                 if (o != null) o.Write(xml);
             }
 
-            if (incomplete != IncompleteServiceReason.None)
-                xml.Writer.WriteElementString("NPL", ((int)incomplete).ToString());
+            if (Incomplete != IncompleteServiceReason.None)
+                xml.Writer.WriteElementString("NPL", ((int)Incomplete).ToString());
 
-            xml.WriteIfValid("COMENTU", comment);
+            xml.WriteIfValid("COMENTU", Comment);
 
             xml.Writer.WriteEndElement();
         }
@@ -238,25 +218,25 @@ namespace invox.Model {
         public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec, Event evt) {
             xml.Writer.WriteStartElement("USL");
 
-            xml.Writer.WriteElementString("IDSERV", id);
+            xml.Writer.WriteElementString("IDSERV", Identity);
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
-            xml.WriteIfValid("LPU_1", unit);
+            xml.WriteIfValid("LPU_1", Unit);
             xml.WriteIfValid("PODR", rec.Department);
             xml.Writer.WriteElementString("PROFIL", rec.Profile);
-            xml.WriteIfValid("VID_VME", interventionKind);
-            xml.WriteBool("DET", child);
-            xml.Writer.WriteElementString("DATE_IN", dateFrom.AsXml());
-            xml.Writer.WriteElementString("DATE_OUT", dateTill.AsXml());
-            xml.Writer.WriteElementString("DS", diagnosis);
-            xml.Writer.WriteElementString("CODE_USL", serviceCode);
-            xml.Writer.WriteElementString("KOL_USL", quantity.ToString("F2", Options.NumberFormat));
+            xml.WriteIfValid("VID_VME", InterventionKind);
+            xml.WriteBool("DET", Child);
+            xml.Writer.WriteElementString("DATE_IN", DateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_OUT", DateTill.AsXml());
+            xml.Writer.WriteElementString("DS", Diagnosis);
+            xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString());
+            xml.Writer.WriteElementString("KOL_USL", Quantity.ToString("D2", Options.NumberFormat));
 
-            if (tariff > 0)
-                xml.Writer.WriteElementString("TARIF", tariff.ToString("F2", Options.NumberFormat));
+            if (Tariff > 0)
+                xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));
 
-            xml.Writer.WriteElementString("SUMV_USL", total.ToString("F2", Options.NumberFormat));
-            xml.Writer.WriteElementString("PRVS", specialityCode);
-            xml.Writer.WriteElementString("CODE_MD", doctorCode);
+            xml.Writer.WriteElementString("SUMV_USL", Total.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("PRVS", SpecialityCode);
+            xml.Writer.WriteElementString("CODE_MD", DoctorCode);
 
             if (rec.SuspectOncology) {
                 // Направления
@@ -265,11 +245,11 @@ namespace invox.Model {
                     d.Write(xml);
             }
 
-            if (Oncology) {
+            if (evt.IsOncology) {
                 OncologyService o = pool.GetOncologyService();
                 if (o != null) o.Write(xml);
             }
-            xml.WriteIfValid("COMENTU", comment);
+            xml.WriteIfValid("COMENTU", Comment);
 
             xml.Writer.WriteEndElement();
         }
@@ -284,21 +264,21 @@ namespace invox.Model {
         public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec, Event evt) {
             xml.Writer.WriteStartElement("USL");
 
-            xml.Writer.WriteElementString("IDSERV", id);
+            xml.Writer.WriteElementString("IDSERV", Identity);
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
-            xml.WriteIfValid("LPU_1", unit);
-            xml.Writer.WriteElementString("DATE_IN", dateFrom.AsXml());
-            xml.Writer.WriteElementString("DATE_OUT", dateTill.AsXml());
-            xml.WriteBool("P_OTK", refusal);
-            xml.Writer.WriteElementString("CODE_USL", serviceCode);
+            xml.WriteIfValid("LPU_1", Unit);
+            xml.Writer.WriteElementString("DATE_IN", DateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_OUT", DateTill.AsXml());
+            xml.WriteBool("P_OTK", Refusal);
+            xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString());
 
-            if (tariff > 0)
-                xml.Writer.WriteElementString("TARIF", tariff.ToString("F2", Options.NumberFormat));
+            if (Tariff > 0)
+                xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));
 
-            xml.Writer.WriteElementString("SUMV_USL", total.ToString("F2", Options.NumberFormat));
-            xml.Writer.WriteElementString("PRVS", specialityCode);
-            xml.Writer.WriteElementString("CODE_MD", doctorCode);
-            xml.WriteIfValid("COMENTU", comment);
+            xml.Writer.WriteElementString("SUMV_USL", Total.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("PRVS", SpecialityCode);
+            xml.Writer.WriteElementString("CODE_MD", DoctorCode);
+            xml.WriteIfValid("COMENTU", Comment);
             xml.Writer.WriteEndElement();
         }
     }

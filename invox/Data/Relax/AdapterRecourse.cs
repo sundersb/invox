@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using invox.Model;
 
 namespace invox.Data.Relax {
+    // TODO: Remove AdapterRecourse
     class AdapterRecourse : AdapterBase<Recourse> {
         const string SUSP_NEO_DIAGNOSIS = "Z03.1";
         static int[] REFUSAL_RESULTS = { 302, 408, 417, 207 };
@@ -23,20 +21,21 @@ namespace invox.Data.Relax {
         public override Recourse Read(System.Data.Common.DbDataReader reader, int number) {
             Recourse result = new Recourse();
 
-            result.Identity = ReadString(reader["RECID"]);
-            result.Conditions = Dict.Condition.Instance.Get(ReadString(reader["COND"]));
+            result.Identity = ReadString(reader["SERVICE_ID"]);
+            result.Conditions = Dict.Condition.Instance.Get(ReadString(reader["AID_CONDITIONS"]));
 
-            result.Department =  ReadString(reader["OTD"]);
-            result.Profile = Dict.AidProfile.Instance.Get(ReadString(reader["MSP"]));
-            
-            int service = ReadInt(reader["COD"]);
+            result.Department = ReadString(reader["UNIT"]);
+            result.Profile = Dict.AidProfile.Instance.Get(ReadString(reader["AID_PROFILE"]));
+
+            int service = ReadInt(reader["SERVICE_CODE"]);
             result.AidKind = GetAidKind(service);
             result.AidForm = GetAidForm(service);
 
-            string ds = ReadString(reader["DS"]);
+            string ds = ReadString(reader["DS_MAIN"]);
             result.SuspectOncology = ds == SUSP_NEO_DIAGNOSIS;
                         
             // TODO: Directed from outer MO?
+            // TODO: On loading events
             if (NeedsDirection(result)) {
                 result.DirectedFrom = Options.LpuCode;
                 //result.DirectionDate = ???
@@ -44,16 +43,16 @@ namespace invox.Data.Relax {
             
             //BirthWeight
 
-            result.Result = ReadInt(reader["RESCODE"]);
+            result.Result = ReadInt(reader["RESULT"]);
 
-            result.Outcome = Dict.Outcome.Get(result.Conditions, ReadString(reader["IG"]).TrimStart('0'));
-            
-            result.PayKind = Dict.PayKind.Instance.Get(ReadString(reader["OPL"]));
+            result.Outcome = Dict.Outcome.Get(result.Conditions, ReadString(reader["OUTCOME"]).TrimStart('0'));
+
+            result.PayKind = Dict.PayKind.Instance.Get(ReadString(reader["PAY_KIND"]));
 
             result.PayType = PayType.Full;
-            result.MobileBrigade = false;
+            result.MobileBrigade = ReadBool(reader["MOBILE_BRIGADE"]);
             result.DispanserisationRefusal = REFUSAL_RESULTS.Contains(result.Result);
-            result.DispanserisationResult = Dict.DispResult.Instance.Get(ReadString(reader["BE"]));
+            result.DispanserisationResult = Dict.DispResult.Instance.Get(ReadString(reader["RECOURSE_RESULT"]));
 
             return result;
         }

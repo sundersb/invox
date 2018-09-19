@@ -39,7 +39,7 @@ namespace invox.Model {
         string condition;
         bool isHospitalization;
         
-        public List<Event> Events { get; private set; }
+        public List<Event> Events { get; set; }
 
         /// <summary>
         /// Подозрение на онко. Не используется в выгрузке
@@ -128,7 +128,7 @@ namespace invox.Model {
         /// Результат обращения
         /// Классификатор результатов обращения за медицинской помощью (Приложение А V009).
         /// </summary>
-        public int Result { get; set; }
+        public string Result { get; set; }
 
         /// <summary>
         /// Исход заболевания
@@ -201,23 +201,7 @@ namespace invox.Model {
                     break;
             }
         }
-
-        public void LoadEvents(InvoiceRecord irec, Data.IInvoice pool) {
-            Events = pool.LoadEvents(irec, this).ToList();
-
-            if (Events.Count > 0) {
-                DateFrom = Events.Select(e => e.DateFrom).Min();
-                DateTill = Events.Select(e => e.DateFrom).Max();
-                
-                if (isHospitalization)
-                    BedDays = Events.Select(e => e.BedDays).Sum();
-
-                Total = Events.Select(e => e.Total).Sum();
-
-                UnitShift = Events.Any(e => e.Transfer == Transfer.ProfileShift);
-            }
-        }
-
+        
         public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
             xml.Writer.WriteStartElement("Z_SL");
 
@@ -243,7 +227,7 @@ namespace invox.Model {
             if (BirthWeight > 0)
                 xml.Writer.WriteElementString("VNOV_M", BirthWeight.ToString());
 
-            xml.Writer.WriteElementString("RSLT", Result.ToString());
+            xml.Writer.WriteElementString("RSLT", Result);
             xml.Writer.WriteElementString("ISHOD", Outcome);
 
             if (specialCase != null) {
@@ -295,7 +279,7 @@ namespace invox.Model {
             if (BirthWeight > 0)
                 xml.Writer.WriteElementString("VNOV_M", BirthWeight.ToString());
 
-            xml.Writer.WriteElementString("RSLT", Result.ToString());
+            xml.Writer.WriteElementString("RSLT", Result);
             xml.Writer.WriteElementString("ISHOD", Outcome.ToString());
 
             if (specialCase != null) {

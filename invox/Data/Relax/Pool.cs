@@ -10,6 +10,8 @@ namespace invox.Data.Relax {
         const string CONNECTION_STRING = "Provider=vfpoledb;Data Source={0};Collating Sequence=machine;Mode=ReadWrite|Share Deny None;";
 
         static string[] SELECT_RECOURSE_CASES_PARAMS = { "PERSON_RECID" };
+        static string[] SELECT_SERVICES_TREATMENT = { "PERSON_RECID", "UNIT", "DS" };
+        static string[] SELECT_SERVICES_BY_DATE = { "PERSON_RECID", "UNIT", "DS", "DU" };
         
         const string PERIOD_MARKER = "{period}";
         const string LPU_MARKER = "{lpu}";
@@ -17,7 +19,7 @@ namespace invox.Data.Relax {
         
         const string D1_DEPARTMENTS = "'0001', '0003', '0004', '0005'";
         const string D2_DEPARTMENTS = "'8000'";
-        const string D3_DEPARTMENTS = "'0000', '0009'";
+        const string D3_DEPARTMENTS = "'0000', '0009', '0008'";
 
         string period;
         string lpuCode;
@@ -27,11 +29,14 @@ namespace invox.Data.Relax {
         OleDbConnection connectionAlt;
 
         OleDbCommand selectRecourses = null;
+        OleDbCommand selectServicesTreatment;
+        OleDbCommand selectServicesByDate;
 
         AdapterStrings aStrings;
         AdapterPerson aPerson;
         AdapterInvoice aInvoice;
-        AdapterRecourse aRecourse;
+        AdapterRecourseAux aRecourse;
+        AdapterServiceAux aService;
 
         /// <summary>
         /// Ctor
@@ -46,11 +51,20 @@ namespace invox.Data.Relax {
             aStrings = new AdapterStrings();
             aPerson = new AdapterPerson();
             aInvoice = new AdapterInvoice();
-            aRecourse = new AdapterRecourse();
+            aRecourse = new AdapterRecourseAux();
+            aService = new AdapterServiceAux();
 
             string cs = string.Format(CONNECTION_STRING, location);
             connectionMain = new OleDbConnection(cs);
             connectionAlt = new OleDbConnection(cs);
+
+            selectServicesTreatment = connectionAlt.CreateCommand();
+            selectServicesTreatment.CommandText = Queries.SELECT_SERVICES_TREATMENT;
+            AddStringParameters(selectServicesTreatment, SELECT_SERVICES_TREATMENT);
+
+            selectServicesByDate = connectionAlt.CreateCommand();
+            selectServicesByDate.CommandText = Queries.SELECT_SERVICES_OTHER;
+            AddStringParameters(selectServicesByDate, SELECT_SERVICES_BY_DATE);
         }
 
         /// <summary>
@@ -252,10 +266,6 @@ namespace invox.Data.Relax {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Model.Service> LoadServices() {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Model.OncologyDirection> LoadOncologyDirections() {
             throw new NotImplementedException();
         }
@@ -264,9 +274,102 @@ namespace invox.Data.Relax {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Model.Event> LoadEvents(Model.InvoiceRecord irec, Model.Recourse rec) {
-            yield break;
-            throw new NotImplementedException();
+        IEnumerable<ServiceAux> LoadServices(RecourseAux ra, Model.Event evt) {
+            DbCommand command = null;
+
+            switch (ra.InternalReason) {
+                case InternalReason.AmbTreatment:
+                case InternalReason.DayHosp:
+                case InternalReason.SurgeryDayHosp:
+                    command = selectServicesTreatment;
+                    break;
+
+                case InternalReason.Stage1:
+                case InternalReason.Stage2:
+                case InternalReason.StrippedStage1:
+                case InternalReason.StrippedStage2:
+                    command = selectServicesTreatment;
+                    break;
+
+                case InternalReason.Other:
+                case InternalReason.DispRegister:
+                case InternalReason.Emergency:
+                case InternalReason.Prof:
+                case InternalReason.Fluorography:
+                    command = selectServicesByDate;
+                    command.Parameters[3].Value = ra.Date;
+                    break;
+            }
+
+            if (command != null) {
+                command.Parameters[0].Value = ra.PersonId;
+                command.Parameters[1].Value = ra.Unit;
+                command.Parameters[2].Value = ra.MainDiagnosis;
+                return aService.Load(command);
+            } else {
+                return null;
+            }
+        }
+
+        List<Model.Event> LoadEvents(Model.Recourse rec, RecourseAux ra) {
+            List<Model.Event> result = new List<Model.Event>();
+            Model.Event evt = ra.ToEvent();
+            result.Add(evt);
+
+            List<ServiceAux> ss = LoadServices(ra, evt).ToList();
+            evt.Services = ss.Select(s => s.ToService(ra)).ToList();
+
+            //foreach (Service s in pool.LoadServices()) {
+            //    s.Oncology = evt.isOncology;
+            //}
+            
+            // Fill event's empty fields from services list:
+            if (rec.IsHospitalization) {
+                ServiceAux serv = ss.Where(s => s.Transfer == Model.Transfer.Transferred).FirstOrDefault();
+                
+                // Turn transfer to ProfileShift if there has been bed profile change:
+                if (serv != null
+                    && ss.GroupBy(s => s.BedProfile).Count() > 1) {
+                    
+                    serv.Transfer = Model.Transfer.ProfileShift;
+                }
+
+                evt.BedDays = ss.Select(s => s.BedDays).Sum();
+            }
+
+            // Event dates
+            if (ra.InternalReason == InternalReason.Stage1) {
+                ServiceAux sa = ss.Where(s => s.IsAntropometry()).FirstOrDefault();
+                if (sa != null)
+                    evt.DateFrom = sa.Date;
+                else
+                    evt.DateFrom = ss.Min(s => s.Date);
+            } else {
+                evt.DateFrom = ss.Min(s => s.Date);
+            }
+            evt.DateTill = ss.Max(s => s.Date);
+
+            evt.Tariff = evt.Services.Sum(s => s.Tariff);
+            evt.Total = evt.Services.Sum(s => s.Total);
+
+            evt.PrimaryDiagnosis = ss.Max(s => s.PrimaryDiagnosis);
+            evt.FirstIdentified = ss.Any(s => s.FirstIdentified);
+            evt.ConcurrentDiagnosis = ss.Max(s => s.ConcurrentDiagnosis);
+            evt.ComplicationDiagnosis = ss.Max(s => s.ComplicationDiagnosis);
+            evt.DispensarySupervision = ss.Max(s => s.DispensarySupervision);
+            evt.ConcurrentMesCode = ss.Max(s => s.ConcurrentMesCode);
+            evt.Transfer = ss.Where(s => s.Transfer != Model.Transfer.None).Min(s=>s.Transfer);
+
+            // Fill empty recourse fields:
+            rec.UnitShift = ss.Any(s => s.Transfer == Model.Transfer.ProfileShift);
+            rec.BirthWeight = ss.Max(s => s.BirthWeight);
+
+            rec.DateFrom = evt.DateFrom;
+            rec.DateTill = evt.DateTill;
+            rec.Total = evt.Total;
+            rec.BedDays = evt.BedDays;
+
+            return result;
         }
 
         public IEnumerable<Model.ConcomitantDisease> GetConcomitantDiseases() {
@@ -324,7 +427,14 @@ namespace invox.Data.Relax {
                 AddStringParameters(selectRecourses, SELECT_RECOURSE_CASES_PARAMS);
             }
             selectRecourses.Parameters[0].Value = irec.Person.Identity;
-            return aRecourse.Load(selectRecourses);
+            
+            List<RecourseAux> rs = aRecourse.Load(selectRecourses).ToList();
+
+            foreach (RecourseAux ra in rs) {
+                Model.Recourse rec = ra.ToRecourse();
+                rec.Events = LoadEvents(rec, ra);
+                yield return rec;
+            }
         }
     }
 }

@@ -41,7 +41,6 @@ namespace invox.Model {
                 xml.Writer.WriteElementString("N_ZAP", Identity);
                 xml.WriteBool("PR_NOV", Revised);
                 Person.Write(xml, section);
-                recourse.LoadEvents(this, pool);
                 recourse.Write(xml, pool, section, this);
                 xml.Writer.WriteEndElement();
             }
@@ -53,7 +52,6 @@ namespace invox.Model {
                 xml.Writer.WriteElementString("N_ZAP", Identity);
                 xml.WriteBool("PR_NOV", Revised);
                 Person.WriteD1(xml);
-                recourse.LoadEvents(this, pool);
                 recourse.WriteD1(xml, pool, this);
                 xml.Writer.WriteEndElement();
             }
@@ -65,7 +63,6 @@ namespace invox.Model {
                 xml.Writer.WriteElementString("N_ZAP", Identity);
                 xml.WriteBool("PR_NOV", Revised);
                 Person.WriteD2(xml);
-                recourse.LoadEvents(this, pool);
                 recourse.WriteD2(xml, pool, this);
                 xml.Writer.WriteEndElement();
             }
@@ -77,7 +74,6 @@ namespace invox.Model {
                 xml.Writer.WriteElementString("N_ZAP", Identity);
                 xml.WriteBool("PR_NOV", Revised);
                 Person.WriteD3(xml);
-                recourse.LoadEvents(this, pool);
                 recourse.WriteD3(xml, pool, this);
                 xml.Writer.WriteEndElement();
             }

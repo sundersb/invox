@@ -1,5 +1,6 @@
 ﻿using System;
 using invox.Lib;
+using System.Collections.Generic;
 
 //select distinct
 //  S.RECID,
@@ -63,6 +64,10 @@ namespace invox.Model {
     /// </summary>
     class Event {
         bool isOncology;
+
+        public bool IsOncology { get { return isOncology; } }
+
+        public List<Service> Services { get; set; }
 
         /// <summary>
         /// Идентификатор
@@ -179,87 +184,87 @@ namespace invox.Model {
         /// Указываются сведения о диспансерном наблюдении по поводу основного заболевания (состояния)
         /// Обязательно для заполнения, если P_CEL = 1.3
         /// </summary>
-        public DispensarySupervision DispensarySupervision { get { return DispensarySupervision; } }
+        public DispensarySupervision DispensarySupervision { get; set; }
 
         /// <summary>
         /// Код МЭС сопутствующего заболевания
         /// </summary>
-        public string ConcurrentMesCode { get { return ConcurrentMesCode; } }
+        public string ConcurrentMesCode { get; set; }
 
         /// <summary>
         /// Сведения о КСГ/КПГ
         /// Заполняется при оплате случая лечения по КСГ или КПГ
         /// </summary>
-        public ClinicalGroup ClinicalGroup { get { return ClinicalGroup; } }
+        public ClinicalGroup ClinicalGroup { get; set; }
 
         /// <summary>
         /// Признак реабилитации
         /// Указывается значение "1" для случаев реабилитации
         /// </summary>
-        public bool Rehabilitation { get { return Rehabilitation; } }
+        public bool Rehabilitation { get; set; }
 
         /// <summary>
         /// Специальность лечащего врача/врача, закрывшего талон (историю болезни)
         /// Классификатор медицинских специальностей (Приложение А V021). Указывается значение IDSPEC
         /// </summary>
-        public string SpecialityCode { get { return SpecialityCode; } }
+        public string SpecialityCode { get; set; }
 
         /// <summary>
         /// Код лечащего врача/врача, закрывшего талон (историю болезни)
         /// Территориальный справочник
         /// </summary>
-        public string DoctorCode { get { return DoctorCode; } }
+        public string DoctorCode { get; set; }
 
         /// <summary>
         /// Количество единиц оплаты медицинской помощи
         /// </summary>
-        public double Quantity { get { return Quantity; } }
+        public double Quantity { get; set; }
 
         /// <summary>
         /// Тариф
         /// Тариф с учетом всех примененных коэффициентов (при оплате случая по КСГ с внутрибольничным переводом - стоимость, рассчитанная в соответствии с Методическими рекомендациями по способам оплаты медицинской помощи за счет средств ОМС)
         /// </summary>
-        public double Tariff { get { return Tariff; } }
+        public double Tariff { get; set; }
 
         /// <summary>
         /// Стоимость случая, выставленная к оплате
         /// Может указываться нулевое значение.
         /// Может состоять из тарифа и стоимости некоторых услуг.
         /// </summary>
-        public double Total { get { return Total; } }
+        public double Total { get; set; }
 
         /// <summary>
         /// Служебное поле
         /// </summary>
-        public string Comment { get { return Comment; } }
+        public string Comment { get; set; }
 
         /// <summary>
         /// Вид высокотехнологичной медицинской помощи
         /// Классификатор видов высокотехнологичной медицинской помощи. Справочник V018 Приложения А
         /// </summary>
-        public string HiTechKind { get { return HiTechKind; } }
+        public string HiTechKind { get; set; }
         
         /// <summary>
         /// Метод высокотехнологичной медицинской помощи
         /// Классификатор методов высокотехнологичной медицинской помощи. Справочник V019 Приложения А
         /// </summary>
-        public string HiTechMethod { get { return HiTechMethod; } }
+        public string HiTechMethod { get; set; }
 
         /// <summary>
         /// Дата выдачи талона на ВМП
         /// Заполняется на основании талона на ВМП
         /// </summary>
-        public DateTime HiTechCheckDate { get { return HiTechCheckDate; } }
+        public DateTime HiTechCheckDate { get; set; }
 
         /// <summary>
         /// Номер талона на ВМП
         /// </summary>
-        public string HiTechCheckNumber { get { return HiTechCheckNumber; } }
+        public string HiTechCheckNumber { get; set; }
 
         /// <summary>
         /// Дата планируемой госпитализации
         /// </summary>
-        public DateTime HiTechPlannedHospitalizationDate { get { return HiTechPlannedHospitalizationDate; } }
+        public DateTime HiTechPlannedHospitalizationDate { get; set; }
 
         /// <summary>
         /// Save invoice event to XML
@@ -371,10 +376,8 @@ namespace invox.Model {
             // Описывает услуги, оказанные в рамках данного случая.
             // Допускается указание услуг с нулевой стоимостью.
             // Указание услуг с нулевой стоимостью обязательно, если условие их оказания является тарифообразующим (например, при оплате по КСГ).
-            foreach (Service s in pool.LoadServices()) {
-                s.Oncology = isOncology;
+            foreach (Service s in Services)
                 s.WriteD1(xml, pool, irec, rec, this);
-            }
 
             xml.WriteIfValid("COMENTSL", Comment);
             xml.Writer.WriteEndElement();
@@ -448,10 +451,8 @@ namespace invox.Model {
             // Описывает услуги, оказанные в рамках данного случая.
             // Допускается указание услуг с нулевой стоимостью.
             // Указание услуг с нулевой стоимостью обязательно, если условие их оказания является тарифообразующим (например, при оплате по КСГ).
-            foreach (Service s in pool.LoadServices()) {
-                s.Oncology = isOncology;
+            foreach (Service s in Services)
                 s.WriteD2(xml, pool, irec, rec, this);
-            }
 
             xml.WriteIfValid("COMENTSL", Comment);
             xml.Writer.WriteEndElement();
@@ -503,10 +504,8 @@ namespace invox.Model {
             // Описывает услуги, оказанные в рамках данного случая.
             // Допускается указание услуг с нулевой стоимостью.
             // Указание услуг с нулевой стоимостью обязательно, если условие их оказания является тарифообразующим (например, при оплате по КСГ).
-            foreach (Service s in pool.LoadServices()) {
-                s.Oncology = isOncology;
+            foreach (Service s in Services)
                 s.WriteD3(xml, pool, irec, rec, this);
-            }
 
             xml.WriteIfValid("COMENTSL", Comment);
             xml.Writer.WriteEndElement();

@@ -49,6 +49,8 @@
     <Compile Include="Data\Relax\AdapterInvoice.cs" />
     <Compile Include="Data\Relax\AdapterPerson.cs" />
     <Compile Include="Data\Relax\AdapterRecourse.cs" />
+    <Compile Include="Data\Relax\AdapterRecourseAux.cs" />
+    <Compile Include="Data\Relax\AdapterServiceAux.cs" />
     <Compile Include="Data\Relax\AdapterStrings.cs" />
     <Compile Include="Data\Relax\Pool.cs" />
     <Compile Include="Data\Relax\Queries.Designer.cs">
@@ -56,6 +58,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Queries.resx</DependentUpon>
     </Compile>
+    <Compile Include="Data\Relax\Reason.cs" />
+    <Compile Include="Data\Relax\RecourseAux.cs" />
+    <Compile Include="Data\Relax\ServiceAux.cs" />
     <Compile Include="Dict\AidProfile.cs" />
     <Compile Include="Dict\Base.cs" />
     <Compile Include="Dict\BedProfile.cs" />

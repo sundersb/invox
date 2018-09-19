@@ -77,7 +77,7 @@ namespace invox.Data.Relax {
         ///  join {period}P{lpu} P on P.SN_POL = S.SN_POL
         ///  join BASE/COMMON/SLMSO MSO on MSO.CODE = P.Q
         /// where (S.OTD in ({section}))
-        ///  and (floor(S.COD/1000) in (3, 27, 28, 29, 22, 50)).
+        ///  and (floor(S.COD/1000) in (3, 27, 28, 29, 22, 50, 5)).
         /// </summary>
         internal static string SELECT_INVOICE_PEOPLE {
             get {
@@ -103,7 +103,7 @@ namespace invox.Data.Relax {
         ///  join {period}PAT on PAT.SN_POL = I.SN_POL
         ///  left outer join BASE/COMMON/MSOIN MSO on MSO.CODE = P.Q_VCODE
         /// where (S.OTD in ({section}))
-        ///  and (floor(S.COD/1000) in (3, 27, 28, 29, 22, 50)).
+        ///  and (floor(S.COD/1000) in (3, 27, 28, 29, 22, 50, 5)).
         /// </summary>
         internal static string SELECT_INVOICE_PEOPLE_FOREIGN {
             get {
@@ -114,7 +114,7 @@ namespace invox.Data.Relax {
         /// <summary>
         ///   Ищет локализованную строку, похожую на select count(*)
         /// from {period}S{lpu}
-        /// where (floor(COD/1000) in (3, 27, 28, 29, 22, 50))
+        /// where (floor(COD/1000) in (3, 27, 28, 29, 22, 50, 5))
         ///  and (OTD in ({section})).
         /// </summary>
         internal static string SELECT_INVOICE_RECORDS_COUNT {
@@ -180,27 +180,88 @@ namespace invox.Data.Relax {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select distinct
-        ///  S.RECID,
-        ///  S.OTD,
-        ///  UMP.SLUSL COND,
-        ///  S.COD,
-        ///  S.DS,
-        ///  S.IG IG,
-        ///  nvl(RO.SLIZ, &apos;xxx&apos;) RESCODE,
-        ///  K.OPL, K.MSP,
-        ///  S.BE
-        /// from {period}S{lpu} S
-        ///  join {period}P{lpu} P on P.SN_POL = S.SN_POL
-        ///  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGIN = S.DS)
-        ///  left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
-        ///  left outer join BASE/COMMON/SLUMP UMP on UMP.CODE = K.UMP
-        ///  left outer join BASE/COMMON/REZOBR RO on RO.CODE = S.BE
-        ///  [остаток строки не уместился]&quot;;.
+        ///   Ищет локализованную строку, похожую на select
+        ///  P.RECID PERSON_ID,
+        ///  S.RECID SERVICE_ID,
+        ///  S.OTD UNIT,
+        ///  K.MSP AID_PROFILE,
+        ///  UMP.SLUSL AID_CONDITIONS,
+        ///  S.COD SERVICE_CODE,
+        ///  nvl(RO.SLIZ, &apos;xxx&apos;) RESULT,
+        ///  S.IG OUTCOME,
+        ///  K.OPL PAY_KIND,
+        ///  1 PAY_TYPE,
+        ///  .F. MOBILE_BRIGADE,
+        ///  S.BE RECOURSE_RESULT,
+        ///  ST.PROF BED_PROFILE,
+        ///  K.LDET DET,
+        ///  &apos;V025 SLOBR-SLUMP-SLPOS&apos; REASON,
+        ///  S.C_I CARD_NUMBER,
+        ///  S.DS DS_MAIN,
+        ///  .F. REHABILITATION,
+        ///  &apos;V001&apos; INTERVENTION_KIND,
+        ///  S.K_U QUANTITY,
+        ///  S.S_ALL TARIFF,
+        ///  S.S_ALL TOTAL,
+        ///  nvl(MP.CODEFSS,  [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_RECOURSES {
             get {
                 return ResourceManager.GetString("SELECT_RECOURSES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на select
+        ///  S.RECID SERVICE_ID,
+        ///  K.MSP AID_PROFILE,
+        ///  S.COD SERVICE_CODE,
+        ///  nvl(RO.SLIZ, &apos;xxx&apos;) RESULT, ST.PROF BED_PROFILE,
+        ///  &apos;V025 SLOBR-SLUMP-SLPOS&apos; REASON,
+        ///  &apos;V001&apos; INTERVENTION_KIND,
+        ///  S.K_U QUANTITY,
+        ///  S.S_ALL TARIFF,
+        ///  S.S_ALL TOTAL,
+        ///  nvl(MP.CODEFSS, &apos;xxx&apos;) SPECIALITY_CODE,
+        ///  S.TN1 DOCTOR_CODE,
+        ///  &apos;see RO.SLIZ&apos; INCOMPLETNESS,
+        ///  &apos;see RO.SLIZ&apos; IS_REFUSAL,
+        ///  S.D_U,
+        ///  nvl(D.DBEG, DS.DBEG) DATE_FROM,
+        ///  nvl(D.DEND, DS.DEND) DATE_TILL,
+        ///  nvl(D.NOVOR, .F.) or nvl(DS.NOVOR, .F.) NOVOR,
+        ///  DS.SR [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string SELECT_SERVICES_OTHER {
+            get {
+                return ResourceManager.GetString("SELECT_SERVICES_OTHER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на select
+        ///  S.RECID SERVICE_ID,
+        ///  K.MSP AID_PROFILE,
+        ///  S.COD SERVICE_CODE,
+        ///  nvl(RO.SLIZ, &apos;xxx&apos;) RESULT, ST.PROF BED_PROFILE,
+        ///  &apos;V025 SLOBR-SLUMP-SLPOS&apos; REASON,
+        ///  &apos;V001&apos; INTERVENTION_KIND,
+        ///  S.K_U QUANTITY,
+        ///  S.S_ALL TARIFF,
+        ///  S.S_ALL TOTAL,
+        ///  nvl(MP.CODEFSS, &apos;xxx&apos;) SPECIALITY_CODE,
+        ///  S.TN1 DOCTOR_CODE,
+        ///  &apos;see RO.SLIZ&apos; INCOMPLETNESS,
+        ///  &apos;see RO.SLIZ&apos; IS_REFUSAL,
+        ///  S.D_U,
+        ///  nvl(D.DBEG, DS.DBEG) DATE_FROM,
+        ///  nvl(D.DEND, DS.DEND) DATE_TILL,
+        ///  nvl(D.NOVOR, .F.) or nvl(DS.NOVOR, .F.) NOVOR,
+        ///  DS.SR [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string SELECT_SERVICES_TREATMENT {
+            get {
+                return ResourceManager.GetString("SELECT_SERVICES_TREATMENT", resourceCulture);
             }
         }
         
