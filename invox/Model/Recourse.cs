@@ -128,7 +128,7 @@ namespace invox.Model {
         /// Результат обращения
         /// Классификатор результатов обращения за медицинской помощью (Приложение А V009).
         /// </summary>
-        public string Result { get; set; }
+        public int Result { get; set; }
 
         /// <summary>
         /// Исход заболевания
@@ -153,7 +153,7 @@ namespace invox.Model {
         /// Сумма, выставленная к оплате
         /// Равна сумме значений SUM_M вложенных элементов SL, не может иметь нулевое значение.
         /// </summary>
-        public double Total { get; set; }
+        public decimal Total { get; set; }
 
         /// <summary>
         /// Тип оплаты
@@ -227,7 +227,7 @@ namespace invox.Model {
             if (BirthWeight > 0)
                 xml.Writer.WriteElementString("VNOV_M", BirthWeight.ToString());
 
-            xml.Writer.WriteElementString("RSLT", Result);
+            xml.Writer.WriteElementString("RSLT", Result.ToString());
             xml.Writer.WriteElementString("ISHOD", Outcome);
 
             if (specialCase != null) {
@@ -279,7 +279,7 @@ namespace invox.Model {
             if (BirthWeight > 0)
                 xml.Writer.WriteElementString("VNOV_M", BirthWeight.ToString());
 
-            xml.Writer.WriteElementString("RSLT", Result);
+            xml.Writer.WriteElementString("RSLT", Result.ToString());
             xml.Writer.WriteElementString("ISHOD", Outcome.ToString());
 
             if (specialCase != null) {
@@ -309,7 +309,7 @@ namespace invox.Model {
             xml.Writer.WriteStartElement("Z_SL");
 
             xml.Writer.WriteElementString("IDCASE", Identity);
-            xml.Writer.WriteElementString("USL_OK", Conditions.ToString());
+            xml.Writer.WriteElementString("USL_OK", Conditions);
             xml.Writer.WriteElementString("VIDPOM", AidKind.ToString());
 
             xml.Writer.WriteElementString("LPU", Options.LpuCode);

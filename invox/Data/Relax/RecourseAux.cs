@@ -2,10 +2,17 @@
 using System.Linq;
 
 namespace invox.Data.Relax {
+    /// <summary>
+    /// Вспомогательный класс для выборки данных, объединяющий Recourse и Event
+    /// </summary>
+    /// <remarks>
+    /// Необходимость связана с различием компоновки полей в риказе и Релакс
+    /// </remarks>
     class RecourseAux {
         const string SUSP_NEO_DIAGNOSIS = "Z03.1";
-        static int[] REFUSAL_RESULTS = { 302, 408, 417, 207 };
         const int DD_ONCE_IN_TWO_YEARS_DONE = 98;
+
+        static int[] REFUSAL_RESULTS = { 302, 408, 417, 207 };
 
         // V008
         const int AID_KIND_PRIMARY = 1;
@@ -18,32 +25,139 @@ namespace invox.Data.Relax {
         const int AID_FORM_PRESSING = 2;
         const int AID_FORM_ORDINAL = 3;
 
+        /// <summary>
+        /// Порядковый номер закрытого случая
+        /// </summary>
         public int OrdinalNumber;
+
+        /// <summary>
+        /// Пациент P.RECID
+        /// </summary>
         public string PersonId;         // P.RECID
+
+        /// <summary>
+        /// ID услуги, соответствующей событию
+        /// </summary>
         public string ServiceId;        // S.RECID
+
+        /// <summary>
+        /// Подразделение ЛПУ (OTD)
+        /// </summary>
         public string Unit;             // S.OTD
+
+        /// <summary>
+        /// Профиль медицинской помощи V002 (из KMU.MSP через мультиплексор)
+        /// </summary>
         public string AidProfile;       // KMU.MSP
+
+        /// <summary>
+        /// Условия оказания медицинской помощи V006 (из SLUMP.SLUSL)
+        /// </summary>
         public string AidConditions;    // SLUMP.SLUSL
+
+        /// <summary>
+        /// Код услуги (COD)
+        /// </summary>
         public int ServiceCode;         // S.COD
-        public string Result;              // REZOBR.SLIZ
+
+        /// <summary>
+        /// Результат обращения V009 (из REZOBR.SLIZ)
+        /// </summary>
+        public int Result;              // REZOBR.SLIZ
+
+        /// <summary>
+        /// Исход заболевания V012 (из IG)
+        /// </summary>
         public string Outcome;          // S.IG
+
+        /// <summary>
+        /// Способ оплаты V010 (из KMU.OPL)
+        /// </summary>
         public string PayKind;          // KMU.OPL
+
+        /// <summary>
+        /// Тип оплаты для законченного случая
+        /// </summary>
         public Model.PayType PayType;   // 1
+
+        /// <summary>
+        /// Признак выездной бригады. Пока просто false
+        /// </summary>
         public bool MobileBrigade;      // ??? DD, No way to know yet
+
+        /// <summary>
+        /// Результат обращения для внутренних нужд пула данных (из BE)
+        /// </summary>
         public string RecourseResult;   // S.BE
+
+        /// <summary>
+        /// Профиль койки V020 (из STRUCT.PROF через мультиплексор)
+        /// </summary>
         public string BedProfile;       // STRUCT.PROF
+
+        /// <summary>
+        /// Признак услуги, оказанной ребенку
+        /// </summary>
         public bool Child;              // KMU.LDET
+
+        /// <summary>
+        /// Повод обращения V025 (в работе SLOBR-SLUMP-SLPOS)
+        /// </summary>
         public string Reason;           // ??? V025 SLOBR-SLUMP-SLPOS
+
+        /// <summary>
+        /// Номер амбулаторной карты/истории болезни
+        /// </summary>
         public string CardNumber;       // S.C_I
+
+        /// <summary>
+        /// Основное заболевание
+        /// </summary>
         public string MainDiagnosis;    // S.DS
+
+        /// <summary>
+        /// Признак реабилитации. Пока false
+        /// </summary>
         public bool Rehabilitation;     // ???
+
+        /// <summary>
+        /// Вид вмешательства V001 (в работе)
+        /// </summary>
         public string InterventionKind; // ??? v001
+
+        /// <summary>
+        /// Количество услуг в законченном случае
+        /// </summary>
         public int Quantity;            // S.K_U
+
+        /// <summary>
+        /// Тариф
+        /// </summary>
         public decimal Tariff;           // S.S_ALL
+
+        /// <summary>
+        /// Предъявлено к оплате
+        /// </summary>
         public decimal Total;            // S.S_ALL
+
+        /// <summary>
+        /// Специальность врача V021 (из MEDPOST.CODEFSS пока без мультиплексора - уточнить)
+        /// </summary>
         public string SpecialityCode;   // MEDPOST.CODEFSS
+
+        /// <summary>
+        /// Табельный номер врача
+        /// </summary>
         public string DoctorCode;       // S.TN1
+
+        /// <summary>
+        /// Дата услуги, представляющей законченный случай
+        /// </summary>
         public DateTime Date;           // S.D_U
+
+        /// <summary>
+        /// Повод обращения для вспомогательных нужд. Формируется по коду отделения и коду услуги
+        /// </summary>
         public InternalReason InternalReason;
 
         /// <summary>
@@ -56,10 +170,14 @@ namespace invox.Data.Relax {
             result.Department = Unit;
             result.Profile = AidProfile;
             result.Identity = ServiceId;
+            result.Conditions = AidConditions;
             result.AidKind = GetAidKind();
             result.AidForm = GetAidForm();
             //result.DirectedFrom;                      - Pool.LoadEvents
-            //result.DirectionDate;                                        !!!! nowhere to be found !!!!
+
+            // TODO: RecourseAux.DirectionDate - where to take from?
+            //result.DirectionDate;
+
             //result.DateFrom;                          - Pool.LoadEvents
             result.DateTill = Date;
             //result.BedDays;                           - Pool.LoadEvents
@@ -105,6 +223,8 @@ namespace invox.Data.Relax {
             //result.ComplicationDiagnosis;             - Pool.LoadEvents
             //result.DispensarySupervision;             - Pool.LoadEvents
             //result.ConcurrentMesCode;                 - Pool.LoadEvents
+
+            // TODO: RecourseAux - forming ClinicalGroup
             //result.ClinicalGroup;
 
             result.Rehabilitation = Rehabilitation;
@@ -114,6 +234,8 @@ namespace invox.Data.Relax {
 
             //result.Tariff;                            - Pool.LoadEvents
             //result.Total;                             - Pool.LoadEvents
+
+            // TODO: RecourseAux - HiTech data
             //result.HiTechKind;
             //result.HiTechMethod;
             //result.HiTechCheckDate;
@@ -196,6 +318,9 @@ namespace invox.Data.Relax {
             }
         }
 
+        /// <summary>
+        /// Получить вид медицинской помощи V008
+        /// </summary>
         int GetAidKind() {
             switch (ServiceCode / 100000) {
                 case 7:
@@ -212,12 +337,26 @@ namespace invox.Data.Relax {
             }
         }
 
+        /// <summary>
+        /// Получить форму оказания медицинской помощи V014
+        /// </summary>
         int GetAidForm() {
             if (ServiceCode / 10000 == 4) return AID_FORM_URGENT;
             if (ServiceCode / 1000 == 7) return AID_FORM_PRESSING;
             return AID_FORM_ORDINAL;
         }
 
+        /// <summary>
+        /// Требуется ли направление для законченного случая
+        /// </summary>
+        /// <param name="rec">Законченный случай</param>
+        public static bool NeedsDirection(Model.Recourse rec) {
+            return rec.SuspectOncology
+                // Плановая в круглосуточном стационаре или СДП
+                || (rec.AidForm == AID_FORM_ORDINAL && rec.IsHospitalization)
 
+                // Неотложная в круглосуточном стационаре
+                || (rec.AidForm == AID_FORM_PRESSING && rec.Conditions == "1");
+        }
     }
 }

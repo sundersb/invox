@@ -9,20 +9,16 @@ namespace invox.Data {
         IEnumerable<Model.OnkologyRefusal> LoadOnkologicalRefusal();
         IEnumerable<Model.ComplexityQuotient> LoadComplexityQuotients();
 
-        IEnumerable<string> LoadConcurrentDiagnoses();
-        IEnumerable<string> LoadComplicationDiagnoses();
-        IEnumerable<string> LoadMesCodes();
+        IEnumerable<string> LoadMesCodes(Model.InvoiceRecord irec, Model.Recourse rec, Model.Event evt);
 
         IEnumerable<string> LoadPersonDiagnoses();
         Model.OnkologyTreat GetOnkologyTreat();
-        IEnumerable<Model.Sanction> LoadSanctions();
-        //IEnumerable<Model.Service> LoadServices();
+        IEnumerable<Model.Sanction> LoadSanctions(Model.InvoiceRecord irec, Model.Recourse rec, Model.Event evt);
         IEnumerable<Model.OncologyDirection> LoadOncologyDirections();
         Model.OncologyService GetOncologyService();
 
-        //IEnumerable<Model.Event> LoadEvents(Model.InvoiceRecord irec, Model.Recourse rec);
-        IEnumerable<Model.ConcomitantDisease> GetConcomitantDiseases();
-        IEnumerable<Model.DispAssignment> GetDispanserisationAssignmetns();
+        IEnumerable<Model.ConcomitantDisease> GetConcomitantDiseases(Model.InvoiceRecord irec, Model.Event evt);
+        IEnumerable<Model.DispAssignment> GetDispanserisationAssignmetns(Model.Event evt);
 
         int GetPeopleCount(Model.OrderSection section);
         IEnumerable<Model.Person> LoadPeople(Model.OrderSection section);

@@ -61,6 +61,31 @@ namespace invox.Data.Relax {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на select DIAG2, HR2, HRO2
+        /// from {period}DIAGNOZ
+        /// where SN_POL = ?
+        ///  and OTD = ?
+        ///  and DIAGOUT = ?
+        ///  and DIAG2 &lt;&gt; &apos;&apos;.
+        /// </summary>
+        internal static string SELECT_CONCOMITANT_DISEASES {
+            get {
+                return ResourceManager.GetString("SELECT_CONCOMITANT_DISEASES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на select KSG, KSG2
+        /// from {period}S{lpu}
+        /// where RECID = ?.
+        /// </summary>
+        internal static string SELECT_DISP_ASSIGNMENTS {
+            get {
+                return ResourceManager.GetString("SELECT_DISP_ASSIGNMENTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на select distinct
         ///  P.RECID,
         ///  P.T_POL,
@@ -224,13 +249,13 @@ namespace invox.Data.Relax {
         ///  S.S_ALL TOTAL,
         ///  nvl(MP.CODEFSS, &apos;xxx&apos;) SPECIALITY_CODE,
         ///  S.TN1 DOCTOR_CODE,
-        ///  &apos;see RO.SLIZ&apos; INCOMPLETNESS,
-        ///  &apos;see RO.SLIZ&apos; IS_REFUSAL,
         ///  S.D_U,
         ///  nvl(D.DBEG, DS.DBEG) DATE_FROM,
         ///  nvl(D.DEND, DS.DEND) DATE_TILL,
         ///  nvl(D.NOVOR, .F.) or nvl(DS.NOVOR, .F.) NOVOR,
-        ///  DS.SR [остаток строки не уместился]&quot;;.
+        ///  DS.SRZ_MCOD DIRECTION_FROM,
+        ///  DS.VESR BIRTH_WEIGHT,
+        ///  DS.BOLEND  [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_SERVICES_OTHER {
             get {
@@ -251,13 +276,13 @@ namespace invox.Data.Relax {
         ///  S.S_ALL TOTAL,
         ///  nvl(MP.CODEFSS, &apos;xxx&apos;) SPECIALITY_CODE,
         ///  S.TN1 DOCTOR_CODE,
-        ///  &apos;see RO.SLIZ&apos; INCOMPLETNESS,
-        ///  &apos;see RO.SLIZ&apos; IS_REFUSAL,
         ///  S.D_U,
         ///  nvl(D.DBEG, DS.DBEG) DATE_FROM,
         ///  nvl(D.DEND, DS.DEND) DATE_TILL,
         ///  nvl(D.NOVOR, .F.) or nvl(DS.NOVOR, .F.) NOVOR,
-        ///  DS.SR [остаток строки не уместился]&quot;;.
+        ///  DS.SRZ_MCOD DIRECTION_FROM,
+        ///  DS.VESR BIRTH_WEIGHT,
+        ///  DS.BOLEND  [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_SERVICES_TREATMENT {
             get {

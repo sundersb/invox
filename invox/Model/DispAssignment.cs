@@ -12,17 +12,10 @@ namespace invox.Model {
     /// </remarks>
     /// </summary>
     class DispAssignment {
-        int index;
-        int routeCode;
-        string doctorSpec;
-        string studyKind;
-        string aidProfile;
-        string bedProfile;
-
         /// <summary>
         /// Номер по порядку
         /// </summary>
-        public int Index { get { return index; } }
+        public int Index { get; set; }
         
         /// <summary>
         /// Вид назначения
@@ -34,14 +27,14 @@ namespace invox.Model {
         /// 5 - направлен на госпитализацию;
         /// 6 - направлен в реабилитационное отделение.
         /// </summary>
-        public int RouteCode { get { return routeCode; } }
+        public int RouteCode { get; set; }
         
         /// <summary>
         /// Специальность врача
         /// Заполняется, если в поле NAZ_R проставлены коды 1 или 2.
         /// Классификатор V021.
         /// </summary>
-        public string DoctorSpeciality { get { return doctorSpec; } }
+        public string DoctorSpeciality { get; set; }
         
         /// <summary>
         /// Вид обследования
@@ -51,43 +44,43 @@ namespace invox.Model {
         /// 3 - методы лучевой диагностики, за исключением дорогостоящих;
         /// 4 - дорогостоящие методы лучевой диагностики (КТ, МРТ, ангиография)
         /// </summary>
-        public string StudyKind { get { return studyKind; } }
+        public string StudyKind { get; set; }
         
         /// <summary>
         /// Профиль медицинской помощи
         /// Заполняется, если в поле NAZ_R проставлены коды 4 или 5.
         /// Классификатор V002.
         /// </summary>
-        public string AidProfile { get { return aidProfile; } }
+        public string AidProfile { get; set; }
         
         /// <summary>
         /// Профиль койки
         /// Заполняется, если в поле NAZ_R проставлен код 6.
         /// Классификатор V020.
         /// </summary>
-        public string BedProfile { get { return bedProfile; } }
+        public string BedProfile { get; set; }
 
         DispAssignment(int number, int code, string value) {
-            index = number;
-            routeCode = code;
+            Index = number;
+            RouteCode = code;
 
             switch (code) {
                 case 1:
                 case 2:
-                    doctorSpec = value;
+                    DoctorSpeciality = value;
                     break;
 
                 case 3:
-                    studyKind = value;
+                    StudyKind = value;
                     break;
 
                 case 4:
                 case 5:
-                    aidProfile = value;
+                    AidProfile = value;
                     break;
 
                 case 6:
-                    bedProfile = value;
+                    BedProfile = value;
                     break;
 
                 default:
@@ -99,12 +92,12 @@ namespace invox.Model {
         public void Write(Lib.XmlExporter xml) {
             xml.Writer.WriteStartElement("NAZ");
 
-            xml.Writer.WriteElementString("NAZN", index.ToString());
-            xml.Writer.WriteElementString("NAZ_R", routeCode.ToString());
-            xml.WriteIfValid("NAZ_SP", doctorSpec);
-            xml.WriteIfValid("NAZ_V", studyKind);
-            xml.WriteIfValid("NAZ_PMP", aidProfile);
-            xml.WriteIfValid("NAZ_PK", bedProfile);
+            xml.Writer.WriteElementString("NAZN", Index.ToString());
+            xml.Writer.WriteElementString("NAZ_R", RouteCode.ToString());
+            xml.WriteIfValid("NAZ_SP", DoctorSpeciality);
+            xml.WriteIfValid("NAZ_V", StudyKind);
+            xml.WriteIfValid("NAZ_PMP", AidProfile);
+            xml.WriteIfValid("NAZ_PK", BedProfile);
 
             xml.Writer.WriteEndElement();
         }

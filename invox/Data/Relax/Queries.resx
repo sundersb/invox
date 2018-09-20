@@ -117,6 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SELECT_CONCOMITANT_DISEASES" xml:space="preserve">
+    <value>select DIAG2, HR2, HRO2
+ from {period}DIAGNOZ
+ where SN_POL = ?
+  and OTD = ?
+  and DIAGOUT = ?
+  and DIAG2 &lt;&gt; ''</value>
+    <comment>Выборка сопутствующих заболеваний</comment>
+  </data>
+  <data name="SELECT_DISP_ASSIGNMENTS" xml:space="preserve">
+    <value>select KSG, KSG2
+ from {period}S{lpu}
+ where RECID = ?</value>
+  </data>
   <data name="SELECT_INVOICE_PEOPLE" xml:space="preserve">
     <value>select distinct
   P.RECID,
@@ -260,8 +274,6 @@
   S.S_ALL TOTAL,
   nvl(MP.CODEFSS, 'xxx') SPECIALITY_CODE,
   S.TN1 DOCTOR_CODE,
-  'see RO.SLIZ' INCOMPLETNESS,
-  'see RO.SLIZ' IS_REFUSAL,
   S.D_U,
   nvl(D.DBEG, DS.DBEG) DATE_FROM,
   nvl(D.DEND, DS.DEND) DATE_TILL,
@@ -273,10 +285,10 @@
   D.OBR REASON1,
   nvl(DS.KD, S.K_U) BED_DAYS,
   nvl(D.DIAGIN, DS.DIAGIN) DS_PRIMARY,
-  cast (nvl(D.F, DS.F) as varchar(10)) + ' in (2,3)' FIRST_IDENTIFIED,
+  nvl(D.F, DS.F) CHARACTER,
   nvl(D.DIAG2, DS.DIAG2) DS_CONCURRENT,
   nvl(D.DIAG1, DS.DIAG1) DS_COMPLICATION,
-  D.HR DISPENSARY_SUPERVISION,
+  D.HR DISPENSARY_SUPERVISION, D.HRO DCANCEL_REASON,
   cast (nvl(D.KSG2, DS.KSG2) as varchar(10)) + ' ???' CONCURRENT_MES_CODE
  from {period}S{lpu} S
   join {period}P{lpu} P on P.SN_POL = S.SN_POL
@@ -287,10 +299,10 @@
   left outer join BASE/DESCR/STRUCT ST on ST.BUXC = S.OTD
   left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = ST.CODE + S.TN1
   left outer join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
- where (ltrim(P.RECID) = ?)
+ where (P.RECID = ?)
   and (S.OTD = ?)
   and (S.DS = ?)
-  and (S.D_U = ?)</value>
+  and (cast (S.D_U as varchar(10)) = ?)</value>
     <comment>Услуги пациента в рамках законченного случая на дату</comment>
   </data>
   <data name="SELECT_SERVICES_TREATMENT" xml:space="preserve">
@@ -306,8 +318,6 @@
   S.S_ALL TOTAL,
   nvl(MP.CODEFSS, 'xxx') SPECIALITY_CODE,
   S.TN1 DOCTOR_CODE,
-  'see RO.SLIZ' INCOMPLETNESS,
-  'see RO.SLIZ' IS_REFUSAL,
   S.D_U,
   nvl(D.DBEG, DS.DBEG) DATE_FROM,
   nvl(D.DEND, DS.DEND) DATE_TILL,
@@ -319,10 +329,10 @@
   D.OBR REASON1,
   nvl(DS.KD, S.K_U) BED_DAYS,
   nvl(D.DIAGIN, DS.DIAGIN) DS_PRIMARY,
-  cast (nvl(D.F, DS.F) as varchar(10)) + ' in (2,3)' FIRST_IDENTIFIED,
+  nvl(D.F, DS.F) CHARACTER,
   nvl(D.DIAG2, DS.DIAG2) DS_CONCURRENT,
   nvl(D.DIAG1, DS.DIAG1) DS_COMPLICATION,
-  D.HR DISPENSARY_SUPERVISION,
+  D.HR DISPENSARY_SUPERVISION, D.HRO DCANCEL_REASON,
   cast (nvl(D.KSG2, DS.KSG2) as varchar(10)) + ' ???' CONCURRENT_MES_CODE
  from {period}S{lpu} S
   join {period}P{lpu} P on P.SN_POL = S.SN_POL
@@ -333,7 +343,7 @@
   left outer join BASE/DESCR/STRUCT ST on ST.BUXC = S.OTD
   left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = ST.CODE + S.TN1
   left outer join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
- where (ltrim(P.RECID) = ?)
+ where (P.RECID = ?)
   and (S.OTD = ?)
   and (S.DS = ?)</value>
     <comment>Услуги пациента в рамках обращения по заболеванию (лечебная цель)</comment>

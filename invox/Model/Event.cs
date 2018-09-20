@@ -164,14 +164,14 @@ namespace invox.Model {
         /// Код из справочника МКБ-10 до уровня подрубрики, если она предусмотрена МКБ-10 (неуказание подрубрики допускается для случаев оказания скорой медицинской помощи).
         /// Указывается в случае установления в соответствии с медицинской документацией.
         /// </summary>
-        public string ConcurrentDiagnosis { get; set; }
+        public List<string> ConcurrentDiagnoses { get; set; }
 
         /// <summary>
         /// Диагноз осложнения заболевания
         /// Код из справочника МКБ-10 до уровня подрубрики, если она предусмотрена МКБ-10 (неуказание подрубрики допускается для случаев оказания скорой медицинской помощи).
         /// Указывается в случае установления в соответствии с медицинской документацией.
         /// </summary>
-        public string ComplicationDiagnosis { get; set; }
+        public List<string> ComplicationDiagnoses { get; set; }
 
         /// <summary>
         /// Признак подозрения на злокачественное новообразование
@@ -224,14 +224,14 @@ namespace invox.Model {
         /// Тариф
         /// Тариф с учетом всех примененных коэффициентов (при оплате случая по КСГ с внутрибольничным переводом - стоимость, рассчитанная в соответствии с Методическими рекомендациями по способам оплаты медицинской помощи за счет средств ОМС)
         /// </summary>
-        public double Tariff { get; set; }
+        public decimal Tariff { get; set; }
 
         /// <summary>
         /// Стоимость случая, выставленная к оплате
         /// Может указываться нулевое значение.
         /// Может состоять из тарифа и стоимости некоторых услуг.
         /// </summary>
-        public double Total { get; set; }
+        public decimal Total { get; set; }
 
         /// <summary>
         /// Служебное поле
@@ -318,14 +318,16 @@ namespace invox.Model {
             // Диагноз сопутствующего заболевания
             // Код из справочника МКБ-10 до уровня подрубрики, если она предусмотрена МКБ-10 (неуказание подрубрики допускается для случаев оказания скорой медицинской помощи).
             // Указывается в случае установления в соответствии с медицинской документацией.
-            foreach(string ds in pool.LoadConcurrentDiagnoses())
-                xml.Writer.WriteElementString("DS2", ds);
+            if (ConcurrentDiagnoses != null)
+                foreach (string ds in ConcurrentDiagnoses)
+                    xml.Writer.WriteElementString("DS2", ds);
 
             // Диагноз осложнения заболевания
             // Код из справочника МКБ-10 до уровня подрубрики, если она предусмотрена МКБ-10 (неуказание подрубрики допускается для случаев оказания скорой медицинской помощи).
             // Указывается в случае установления в соответствии с медицинской документацией.
-            foreach(string ds in pool.LoadComplicationDiagnoses())
-                xml.Writer.WriteElementString("DS3", ds);
+            if (ComplicationDiagnoses != null)
+                foreach (string ds in ComplicationDiagnoses)
+                    xml.Writer.WriteElementString("DS3", ds);
 
             if (rec.SuspectOncology)
                 xml.Writer.WriteElementString("DS_ONK", "1");
@@ -335,7 +337,7 @@ namespace invox.Model {
 
             // Код МЭС
             // Классификатор МЭС. Указывается при наличии утвержденного стандарта.
-            foreach(string mes in pool.LoadMesCodes())
+            foreach(string mes in pool.LoadMesCodes(irec, rec, this))
                 xml.Writer.WriteElementString("CODE_MES1", mes);
 
             xml.WriteIfValid("CODE_MES2", ConcurrentMesCode);
@@ -369,7 +371,7 @@ namespace invox.Model {
 
             // Сведения о санкциях
             // Описывает санкции, примененные в рамках данного случая.
-            foreach (Sanction s in pool.LoadSanctions())
+            foreach (Sanction s in pool.LoadSanctions(irec, rec, this))
                 s.Write(xml, pool, this);
 
             // Сведения об услуге
@@ -410,16 +412,18 @@ namespace invox.Model {
             xml.WriteIfValid("DS0", PrimaryDiagnosis);
             xml.Writer.WriteElementString("DS1", MainDiagnosis);
 
-            foreach (string ds in pool.LoadConcurrentDiagnoses())
-                xml.Writer.WriteElementString("DS2", ds);
+            if (ConcurrentDiagnoses != null)
+                foreach (string ds in ConcurrentDiagnoses)
+                    xml.Writer.WriteElementString("DS2", ds);
 
-            foreach (string ds in pool.LoadComplicationDiagnoses())
-                xml.Writer.WriteElementString("DS3", ds);
+            if (ComplicationDiagnoses != null)
+                foreach (string ds in ComplicationDiagnoses)
+                    xml.Writer.WriteElementString("DS3", ds);
 
             if (rec.SuspectOncology)
                 xml.Writer.WriteElementString("DS_ONK", "1");
 
-            foreach (string mes in pool.LoadMesCodes())
+            foreach (string mes in pool.LoadMesCodes(irec, rec, this))
                 xml.Writer.WriteElementString("CODE_MES1", mes);
 
             xml.WriteIfValid("CODE_MES2", ConcurrentMesCode);
@@ -444,7 +448,7 @@ namespace invox.Model {
 
             // Сведения о санкциях
             // Описывает санкции, примененные в рамках данного случая.
-            foreach (Sanction s in pool.LoadSanctions())
+            foreach (Sanction s in pool.LoadSanctions(irec, rec, this))
                 s.Write(xml, pool, this);
 
             // Сведения об услуге
@@ -481,10 +485,10 @@ namespace invox.Model {
 
             xml.Writer.WriteElementString("PR_D_N", ((int)DispensarySupervision).ToString());
 
-            foreach (ConcomitantDisease d in pool.GetConcomitantDiseases())
+            foreach (ConcomitantDisease d in pool.GetConcomitantDiseases(irec, this))
                 d.Write(xml);
 
-            foreach (DispAssignment d in pool.GetDispanserisationAssignmetns())
+            foreach (DispAssignment d in pool.GetDispanserisationAssignmetns(this))
                 d.Write(xml);
 
             if (Quantity > 0)
@@ -497,7 +501,7 @@ namespace invox.Model {
 
             // Сведения о санкциях
             // Описывает санкции, примененные в рамках данного случая.
-            foreach (Sanction s in pool.LoadSanctions())
+            foreach (Sanction s in pool.LoadSanctions(irec, rec, this))
                 s.Write(xml, pool, this);
 
             // Сведения об услуге
