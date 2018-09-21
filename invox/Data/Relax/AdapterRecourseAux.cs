@@ -12,9 +12,13 @@ namespace invox.Data.Relax {
 
             result.PersonId = ReadString(reader["PERSON_ID"]);
             result.ServiceId = ReadString(reader["SERVICE_ID"]);
+            result.Department = ReadString(reader["DEPT"]);
             result.Unit = ReadString(reader["UNIT"]);
             result.AidProfile = Dict.AidProfile.Instance.Get(ReadString(reader["AID_PROFILE"]));
-            result.AidConditions = Dict.Condition.Instance.Get(ReadString(reader["AID_CONDITIONS"]));
+            
+            int dummy = ReadInt(ReadString(reader["AID_CONDITIONS"]));
+            result.AidConditions = Dict.Condition.Instance.Get(dummy.ToString());
+
             result.ServiceCode = ReadInt(reader["SERVICE_CODE"]);
             result.Result = ReadInt(reader["RESULT"]);
             result.Outcome = Dict.Outcome.Get(result.AidConditions, ReadString(reader["OUTCOME"]).TrimStart('0'));
@@ -22,7 +26,6 @@ namespace invox.Data.Relax {
             result.PayType = (Model.PayType) ReadInt(reader["PAY_TYPE"]);
             result.MobileBrigade = ReadBool(reader["MOBILE_BRIGADE"]);
             result.RecourseResult = ReadString(reader["RECOURSE_RESULT"]);
-            result.BedProfile = Dict.BedProfile.Instance.Get(ReadString(reader["BED_PROFILE"]));
             result.Child = ReadBool(reader["DET"]);
             result.Reason = ReadString(reader["REASON"]);
             result.CardNumber = ReadString(reader["CARD_NUMBER"]);
@@ -35,6 +38,18 @@ namespace invox.Data.Relax {
             result.SpecialityCode = ReadString(reader["SPECIALITY_CODE"]);
             result.DoctorCode = ReadString(reader["DOCTOR_CODE"]);
             result.Date = ReadDate(reader["D_U"]);
+
+            // Дневной стационар у нас - поликлиническое отделение, не имеющее профиля койки.
+            // Отсюда вручную прописываем терапию или неврологию в зависимости от диагноза
+            if (dummy == 1 || dummy == 2) {
+                result.BedProfile = Dict.BedProfile.Instance.Get(ReadString(reader["BED_PROFILE"]));
+                if (result.BedProfile == "???") {
+                    if (result.MainDiagnosis.StartsWith("I6"))
+                        result.BedProfile = "34";
+                    else
+                        result.BedProfile = "71";
+                }
+            }
 
             result.UpdateInternalReason();
 

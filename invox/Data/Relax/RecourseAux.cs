@@ -43,7 +43,12 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Подразделение ЛПУ (OTD)
         /// </summary>
-        public string Unit;             // S.OTD
+        public string Department;       // S.OTD
+
+        /// <summary>
+        /// Подразделение ЛПУ (PODR)
+        /// </summary>
+        public string Unit;             // S.PODR
 
         /// <summary>
         /// Профиль медицинской помощи V002 (из KMU.MSP через мультиплексор)
@@ -167,7 +172,7 @@ namespace invox.Data.Relax {
             Model.Recourse result = new Model.Recourse();
 
             result.SuspectOncology = MainDiagnosis == SUSP_NEO_DIAGNOSIS;
-            result.Department = Unit;
+            result.Department = Department;
             result.Profile = AidProfile;
             result.Identity = ServiceId;
             result.Conditions = AidConditions;
@@ -200,13 +205,16 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Создать событие и заполнить его доступными полями
         /// </summary>
-        public Model.Event ToEvent() {
+        public Model.Event ToEvent(Model.Recourse rec) {
             Model.Event result = new Model.Event();
 
             // result.Services;                         - Pool.LoadEvents
             result.Identity = ServiceId;
             result.Unit = Unit;
-            result.BedProfile = BedProfile;
+            
+            if (rec.IsHospitalization)
+                result.BedProfile = BedProfile;
+            
             result.Child = Child;
             result.Reason = Reason;
             result.CardNumber = CardNumber;
@@ -249,7 +257,7 @@ namespace invox.Data.Relax {
         /// Обновить внутренний код повода обращения в соответствие кабинету, услуге и результату обращения
         /// </summary>
         public void UpdateInternalReason() {
-            InternalReason = GetInternalReason(Unit, ServiceCode, RecourseResult);
+            InternalReason = GetInternalReason(Department, ServiceCode, RecourseResult);
         }
 
         /// <summary>
@@ -330,7 +338,8 @@ namespace invox.Data.Relax {
                     return AID_KIND_EMERGENCY;
 
                 default:
-                    if (ServiceCode / 1000 == 98)
+                    int c = ServiceCode / 1000;
+                    if (c == 98 || c == 3)
                         return AID_KIND_SPECIALIZED;
                     else
                         return AID_KIND_PRIMARY;

@@ -18,7 +18,28 @@ namespace invox.Data.Relax {
         const string PERIOD_MARKER = "{period}";
         const string LPU_MARKER = "{lpu}";
         const string APPENDIX_SECTION_MARKER = "{section}";
+        const string RECOURSE_SERVICES_MARKER = "{recsvc}";
+
+        // Чтобы избежать ошибок, связанных с забывчивостью при добавлении чего-нибудь в ответ на нововведения
+        // ФОМС условие SQL для выборки услуг, обозначающих закрытый случай, вынесено из Queries
+        // и помещено здесь
+        const string RECOURSE_SERVICES_CRITERION = "floor(S.COD/1000) in (3, 27, 28, 29, 22, 50, 5)";
+
         
+        // Условия для выборки услуг в рамках диспансеризации. Необходимость связана с тем, что
+        // и 1, и 2 этап проходят в одном подразделении, а код МКБ может быть одинаковым, т.о.
+        // в законченный случай 1 этапа могут войти все услуги и из 2-го (и наоборот):
+
+        // 1) BE 98 однозначно определяет 1 этап "раз в два года"
+        const string STAGE1_CRITERION = " and ((floor(S.COD/1000) in (22, 24, 29)) or (S.BE = '98'))";
+
+        // 2) Достаточно для того, чтобы отличить 2 этап от прочих посещений (при условии, что кабинет
+        // уже есть в условии запроса)
+        const string STAGE2_CRITERION = " and ((S.COD in (50020, 50022)) or (floor(S.COD/1000) in (25, 28)))";
+
+        // Добавить условие к выборке услуг законченного случая - по дате
+        const string SERVICES_BY_DATE_CRITERION = " and (cast (S.D_U as varchar(10)) = ?)";
+
         /// <summary>
         /// Коды лечебных отделений
         /// </summary>
@@ -45,6 +66,8 @@ namespace invox.Data.Relax {
         OleDbCommand selectRecourses = null;
         OleDbCommand selectServicesTreatment;
         OleDbCommand selectServicesByDate;
+        OleDbCommand selectServicesStage1;
+        OleDbCommand selectServicesStage2;
         OleDbCommand selectConcomDiseases;
         OleDbCommand selectDispDirections;
 
@@ -77,12 +100,23 @@ namespace invox.Data.Relax {
             connectionAlt = new OleDbConnection(cs);
 
             selectServicesTreatment = connectionAlt.CreateCommand();
-            selectServicesTreatment.CommandText = LocalizeQuery(Queries.SELECT_SERVICES_TREATMENT);
+            selectServicesTreatment.CommandText = LocalizeQuery(Queries.SELECT_SERVICES);
             AddStringParameters(selectServicesTreatment, SELECT_SERVICES_TREATMENT);
 
             selectServicesByDate = connectionAlt.CreateCommand();
-            selectServicesByDate.CommandText = LocalizeQuery(Queries.SELECT_SERVICES_OTHER);
+            selectServicesByDate.CommandText = LocalizeQuery(Queries.SELECT_SERVICES
+                + SERVICES_BY_DATE_CRITERION);
             AddStringParameters(selectServicesByDate, SELECT_SERVICES_BY_DATE);
+
+            selectServicesStage1 = connectionAlt.CreateCommand();
+            selectServicesStage1.CommandText = LocalizeQuery(Queries.SELECT_SERVICES
+                + STAGE1_CRITERION);
+            AddStringParameters(selectServicesStage1, SELECT_SERVICES_TREATMENT);
+
+            selectServicesStage2 = connectionAlt.CreateCommand();
+            selectServicesStage2.CommandText = LocalizeQuery(Queries.SELECT_SERVICES
+                + STAGE2_CRITERION);
+            AddStringParameters(selectServicesStage2, SELECT_SERVICES_TREATMENT);
 
             selectConcomDiseases = connectionAlt.CreateCommand();
             selectConcomDiseases.CommandText = LocalizeQuery(Queries.SELECT_CONCOMITANT_DISEASES);
@@ -263,6 +297,15 @@ namespace invox.Data.Relax {
             }
             return sql;
         }
+
+        /// <summary>
+        /// Подставить в запрос условие выборки услуг, обозначающих законченный случай
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        string RecoursizeQuery(string sql) {
+            return sql.Replace(RECOURSE_SERVICES_MARKER, RECOURSE_SERVICES_CRITERION);
+        }
         // ***********************************************************************************
         #endregion
 
@@ -323,11 +366,13 @@ namespace invox.Data.Relax {
                     break;
 
                 case InternalReason.Stage1:
-                case InternalReason.Stage2:
                 case InternalReason.StrippedStage1:
+                    command = selectServicesStage1;
+                    break;
+
+                case InternalReason.Stage2:
                 case InternalReason.StrippedStage2:
-                    // TODO: Группировка по отделению и диагнозу собъет в кучу ДД 1 и 2 этапов
-                    command = selectServicesTreatment;
+                    command = selectServicesStage2;
                     break;
 
                 case InternalReason.Other:
@@ -342,8 +387,8 @@ namespace invox.Data.Relax {
             }
 
             if (command != null) {
-                command.Parameters[0].Value = ra.PersonId;
-                command.Parameters[1].Value = ra.Unit;
+                command.Parameters[0].Value = string.Format("{0,6}", ra.PersonId); ;
+                command.Parameters[1].Value = ra.Department;
                 command.Parameters[2].Value = ra.MainDiagnosis;
                 return aService.Load(command);
             } else {
@@ -362,7 +407,7 @@ namespace invox.Data.Relax {
         List<Model.Event> LoadEvents(Model.Recourse rec, RecourseAux ra) {
             // Extract single event from the RecourseAux:
             List<Model.Event> result = new List<Model.Event>();
-            Model.Event evt = ra.ToEvent();
+            Model.Event evt = ra.ToEvent(rec);
             result.Add(evt);
 
             // Load auxilliary service records and service models
@@ -445,7 +490,7 @@ namespace invox.Data.Relax {
             return aConcomitantDisease.Load(selectConcomDiseases);
         }
 
-        public IEnumerable<Model.DispAssignment> GetDispanserisationAssignmetns(Model.Event evt) {
+        public IEnumerable<Model.DispAssignment> GetDispanserisationAssignments(Model.Event evt) {
             string id = string.Format("{0,6}", evt.Identity);
             selectDispDirections.Parameters[0].Value = id;
             List<Model.DispAssignment> result = null;
@@ -473,6 +518,7 @@ namespace invox.Data.Relax {
 
         public int GetInvoiceRecordsCount(Model.OrderSection section) {
             string sql = SectionizeQuery(Queries.SELECT_INVOICE_RECORDS_COUNT, section);
+            sql = RecoursizeQuery(sql);
             object result = ExecuteScalar(connectionMain, LocalizeQuery(sql));
             return result != DBNull.Value ? (int)(decimal)result : 0;
         }
@@ -485,6 +531,7 @@ namespace invox.Data.Relax {
 
         public IEnumerable<Model.InvoiceRecord> LoadInvoiceRecords(Model.OrderSection section) {
             string sql = SectionizeQuery(Queries.SELECT_INVOICE_PEOPLE, section);
+            sql = RecoursizeQuery(sql);
             return aInvoice.Load(connectionMain, LocalizeQuery(sql));
         }
 
@@ -503,6 +550,7 @@ namespace invox.Data.Relax {
 
             if (selectRecourses == null) {
                 string sql = LocalizeQuery(Queries.SELECT_RECOURSES);
+                sql = RecoursizeQuery(sql);
                 selectRecourses = connectionAlt.CreateCommand();
                 selectRecourses.CommandText = SectionizeQuery(sql, section);
                 AddStringParameters(selectRecourses, SELECT_RECOURSE_CASES_PARAMS);

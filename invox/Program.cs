@@ -93,14 +93,23 @@ namespace invox {
                     };
                     int packet = Options.PacketNumber - 1;
 
+                    bool error = false;
                     foreach (Model.OrderSection section in ss) {
-                        if (!Run(pool, section, ++packet)) break;
+                        if (!Run(pool, section, ++packet)) {
+                            error = true;
+                            Console.WriteLine("Ошибка при выгрузке счетов " + Model.OrderSectionHelper.AsString(section));
+                            break;
+                        }
                     }
+
+                    if (!error)
+                        Console.WriteLine("Счета выгружены!");
                 } else {
                     Console.WriteLine("\r\nВыгрузка не произведена!");
                 }
             }
 
+            Console.WriteLine("Нажмите любую клавишу...");
             Console.ReadKey();
         }
 

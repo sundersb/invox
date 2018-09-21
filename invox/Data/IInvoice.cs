@@ -18,7 +18,7 @@ namespace invox.Data {
         Model.OncologyService GetOncologyService();
 
         IEnumerable<Model.ConcomitantDisease> GetConcomitantDiseases(Model.InvoiceRecord irec, Model.Event evt);
-        IEnumerable<Model.DispAssignment> GetDispanserisationAssignmetns(Model.Event evt);
+        IEnumerable<Model.DispAssignment> GetDispanserisationAssignments(Model.Event evt);
 
         int GetPeopleCount(Model.OrderSection section);
         IEnumerable<Model.Person> LoadPeople(Model.OrderSection section);

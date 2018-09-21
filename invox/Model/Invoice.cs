@@ -7,7 +7,12 @@ using invox.Lib;
 namespace invox.Model {
     class Invoice {
         const string XML = ".xml";
+
+#if FOMS_VERSION
+        const string VERSION = "2.1";
+#else
         const string VERSION = "3.1";
+#endif
 
         Lib.InvoiceFilename invoiceFilename;
 
@@ -123,15 +128,18 @@ namespace invox.Model {
             xml.Writer.WriteElementString("NSCHET", invox.Options.InvoiceNumber);
             xml.Writer.WriteElementString("DSCHET", invox.Options.InvoiceDate.AsXml());
             xml.WriteIfValid("PLAT", invoiceFilename.CompanyCode);
-            xml.Writer.WriteElementString("SUMMAV", pool.Total(invoiceFilename.Section).ToString("F2"));
+            xml.Writer.WriteElementString("SUMMAV", pool.Total(invoiceFilename.Section).ToString("F2", Options.NumberFormat));
             xml.Writer.WriteEndElement();
 
             Lib.Progress progress = new Progress("Случаи обращения", count);
+            int number = 0;
 
             switch(invoiceFilename.Section) {
                 case OrderSection.D1:
                     foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(OrderSection.D1)) {
+                        irec.Identity = number;
                         irec.WriteD1(xml, pool);
+                        number = irec.Identity;
                         progress.Step();
 #if DEBUG
                         if (--count <= 0) break;
@@ -141,7 +149,9 @@ namespace invox.Model {
 
                 case OrderSection.D2:
                     foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(OrderSection.D2)) {
+                        irec.Identity = number;
                         irec.WriteD2(xml, pool);
+                        number = irec.Identity;
                         progress.Step();
 #if DEBUG
                         if (--count <= 0) break;
@@ -151,7 +161,9 @@ namespace invox.Model {
 
                 case OrderSection.D3:
                     foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(OrderSection.D3)) {
+                        irec.Identity = number;
                         irec.WriteD3(xml, pool);
+                        number = irec.Identity;
                         progress.Step();
 #if DEBUG
                         if (--count <= 0) break;

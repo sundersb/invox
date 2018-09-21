@@ -9,4 +9,18 @@ namespace invox.Model {
         D2,
         D3
     }
+
+    static class OrderSectionHelper {
+        public static string AsString(OrderSection section) {
+            switch (section) {
+                case OrderSection.D1:
+                    return "с лечебной целью";
+                case OrderSection.D2:
+                    return "ВМП";
+                case OrderSection.D3:
+                    return "профилактики и диспансеризации";
+            }
+            return string.Empty;
+        }
+    }
 }

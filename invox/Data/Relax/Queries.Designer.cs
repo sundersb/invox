@@ -102,7 +102,7 @@ namespace invox.Data.Relax {
         ///  join {period}P{lpu} P on P.SN_POL = S.SN_POL
         ///  join BASE/COMMON/SLMSO MSO on MSO.CODE = P.Q
         /// where (S.OTD in ({section}))
-        ///  and (floor(S.COD/1000) in (3, 27, 28, 29, 22, 50, 5)).
+        ///  and ({recsvc}).
         /// </summary>
         internal static string SELECT_INVOICE_PEOPLE {
             get {
@@ -128,7 +128,7 @@ namespace invox.Data.Relax {
         ///  join {period}PAT on PAT.SN_POL = I.SN_POL
         ///  left outer join BASE/COMMON/MSOIN MSO on MSO.CODE = P.Q_VCODE
         /// where (S.OTD in ({section}))
-        ///  and (floor(S.COD/1000) in (3, 27, 28, 29, 22, 50, 5)).
+        ///  and ({recsvc}).
         /// </summary>
         internal static string SELECT_INVOICE_PEOPLE_FOREIGN {
             get {
@@ -138,9 +138,9 @@ namespace invox.Data.Relax {
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на select count(*)
-        /// from {period}S{lpu}
-        /// where (floor(COD/1000) in (3, 27, 28, 29, 22, 50, 5))
-        ///  and (OTD in ({section})).
+        /// from {period}S{lpu} S
+        /// where ({recsvc})
+        ///  and (S.OTD in ({section})).
         /// </summary>
         internal static string SELECT_INVOICE_RECORDS_COUNT {
             get {
@@ -208,7 +208,7 @@ namespace invox.Data.Relax {
         ///   Ищет локализованную строку, похожую на select
         ///  P.RECID PERSON_ID,
         ///  S.RECID SERVICE_ID,
-        ///  S.OTD UNIT,
+        ///  S.OTD DEPT, S.PODR UNIT,
         ///  K.MSP AID_PROFILE,
         ///  UMP.SLUSL AID_CONDITIONS,
         ///  S.COD SERVICE_CODE,
@@ -228,7 +228,7 @@ namespace invox.Data.Relax {
         ///  S.K_U QUANTITY,
         ///  S.S_ALL TARIFF,
         ///  S.S_ALL TOTAL,
-        ///  nvl(MP.CODEFSS,  [остаток строки не уместился]&quot;;.
+        ///  nvl [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_RECOURSES {
             get {
@@ -257,36 +257,9 @@ namespace invox.Data.Relax {
         ///  DS.VESR BIRTH_WEIGHT,
         ///  DS.BOLEND  [остаток строки не уместился]&quot;;.
         /// </summary>
-        internal static string SELECT_SERVICES_OTHER {
+        internal static string SELECT_SERVICES {
             get {
-                return ResourceManager.GetString("SELECT_SERVICES_OTHER", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на select
-        ///  S.RECID SERVICE_ID,
-        ///  K.MSP AID_PROFILE,
-        ///  S.COD SERVICE_CODE,
-        ///  nvl(RO.SLIZ, &apos;xxx&apos;) RESULT, ST.PROF BED_PROFILE,
-        ///  &apos;V025 SLOBR-SLUMP-SLPOS&apos; REASON,
-        ///  &apos;V001&apos; INTERVENTION_KIND,
-        ///  S.K_U QUANTITY,
-        ///  S.S_ALL TARIFF,
-        ///  S.S_ALL TOTAL,
-        ///  nvl(MP.CODEFSS, &apos;xxx&apos;) SPECIALITY_CODE,
-        ///  S.TN1 DOCTOR_CODE,
-        ///  S.D_U,
-        ///  nvl(D.DBEG, DS.DBEG) DATE_FROM,
-        ///  nvl(D.DEND, DS.DEND) DATE_TILL,
-        ///  nvl(D.NOVOR, .F.) or nvl(DS.NOVOR, .F.) NOVOR,
-        ///  DS.SRZ_MCOD DIRECTION_FROM,
-        ///  DS.VESR BIRTH_WEIGHT,
-        ///  DS.BOLEND  [остаток строки не уместился]&quot;;.
-        /// </summary>
-        internal static string SELECT_SERVICES_TREATMENT {
-            get {
-                return ResourceManager.GetString("SELECT_SERVICES_TREATMENT", resourceCulture);
+                return ResourceManager.GetString("SELECT_SERVICES", resourceCulture);
             }
         }
         

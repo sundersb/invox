@@ -2,29 +2,6 @@
 using invox.Lib;
 using System.Collections.Generic;
 
-//select distinct
-//  S.RECID,
-//  S.COD,
-//  S.K_U,
-//  K.OPL,
-//  S.D_U,
-//  ST.PROF BED_PROFILE,
-//  K.LDET DET,
-//  S.C_I
-// from S2101003 S
-//  join P2101003 P on P.SN_POL = S.SN_POL
-//  left outer join DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGIN = S.DS)
-//  left outer join ../../BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
-//  left outer join ../../BASE/COMMON/SLUMP UMP on UMP.CODE = K.UMP
-//  left outer join ../../BASE/COMMON/REZOBR RO on RO.CODE = S.BE
-//  left outer join ../../BASE/DESCR/STRUCT ST on ST.BUXC = S.OTD
-// where (ltrim(P.RECID) = '1')
-//  and (S.OTD = '0001')
-//  and (S.DS = 'H27.0')
-
-//  and (S.OTD in ('0001', '0003', '0004', '0005'))
-// order by 1, 2
-
 namespace invox.Model {
     /// <summary>
     /// Признак поступления/перевода
@@ -488,7 +465,7 @@ namespace invox.Model {
             foreach (ConcomitantDisease d in pool.GetConcomitantDiseases(irec, this))
                 d.Write(xml);
 
-            foreach (DispAssignment d in pool.GetDispanserisationAssignmetns(this))
+            foreach (DispAssignment d in pool.GetDispanserisationAssignments(this))
                 d.Write(xml);
 
             if (Quantity > 0)

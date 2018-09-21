@@ -20,7 +20,7 @@ namespace invox.Model {
         /// Номер позиции записи
         /// Уникально идентифицирует запись в пределах счета.
         /// </summary>
-        public string Identity { get; set; }
+        public int Identity { get; set; }
         
         /// <summary>
         /// Признак исправленной записи
@@ -37,8 +37,9 @@ namespace invox.Model {
         /// <param name="section">Order #59 section</param>
         public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section) {
             foreach (Recourse recourse in pool.LoadRecourses(this, section)) {
+                ++Identity;
                 xml.Writer.WriteStartElement("ZAP");
-                xml.Writer.WriteElementString("N_ZAP", Identity);
+                xml.Writer.WriteElementString("N_ZAP", Identity.ToString());
                 xml.WriteBool("PR_NOV", Revised);
                 Person.Write(xml, section);
                 recourse.Write(xml, pool, section, this);
@@ -48,8 +49,9 @@ namespace invox.Model {
 
         public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool) {
             foreach (Recourse recourse in pool.LoadRecourses(this, OrderSection.D1)) {
+                ++Identity;
                 xml.Writer.WriteStartElement("ZAP");
-                xml.Writer.WriteElementString("N_ZAP", Identity);
+                xml.Writer.WriteElementString("N_ZAP", Identity.ToString());
                 xml.WriteBool("PR_NOV", Revised);
                 Person.WriteD1(xml);
                 recourse.WriteD1(xml, pool, this);
@@ -59,8 +61,9 @@ namespace invox.Model {
 
         public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool) {
             foreach (Recourse recourse in pool.LoadRecourses(this, OrderSection.D2)) {
+                ++Identity;
                 xml.Writer.WriteStartElement("ZAP");
-                xml.Writer.WriteElementString("N_ZAP", Identity);
+                xml.Writer.WriteElementString("N_ZAP", Identity.ToString());
                 xml.WriteBool("PR_NOV", Revised);
                 Person.WriteD2(xml);
                 recourse.WriteD2(xml, pool, this);
@@ -70,8 +73,9 @@ namespace invox.Model {
 
         public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool) {
             foreach (Recourse recourse in pool.LoadRecourses(this, OrderSection.D3)) {
+                ++Identity;
                 xml.Writer.WriteStartElement("ZAP");
-                xml.Writer.WriteElementString("N_ZAP", Identity);
+                xml.Writer.WriteElementString("N_ZAP", Identity.ToString());
                 xml.WriteBool("PR_NOV", Revised);
                 Person.WriteD3(xml);
                 recourse.WriteD3(xml, pool, this);

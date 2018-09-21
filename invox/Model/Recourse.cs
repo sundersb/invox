@@ -203,7 +203,11 @@ namespace invox.Model {
         }
         
         public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+#if FOMS_VERSION
+            xml.Writer.WriteStartElement("SLUCH");
+#else
             xml.Writer.WriteStartElement("Z_SL");
+#endif
 
             xml.Writer.WriteElementString("IDCASE", Identity);
             xml.Writer.WriteElementString("USL_OK", Conditions);
@@ -257,7 +261,11 @@ namespace invox.Model {
         }
 
         public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+#if FOMS_VERSION
+            xml.Writer.WriteStartElement("SLUCH");
+#else
             xml.Writer.WriteStartElement("Z_SL");
+#endif
 
             xml.Writer.WriteElementString("IDCASE", Identity);
             xml.Writer.WriteElementString("USL_OK", Conditions.ToString());
@@ -306,17 +314,32 @@ namespace invox.Model {
         }
 
         public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+#if FOMS_VERSION
+            xml.Writer.WriteStartElement("SLUCH");
+#else
             xml.Writer.WriteStartElement("Z_SL");
+#endif
 
             xml.Writer.WriteElementString("IDCASE", Identity);
             xml.Writer.WriteElementString("USL_OK", Conditions);
+
             xml.Writer.WriteElementString("VIDPOM", AidKind.ToString());
+
+#if FOMS_VERSION
+            xml.Writer.WriteElementString("FOR_POM", AidForm.ToString());
+#endif
 
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
 
             // Dinamically?
             xml.WriteBool("VBR", MobileBrigade);
 
+#if FOMS_VERSION
+            xml.Writer.WriteElementString("PODR", Department);
+            xml.Writer.WriteElementString("PROFIL", Profile);
+            // Все ясно, дальше пошла фомсовская местечковая хуйня, когда два уровня вложенности
+            // они объединили в один...
+#endif
             xml.Writer.WriteElementString("DATE_Z_1", DateFrom.AsXml());
             xml.Writer.WriteElementString("DATE_Z_2", DateTill.AsXml());
 

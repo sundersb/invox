@@ -148,7 +148,7 @@
   join {period}P{lpu} P on P.SN_POL = S.SN_POL
   join BASE/COMMON/SLMSO MSO on MSO.CODE = P.Q
  where (S.OTD in ({section}))
-  and (floor(S.COD/1000) in (3, 27, 28, 29, 22, 50, 5))</value>
+  and ({recsvc})</value>
     <comment>Пациенты для счетов</comment>
   </data>
   <data name="SELECT_INVOICE_PEOPLE_FOREIGN" xml:space="preserve">
@@ -169,13 +169,13 @@
   join {period}PAT on PAT.SN_POL = I.SN_POL
   left outer join BASE/COMMON/MSOIN MSO on MSO.CODE = P.Q_VCODE
  where (S.OTD in ({section}))
-  and (floor(S.COD/1000) in (3, 27, 28, 29, 22, 50, 5))</value>
+  and ({recsvc})</value>
   </data>
   <data name="SELECT_INVOICE_RECORDS_COUNT" xml:space="preserve">
     <value>select count(*)
- from {period}S{lpu}
- where (floor(COD/1000) in (3, 27, 28, 29, 22, 50, 5))
-  and (OTD in ({section}))</value>
+ from {period}S{lpu} S
+ where ({recsvc})
+  and (S.OTD in ({section}))</value>
     <comment>Число законченных случаев</comment>
   </data>
   <data name="SELECT_NO_DOCTOR_DEPT" xml:space="preserve">
@@ -225,7 +225,7 @@
     <value>select
   P.RECID PERSON_ID,
   S.RECID SERVICE_ID,
-  S.OTD UNIT,
+  S.OTD DEPT, S.PODR UNIT,
   K.MSP AID_PROFILE,
   UMP.SLUSL AID_CONDITIONS,
   S.COD SERVICE_CODE,
@@ -256,12 +256,12 @@
   left outer join BASE/DESCR/STRUCT ST on ST.BUXC = S.OTD
   left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = ST.CODE + S.TN1
   left outer join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
- where (ltrim(P.RECID) = ?)
-  and (floor(S.COD/1000) in (3, 27, 28, 29, 22, 50, 5))
+ where (P.RECID = ?)
+  and ({recsvc})
   and (S.OTD in ({section}))</value>
     <comment>Законченные случаи для пациента</comment>
   </data>
-  <data name="SELECT_SERVICES_OTHER" xml:space="preserve">
+  <data name="SELECT_SERVICES" xml:space="preserve">
     <value>select
   S.RECID SERVICE_ID,
   K.MSP AID_PROFILE,
@@ -289,51 +289,7 @@
   nvl(D.DIAG2, DS.DIAG2) DS_CONCURRENT,
   nvl(D.DIAG1, DS.DIAG1) DS_COMPLICATION,
   D.HR DISPENSARY_SUPERVISION, D.HRO DCANCEL_REASON,
-  cast (nvl(D.KSG2, DS.KSG2) as varchar(10)) + ' ???' CONCURRENT_MES_CODE
- from {period}S{lpu} S
-  join {period}P{lpu} P on P.SN_POL = S.SN_POL
-  left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGOUT = S.DS) and (D.DEND = S.D_U)
-  left outer join {period}DIAGNOZS DS on (DS.SN_POL = S.SN_POL) and (DS.OTD = S.OTD) and (DS.DIAGOUT = S.DS) and (DS.DEND = S.D_U)
-  left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD
-  left outer join BASE/COMMON/REZOBR RO on RO.CODE = S.BE
-  left outer join BASE/DESCR/STRUCT ST on ST.BUXC = S.OTD
-  left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = ST.CODE + S.TN1
-  left outer join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
- where (P.RECID = ?)
-  and (S.OTD = ?)
-  and (S.DS = ?)
-  and (cast (S.D_U as varchar(10)) = ?)</value>
-    <comment>Услуги пациента в рамках законченного случая на дату</comment>
-  </data>
-  <data name="SELECT_SERVICES_TREATMENT" xml:space="preserve">
-    <value>select
-  S.RECID SERVICE_ID,
-  K.MSP AID_PROFILE,
-  S.COD SERVICE_CODE,
-  nvl(RO.SLIZ, 'xxx') RESULT, ST.PROF BED_PROFILE,
-  'V025 SLOBR-SLUMP-SLPOS' REASON,
-  'V001' INTERVENTION_KIND,
-  S.K_U QUANTITY,
-  S.S_ALL TARIFF,
-  S.S_ALL TOTAL,
-  nvl(MP.CODEFSS, 'xxx') SPECIALITY_CODE,
-  S.TN1 DOCTOR_CODE,
-  S.D_U,
-  nvl(D.DBEG, DS.DBEG) DATE_FROM,
-  nvl(D.DEND, DS.DEND) DATE_TILL,
-  nvl(D.NOVOR, .F.) or nvl(DS.NOVOR, .F.) NOVOR,
-  DS.SRZ_MCOD DIRECTION_FROM,
-  DS.VESR BIRTH_WEIGHT,
-  DS.BOLEND OUTCOME1,
-  DS.INSTAC TRANSFER,
-  D.OBR REASON1,
-  nvl(DS.KD, S.K_U) BED_DAYS,
-  nvl(D.DIAGIN, DS.DIAGIN) DS_PRIMARY,
-  nvl(D.F, DS.F) CHARACTER,
-  nvl(D.DIAG2, DS.DIAG2) DS_CONCURRENT,
-  nvl(D.DIAG1, DS.DIAG1) DS_COMPLICATION,
-  D.HR DISPENSARY_SUPERVISION, D.HRO DCANCEL_REASON,
-  cast (nvl(D.KSG2, DS.KSG2) as varchar(10)) + ' ???' CONCURRENT_MES_CODE
+  cast (nvl(D.KSG2, DS.KSG2) as varchar(10)) CONCURRENT_MES_CODE
  from {period}S{lpu} S
   join {period}P{lpu} P on P.SN_POL = S.SN_POL
   left outer join {period}DIAGNOZ D on (D.SN_POL = S.SN_POL) and (D.OTD = S.OTD) and (D.DIAGOUT = S.DS) and (D.DEND = S.D_U)
@@ -346,7 +302,7 @@
  where (P.RECID = ?)
   and (S.OTD = ?)
   and (S.DS = ?)</value>
-    <comment>Услуги пациента в рамках обращения по заболеванию (лечебная цель)</comment>
+    <comment>Услуги пациента в рамках обращения по заболеванию</comment>
   </data>
   <data name="SELECT_TOTAL" xml:space="preserve">
     <value>select sum(S_ALL) TOTAL from {period}S{lpu} where OTD in ({section})</value>

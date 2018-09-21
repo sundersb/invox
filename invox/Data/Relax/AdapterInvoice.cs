@@ -7,7 +7,7 @@ namespace invox.Data.Relax {
     class AdapterInvoice : AdapterBase<Model.InvoiceRecord> {
         public override Model.InvoiceRecord Read(System.Data.Common.DbDataReader reader, int number) {
             Model.InvoiceRecord result = new Model.InvoiceRecord();
-            result.Identity = number.ToString();
+            result.Identity = number;
             result.Revised = false;
             result.Person = new Model.InvoicePerson();
             Model.InvoicePerson p = result.Person;
@@ -15,7 +15,7 @@ namespace invox.Data.Relax {
             p.Identity = ReadString(reader["RECID"]);
             p.PolicyType = ReadInt(reader["T_POL"]);
             p.Policy = ReadString(reader["SN_POL"]);
-            p.SmoOkato = ReadString(reader["MSO_OKATO"]);
+            p.SmoOkato = ReadString(reader["MSO_OKATO"]).Substring(0, 5);
 
             p.SmoCode = ReadString(reader["Q"]);
             if (p.SmoCode == "IN")
