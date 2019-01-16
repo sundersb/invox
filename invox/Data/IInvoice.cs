@@ -13,7 +13,7 @@ namespace invox.Data {
 
         IEnumerable<string> LoadPersonDiagnoses();
         Model.OnkologyTreat GetOnkologyTreat();
-        IEnumerable<Model.Sanction> LoadSanctions(Model.InvoiceRecord irec, Model.Recourse rec, Model.Event evt);
+        IEnumerable<Model.Sanction> LoadSanctions(Model.InvoiceRecord irec, Model.Recourse rec);
         IEnumerable<Model.OncologyDirection> LoadOncologyDirections();
         Model.OncologyService GetOncologyService();
 

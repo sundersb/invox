@@ -360,12 +360,20 @@ namespace invox.Data.Relax {
         /// </summary>
         /// <param name="rec">Законченный случай</param>
         public static bool NeedsDirection(Model.Recourse rec) {
-            return rec.SuspectOncology
-                // Плановая в круглосуточном стационаре или СДП
-                || (rec.AidForm == AID_FORM_ORDINAL && rec.IsHospitalization)
+            // Slimed by order 285
+            //return rec.SuspectOncology
+            //    // Плановая в круглосуточном стационаре или СДП
+            //    || (rec.AidForm == AID_FORM_ORDINAL && rec.IsHospitalization)
 
-                // Неотложная в круглосуточном стационаре
-                || (rec.AidForm == AID_FORM_PRESSING && rec.Conditions == "1");
+            //    // Неотложная в круглосуточном стационаре
+            //    || (rec.AidForm == AID_FORM_PRESSING && rec.Conditions == "1");
+
+            return
+                // В дневном стационаре
+                (rec.Conditions == "2")
+                // Плановая в круглосуточном стационаре
+                || (rec.AidForm == AID_FORM_ORDINAL && rec.Conditions == "1");
+
         }
     }
 }

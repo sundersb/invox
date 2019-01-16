@@ -348,7 +348,7 @@ namespace invox.Data.Relax {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Model.Sanction> LoadSanctions(Model.InvoiceRecord irec, Model.Recourse rec, Model.Event evt) {
+        public IEnumerable<Model.Sanction> LoadSanctions(Model.InvoiceRecord irec, Model.Recourse rec) {
             yield break;
         }
 

@@ -85,9 +85,8 @@ namespace invox.Model {
         /// Код МО, направившей на лечение (диагностику, консультацию, госпитализацию)
         /// Код МО - юридического лица. Заполняется в соответствии со справочником F003 Приложения А.
         /// Заполнение обязательно в случаях оказания:
-        /// 1. плановой медицинской помощи в условиях стационара и дневного стационара (FOR_POM=3 и USL_OK=(1, 2));
-        /// 2. неотложной медицинской помощи в условиях стационара (FOR_POM=2 и USL_OK=1);
-        /// 3. медицинской помощи при подозрении на злокачественное новообразование (DS_ONK=l)
+        /// 1. плановой медицинской помощи в условиях стационара (FOR_POM=3 и USL_OK = 1);
+        /// 2. в условиях дневного стационара (USL_OK =2)
         /// </summary>
         public string DirectedFrom { get; set; }
 
@@ -95,9 +94,8 @@ namespace invox.Model {
         /// Дата направления на лечение (диагностику, консультацию, госпитализацию)
         /// Заполняется на основании направления на лечение.
         /// Заполнение обязательно в случаях оказания:
-        /// 1. плановой медицинской помощи в условиях стационара и дневного стационара (FOR_POM=3 и USL_OK=(1, 2));
-        /// 2. неотложной медицинской помощи в условиях стационара (FOR_POM=2 и USL_OK=1);
-        /// 3. медицинской помощи при подозрении на злокачественное новообразование (DS_ONK=l)
+        /// 1. плановой медицинской помощи в условиях стационара (FOR_POM=3 и USL_OK = 1);
+        /// 2. в условиях дневного стационара (USL_OK =2)
         /// </summary>
         public DateTime DirectionDate { get; set; }
 
@@ -199,15 +197,14 @@ namespace invox.Model {
                 case OrderSection.D3:
                     WriteD3(xml, pool, irec);
                     break;
+                case OrderSection.D4:
+                    WriteD4(xml, pool, irec);
+                    break;
             }
         }
         
         public void WriteD1(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
-#if FOMS_VERSION
-            xml.Writer.WriteStartElement("SLUCH");
-#else
             xml.Writer.WriteStartElement("Z_SL");
-#endif
 
             xml.Writer.WriteElementString("IDCASE", Identity);
             xml.Writer.WriteElementString("USL_OK", Conditions);
@@ -254,6 +251,11 @@ namespace invox.Model {
             if (AcceptedSum > 0)
                 xml.Writer.WriteElementString("SUMP", AcceptedSum.ToString("F2", Options.NumberFormat));
 
+            // Сведения о санкциях
+            // Описывает санкции, примененные в рамках данного случая.
+            foreach (Sanction s in pool.LoadSanctions(irec, this))
+                s.Write(xml, pool);
+
             if (DeniedSum > 0)
                 xml.Writer.WriteElementString("SANKIT", DeniedSum.ToString("F2", Options.NumberFormat));
 
@@ -261,11 +263,7 @@ namespace invox.Model {
         }
 
         public void WriteD2(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
-#if FOMS_VERSION
-            xml.Writer.WriteStartElement("SLUCH");
-#else
             xml.Writer.WriteStartElement("Z_SL");
-#endif
 
             xml.Writer.WriteElementString("IDCASE", Identity);
             xml.Writer.WriteElementString("USL_OK", Conditions.ToString());
@@ -314,18 +312,14 @@ namespace invox.Model {
         }
 
         public void WriteD3(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
-#if FOMS_VERSION
-            xml.Writer.WriteStartElement("SLUCH");
-#else
             xml.Writer.WriteStartElement("Z_SL");
-#endif
 
             xml.Writer.WriteElementString("IDCASE", Identity);
             xml.Writer.WriteElementString("USL_OK", Conditions);
 
             xml.Writer.WriteElementString("VIDPOM", AidKind.ToString());
 
-#if FOMS_VERSION
+#if FOMS
             xml.Writer.WriteElementString("FOR_POM", AidForm.ToString());
 #endif
 
@@ -334,7 +328,7 @@ namespace invox.Model {
             // Dinamically?
             xml.WriteBool("VBR", MobileBrigade);
 
-#if FOMS_VERSION
+#if FOMS
             xml.Writer.WriteElementString("PODR", Department);
             xml.Writer.WriteElementString("PROFIL", Profile);
             // Все ясно, дальше пошла фомсовская местечковая хуйня, когда два уровня вложенности

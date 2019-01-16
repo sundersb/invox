@@ -350,11 +350,6 @@ namespace invox.Model {
 
             xml.Writer.WriteElementString("SUM_M", Total.ToString("F2", Options.NumberFormat));
 
-            // Сведения о санкциях
-            // Описывает санкции, примененные в рамках данного случая.
-            foreach (Sanction s in pool.LoadSanctions(irec, rec, this))
-                s.Write(xml, pool, this);
-
             // Сведения об услуге
             // Описывает услуги, оказанные в рамках данного случая.
             // Допускается указание услуг с нулевой стоимостью.
