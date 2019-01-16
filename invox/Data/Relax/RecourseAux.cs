@@ -197,7 +197,7 @@ namespace invox.Data.Relax {
             //result.DeniedSum
             result.MobileBrigade = MobileBrigade;
             result.DispanserisationRefusal = REFUSAL_RESULTS.Contains(Result);
-            result.DispanserisationResult = Dict.DispResult.Instance.Get(RecourseResult);
+            result.DispanserisationResult = Dict.DispResult.Get(RecourseResult);
 
             return result;
         }

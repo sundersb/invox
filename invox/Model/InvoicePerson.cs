@@ -167,8 +167,8 @@ namespace invox.Model {
             if (DirectedToSE)
                 xml.Writer.WriteElementString("MSE", "1");
 
-            if (!string.IsNullOrEmpty(NewbornCode)) {
-                xml.Writer.WriteElementString("NOVOR", NewbornCode);
+            xml.Writer.WriteElementString("NOVOR", NewbornCode); 
+            if (NewbornCode != "0") {
                 xml.Writer.WriteElementString("VNOV_D", NewbornWeight.ToString("D4"));
             }
 
@@ -197,8 +197,8 @@ namespace invox.Model {
             if (DirectedToSE)
                 xml.Writer.WriteElementString("MSE", "1");
 
-            if (!string.IsNullOrEmpty(NewbornCode)) {
-                xml.Writer.WriteElementString("NOVOR", NewbornCode);
+            xml.Writer.WriteElementString("NOVOR", NewbornCode);
+            if (NewbornCode != "0") {
                 xml.Writer.WriteElementString("VNOV_D", NewbornWeight.ToString("D4"));
             }
 
@@ -223,8 +223,7 @@ namespace invox.Model {
             xml.WriteIfValid("SMO_OGRN", SmoOgrn);
             xml.WriteIfValid("SMO_OK", SmoOkato);
             xml.WriteIfValid("SMO_NAM", SmoName);
-            if (!string.IsNullOrEmpty(NewbornCode))
-                xml.Writer.WriteElementString("NOVOR", NewbornCode);
+            xml.Writer.WriteElementString("NOVOR", NewbornCode);
 
             xml.Writer.WriteEndElement();
         }

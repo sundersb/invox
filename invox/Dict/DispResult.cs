@@ -18,5 +18,9 @@
         }
 
         DispResult() { }
+
+        new public static string Get(string value) {
+            return Instance.GetDefault(value, string.Empty);
+        }
     }
 }

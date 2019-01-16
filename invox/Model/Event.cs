@@ -280,6 +280,10 @@ namespace invox.Model {
             xml.WriteIfValid("PROFIL_K", BedProfile);
             xml.WriteBool("DET", Child);
             xml.WriteIfValid("P_CEL", Reason);
+
+            // KHFOMS
+            xml.Writer.WriteElementString("CEL", rec.PayKind);
+
             xml.Writer.WriteElementString("NHISTORY", CardNumber);
 
             if (Transfer != Model.Transfer.None)
@@ -379,6 +383,9 @@ namespace invox.Model {
             xml.WriteIfValid("PROFIL_K", BedProfile);
             xml.WriteBool("DET", Child);
 
+            // KHFOMS
+            xml.Writer.WriteElementString("CEL", rec.PayKind);
+
             xml.Writer.WriteElementString("TAL_D", HiTechCheckDate.AsXml());
             xml.Writer.WriteElementString("TAL_NUM", HiTechCheckNumber);
             xml.Writer.WriteElementString("TAL_P", HiTechPlannedHospitalizationDate.AsXml());
@@ -449,6 +456,13 @@ namespace invox.Model {
             xml.Writer.WriteStartElement("SL");
             xml.Writer.WriteElementString("SL_ID", Identity);
             xml.WriteIfValid("LPU_1", Unit);
+
+            // Those three are required by KHFOMS
+            xml.WriteIfValid("PODR", rec.Department);
+            xml.Writer.WriteElementString("PROFIL", rec.Profile);
+            xml.WriteBool("DET", Child);
+            xml.Writer.WriteElementString("CEL", rec.PayKind);
+
             xml.Writer.WriteElementString("NHISTORY", CardNumber);
             xml.Writer.WriteElementString("DATE_1", DateFrom.AsXml());
             xml.Writer.WriteElementString("DATE_2", DateTill.AsXml());

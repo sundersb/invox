@@ -23,11 +23,15 @@ namespace invox.Data.Relax {
             else
                 p.SmoCode = Dict.SMO.Get(p.SmoCode);
 
-            if (string.IsNullOrEmpty(p.SmoCode)) {
-                p.SmoOgrn = ReadString(reader["MSO_OGRN"]);
-                if (string.IsNullOrEmpty(p.SmoOgrn))
-                    p.SmoName = ReadString(reader["MSO_NAME"]);
-            }
+            // KHFOMS requires SMO_NAME
+            p.SmoOgrn = ReadString(reader["MSO_OGRN"]);
+            p.SmoName = ReadString(reader["MSO_NAME"]);
+
+            //if (string.IsNullOrEmpty(p.SmoCode)) {
+            //    p.SmoOgrn = ReadString(reader["MSO_OGRN"]);
+            //    if (string.IsNullOrEmpty(p.SmoOgrn))
+            //        p.SmoName = ReadString(reader["MSO_NAME"]);
+            //}
 
             // Обновление к релакс 20171215
             p.Disability = Model.Disability.NA;
@@ -55,6 +59,8 @@ namespace invox.Data.Relax {
                 // TODO: Ordinal number of a newborn - where to find?
                 sb.Append('0');
                 p.NewbornCode = sb.ToString();
+            } else {
+                p.NewbornCode = "0";
             }
             // TODO: Newborn weight???
 

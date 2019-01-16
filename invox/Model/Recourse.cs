@@ -352,6 +352,8 @@ namespace invox.Model {
                     xml.Writer.WriteElementString("OS_SLUCH", ((int)c).ToString());
             }
 
+            xml.Writer.WriteElementString("ISHOD", Outcome.ToString());
+
             foreach (Event e in Events)
                 e.WriteD3(xml, pool, irec, this);
 
