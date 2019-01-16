@@ -139,6 +139,9 @@ namespace invox.Model {
                 case OrderSection.D3:
                     WriteD3(xml);
                     break;
+                case OrderSection.D4:
+                    WriteD4(xml);
+                    break;
             }
         }
 
@@ -228,6 +231,10 @@ namespace invox.Model {
             xml.Writer.WriteEndElement();
         }
 
+        /// <summary>
+        /// Save person for onkology bill
+        /// </summary>
+        /// <param name="xml">XML exporter</param>
         public void WriteD4(Lib.XmlExporter xml) {
             xml.Writer.WriteStartElement("PACIENT");
 
@@ -242,7 +249,17 @@ namespace invox.Model {
             xml.WriteIfValid("SMO_OGRN", SmoOgrn);
             xml.WriteIfValid("SMO_OK", SmoOkato);
             xml.WriteIfValid("SMO_NAM", SmoName);
+
+            if (Disability != Disability.NA)
+                xml.Writer.WriteElementString("INV", ((int)Disability).ToString());
+
+            if (DirectedToSE)
+                xml.Writer.WriteElementString("MSE", "1");
+
             xml.Writer.WriteElementString("NOVOR", NewbornCode);
+            if (NewbornCode != "0") {
+                xml.Writer.WriteElementString("VNOV_D", NewbornWeight.ToString("D4"));
+            }
 
             xml.Writer.WriteEndElement();
         }

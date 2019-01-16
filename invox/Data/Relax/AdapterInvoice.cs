@@ -23,15 +23,18 @@ namespace invox.Data.Relax {
             else
                 p.SmoCode = Dict.SMO.Get(p.SmoCode);
 
-            // KHFOMS requires SMO_NAME
             p.SmoOgrn = ReadString(reader["MSO_OGRN"]);
-            p.SmoName = ReadString(reader["MSO_NAME"]);
 
-            //if (string.IsNullOrEmpty(p.SmoCode)) {
-            //    p.SmoOgrn = ReadString(reader["MSO_OGRN"]);
-            //    if (string.IsNullOrEmpty(p.SmoOgrn))
-            //        p.SmoName = ReadString(reader["MSO_NAME"]);
-            //}
+#if FOMS
+            // KHFOMS requires SMO_NAME
+            p.SmoName = ReadString(reader["MSO_NAME"]);
+#else
+            if (string.IsNullOrEmpty(p.SmoCode)) {
+                p.SmoOgrn = ReadString(reader["MSO_OGRN"]);
+                if (string.IsNullOrEmpty(p.SmoOgrn))
+                    p.SmoName = ReadString(reader["MSO_NAME"]);
+            }
+#endif
 
             // Обновление к релакс 20171215
             p.Disability = Model.Disability.NA;

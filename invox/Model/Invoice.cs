@@ -8,11 +8,7 @@ namespace invox.Model {
     class Invoice {
         const string XML = ".xml";
 
-#if FOMS_VERSION
-        const string VERSION = "2.1";
-#else
         const string VERSION = "3.1";
-#endif
 
         Lib.InvoiceFilename invoiceFilename;
 
@@ -136,56 +132,16 @@ namespace invox.Model {
 
             Lib.Progress progress = new Progress("Случаи обращения", count);
             int number = 0;
-
-            switch(invoiceFilename.Section) {
-                case OrderSection.D1:
-                    foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(OrderSection.D1)) {
-                        irec.Identity = number;
-                        irec.WriteD1(xml, pool);
-                        number = irec.Identity;
-                        progress.Step();
+            foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(invoiceFilename.Section)) {
+                irec.Identity = number;
+                irec.Write(xml, pool, invoiceFilename.Section);
+                number = irec.Identity;
+                progress.Step();
 #if DEBUG
-                        if (--count <= 0) break;
+                if (--count <= 0) break;
 #endif
-                    }
-                    break;
-
-                case OrderSection.D2:
-                    foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(OrderSection.D2)) {
-                        irec.Identity = number;
-                        irec.WriteD2(xml, pool);
-                        number = irec.Identity;
-                        progress.Step();
-#if DEBUG
-                        if (--count <= 0) break;
-#endif
-                    }
-                    break;
-
-                case OrderSection.D3:
-                    foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(OrderSection.D3)) {
-                        irec.Identity = number;
-                        irec.WriteD3(xml, pool);
-                        number = irec.Identity;
-                        progress.Step();
-#if DEBUG
-                        if (--count <= 0) break;
-#endif
-                    }
-                    break;
-
-                case OrderSection.D4:
-                    foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(OrderSection.D4)) {
-                        irec.Identity = number;
-                        irec.WriteD4(xml, pool);
-                        number = irec.Identity;
-                        progress.Step();
-#if DEBUG
-                        if (--count <= 0) break;
-#endif
-                    }
-                    break;
             }
+
             progress.Close();
 
             xml.Writer.WriteEndElement();

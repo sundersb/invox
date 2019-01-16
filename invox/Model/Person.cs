@@ -227,16 +227,16 @@ namespace invox.Model {
             if (section == OrderSection.D3) xml.WriteIfValid("TEL", Phone);
 
             if (Representative != null) Representative.Write(xml, pool);
-
-            
+                        
             // FOMS
-            xml.WriteIfValid("MR", Address);
-            //xml.WriteIfValid("MR", BirthPlace);
+            //xml.WriteIfValid("MR", Address);
+            xml.WriteIfValid("MR", BirthPlace);
 
             xml.WriteIfValid("DOCTYPE", DocumentType);
             
-            // FOMS
+#if FOMS
             xml.WriteIfValid("SOC", SocialPosition);
+#endif
 
             xml.WriteIfValid("DOCSER", DocumentSerial);
             xml.WriteIfValid("DOCNUM", DocumentNumber);
@@ -244,9 +244,10 @@ namespace invox.Model {
             xml.WriteIfValid("SNILS", Snils);
             xml.WriteIfValid("OKATOG", ResidenceOkato);
             xml.WriteIfValid("OKATOP", PresenceOkato);
-            
-            // FOMS
+
+#if FOMS
             xml.WriteIfValid("KT", SocialFavour);
+#endif
 
             xml.WriteIfValid("COMENTP", Comment);
 
