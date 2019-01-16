@@ -23,6 +23,7 @@ namespace invox {
         static string okato;
         static string defaultDocument;
         static Lib.Options options;
+        static Model.OrderSection[] sections;
 
         public static NumberFormatInfo NumberFormat { get; private set; }
 
@@ -42,6 +43,7 @@ namespace invox {
         public static DateTime InvoiceDate { get { return options.InvoiceDate; } }
         public static int Year { get { return options.Year; } }
         public static int Month { get { return options.Month; } }
+        public static Model.OrderSection[] Sections { get { return sections; } }
 
         static string GetVersion() {
             return Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -77,6 +79,7 @@ namespace invox {
             NumberFormat.NumberDecimalSeparator = ".";
 
             options = Lib.CommandLineOptions.Get(args, typeof(Lib.Options)) as Lib.Options;
+            sections = Model.OrderSectionHelper.FromString(options.Sections);
 
             periodLocation = string.Format(PERIOD_LOCATION, options.Year, options.Month);
         }

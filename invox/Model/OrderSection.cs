@@ -25,5 +25,25 @@ namespace invox.Model {
             }
             return string.Empty;
         }
+
+        public static OrderSection[] FromString(string commandLineOption) {
+            if (string.IsNullOrEmpty(commandLineOption) || commandLineOption.Any(c => c >= '4' || c < '0')) {
+                return new OrderSection[] {
+                    OrderSection.D1,
+                    OrderSection.D2,
+                    OrderSection.D3,
+                    OrderSection.D4
+                };
+            } else {
+                List<OrderSection> result = new List<OrderSection>();
+
+                foreach (Char c in commandLineOption.ToArray()) {
+                    int i = (int)(c - '0');
+                    result.Add((OrderSection)i - 1);
+                }
+
+                return result.ToArray();
+            }
+        }
     }
 }

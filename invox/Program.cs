@@ -96,7 +96,7 @@ namespace invox {
                     int packet = Options.PacketNumber - 1;
 
                     bool error = false;
-                    foreach (Model.OrderSection section in ss) {
+                    foreach (Model.OrderSection section in Options.Sections) {
                         if (!Run(pool, section, ++packet)) {
                             error = true;
                             Console.WriteLine("Ошибка при выгрузке счетов " + Model.OrderSectionHelper.AsString(section));
