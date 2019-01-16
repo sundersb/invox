@@ -43,17 +43,22 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Коды лечебных отделений
         /// </summary>
-        const string D1_DEPARTMENTS = "'0001', '0003', '0004', '0005'";
+        const string D1_SELECTION = "S.OTD in ('0001', '0003', '0004', '0005')";
 
         /// <summary>
         /// Коды отделений, оказывающих услуги по ВМП
         /// </summary>
-        const string D2_DEPARTMENTS = "'8000'";
+        const string D2_SELECTION = "S.OTD = '8000'";
 
         /// <summary>
         /// Коды отделений профилактики и диспансеризации
         /// </summary>
-        const string D3_DEPARTMENTS = "'0000', '0009', '0008'";
+        const string D3_SELECTION = "S.OTD in ('0000', '0009', '0008')";
+
+        /// <summary>
+        /// Выборка онкологии
+        /// </summary>
+        const string D4_SELECTION = "(S.DS = 'Z03.1') or (left (S.DS, 1) = 'C')";
 
 
         string period;
@@ -287,13 +292,16 @@ namespace invox.Data.Relax {
         string SectionizeQuery(string sql, Model.OrderSection section) {
             switch (section) {
                 case Model.OrderSection.D1:
-                    return sql.Replace(APPENDIX_SECTION_MARKER, D1_DEPARTMENTS);
+                    return sql.Replace(APPENDIX_SECTION_MARKER, D1_SELECTION);
 
                 case Model.OrderSection.D2:
-                    return sql.Replace(APPENDIX_SECTION_MARKER, D2_DEPARTMENTS);
+                    return sql.Replace(APPENDIX_SECTION_MARKER, D2_SELECTION);
 
                 case Model.OrderSection.D3:
-                    return sql.Replace(APPENDIX_SECTION_MARKER, D3_DEPARTMENTS);
+                    return sql.Replace(APPENDIX_SECTION_MARKER, D3_SELECTION);
+
+                case Model.OrderSection.D4:
+                    return sql.Replace(APPENDIX_SECTION_MARKER, D4_SELECTION);
             }
             return sql;
         }

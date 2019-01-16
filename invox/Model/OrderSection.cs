@@ -7,7 +7,8 @@ namespace invox.Model {
     enum OrderSection : int {
         D1,
         D2,
-        D3
+        D3,
+        D4
     }
 
     static class OrderSectionHelper {
@@ -19,6 +20,8 @@ namespace invox.Model {
                     return "ВМП";
                 case OrderSection.D3:
                     return "профилактики и диспансеризации";
+                case OrderSection.D4:
+                    return "онкологии";
             }
             return string.Empty;
         }

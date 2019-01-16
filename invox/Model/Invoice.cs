@@ -40,6 +40,9 @@ namespace invox.Model {
                 case OrderSection.D3:
                     Console.WriteLine("Профосмотры и диспансеризация");
                     break;
+                case OrderSection.D4:
+                    Console.WriteLine("Онкология");
+                    break;
             }
 
             Lib.XmlExporter xml = new Lib.XmlExporter();
@@ -163,6 +166,18 @@ namespace invox.Model {
                     foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(OrderSection.D3)) {
                         irec.Identity = number;
                         irec.WriteD3(xml, pool);
+                        number = irec.Identity;
+                        progress.Step();
+#if DEBUG
+                        if (--count <= 0) break;
+#endif
+                    }
+                    break;
+
+                case OrderSection.D4:
+                    foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(OrderSection.D4)) {
+                        irec.Identity = number;
+                        irec.WriteD4(xml, pool);
                         number = irec.Identity;
                         progress.Step();
 #if DEBUG

@@ -86,10 +86,12 @@ namespace invox {
                 Data.IInvoice pool = new Data.Relax.Pool(Options.LpuLocation, Options.LocalLpuCode, Options.PeriodLocation);
 
                 if (Checkup(pool)) {
+                    // TODO: Section from commandline: --files=1234
                     Model.OrderSection[] ss = new Model.OrderSection[] {
                         Model.OrderSection.D1,
                         Model.OrderSection.D2,
-                        Model.OrderSection.D3
+                        Model.OrderSection.D3,
+                        Model.OrderSection.D4
                     };
                     int packet = Options.PacketNumber - 1;
 

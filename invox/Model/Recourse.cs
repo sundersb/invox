@@ -371,5 +371,8 @@ namespace invox.Model {
 
             xml.Writer.WriteEndElement();
         }
+        
+        public void WriteD4(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+        }
     }
 }

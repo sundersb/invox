@@ -227,7 +227,26 @@ namespace invox.Model {
 
             xml.Writer.WriteEndElement();
         }
-        
+
+        public void WriteD4(Lib.XmlExporter xml) {
+            xml.Writer.WriteStartElement("PACIENT");
+
+            xml.Writer.WriteElementString("ID_PAC", Identity);
+
+            xml.Writer.WriteElementString("VPOLIS", PolicyType.ToString());
+            xml.WriteIfValid("SPOLIS", PolicySerial);
+            xml.WriteIfValid("NPOLIS", PolicyNumber);
+
+            xml.WriteIfValid("ST_OKATO", AssuranceOkato);
+            xml.WriteIfValid("SMO", SmoCode);
+            xml.WriteIfValid("SMO_OGRN", SmoOgrn);
+            xml.WriteIfValid("SMO_OK", SmoOkato);
+            xml.WriteIfValid("SMO_NAM", SmoName);
+            xml.Writer.WriteElementString("NOVOR", NewbornCode);
+
+            xml.Writer.WriteEndElement();
+        }
+       
         void SetPolicy(string value) {
             if (Lib.UniqueNumber.Valid(value)) {
                 PolicySerial = string.Empty;

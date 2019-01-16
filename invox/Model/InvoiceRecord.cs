@@ -82,5 +82,17 @@ namespace invox.Model {
                 xml.Writer.WriteEndElement();
             }
         }
+
+        public void WriteD4(Lib.XmlExporter xml, Data.IInvoice pool) {
+            foreach (Recourse recourse in pool.LoadRecourses(this, OrderSection.D4)) {
+                ++Identity;
+                xml.Writer.WriteStartElement("ZAP");
+                xml.Writer.WriteElementString("N_ZAP", Identity.ToString());
+                xml.WriteBool("PR_NOV", Revised);
+                Person.WriteD4(xml);
+                recourse.WriteD4(xml, pool, this);
+                xml.Writer.WriteEndElement();
+            }
+        }
     }
 }

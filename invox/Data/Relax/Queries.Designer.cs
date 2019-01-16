@@ -101,7 +101,7 @@ namespace invox.Data.Relax {
         /// from {period}S{lpu} S
         ///  join {period}P{lpu} P on P.SN_POL = S.SN_POL
         ///  join BASE/COMMON/SLMSO MSO on MSO.CODE = P.Q
-        /// where (S.OTD in ({section}))
+        /// where ({section})
         ///  and ({recsvc}).
         /// </summary>
         internal static string SELECT_INVOICE_PEOPLE {
@@ -127,7 +127,7 @@ namespace invox.Data.Relax {
         ///  join {period}I{lpu} P on P.SN_POL = S.SN_POL
         ///  join {period}PAT on PAT.SN_POL = I.SN_POL
         ///  left outer join BASE/COMMON/MSOIN MSO on MSO.CODE = P.Q_VCODE
-        /// where (S.OTD in ({section}))
+        /// where ({section})
         ///  and ({recsvc}).
         /// </summary>
         internal static string SELECT_INVOICE_PEOPLE_FOREIGN {
@@ -140,7 +140,7 @@ namespace invox.Data.Relax {
         ///   Ищет локализованную строку, похожую на select count(*)
         /// from {period}S{lpu} S
         /// where ({recsvc})
-        ///  and (S.OTD in ({section})).
+        ///  and ({section}).
         /// </summary>
         internal static string SELECT_INVOICE_RECORDS_COUNT {
             get {
@@ -195,8 +195,8 @@ namespace invox.Data.Relax {
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на select count(distinct SN_POL)
-        /// from {period}S{lpu}
-        /// where OTD in ({section}).
+        /// from {period}S{lpu} S
+        /// where {section}.
         /// </summary>
         internal static string SELECT_PEOPLE_COUNT {
             get {
@@ -264,7 +264,7 @@ namespace invox.Data.Relax {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select sum(S_ALL) TOTAL from {period}S{lpu} where OTD in ({section}).
+        ///   Ищет локализованную строку, похожую на select sum(S_ALL) TOTAL from {period}S{lpu} S where {section}.
         /// </summary>
         internal static string SELECT_TOTAL {
             get {
