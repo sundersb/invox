@@ -1,5 +1,6 @@
 ﻿namespace invox.Dict {
     class PayKind : Base {
+        // TODO: Update 2019-01-11
         const string XML_NAME = "\\Dict\\V010-OPLMSP.xml";
         static PayKind instance = null;
         static object flock = new object();

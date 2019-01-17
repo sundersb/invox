@@ -450,6 +450,19 @@ namespace invox.Data.Relax {
             }
             evt.DateTill = ss.Max(s => s.Date);
 
+            // Statistic code
+            if (!string.IsNullOrEmpty(ra.MainDiagnosis) && ra.MainDiagnosis.First() != 'Z') {
+                StatisticCode[] sc = ss
+                    .Select(s => s.StatisticCode)
+                    .Where(s => s > StatisticCode.None && s < StatisticCode.Dispensary)
+                    .ToArray();
+
+                if (sc != null && sc.Count() > 0)
+                    evt.StatisticsCode = (((int)sc.Max()) - 1).ToString();
+                else
+                    evt.StatisticsCode = Dict.StatisticsCode.Instance.Get(ra.MainDiagnosis);
+            }
+
             // Other Event fields which can be taken from the services
             evt.Tariff = evt.Services.Sum(s => s.Tariff);
             evt.Total = evt.Services.Sum(s => s.Total);

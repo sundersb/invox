@@ -144,6 +144,7 @@ namespace invox.Model {
         /// <summary>
         /// Код способа оплаты медицинской помощи
         /// Классификатор способов оплаты медицинской помощи V010
+        /// TODO: Изменен 11.01.2019
         /// </summary>
         public string PayKind { get; set; }
 
@@ -305,6 +306,11 @@ namespace invox.Model {
             if (AcceptedSum > 0)
                 xml.Writer.WriteElementString("SUMP", AcceptedSum.ToString("F2", Options.NumberFormat));
 
+            // Сведения о санкциях
+            // Описывает санкции, примененные в рамках данного случая.
+            foreach (Sanction s in pool.LoadSanctions(irec, this))
+                s.Write(xml, pool);
+
             if (DeniedSum > 0)
                 xml.Writer.WriteElementString("SANKIT", DeniedSum.ToString("F2", Options.NumberFormat));
 
@@ -359,6 +365,11 @@ namespace invox.Model {
 
             if (AcceptedSum > 0)
                 xml.Writer.WriteElementString("SUMP", AcceptedSum.ToString("F2", Options.NumberFormat));
+
+            // Сведения о санкциях
+            // Описывает санкции, примененные в рамках данного случая.
+            foreach (Sanction s in pool.LoadSanctions(irec, this))
+                s.Write(xml, pool);
 
             if (DeniedSum > 0)
                 xml.Writer.WriteElementString("SANKIT", DeniedSum.ToString("F2", Options.NumberFormat));

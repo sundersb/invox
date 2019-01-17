@@ -151,6 +151,13 @@ namespace invox.Model {
         public List<string> ComplicationDiagnoses { get; set; }
 
         /// <summary>
+        /// Характер основного заболевания
+        /// Классификатор характера заболевания V027 Приложения А.
+        /// Обязательно к заполнению при оказании амбулаторной помощи, если основной диагноз (DS1) не входит в рубрику Z
+        /// </summary>
+        public string StatisticsCode { get; set; }
+
+        /// <summary>
         /// Признак подозрения на злокачественное новообразование
         /// Указывается "1" при подозрении на злокачественное новообразование.
         /// </summary>
@@ -281,9 +288,9 @@ namespace invox.Model {
             xml.WriteBool("DET", Child);
             xml.WriteIfValid("P_CEL", Reason);
 
-            // KHFOMS
+#if FOMS
             xml.Writer.WriteElementString("CEL", rec.PayKind);
-
+#endif
             xml.Writer.WriteElementString("NHISTORY", CardNumber);
 
             if (Transfer != Model.Transfer.None)
@@ -310,8 +317,7 @@ namespace invox.Model {
                 foreach (string ds in ComplicationDiagnoses)
                     xml.Writer.WriteElementString("DS3", ds);
 
-            if (rec.SuspectOncology)
-                xml.Writer.WriteElementString("DS_ONK", "1");
+            xml.WriteIfValid("C_ZAB", StatisticsCode);
 
             if (DispensarySupervision != Model.DispensarySupervision.None)
                 xml.Writer.WriteElementString("DN", ((int)DispensarySupervision).ToString());
@@ -425,11 +431,6 @@ namespace invox.Model {
 
             xml.Writer.WriteElementString("SUM_M", Total.ToString("F2", Options.NumberFormat));
 
-            // Сведения о санкциях
-            // Описывает санкции, примененные в рамках данного случая.
-            foreach (Sanction s in pool.LoadSanctions(irec, rec, this))
-                s.Write(xml, pool, this);
-
             // Сведения об услуге
             // Описывает услуги, оказанные в рамках данного случая.
             // Допускается указание услуг с нулевой стоимостью.
@@ -484,11 +485,6 @@ namespace invox.Model {
                 xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));
 
             xml.Writer.WriteElementString("SUM_M", Total.ToString("F2", Options.NumberFormat));
-
-            // Сведения о санкциях
-            // Описывает санкции, примененные в рамках данного случая.
-            foreach (Sanction s in pool.LoadSanctions(irec, rec, this))
-                s.Write(xml, pool, this);
 
             // Сведения об услуге
             // Описывает услуги, оказанные в рамках данного случая.
