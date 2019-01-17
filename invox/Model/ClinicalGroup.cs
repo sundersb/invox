@@ -57,8 +57,7 @@ namespace invox.Model {
         double qdiff;
         double qlevel;
 
-        string crit1;
-        string crit2;
+        string crit;
 
         bool kslpUsed;
 
@@ -123,20 +122,13 @@ namespace invox.Model {
         public bool KslpUsed { get { return kslpUsed; } }
 
         /// <summary>
-        /// Дополнительный классификационный критерий
-        /// Дополнительный классификационный критерий (V024), в том числе установленный субъектом Российской Федерации.
+        /// Классификационный критерий
+        /// Классификационный критерий (V024), в том числе установленный субъектом Российской Федерации.
         /// Обязателен к заполнению:
         /// - в случае применения при оплате случая лечения по КСГ;
-        /// - в случае применения при оплате случая лечения по КПГ, если применен региональный дополнительный классификационный критерий;
-        /// - в случае применения схемы лекарственной терапии, указанной в группировщике КСГ, при злокачественном новообразовании независимо от способа оплаты случая лечения
+        /// - в случае применения при оплате случая лечения по КПГ, если применен региональный классификационный критерий
         /// </summary>
-        public string AuxCriterion1 { get { return crit1; } }
-
-        /// <summary>
-        /// Дополнительный классификационный критерий
-        /// Заполняется кодом схемы лекарственной терапии (только для комбинированных схем лечения при злокачественном новообразовании независимо от способа оплаты случая лечения)
-        /// </summary>
-        public string AuxCriterion2 { get { return crit2; } }
+        public string AuxCriterion { get { return crit; } }
 
         public void Write(Lib.XmlExporter xml, Data.IInvoice pool, Event evt) {
             xml.Writer.WriteStartElement("KSG_KPG");
@@ -152,8 +144,7 @@ namespace invox.Model {
             xml.Writer.WriteElementString("KOEF_D", qdiff.ToString("F5", Options.NumberFormat));
             xml.Writer.WriteElementString("KOEF_U", qlevel.ToString("F5", Options.NumberFormat));
 
-            xml.WriteIfValid("DKK1", crit1);
-            xml.WriteIfValid("DKK2", crit2);
+            xml.WriteIfValid("CRIT", crit);
 
             List<ComplexityQuotient> qs = pool.LoadComplexityQuotients().ToList();
             if (qs.Count() > 0) {

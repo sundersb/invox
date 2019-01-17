@@ -28,6 +28,11 @@ namespace invox.Data.Relax {
         const int AID_FORM_ORDINAL = 3;
 
         /// <summary>
+        /// Данные случай требует подушевой оплаты
+        /// </summary>
+        bool soul;
+
+        /// <summary>
         /// Порядковый номер закрытого случая
         /// </summary>
         public int OrdinalNumber;
@@ -214,6 +219,9 @@ namespace invox.Data.Relax {
             
             result.Child = Child;
             result.Reason = InternalReasonHelper.ToVisitAim(InternalReason);
+#if FOMS
+            result.LocalReason = InternalReasonHelper.ToFomsReason(InternalReason, soul);
+#endif
 
             result.CardNumber = CardNumber;
             //result.Transfer;                          - Pool.LoadEvents
@@ -258,8 +266,9 @@ namespace invox.Data.Relax {
             int unit;
             if (!int.TryParse(Department, out unit)) unit = 1;
 
+            soul = SOUL_TARIFF_SERVICES.Contains(ServiceCode);
             InternalReason = GetInternalReason(unit, ServiceCode, RecourseResult);
-            PayKind = GetPayKind(unit, ServiceCode);
+            PayKind = GetPayKind(unit, ServiceCode, soul);
         }
 
         /// <summary>
@@ -267,15 +276,16 @@ namespace invox.Data.Relax {
         /// </summary>
         /// <param name="unit">Код отделения (S.OTD)</param>
         /// <param name="service">Код услуги (S.COD)</param>
+        /// <param name="isSoul">Требует подушевой оплаты</param>
         /// <remarks>
-        /// Использовался документ pravila-dlya-sbora-sluchaev-sposob-oplaty_16012018 с сайта ХКФОМС
+        /// Использовался документ pravila-dlya-sbora-sluchaev-sposob-oplaty_16012018.xlsx с сайта ХКФОМС
         /// </remarks>
         /// <returns>Код способа оплаты</returns>
-        static string GetPayKind(int unit, int service) {
+        static string GetPayKind(int unit, int service, bool isSoul) {
             switch (unit) {
                 case 0:
                 case 1:
-                    if (SOUL_TARIFF_SERVICES.Contains(service))
+                    if (isSoul)
                         return "25";
                     else
                         return "30";
@@ -283,7 +293,7 @@ namespace invox.Data.Relax {
                 case 3: return "33";
 
                 case 4:
-                    if (SOUL_TARIFF_SERVICES.Contains(service))
+                    if (isSoul)
                         return "25";
                     else
                         return "29";

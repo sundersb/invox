@@ -175,7 +175,7 @@ namespace invox.Model {
             xml.Writer.WriteElementString("DATE_OUT", DateTill.AsXml());
             xml.Writer.WriteElementString("DS", Diagnosis);
             xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString("D6"));
-            xml.Writer.WriteElementString("KOL_USL", Quantity.ToString("D2", Options.NumberFormat));
+            xml.Writer.WriteElementString("KOL_USL", Quantity.ToString("F2", Options.NumberFormat));
 
             if (Tariff > 0)
                 xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));

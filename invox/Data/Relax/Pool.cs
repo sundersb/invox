@@ -473,7 +473,12 @@ namespace invox.Data.Relax {
             evt.ConcurrentDiagnoses = ServiceAux.GetConcurrentDiagnoses(ss);
             evt.ComplicationDiagnoses = ServiceAux.GetComplicationDiagnoses(ss);
 
-            evt.DispensarySupervision = ss.Max(s => s.DispensarySupervision);
+            if (ra.InternalReason == InternalReason.DispRegister) {
+                evt.DispensarySupervision = ss.Max(s => s.DispensarySupervision);
+                if (evt.DispensarySupervision == Model.DispensarySupervision.None)
+                    evt.DispensarySupervision = Model.DispensarySupervision.Observed;
+            }
+
             evt.ConcurrentMesCode = ss.Max(s => s.ConcurrentMesCode);
             
             var d2 = ss.Where(s => s.Transfer != Model.Transfer.None);

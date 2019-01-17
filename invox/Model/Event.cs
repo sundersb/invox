@@ -90,6 +90,13 @@ namespace invox.Model {
         /// </summary>
         public string Reason { get; set; }
 
+#if FOMS
+        /// <summary>
+        /// Цель обращения по локальным изменениям ФОМС (CEL, справочник PT16)
+        /// </summary>
+        public string LocalReason { get; set; }
+#endif
+
         /// <summary>
         /// Номер истории болезни/талона амбулаторного пациента/карты вызова скорой медицинской помощи
         /// </summary>
@@ -289,7 +296,7 @@ namespace invox.Model {
             xml.WriteIfValid("P_CEL", Reason);
 
 #if FOMS
-            xml.Writer.WriteElementString("CEL", rec.PayKind);
+            xml.Writer.WriteElementString("CEL", LocalReason);
 #endif
             xml.Writer.WriteElementString("NHISTORY", CardNumber);
 
@@ -379,7 +386,7 @@ namespace invox.Model {
             xml.WriteBool("DET", Child);
 
             // KHFOMS
-            xml.Writer.WriteElementString("CEL", rec.PayKind);
+            xml.Writer.WriteElementString("CEL", LocalReason);
 
             xml.Writer.WriteElementString("TAL_D", HiTechCheckDate.AsXml());
             xml.Writer.WriteElementString("TAL_NUM", HiTechCheckNumber);
@@ -451,7 +458,7 @@ namespace invox.Model {
             xml.WriteIfValid("PODR", rec.Department);
             xml.Writer.WriteElementString("PROFIL", rec.Profile);
             xml.WriteBool("DET", Child);
-            xml.Writer.WriteElementString("CEL", rec.PayKind);
+            xml.Writer.WriteElementString("CEL", LocalReason);
 
             xml.Writer.WriteElementString("NHISTORY", CardNumber);
             xml.Writer.WriteElementString("DATE_1", DateFrom.AsXml());

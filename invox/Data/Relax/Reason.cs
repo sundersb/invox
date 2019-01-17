@@ -15,7 +15,7 @@ namespace invox.Data.Relax {
         Other = 4,          // Иная цель
         DispRegister = 5,   // Д-учет
         Emergency = 6,      // Неотложная помощь
-        Prof = 7,           // Профосмотр
+        Prof = 7,           // Профосмотр старше 18 лет
         Stage1 = 8,         // Диспансеризация, 1 этап
         Stage2 = 9,         // Диспансеризация, 2 этап
         StrippedStage1 = 10,// Дисп. раз в два года - 1 этап
@@ -60,8 +60,6 @@ namespace invox.Data.Relax {
                 default: return "2.6";
             }
         }
-    }
-}
 /*
  * V025 Классификатор целей посещения (KPC)
 1.0	Посещение по заболеванию
@@ -76,3 +74,39 @@ namespace invox.Data.Relax {
 3.0	Обращение по заболеванию
 3.1	Обращение с профилактической целью
  */
+#if FOMS
+        /// <summary>
+        /// Получить код цели обращения по локальному справочнику ХКФОМС
+        /// </summary>
+        /// <param name="reason"></param>
+        /// <param name="isSoul"></param>
+        /// <returns></returns>
+        public static string ToFomsReason(InternalReason reason, bool isSoul) {
+            switch (reason) {
+                case InternalReason.AmbTreatment:
+                    return isSoul ? "17" : "16";
+                
+                case InternalReason.DayHosp:
+                case InternalReason.SurgeryDayHosp:
+                    return "3";
+
+                case InternalReason.Other:
+                case InternalReason.DispRegister:
+                    return isSoul ? "5" : "4";
+
+                case InternalReason.Emergency: return "18";
+                case InternalReason.Prof: return "15";
+                case InternalReason.Stage1: return "8";
+                case InternalReason.Stage2: return "9";
+                
+                case InternalReason.StrippedStage1: return isSoul ? "33" : "35";
+                case InternalReason.StrippedStage2: return isSoul ? "34" : "36";
+
+                case InternalReason.Fluorography: return "21";
+
+                default: return string.Empty;
+            }
+        }
+#endif
+    }
+}
