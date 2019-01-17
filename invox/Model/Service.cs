@@ -174,7 +174,7 @@ namespace invox.Model {
             xml.Writer.WriteElementString("DATE_IN", DateFrom.AsXml());
             xml.Writer.WriteElementString("DATE_OUT", DateTill.AsXml());
             xml.Writer.WriteElementString("DS", Diagnosis);
-            xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString());
+            xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString("D6"));
             xml.Writer.WriteElementString("KOL_USL", Quantity.ToString("D2", Options.NumberFormat));
 
             if (Tariff > 0)
@@ -212,7 +212,7 @@ namespace invox.Model {
             xml.Writer.WriteElementString("DATE_IN", DateFrom.AsXml());
             xml.Writer.WriteElementString("DATE_OUT", DateTill.AsXml());
             xml.Writer.WriteElementString("DS", Diagnosis);
-            xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString());
+            xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString("D6"));
             xml.Writer.WriteElementString("KOL_USL", Quantity.ToString("D2", Options.NumberFormat));
 
             if (Tariff > 0)
@@ -254,7 +254,7 @@ namespace invox.Model {
             xml.Writer.WriteElementString("DATE_IN", DateFrom.AsXml());
             xml.Writer.WriteElementString("DATE_OUT", DateTill.AsXml());
             xml.WriteBool("P_OTK", Refusal);
-            xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString());
+            xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString("D6"));
 
             if (Tariff > 0)
                 xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));
