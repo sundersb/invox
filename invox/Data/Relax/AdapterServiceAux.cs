@@ -13,7 +13,6 @@ namespace invox.Data.Relax {
             result.ServiceCode = ReadInt(reader["SERVICE_CODE"]);
             result.Result = ReadString(reader["RESULT"]);
             result.BedProfile = ReadString(reader["BED_PROFILE"]);
-            result.InterventionKind = ReadString(reader["INTERVENTION_KIND"]);
             result.Quantity = ReadInt(reader["QUANTITY"]);
             result.Tariff = (decimal)reader["TARIFF"];
             result.Total = (decimal)reader["TOTAL"];

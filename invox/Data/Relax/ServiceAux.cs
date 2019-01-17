@@ -84,7 +84,7 @@ namespace invox.Data.Relax {
         public string BedProfile;
 
         /// <summary>
-        /// Вид вмешательства V001 (в работе)
+        /// Вид вмешательства V001 (в настоящее время пусто - поле не обязательно)
         /// </summary>
         public string InterventionKind;
 
