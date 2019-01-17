@@ -27,7 +27,6 @@ namespace invox.Data.Relax {
             result.MobileBrigade = ReadBool(reader["MOBILE_BRIGADE"]);
             result.RecourseResult = ReadString(reader["RECOURSE_RESULT"]);
             result.Child = ReadBool(reader["DET"]);
-            result.Reason = ReadString(reader["REASON"]);
             result.CardNumber = ReadString(reader["CARD_NUMBER"]);
             result.MainDiagnosis = ReadString(reader["DS_MAIN"]);
             result.Rehabilitation = ReadBool(reader["REHABILITATION"]);

@@ -104,12 +104,7 @@ namespace invox.Data.Relax {
         /// Признак услуги, оказанной ребенку
         /// </summary>
         public bool Child;              // KMU.LDET
-
-        /// <summary>
-        /// Повод обращения V025 (в работе SLOBR-SLUMP-SLPOS)
-        /// </summary>
-        public string Reason;           // ??? V025 SLOBR-SLUMP-SLPOS
-
+        
         /// <summary>
         /// Номер амбулаторной карты/истории болезни
         /// </summary>
@@ -216,7 +211,8 @@ namespace invox.Data.Relax {
                 result.BedProfile = BedProfile;
             
             result.Child = Child;
-            result.Reason = Reason;
+            result.Reason = InternalReasonHelper.ToVisitAim(InternalReason);
+
             result.CardNumber = CardNumber;
             //result.Transfer;                          - Pool.LoadEvents
             //result.DateFrom;                          - Pool.LoadEvents

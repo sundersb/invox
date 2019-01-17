@@ -220,7 +220,6 @@ namespace invox.Data.Relax {
         ///  S.BE RECOURSE_RESULT,
         ///  ST.PROF BED_PROFILE,
         ///  K.LDET DET,
-        ///  &apos;V025 SLOBR-SLUMP-SLPOS&apos; REASON,
         ///  S.C_I CARD_NUMBER,
         ///  S.DS DS_MAIN,
         ///  .F. REHABILITATION,
@@ -228,7 +227,7 @@ namespace invox.Data.Relax {
         ///  S.K_U QUANTITY,
         ///  S.S_ALL TARIFF,
         ///  S.S_ALL TOTAL,
-        ///  nvl [остаток строки не уместился]&quot;;.
+        ///  nvl(MP.CODEFSS, &apos;xxx&apos;) SPECIALITY_CODE, [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_RECOURSES {
             get {
