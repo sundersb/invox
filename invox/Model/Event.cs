@@ -329,12 +329,6 @@ namespace invox.Model {
 
             xml.WriteIfValid("CODE_MES2", ConcurrentMesCode);
 
-            isOncology = OnkologyTreat.IsOnkologyTreat(rec, this, pool);
-            if (isOncology) {
-                OnkologyTreat treat = pool.GetOnkologyTreat();
-                if (treat != null) treat.Write(xml, pool);
-            }
-
             if (ClinicalGroup != null) ClinicalGroup.Write(xml, pool, this);
 
             if (Rehabilitation)
