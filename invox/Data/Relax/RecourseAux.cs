@@ -14,6 +14,8 @@ namespace invox.Data.Relax {
 
         static int[] REFUSAL_RESULTS = { 302, 408, 417, 207 };
 
+        static int[] SOUL_TARIFF_SERVICES = { 50002, 50004, 50010, 50014, 50019, 50020 };
+
         // V008
         const int AID_KIND_PRIMARY = 1;
         const int AID_KIND_EMERGENCY = 2;
@@ -252,8 +254,45 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Обновить внутренний код повода обращения в соответствие кабинету, услуге и результату обращения
         /// </summary>
-        public void UpdateInternalReason() {
-            InternalReason = GetInternalReason(Department, ServiceCode, RecourseResult);
+        public void Update() {
+            int unit;
+            if (!int.TryParse(Department, out unit)) unit = 1;
+
+            InternalReason = GetInternalReason(unit, ServiceCode, RecourseResult);
+            PayKind = GetPayKind(unit, ServiceCode);
+        }
+
+        /// <summary>
+        /// Получить способ оплаты V010
+        /// </summary>
+        /// <param name="unit">Код отделения (S.OTD)</param>
+        /// <param name="service">Код услуги (S.COD)</param>
+        /// <remarks>
+        /// Использовался документ pravila-dlya-sbora-sluchaev-sposob-oplaty_16012018 с сайта ХКФОМС
+        /// </remarks>
+        /// <returns>Код способа оплаты</returns>
+        static string GetPayKind(int unit, int service) {
+            switch (unit) {
+                case 0:
+                case 1:
+                    if (SOUL_TARIFF_SERVICES.Contains(service))
+                        return "25";
+                    else
+                        return "30";
+
+                case 3: return "33";
+
+                case 4:
+                    if (SOUL_TARIFF_SERVICES.Contains(service))
+                        return "25";
+                    else
+                        return "29";
+
+                case 5: return "29";
+                case 8: return "28";
+                case 9: return "30";
+                default: return string.Empty;
+            }
         }
 
         /// <summary>
@@ -263,11 +302,8 @@ namespace invox.Data.Relax {
         /// <param name="service">Код услуги (S.COD)</param>
         /// <param name="recourseResult">Код результата обращения (S.BE)</param>
         /// <returns>Повод обращения</returns>
-        public static Relax.InternalReason GetInternalReason(string unit, int service, string recourseResult) {
-            int u;
-            if (!int.TryParse(unit, out u)) u = 1;
-
-            switch (u) {
+        static Relax.InternalReason GetInternalReason(int unit, int service, string recourseResult) {
+            switch (unit) {
             case 0:
                     if (service == 50019 || service == 50021 || (service/1000 == 24))
                         return InternalReason.StrippedStage1;

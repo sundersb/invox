@@ -22,7 +22,6 @@ namespace invox.Data.Relax {
             result.ServiceCode = ReadInt(reader["SERVICE_CODE"]);
             result.Result = ReadInt(reader["RESULT"]);
             result.Outcome = Dict.Outcome.Get(result.AidConditions, ReadString(reader["OUTCOME"]).TrimStart('0'));
-            result.PayKind = Dict.PayKind.Instance.Get(ReadString(reader["PAY_KIND"]));
             result.PayType = (Model.PayType) ReadInt(reader["PAY_TYPE"]);
             result.MobileBrigade = ReadBool(reader["MOBILE_BRIGADE"]);
             result.RecourseResult = ReadString(reader["RECOURSE_RESULT"]);
@@ -50,7 +49,7 @@ namespace invox.Data.Relax {
                 }
             }
 
-            result.UpdateInternalReason();
+            result.Update();
 
             return result;
         }
