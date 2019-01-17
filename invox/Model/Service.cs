@@ -184,21 +184,6 @@ namespace invox.Model {
             xml.Writer.WriteElementString("PRVS", SpecialityCode);
             xml.Writer.WriteElementString("CODE_MD", DoctorCode);
 
-            if (rec.SuspectOncology) {
-                // Направления
-                // Заполняется только в случае оформления направления при подозрении на злокачественное новообразование (DS_ONK=1)
-                foreach (OncologyDirection d in pool.LoadOncologyDirections())
-                    d.Write(xml);
-            }
-
-            if (evt.IsOncology) {
-                OncologyService o = pool.GetOncologyService();
-                // Сведения об услуге при лечении онкологического заболевания
-                // Обязательно к заполнению при заполненном элементе ONK_SL.
-                // Не подлежит заполнению при DS_ONK=1
-                if (o != null) o.Write(xml);
-            }
-
             if (Incomplete != IncompleteServiceReason.None)
                 xml.Writer.WriteElementString("NPL", ((int)Incomplete).ToString());
 

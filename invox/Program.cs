@@ -126,7 +126,7 @@ namespace invox {
 
             Model.Invoice invoice = new Model.Invoice(files);
 
-            if (!invoice.Export(pool, Options.OutputLocation)) {
+            if (!invoice.Export(pool, Options.OutputLocation, Options.LeaveFiles)) {
                 Console.WriteLine("\r\nОшибка!\r\n");
                 return false;
             }

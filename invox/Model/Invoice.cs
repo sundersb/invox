@@ -25,7 +25,8 @@ namespace invox.Model {
         /// </summary>
         /// <param name="pool">Datapool</param>
         /// <param name="outputDirectory">Каталог для экспорта</param>
-        public bool Export(Data.IInvoice pool, string outputDirectory) {
+        /// <param name="leaveFiles">Не удалять файлы после упаковки</param>
+        public bool Export(Data.IInvoice pool, string outputDirectory, bool leaveFiles) {
             switch(invoiceFilename.Section) {
                 case OrderSection.D1:
                     Console.WriteLine("Случаи обращения с лечебной целью");
@@ -58,7 +59,9 @@ namespace invox.Model {
             xml.Close();
 
             if (Lib.Zip.Compress(invoiceFilename)) {
-                Lib.Unlinker.RemoveFiles(invoiceFilename, outputDirectory);
+                if (!leaveFiles)
+                    Lib.Unlinker.RemoveFiles(invoiceFilename, outputDirectory);
+
                 Console.WriteLine(string.Format("Файл выгрузки: {0}{1}.zip",
                     outputDirectory,
                     invoiceFilename.InvoiceFile));
