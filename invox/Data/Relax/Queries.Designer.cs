@@ -86,6 +86,20 @@ namespace invox.Data.Relax {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на select ST.BUXC + M.CODE OTD_TN1, max(MP.CODEFSS) CODEFSS
+        /// from BASE/DESCR/STRUCT ST
+        ///  join BASE/DESCR/MEDPERS M on M.PODR = ST.CODE
+        ///  join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
+        /// where MP.CODEFSS &lt;&gt; &apos;&apos;
+        /// group by 1.
+        /// </summary>
+        internal static string SELECT_DOCTORS_SPECIALITY {
+            get {
+                return ResourceManager.GetString("SELECT_DOCTORS_SPECIALITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на select distinct
         ///  P.RECID,
         ///  P.T_POL,
@@ -244,7 +258,7 @@ namespace invox.Data.Relax {
         ///  S.K_U QUANTITY,
         ///  S.S_ALL TARIFF,
         ///  S.S_ALL TOTAL,
-        ///  nvl(MP.CODEFSS, &apos;xxx&apos;) SPECIALITY_CODE,
+        ///  S.OTD + S.TN1 SPECIALITY_ID,
         ///  S.TN1 DOCTOR_CODE,
         ///  S.D_U,
         ///  nvl(D.DBEG, DS.DBEG) DATE_FROM,
@@ -255,7 +269,7 @@ namespace invox.Data.Relax {
         ///  DS.BOLEND OUTCOME1,
         ///  DS.INSTAC TRANSFER,
         ///  D.OBR REASON1,
-        ///  nvl(DS.KD,  [остаток строки не уместился]&quot;;.
+        ///  nvl(DS.KD, S.K_U) BED_ [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_SERVICES {
             get {

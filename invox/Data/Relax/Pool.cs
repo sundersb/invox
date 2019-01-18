@@ -132,6 +132,21 @@ namespace invox.Data.Relax {
             AddStringParameters(selectDispDirections, SELECT_DISP_ASSIGNMENTS);
         }
 
+        public bool Init() {
+            OleDbCommand selectSpecs = connectionMain.CreateCommand();
+            selectSpecs.CommandText = Queries.SELECT_DOCTORS_SPECIALITY;
+
+            ExecuteReader(selectSpecs, reader => {
+                if (reader["OTD_TN1"] == DBNull.Value) return;
+                if (reader["CODEFSS"] == DBNull.Value) return;
+                string key = (string)reader["OTD_TN1"];
+                string value = (string)reader["CODEFSS"];
+                SpecialityDict.Append(key, value.Trim());
+            });
+
+            return true;
+        }
+
 
 
         #region Helpers

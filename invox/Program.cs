@@ -85,7 +85,7 @@ namespace invox {
             } else {
                 Data.IInvoice pool = new Data.Relax.Pool(Options.LpuLocation, Options.LocalLpuCode, Options.PeriodLocation);
 
-                if (Checkup(pool)) {
+                if (pool.Init() && Checkup(pool)) {
                     // TODO: Section from commandline: --files=1234
                     Model.OrderSection[] ss = new Model.OrderSection[] {
                         Model.OrderSection.D1,

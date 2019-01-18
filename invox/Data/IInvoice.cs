@@ -5,6 +5,7 @@ using System.Text;
 
 namespace invox.Data {
     interface IInvoice {
+        bool Init();
         IEnumerable<Model.OnkologyDiagnosticType> LoadOnkologicalDiagnosticTypes();
         IEnumerable<Model.OnkologyRefusal> LoadOnkologicalRefusal();
         IEnumerable<Model.ComplexityQuotient> LoadComplexityQuotients();

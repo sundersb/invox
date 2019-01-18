@@ -61,6 +61,7 @@
     <Compile Include="Data\Relax\Reason.cs" />
     <Compile Include="Data\Relax\RecourseAux.cs" />
     <Compile Include="Data\Relax\ServiceAux.cs" />
+    <Compile Include="Data\Relax\SpecialityDict.cs" />
     <Compile Include="Dict\AidProfile.cs" />
     <Compile Include="Dict\Base.cs" />
     <Compile Include="Dict\BedProfile.cs" />
