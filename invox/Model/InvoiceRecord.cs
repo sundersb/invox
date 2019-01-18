@@ -33,6 +33,7 @@ namespace invox.Model {
         /// Save invoice record to XML
         /// </summary>
         /// <param name="xml">XML exporter to use</param>
+        /// <param name="onRecourse">Callback to call on each recourse</param>
         /// <param name="pool">Datapool</param>
         /// <param name="section">Order #59 section</param>
         public void Write(Lib.XmlExporter xml, Action onRecourse, Data.IInvoice pool, OrderSection section) {
@@ -44,7 +45,8 @@ namespace invox.Model {
                 Person.Write(xml, section);
                 recourse.Write(xml, pool, section, this);
                 xml.Writer.WriteEndElement();
-                if (onRecourse != null) onRecourse();
+
+                onRecourse();
             }
         }
     }
