@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using invox.Lib;
 
 namespace invox.Model {
     /// <summary>
@@ -45,7 +46,29 @@ namespace invox.Model {
         /// 4 - дорогостоящие методы лучевой диагностики (КТ, МРТ, ангиография)
         /// </summary>
         public string StudyKind { get; set; }
-        
+
+        /// <summary>
+        /// Медицинская услуга (код), указанная в направлении
+        /// Заполняется, в соответствии с номенклатурой медицинских услуг (V001) только
+        /// при направлении на обследование в случае подозрения на ЗНО (NAZ_R=3 и DS_ONK=1)
+        /// </summary>
+        public string ServiceCode { get; set; }
+
+        /// <summary>
+        /// Дата направления
+        /// Заполнение обязательно только в случаях оформления направления в случае подозрения
+        /// на ЗНО: на консультацию в другую МО или на обследование (NAZ_R={2,3} и DS_ONK=1)
+        /// </summary>
+        public DateTime DirectionDate { get; set; }
+
+        /// <summary>
+        /// Код МО, куда оформлено направление
+        /// Код МО - юридического лица. Заполняется в соответствии со справочником F003 Приложения А.
+        /// Заполнение обязательно только в случаях оформления направления в случае
+        /// подозрения на ЗНО: на консультацию в другую МО или на обследование (NAZ_R={2,3} и DS_ONK=1)
+        /// </summary>
+        public string TargetClinic { get; set; }
+
         /// <summary>
         /// Профиль медицинской помощи
         /// Заполняется, если в поле NAZ_R проставлены коды 4 или 5.
@@ -91,11 +114,23 @@ namespace invox.Model {
 
         public void Write(Lib.XmlExporter xml) {
             xml.Writer.WriteStartElement("NAZ");
-
+#if FOMS
+            xml.Writer.WriteElementString("NAZ_N", Index.ToString());
+#else
+            // Здесь гребанная опечатка? В приказе тут есть пробел: NAZ N
             xml.Writer.WriteElementString("NAZN", Index.ToString());
+#endif
             xml.Writer.WriteElementString("NAZ_R", RouteCode.ToString());
             xml.WriteIfValid("NAZ_SP", DoctorSpeciality);
             xml.WriteIfValid("NAZ_V", StudyKind);
+
+            xml.WriteIfValid("NAZ_USL", ServiceCode);
+
+            if (!string.IsNullOrEmpty(TargetClinic)) {
+                xml.Writer.WriteElementString("NAPR_DATE", DirectionDate.AsXml());
+                xml.Writer.WriteElementString("NAPR_MO", TargetClinic);
+            }
+
             xml.WriteIfValid("NAZ_PMP", AidProfile);
             xml.WriteIfValid("NAZ_PK", BedProfile);
 

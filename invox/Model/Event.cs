@@ -457,11 +457,12 @@ namespace invox.Model {
             xml.Writer.WriteElementString("SL_ID", Identity);
             xml.WriteIfValid("LPU_1", Unit);
 
-            // Those three are required by KHFOMS
+#if FOMS
             xml.WriteIfValid("PODR", rec.Department);
             xml.Writer.WriteElementString("PROFIL", rec.Profile);
             xml.WriteBool("DET", Child);
             xml.Writer.WriteElementString("CEL", LocalReason);
+#endif
 
             xml.Writer.WriteElementString("NHISTORY", CardNumber);
             xml.Writer.WriteElementString("DATE_1", DateFrom.AsXml());
@@ -471,13 +472,25 @@ namespace invox.Model {
             if (FirstIdentified)
                 xml.Writer.WriteElementString("DS1_PR", "1");
             
+#if FOMS
+            xml.WriteBool("DS_ONK", rec.SuspectOncology);
+
+            if (DispensarySupervision >= Model.DispensarySupervision.Observed
+                && DispensarySupervision <= DispensarySupervision.NotSubject)
+                xml.Writer.WriteElementString("PR_D_N", ((int)DispensarySupervision).ToString());
+#else
             if (rec.SuspectOncology)
                 xml.Writer.WriteElementString("DS_ONK", "1");
 
             xml.Writer.WriteElementString("PR_D_N", ((int)DispensarySupervision).ToString());
+#endif
 
             foreach (ConcomitantDisease d in pool.GetConcomitantDiseases(irec, this))
                 d.Write(xml);
+
+#if FOMS
+            xml.Writer.WriteElementString("PRVS", SpecialityCode);
+#endif
 
             foreach (DispAssignment d in pool.GetDispanserisationAssignments(this))
                 d.Write(xml);

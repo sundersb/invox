@@ -334,12 +334,6 @@ namespace invox.Model {
             // Dinamically?
             xml.WriteBool("VBR", MobileBrigade);
 
-#if FOMS
-            xml.Writer.WriteElementString("PODR", Department);
-            xml.Writer.WriteElementString("PROFIL", Profile);
-            // Все ясно, дальше пошла фомсовская местечковая хуйня, когда два уровня вложенности
-            // они объединили в один...
-#endif
             xml.Writer.WriteElementString("DATE_Z_1", DateFrom.AsXml());
             xml.Writer.WriteElementString("DATE_Z_2", DateTill.AsXml());
 
@@ -347,12 +341,14 @@ namespace invox.Model {
             xml.WriteBool("P_OTK", DispanserisationRefusal);
             xml.Writer.WriteElementString("RSLT_D", DispanserisationResult);
 
+#if FOMS
+            xml.Writer.WriteElementString("ISHOD", Outcome);
+#endif
+
             if (specialCase != null) {
                 foreach (SpecialCase c in specialCase)
                     xml.Writer.WriteElementString("OS_SLUCH", ((int)c).ToString());
             }
-
-            xml.Writer.WriteElementString("ISHOD", Outcome.ToString());
 
             foreach (Event e in Events)
                 e.WriteD3(xml, pool, irec, this);
