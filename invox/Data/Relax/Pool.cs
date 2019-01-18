@@ -43,7 +43,7 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Коды лечебных отделений
         /// </summary>
-        const string D1_SELECTION = "S.OTD in ('0001', '0003', '0004', '0005')";
+        const string D1_SELECTION = "(S.OTD in ('0001', '0003', '0004', '0005')) and (S.DS <> 'Z03.1') and (left (S.DS, 1) <> 'C')";
 
         /// <summary>
         /// Коды отделений, оказывающих услуги по ВМП

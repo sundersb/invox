@@ -241,7 +241,8 @@ namespace invox.Data.Relax {
         ///  S.K_U QUANTITY,
         ///  S.S_ALL TARIFF,
         ///  S.S_ALL TOTAL,
-        ///  nvl(MP.CODEFSS, &apos;xxx&apos;) SPECIALITY_CODE, [остаток строки не уместился]&quot;;.
+        ///  S.OTD + S.TN1 SPECIALITY_ID,
+        ///  S.TN1 D [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_RECOURSES {
             get {

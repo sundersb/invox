@@ -33,7 +33,7 @@ namespace invox.Data.Relax {
             result.Quantity = ReadInt(reader["QUANTITY"]);
             result.Tariff = (decimal) reader["TARIFF"];
             result.Total = (decimal) reader["TOTAL"];
-            result.SpecialityCode = ReadString(reader["SPECIALITY_CODE"]);
+            result.SpecialityCode = SpecialityDict.Get(ReadString(reader["SPECIALITY_ID"]));
             result.DoctorCode = ReadString(reader["DOCTOR_CODE"]);
             result.Date = ReadDate(reader["D_U"]);
 

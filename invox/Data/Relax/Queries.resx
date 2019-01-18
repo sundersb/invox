@@ -253,7 +253,7 @@
   S.K_U QUANTITY,
   S.S_ALL TARIFF,
   S.S_ALL TOTAL,
-  nvl(MP.CODEFSS, 'xxx') SPECIALITY_CODE,
+  S.OTD + S.TN1 SPECIALITY_ID,
   S.TN1 DOCTOR_CODE,
   S.D_U
  from {period}S{lpu} S
@@ -262,8 +262,6 @@
   left outer join BASE/COMMON/SLUMP UMP on UMP.CODE = K.UMP
   left outer join BASE/COMMON/REZOBR RO on RO.CODE = S.BE
   left outer join BASE/DESCR/STRUCT ST on ST.BUXC = S.OTD
-  left outer join BASE/DESCR/MEDPERS M on M.PODR + M.CODE = ST.CODE + S.TN1
-  left outer join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
  where (P.RECID = ?)
   and ({recsvc})
   and ({section})</value>
