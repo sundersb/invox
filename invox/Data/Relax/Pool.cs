@@ -43,7 +43,10 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Коды лечебных отделений
         /// </summary>
-        const string D1_SELECTION = "(S.OTD in ('0001', '0003', '0004', '0005')) and (S.DS <> 'Z03.1') and (left (S.DS, 1) <> 'C')";
+        /// <remarks>
+        /// Подразделения: лечебная, СДП, иная цель, неотложка; не онкология; не ДД раз в 2 года
+        /// </remarks>
+        const string D1_SELECTION = "(S.OTD in ('0001', '0003', '0004', '0005')) and (S.DS <> 'Z03.1') and (left (S.DS, 1) <> 'C') and (S.BE <> '98')";
 
         /// <summary>
         /// Коды отделений, оказывающих услуги по ВМП
@@ -53,7 +56,7 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Коды отделений профилактики и диспансеризации
         /// </summary>
-        const string D3_SELECTION = "S.OTD in ('0000', '0009', '0008')";
+        const string D3_SELECTION = "(S.OTD in ('0000', '0009', '0008')) or (S.OTD = '0004' and S.BE = '98')";
 
         /// <summary>
         /// Выборка онкологии
