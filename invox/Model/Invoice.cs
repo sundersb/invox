@@ -137,9 +137,8 @@ namespace invox.Model {
             int number = 0;
             foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(invoiceFilename.Section)) {
                 irec.Identity = number;
-                irec.Write(xml, pool, invoiceFilename.Section);
+                irec.Write(xml, () => progress.Step(), pool, invoiceFilename.Section);
                 number = irec.Identity;
-                progress.Step();
 #if DEBUG
                 if (--count <= 0) break;
 #endif

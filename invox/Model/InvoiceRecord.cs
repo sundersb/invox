@@ -35,7 +35,7 @@ namespace invox.Model {
         /// <param name="xml">XML exporter to use</param>
         /// <param name="pool">Datapool</param>
         /// <param name="section">Order #59 section</param>
-        public void Write(Lib.XmlExporter xml, Data.IInvoice pool, OrderSection section) {
+        public void Write(Lib.XmlExporter xml, Action onRecourse, Data.IInvoice pool, OrderSection section) {
             foreach (Recourse recourse in pool.LoadRecourses(this, section)) {
                 ++Identity;
                 xml.Writer.WriteStartElement("ZAP");
@@ -44,6 +44,7 @@ namespace invox.Model {
                 Person.Write(xml, section);
                 recourse.Write(xml, pool, section, this);
                 xml.Writer.WriteEndElement();
+                if (onRecourse != null) onRecourse();
             }
         }
     }
