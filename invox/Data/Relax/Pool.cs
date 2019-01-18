@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.OleDb;
 using System.Data.Common;
+using invox.Lib;
 
 namespace invox.Data.Relax {
     class Pool : IInvoice {
@@ -438,7 +439,31 @@ namespace invox.Data.Relax {
 
             // Load auxilliary service records and service models
             List<ServiceAux> ss = LoadServices(ra, evt).ToList();
-            evt.Services = ss.Select(s => s.ToService(ra)).ToList();
+
+            if (ra.InternalReason == InternalReason.SurgeryDayHosp
+                && ss.Count(s => s.ServiceCode == ra.ServiceCode) > 1) {
+                // Fix for:
+                // Два случая ЦАХ у одного пациента с одним и тем же диагнозом
+                //  будут выгружены как два случая, но в каждом ВСЕ услуги из обеих госпитализаций
+
+                // Get main service
+                ServiceAux sa = ss.FirstOrDefault(s => s.Date == ra.Date && s.ServiceCode == ra.ServiceCode);
+
+                if (sa != null) {
+                    // Get hospitalization dates
+                    DateTime till = sa.Date;
+                    DateTime from = till.WorkingDaysBefore(sa.BedDays);
+
+                    // Select only services with relevant dates
+                    evt.Services = ss.Where(s => s.Date <= till && s.Date >= from).Select(s => s.ToService(ra)).ToList();
+                    
+                    // ...supposedly at least one services is selected: the main one
+                } else {
+                    evt.Services = ss.Select(s => s.ToService(ra)).ToList();
+                }
+            } else {
+                evt.Services = ss.Select(s => s.ToService(ra)).ToList();
+            }
 
             if (rec.IsHospitalization) {
                 // Update profile-shifting transfer and total of the bed days
