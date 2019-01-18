@@ -47,8 +47,11 @@ namespace invox.Data.Relax {
         /// <remarks>
         /// Подразделения: лечебная, СДП, иная цель, неотложка; не онкология; не ДД раз в 2 года
         /// </remarks>
-        const string D1_SELECTION = "(S.OTD in ('0001', '0003', '0004', '0005')) and (S.DS <> 'Z03.1') and (left (S.DS, 1) <> 'C') and (S.BE <> '98')";
-
+#if FOMS
+        const string D1_SELECTION = "(S.OTD in ('0001', '0003', '0004', '0005')) and (S.DS <> 'Z03.1') and (left (S.DS, 1) <> 'C') and (S.DS not like 'D0%') and (S.BE <> '98')";
+#else
+        const string D1_SELECTION = "(S.OTD in ('0001', '0003', '0004', '0005')) and (S.DS <> 'Z03.1') and (left (S.DS, 1) <> 'C')";
+#endif
         /// <summary>
         /// Коды отделений, оказывающих услуги по ВМП
         /// </summary>
@@ -62,7 +65,11 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Выборка онкологии
         /// </summary>
+#if FOMS
+        const string D4_SELECTION = "(S.DS = 'Z03.1') or (left (S.DS, 1) = 'C') or (S.DS like 'D0%')";
+#else
         const string D4_SELECTION = "(S.DS = 'Z03.1') or (left (S.DS, 1) = 'C')";
+#endif
 
 
         string period;
