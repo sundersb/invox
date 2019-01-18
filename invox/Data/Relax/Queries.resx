@@ -197,6 +197,20 @@
  where MP.CODEFSS is null</value>
     <comment>Выборка ошибки - врач не привязан к отделению</comment>
   </data>
+  <data name="SELECT_NO_SPECIALITY" xml:space="preserve">
+    <value>select
+  'Специальность: "'
+   + rtrim(NAME) + '" ('
+   + cast (CNT as varchar(5)) + ' врачей)'
+ from (
+select
+  cpconvert(866,1251,MP.NAME) NAME, count(*) CNT
+ from BASE/DESCR/MEDPERS M
+  join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
+ where MP.CODEFSS = ''
+ group by 1) A</value>
+    <comment>Список специальностей без кода НСИ в настройках отделения</comment>
+  </data>
   <data name="SELECT_PEOPLE" xml:space="preserve">
     <value>select distinct
   P.RECID,

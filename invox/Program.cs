@@ -54,7 +54,7 @@ namespace invox {
                 return false;
             }
 
-            List<string> errors = pool.LoadNoDeptDoctors().ToList();
+            List<string> errors = pool.LoadInitErrors().ToList();
             if (errors.Count > 0) {
                 Console.WriteLine("\r\nИмеются формальные ошибки:");
                 foreach (string e in errors) {

@@ -275,6 +275,9 @@ namespace invox.Model {
                 case OrderSection.D3:
                     WriteD3(xml, pool, irec, rec);
                     break;
+                case OrderSection.D4:
+                    WriteD4(xml, pool, irec, rec);
+                    break;
             }
         }
 
@@ -496,6 +499,10 @@ namespace invox.Model {
 
             xml.WriteIfValid("COMENTSL", Comment);
             xml.Writer.WriteEndElement();
+        }
+
+        public void WriteD4(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec) {
+            // TODO
         }
     }
 }

@@ -576,9 +576,11 @@ namespace invox.Data.Relax {
             return aInvoice.Load(connectionMain, LocalizeQuery(sql));
         }
 
-        public IEnumerable<string> LoadNoDeptDoctors() {
+        public List<string> LoadInitErrors() {
             string sql = LocalizeQuery(Queries.SELECT_NO_DOCTOR_DEPT);
-            return aStrings.Load(connectionMain, sql);
+            List<string> result = aStrings.Load(connectionMain, sql).ToList();
+            result.AddRange(aStrings.Load(connectionMain, Queries.SELECT_NO_SPECIALITY));
+            return result;
         }
     
 

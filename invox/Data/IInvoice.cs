@@ -29,6 +29,6 @@ namespace invox.Data {
 
         IEnumerable<Model.InvoiceRecord> LoadInvoiceRecords(Model.OrderSection section);
         IEnumerable<Model.Recourse> LoadRecourses(Model.InvoiceRecord irec, Model.OrderSection section);
-        IEnumerable<string> LoadNoDeptDoctors();
+        List<string> LoadInitErrors();
     }
 }

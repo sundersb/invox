@@ -178,6 +178,25 @@ namespace invox.Data.Relax {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на select
+        ///  &apos;Специальность: &quot;&apos;
+        ///   + rtrim(NAME) + &apos;&quot; (&apos;
+        ///   + cast (CNT as varchar(5)) + &apos; врачей)&apos;
+        /// from (
+        ///select
+        ///  cpconvert(866,1251,MP.NAME) NAME, count(*) CNT
+        /// from BASE/DESCR/MEDPERS M
+        ///  join BASE/COMMON/MEDPOST MP on MP.CODE = M.POST
+        /// where MP.CODEFSS = &apos;&apos;
+        /// group by 1) A.
+        /// </summary>
+        internal static string SELECT_NO_SPECIALITY {
+            get {
+                return ResourceManager.GetString("SELECT_NO_SPECIALITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на select distinct
         ///  P.RECID,
         ///  cpconvert(866, 1251, P.FAM) FAM,
