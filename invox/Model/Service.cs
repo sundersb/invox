@@ -274,7 +274,34 @@ namespace invox.Model {
         }
 
         public void WriteD4(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec, Event evt) {
-            // TODO
+            xml.Writer.WriteStartElement("USL");
+
+            xml.Writer.WriteElementString("IDSERV", Identity);
+            xml.Writer.WriteElementString("LPU", Options.LpuCode);
+            xml.WriteIfValid("LPU_1", Unit);
+            xml.WriteIfValid("PODR", rec.Department);
+            xml.Writer.WriteElementString("PROFIL", rec.Profile);
+            xml.WriteIfValid("VID_VME", InterventionKind);
+            xml.WriteBool("DET", Child);
+            xml.Writer.WriteElementString("DATE_IN", DateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_OUT", DateTill.AsXml());
+            xml.Writer.WriteElementString("DS", Diagnosis);
+            xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString("D6"));
+            xml.Writer.WriteElementString("KOL_USL", Quantity.ToString("F2", Options.NumberFormat));
+
+            if (Tariff > 0)
+                xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));
+
+            xml.Writer.WriteElementString("SUMV_USL", Total.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("PRVS", SpecialityCode);
+            xml.Writer.WriteElementString("CODE_MD", DoctorCode);
+
+            if (Incomplete != IncompleteServiceReason.None)
+                xml.Writer.WriteElementString("NPL", ((int)Incomplete).ToString());
+
+            xml.WriteIfValid("COMENTU", Comment);
+
+            xml.Writer.WriteEndElement();
         }
     }
 }
