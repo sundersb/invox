@@ -492,7 +492,7 @@ namespace invox.Model {
             xml.Writer.WriteElementString("PRVS", SpecialityCode);
 #endif
 
-            foreach (DispAssignment d in pool.GetDispanserisationAssignments(this))
+            foreach (DispAssignment d in pool.GetDispanserisationAssignments(rec, this))
                 d.Write(xml);
 
             if (Quantity > 0)

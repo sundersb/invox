@@ -566,7 +566,7 @@ namespace invox.Data.Relax {
             return aConcomitantDisease.Load(selectConcomDiseases);
         }
 
-        public IEnumerable<Model.DispAssignment> GetDispanserisationAssignments(Model.Event evt) {
+        public IEnumerable<Model.DispAssignment> GetDispanserisationAssignments(Model.Recourse rec, Model.Event evt) {
             string id = string.Format("{0,6}", evt.Identity);
             selectDispDirections.Parameters[0].Value = id;
             List<Model.DispAssignment> result = null;
@@ -574,7 +574,19 @@ namespace invox.Data.Relax {
             Action<System.Data.Common.DbDataReader> onRead = r => {
                 string codes = (string)r["KSG"];
                 string values = (string)r["KSG2"];
-                result = Model.DispAssignment.Make(codes.Trim(), values.Trim()).ToList();
+
+                Model.NeoSuspectDirection susp = null;
+                if (rec.SuspectOncology) {
+                    // TODO: Target clinic and service code for direction if oncology suspected
+                    susp = new Model.NeoSuspectDirection() {
+                        Suspected = true,
+                        DirectionDate = evt.DateTill,
+                        TargetClinic = "XE3",
+                        ServiceCode = "XE3"
+                    };
+                }
+
+                result = Model.DispAssignment.Make(codes.Trim(), values.Trim(), susp).ToList();
             };
 
             ExecuteReader(selectDispDirections, onRead);

@@ -6,6 +6,38 @@ using invox.Lib;
 
 namespace invox.Model {
     /// <summary>
+    /// Параметры направления на обследование при подозрении на онкологию
+    /// </summary>
+    class NeoSuspectDirection {
+        /// <summary>
+        /// True если структура содержит валидные данные
+        /// </summary>
+        public bool Suspected;
+
+        /// <summary>
+        /// Медицинская услуга (код), указанная в направлении
+        /// Заполняется, в соответствии с номенклатурой медицинских услуг (V001) только
+        /// при направлении на обследование в случае подозрения на ЗНО (NAZ_R=3 и DS_ONK=1)
+        /// </summary>
+        public string ServiceCode { get; set; }
+
+        /// <summary>
+        /// Дата направления
+        /// Заполнение обязательно только в случаях оформления направления в случае подозрения
+        /// на ЗНО: на консультацию в другую МО или на обследование (NAZ_R={2,3} и DS_ONK=1)
+        /// </summary>
+        public DateTime DirectionDate { get; set; }
+
+        /// <summary>
+        /// Код МО, куда оформлено направление
+        /// Код МО - юридического лица. Заполняется в соответствии со справочником F003 Приложения А.
+        /// Заполнение обязательно только в случаях оформления направления в случае
+        /// подозрения на ЗНО: на консультацию в другую МО или на обследование (NAZ_R={2,3} и DS_ONK=1)
+        /// </summary>
+        public string TargetClinic;
+    }
+
+    /// <summary>
     /// Направление по итогам диспансеризации для D3 (ZL_LIST/ZAP/Z_SL/SL/NAZ)
     /// <remarks>
     /// Вложен в
@@ -83,7 +115,13 @@ namespace invox.Model {
         /// </summary>
         public string BedProfile { get; set; }
 
-        DispAssignment(int number, int code, string value) {
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="number">Порядковый номер направления</param>
+        /// <param name="code">Код направления NAZ_R</param>
+        /// <param name="value">Код назначения, определяемый значением NAZ_R</param>
+        DispAssignment(int number, int code, string value, NeoSuspectDirection neoSuspection) {
             Index = number;
             RouteCode = code;
 
@@ -110,6 +148,26 @@ namespace invox.Model {
                     Lib.Logger.Log("Неверный код направления по результату диспансеризации: " + code.ToString());
                     break;
             }
+
+            if (neoSuspection != null && neoSuspection.Suspected) {
+                switch (RouteCode) {
+                    case 2:
+                        DirectionDate = neoSuspection.DirectionDate;
+                        TargetClinic = neoSuspection.TargetClinic;
+                        ServiceCode = neoSuspection.ServiceCode;
+                        break;
+
+                    case 3:
+                        TargetClinic = string.Empty;
+                        ServiceCode = neoSuspection.ServiceCode;
+                        break;
+
+                    default:
+                        TargetClinic = string.Empty;
+                        ServiceCode = string.Empty;
+                        break;
+                }
+            }
         }
 
         public void Write(Lib.XmlExporter xml) {
@@ -117,7 +175,7 @@ namespace invox.Model {
 #if FOMS
             xml.Writer.WriteElementString("NAZ_N", Index.ToString());
 #else
-            // Здесь гребанная опечатка? В приказе тут есть пробел: NAZ N
+            // Здесь опечатка? В приказе тут есть пробел: NAZ N
             xml.Writer.WriteElementString("NAZN", Index.ToString());
 #endif
             xml.Writer.WriteElementString("NAZ_R", RouteCode.ToString());
@@ -142,7 +200,8 @@ namespace invox.Model {
         /// </summary>
         /// <param name="KSG">Direction code (МЭС1, PAT.KSG)</param>
         /// <param name="KSG2">Direction elaboration (МЭС2, KSG2)</param>
-        public static IEnumerable<DispAssignment> Make(string KSG, string KSG2) {
+        /// <param name="neoSuspection">Onkology suspection direction's parameters</param>
+        public static IEnumerable<DispAssignment> Make(string KSG, string KSG2, NeoSuspectDirection neoSuspection) {
             int number = 0;
             int code;
 
@@ -153,7 +212,7 @@ namespace invox.Model {
             for (int i = 0; i < j; ++i) {
                 if (int.TryParse(codes[i], out code)) {
                     ++number;
-                    yield return new DispAssignment(number, code, values[i]);
+                    yield return new DispAssignment(number, code, values[i], neoSuspection);
                 }
             }
         }
