@@ -251,11 +251,18 @@ namespace invox.Model {
             xml.Writer.WriteElementString("IDSERV", Identity);
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
             xml.WriteIfValid("LPU_1", Unit);
+#if FOMS
+            xml.WriteIfValid("PODR", rec.Department);
+            xml.Writer.WriteElementString("PROFIL", rec.Profile);
+            xml.WriteBool("DET", Child);
+#endif
             xml.Writer.WriteElementString("DATE_IN", DateFrom.AsXml());
             xml.Writer.WriteElementString("DATE_OUT", DateTill.AsXml());
             xml.WriteBool("P_OTK", Refusal);
             xml.Writer.WriteElementString("CODE_USL", ServiceCode.ToString("D6"));
-
+#if FOMS
+            xml.Writer.WriteElementString("KOL_USL", Quantity.ToString("F2", Options.NumberFormat));
+#endif
             if (Tariff > 0)
                 xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));
 
