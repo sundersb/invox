@@ -89,6 +89,7 @@
     <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\InvoicePerson.cs" />
     <Compile Include="Model\InvoiceRecord.cs" />
+    <Compile Include="Model\OncologyConsilium.cs" />
     <Compile Include="Model\OncologyDirection.cs" />
     <Compile Include="Model\OncologyService.cs" />
     <Compile Include="Model\OnkologyTreat.cs" />

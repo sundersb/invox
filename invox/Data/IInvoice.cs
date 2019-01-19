@@ -15,7 +15,8 @@ namespace invox.Data {
         IEnumerable<string> LoadPersonDiagnoses();
         Model.OnkologyTreat GetOnkologyTreat();
         IEnumerable<Model.Sanction> LoadSanctions(Model.InvoiceRecord irec, Model.Recourse rec);
-        IEnumerable<Model.OncologyDirection> LoadOncologyDirections();
+        IEnumerable<Model.OncologyDirection> LoadOncologyDirections(Model.Recourse rec, Model.Event evt);
+        IEnumerable<Model.OncologyConsilium> LoadOncologyConsilium(Model.Recourse rec, Model.Event evt);
         Model.OncologyService GetOncologyService();
 
         IEnumerable<Model.ConcomitantDisease> GetConcomitantDiseases(Model.InvoiceRecord irec, Model.Event evt);

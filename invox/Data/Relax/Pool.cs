@@ -378,8 +378,13 @@ namespace invox.Data.Relax {
             yield break;
         }
 
-        public IEnumerable<Model.OncologyDirection> LoadOncologyDirections() {
+        public IEnumerable<Model.OncologyDirection> LoadOncologyDirections(Model.Recourse rec, Model.Event evt) {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Model.OncologyConsilium> LoadOncologyConsilium(Model.Recourse rec, Model.Event evt) {
+            // У нас не проводятся консилиумы
+            yield return new Model.OncologyConsilium(Model.OncologyConsiliumReason.NotNeeded, DateTime.Today);
         }
 
         public Model.OncologyService GetOncologyService() {

@@ -225,7 +225,7 @@ namespace invox.Model {
             if (rec.SuspectOncology) {
                 // Направления
                 // Заполняется только в случае оформления направления при подозрении на злокачественное новообразование (DS_ONK=1)
-                foreach (OncologyDirection d in pool.LoadOncologyDirections())
+                foreach (OncologyDirection d in pool.LoadOncologyDirections(rec, evt))
                     d.Write(xml);
             }
 
@@ -271,6 +271,10 @@ namespace invox.Model {
             xml.Writer.WriteElementString("CODE_MD", DoctorCode);
             xml.WriteIfValid("COMENTU", Comment);
             xml.Writer.WriteEndElement();
+        }
+
+        public void WriteD4(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec, Event evt) {
+            // TODO
         }
     }
 }

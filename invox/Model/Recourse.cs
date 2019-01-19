@@ -374,6 +374,62 @@ namespace invox.Model {
         }
         
         public void WriteD4(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec) {
+            xml.Writer.WriteStartElement("Z_SL");
+
+            xml.Writer.WriteElementString("IDCASE", Identity);
+            xml.Writer.WriteElementString("USL_OK", Conditions);
+            xml.Writer.WriteElementString("VIDPOM", AidKind.ToString());
+
+            xml.Writer.WriteElementString("FOR_POM", AidForm.ToString());
+
+            if (!string.IsNullOrEmpty(DirectedFrom)) {
+                xml.Writer.WriteElementString("NPR_MO", DirectedFrom);
+                xml.Writer.WriteElementString("NPR_DATE", DirectionDate.AsXml());
+            }
+
+            xml.Writer.WriteElementString("LPU", Options.LpuCode);
+
+            xml.Writer.WriteElementString("DATE_Z_1", DateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_Z_2", DateTill.AsXml());
+
+            if (BedDays > 0)
+                xml.Writer.WriteElementString("KD_Z", BedDays.ToString());
+
+            if (BirthWeight > 0)
+                xml.Writer.WriteElementString("VNOV_M", BirthWeight.ToString());
+
+            xml.Writer.WriteElementString("RSLT", Result.ToString());
+            xml.Writer.WriteElementString("ISHOD", Outcome);
+
+            if (specialCase != null) {
+                foreach (SpecialCase c in specialCase)
+                    xml.Writer.WriteElementString("OS_SLUCH", ((int)c).ToString());
+            }
+
+            if (UnitShift)
+                xml.Writer.WriteElementString("VB_P", "1");
+
+            foreach (Event e in Events)
+                e.WriteD4(xml, pool, irec, this);
+
+            xml.Writer.WriteElementString("IDSP", PayKind);
+            xml.Writer.WriteElementString("SUMV", Total.ToString("F2", Options.NumberFormat));
+
+            if (PayType != Model.PayType.None)
+                xml.Writer.WriteElementString("OPLATA", ((int)PayType).ToString());
+
+            if (AcceptedSum > 0)
+                xml.Writer.WriteElementString("SUMP", AcceptedSum.ToString("F2", Options.NumberFormat));
+
+            // Сведения о санкциях
+            // Описывает санкции, примененные в рамках данного случая.
+            foreach (Sanction s in pool.LoadSanctions(irec, this))
+                s.Write(xml, pool);
+
+            if (DeniedSum > 0)
+                xml.Writer.WriteElementString("SANKIT", DeniedSum.ToString("F2", Options.NumberFormat));
+
+            xml.Writer.WriteEndElement();
         }
     }
 }

@@ -515,7 +515,97 @@ namespace invox.Model {
         }
 
         public void WriteD4(Lib.XmlExporter xml, Data.IInvoice pool, InvoiceRecord irec, Recourse rec) {
-            // TODO
+            xml.Writer.WriteStartElement("SL");
+
+            xml.Writer.WriteElementString("SL_ID", Identity);
+            xml.WriteIfValid("LPU_1", Unit);
+            xml.WriteIfValid("PODR", rec.Department);
+            xml.Writer.WriteElementString("PROFIL", rec.Profile);
+            xml.WriteIfValid("PROFIL_K", BedProfile);
+            xml.WriteBool("DET", Child);
+            xml.WriteIfValid("P_CEL", Reason);
+
+#if FOMS
+            xml.Writer.WriteElementString("CEL", LocalReason);
+#endif
+            xml.Writer.WriteElementString("NHISTORY", CardNumber);
+
+            if (Transfer != Model.Transfer.None)
+                xml.Writer.WriteElementString("P_PER", ((int)Transfer).ToString());
+
+            xml.Writer.WriteElementString("DATE_1", DateFrom.AsXml());
+            xml.Writer.WriteElementString("DATE_2", DateTill.AsXml());
+            if (BedDays > 0) xml.Writer.WriteElementString("KD", BedDays.ToString());
+
+            xml.WriteIfValid("DS0", PrimaryDiagnosis);
+            xml.Writer.WriteElementString("DS1", MainDiagnosis);
+
+            // Диагноз сопутствующего заболевания
+            // Код из справочника МКБ-10 до уровня подрубрики, если она предусмотрена МКБ-10 (неуказание подрубрики допускается для случаев оказания скорой медицинской помощи).
+            // Указывается в случае установления в соответствии с медицинской документацией.
+            if (ConcurrentDiagnoses != null)
+                foreach (string ds in ConcurrentDiagnoses)
+                    xml.Writer.WriteElementString("DS2", ds);
+
+            // Диагноз осложнения заболевания
+            // Код из справочника МКБ-10 до уровня подрубрики, если она предусмотрена МКБ-10 (неуказание подрубрики допускается для случаев оказания скорой медицинской помощи).
+            // Указывается в случае установления в соответствии с медицинской документацией.
+            if (ComplicationDiagnoses != null)
+                foreach (string ds in ComplicationDiagnoses)
+                    xml.Writer.WriteElementString("DS3", ds);
+
+            xml.WriteIfValid("C_ZAB", StatisticsCode);
+
+            xml.WriteBool("DS_ONK", rec.SuspectOncology);
+
+            if (DispensarySupervision != Model.DispensarySupervision.None)
+                xml.Writer.WriteElementString("DN", ((int)DispensarySupervision).ToString());
+
+            // Код МЭС
+            // Классификатор МЭС. Указывается при наличии утвержденного стандарта.
+            foreach (string mes in pool.LoadMesCodes(irec, rec, this))
+                xml.Writer.WriteElementString("CODE_MES1", mes);
+
+            xml.WriteIfValid("CODE_MES2", ConcurrentMesCode);
+
+            foreach (OncologyDirection dir in pool.LoadOncologyDirections(rec, this))
+                dir.Write(xml);
+
+            foreach (OncologyConsilium c in pool.LoadOncologyConsilium(rec, this))
+                c.Write(xml);
+
+            // ONK_SL
+
+            if (ClinicalGroup != null) ClinicalGroup.Write(xml, pool, this);
+
+            if (Rehabilitation)
+                xml.Writer.WriteElementString("REAB", "1");
+
+            xml.Writer.WriteElementString("PRVS", SpecialityCode);
+
+            // Код классификатора медицинских специальностей
+            // Указывается имя используемого классификатора медицинских специальностей
+            xml.Writer.WriteElementString("VERS_SPEC", Options.SpecialityClassifier);
+
+            xml.Writer.WriteElementString("IDDOKT", DoctorCode);
+
+            if (Quantity > 0)
+                xml.Writer.WriteElementString("ED_COL", Quantity.ToString("F2", Options.NumberFormat));
+
+            if (Tariff > 0)
+                xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));
+
+            xml.Writer.WriteElementString("SUM_M", Total.ToString("F2", Options.NumberFormat));
+
+            // Сведения об услуге
+            // Описывает услуги, оказанные в рамках данного случая.
+            // Допускается указание услуг с нулевой стоимостью.
+            // Указание услуг с нулевой стоимостью обязательно, если условие их оказания является тарифообразующим (например, при оплате по КСГ).
+            foreach (Service s in Services)
+                s.WriteD4(xml, pool, irec, rec, this);
+
+            xml.WriteIfValid("COMENTSL", Comment);
+            xml.Writer.WriteEndElement();
         }
     }
 }

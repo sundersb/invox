@@ -144,7 +144,11 @@ namespace invox.Model {
             xml.Writer.WriteElementString("KOEF_D", qdiff.ToString("F5", Options.NumberFormat));
             xml.Writer.WriteElementString("KOEF_U", qlevel.ToString("F5", Options.NumberFormat));
 
+            // TODO: D4 Multiple
             xml.WriteIfValid("CRIT", crit);
+
+            // TODO:
+            // D4: SL_K
 
             List<ComplexityQuotient> qs = pool.LoadComplexityQuotients().ToList();
             if (qs.Count() > 0) {
@@ -155,6 +159,8 @@ namespace invox.Model {
                         q.Write(xml, pool);
                 }
             }
+
+            // TODO: D4 SL_KOEF УМ
 
             xml.Writer.WriteEndElement();
         }
