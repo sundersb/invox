@@ -419,7 +419,7 @@ namespace invox.Model {
 
             isOncology = OnkologyTreat.IsOnkologyTreat(rec, this, pool);
             if (isOncology) {
-                OnkologyTreat treat = pool.GetOnkologyTreat();
+                OnkologyTreat treat = pool.GetOnkologyTreat(rec, this);
                 if (treat != null) treat.Write(xml, pool);
             }
 
@@ -574,7 +574,11 @@ namespace invox.Model {
             foreach (OncologyConsilium c in pool.LoadOncologyConsilium(rec, this))
                 c.Write(xml);
 
-            // ONK_SL
+            // Не на дому, не реабилитация и не подозрение
+            if (!Rehabilitation && !rec.SuspectOncology && rec.Conditions != "4") {
+                OnkologyTreat t = pool.GetOnkologyTreat(rec, this);
+                if (t != null) t.Write(xml, pool);
+            }
 
             if (ClinicalGroup != null) ClinicalGroup.Write(xml, pool, this);
 

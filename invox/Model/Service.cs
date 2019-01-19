@@ -230,8 +230,8 @@ namespace invox.Model {
             }
 
             if (evt.IsOncology) {
-                OncologyService o = pool.GetOncologyService();
-                if (o != null) o.Write(xml);
+                foreach (OncologyService o in pool.LoadOncologyServices())
+                    o.Write(xml, pool);
             }
             xml.WriteIfValid("COMENTU", Comment);
 

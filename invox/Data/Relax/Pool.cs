@@ -370,7 +370,7 @@ namespace invox.Data.Relax {
             throw new NotImplementedException();
         }
 
-        public Model.OnkologyTreat GetOnkologyTreat() {
+        public Model.OnkologyTreat GetOnkologyTreat(Model.Recourse rec, Model.Event evt) {
             throw new NotImplementedException();
         }
 
@@ -387,7 +387,11 @@ namespace invox.Data.Relax {
             yield return new Model.OncologyConsilium(Model.OncologyConsiliumReason.NotNeeded, DateTime.Today);
         }
 
-        public Model.OncologyService GetOncologyService() {
+        public IEnumerable<Model.OncologyService> LoadOncologyServices() {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Model.OncologyDrug> LoadOncologyDrugs() {
             throw new NotImplementedException();
         }
 
@@ -443,10 +447,10 @@ namespace invox.Data.Relax {
         /// внутрибольничных переводов). Здесь также загружаются услуги для события и обновляются
         /// поля законченного случая данными, которые удалось получить на этом этапе.
         /// </remarks>
-        List<Model.Event> LoadEvents(Model.Recourse rec, RecourseAux ra) {
+        List<Model.Event> LoadEvents(Model.Recourse rec, RecourseAux ra, Model.OrderSection section) {
             // Extract single event from the RecourseAux:
             List<Model.Event> result = new List<Model.Event>();
-            Model.Event evt = ra.ToEvent(rec);
+            Model.Event evt = ra.ToEvent(rec, section);
             result.Add(evt);
 
             // Load auxilliary service records and service models
@@ -657,7 +661,7 @@ namespace invox.Data.Relax {
 
             foreach (RecourseAux ra in rs) {
                 Model.Recourse rec = ra.ToRecourse();
-                rec.Events = LoadEvents(rec, ra);
+                rec.Events = LoadEvents(rec, ra, section);
                 yield return rec;
             }
         }

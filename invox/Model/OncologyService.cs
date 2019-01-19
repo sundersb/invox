@@ -12,7 +12,9 @@ namespace invox.Model {
         Surgery = 1,         // Хирургическое лечение
         Medicamentous = 2,   // Лекарственная противоопухолевая терапия
         Ray = 3,             // Лучевая терапия
-        CytostaticAndRay = 4 // Химиолучевая терапия
+        CytostaticAndRay = 4,// Химиолучевая терапия
+        Unspecific = 5,      // Неспецифическое лечение 
+        Diagnostics = 6      // Диагностика
     }
 
     /// <summary>
@@ -67,28 +69,12 @@ namespace invox.Model {
     /// </remarks>
     /// </summary>
     class OncologyService {
-        /// <summary>
-        /// Сведения о проведении консилиума
-        /// </summary>
-        public enum ConsiliumType : int {
-            None = 0,
-            Examination = 1,   // определена тактика обследования,
-            Curation = 2,      // определена тактика лечения,
-            CurationUpdate = 3 // изменена тактика лечения
-        }
-
-        ConsiliumType consilium;
         N013 serviceType;
         N014 surgicalCure;
         N015 line;
         N016 cycle;
+        bool counterVomit;
         N017 rayKind;
-
-        /// <summary>
-        /// Сведения о проведении консилиума
-        /// Заполняется в случае проведения консилиума в целях определения тактики обследования или лечения
-        /// </summary>
-        public ConsiliumType Consilium { get { return consilium; } }
 
         /// <summary>
         /// Тип услуги
@@ -105,28 +91,36 @@ namespace invox.Model {
 
         /// <summary>
         /// Линия лекарственной терапии
-        /// Заполняется при лекарственной терапии в соответствии со справочником N015
+        /// При USL_TIP=2 заполняется в соответствии со справочником N015 Приложения А.
+        /// Не подлежит заполнению при USL_TIP не равном 2
         /// </summary>
         public N015 Line { get { return line; } }
 
         /// <summary>
         /// Цикл лекарственной терапии
+        /// При USL_TIP=2 заполняется в соответствии со справочником N016 Приложеиня А.
+        /// Не подлежит заполнению при USL_TIP не равном 2
         /// </summary>
         public N016 Cycle { get { return cycle; } }
 
         /// <summary>
+        /// Признак проведения профилактики тошноты и рвотного рефлекса
+        /// Указывается значение "1" в случае применения противорвотной терапии при проведении
+        /// лекарственной противоопухолевой или химиолучевой терапии препаратом высоко-,
+        /// средне- или низкоэметогенного потенциала
+        /// </summary>
+        public bool CounterVomitCure { get { return counterVomit; } }
+
+        /// <summary>
         /// Тип лучевой терапии
-        /// Заполняется при лучевой или химиолучевой терапии в соответствии со справочником N017 Приложения А.
-        /// Не подлежит заполнению при USL_TIP=1.
+        /// При USL_TIP=3 или USL_TIP=4 заполняется в соответствии со справочником N017 Приложения А.
+        /// Не подлежит заполнению при USL_TIP не равном 3 или 4
         /// </summary>
         public N017 RayKind { get { return rayKind; } }
 
-        public void Write(Lib.XmlExporter xml) {
+        public void Write(Lib.XmlExporter xml, Data.IInvoice pool) {
             xml.Writer.WriteStartElement("ONK_USL");
-
-            if (consilium != ConsiliumType.None)
-                xml.Writer.WriteElementString("PR_CONS", ((int)consilium).ToString());
-
+            
             xml.Writer.WriteElementString("USL_TIP", ((int)serviceType).ToString());
 
             if (surgicalCure != N014.None)
@@ -137,6 +131,11 @@ namespace invox.Model {
 
             if (cycle != N016.None)
                 xml.Writer.WriteElementString("LEK_TIP_V", ((int)cycle).ToString());
+
+            foreach (OncologyDrug d in pool.LoadOncologyDrugs())
+                d.Write(xml);
+
+            xml.WriteBool("PPTR", counterVomit);
 
             if (rayKind != N017.None)
                 xml.Writer.WriteElementString("LUCH_TIP", ((int)rayKind).ToString());

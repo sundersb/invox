@@ -13,9 +13,16 @@ namespace invox.Model {
             Marker = 2
         }
 
+        DateTime date;
         DiagnosticType type;
         string code;
         string result;
+
+        /// <summary>
+        /// Дата взятия материала
+        /// Указывается дата взятия материала для проведения диагностики
+        /// </summary>
+        public DateTime Date { get { return date; } }
 
         /// <summary>
         /// Тип диагностического показателя
@@ -40,9 +47,14 @@ namespace invox.Model {
         public void Write(Lib.XmlExporter xml) {
             xml.Writer.WriteStartElement("B_DIAG");
 
+            xml.Writer.WriteElementString("DIAG_DATE", date.AsXml());
             xml.Writer.WriteElementString("DIAG_TIP", ((int)type).ToString());
             xml.Writer.WriteElementString("DIAG_CODE", code);
-            xml.Writer.WriteElementString("DIAG_RSLT", result);
+
+            if (!string.IsNullOrEmpty(result)) {
+                xml.Writer.WriteElementString("DIAG_RSLT", result);
+                xml.Writer.WriteElementString("REC_RSLT", "1");
+            }
 
             xml.Writer.WriteEndElement();
         }
@@ -52,18 +64,21 @@ namespace invox.Model {
     /// Справочник противопоказаний и отказов от лечения онкологического заболевания
     /// </summary>
     enum N001 : int {
-        None = 0,
-        Surgical = 1,       // Противопоказания к проведению хирургического лечения
-        Drug = 2,           // Противопоказания к проведению химиотерапевтического лечения	
-        Ray = 3,            // Противопоказания к проведению лучевой терапии	
-        RefuseSurgical = 4, // Отказ от проведения хирургического лечения
-        RefuseDrug = 5,     // Отказ от проведения химиотерапевтического лечения
-        RefuseRay = 6       //Отказ от проведения лучевой терапии
+        Hystological = 0,        // Отказ от проведения гистологического исследования
+        Surgical = 1,            // Противопоказания к проведению хирургического лечения
+        Drug = 2,                // Противопоказания к проведению химиотерапевтического лечения	
+        Ray = 3,                 // Противопоказания к проведению лучевой терапии	
+        RefuseSurgical = 4,      // Отказ от проведения хирургического лечения
+        RefuseDrug = 5,          // Отказ от проведения химиотерапевтического лечения
+        RefuseRay = 6,           // Отказ от проведения лучевой терапии
+        HystNotIndicated = 7,    // Гистологическое подтверждение диагноза не показано
+        HystCounterindicated = 8 // Противопоказания к проведению гистологического исследования
     }
 
     /// <summary>
     /// Сведения об имеющихся противопоказаниях и отказах
-    /// Заполняется в случае наличия противопоказаний к проведению определенных типов лечения или отказах пациента от проведения определенных типов лечения
+    /// Заполняется в случае наличия противопоказаний к проведению определенных типов лечения или отказах
+    /// пациента от проведения определенных типов лечения
     /// </summary>
     class OnkologyRefusal {
         N001 code;
@@ -91,19 +106,25 @@ namespace invox.Model {
     }
 
     /// <summary>
-    /// Повод обращения по поводу онкологического заболевания
+    /// N018 Повод обращения по поводу онкологического заболевания
     /// </summary>
     enum OnkologyReason : int {
-        None = 0,
-        Relapse = 1,    // рецидив
-        Progression = 2 // прогрессирование
+        Primary = 0,               // Первичное лечение
+        Relapse = 1,               // Лечение при рецидиве
+        Progression = 2,           // Лечение при прогрессировании
+        Supervision = 3,           // Динамическое наблюдение
+        SupervisionRemission = 4,  // Диспансерное наблюдение (здоров/ремиссия)
+        Diagnostic = 5,            // Диагностика (при отсутствии специфического лечения)
+        SymptomaticalCure = 6      // Симптоматическое лечение
     }
 
     /// <summary>
     /// Приказ 59 от 30.03.2018 - Онкология ZL_LIST/ZAP/SL/Z_SL/ONK_SL
     /// <remarks>Сведения о случае лечения онкологического заболевания
-    ///Обязательно для заполнения при установленном основном диагнозе злокачественного новообразования (первый символ кода диагноза по МКБ-10 - "С") и нейтропении (код диагноза по МКБ-10 D70 с сопутствующим диагнозом C00-C80 или C97).
-    ///Не подлежит заполнению при DS_ONK=1 или P_CEL=1.3 (диспансерное наблюдение (коды услуг – 050013, 050014))
+    /// Обязательно для заполнения при установленном основном диагнозе злокачественного новообразования
+    /// (первый символ кода диагноза по МКБ-10 - "С") и нейтропении (код диагноза по МКБ-10 D70
+    /// с сопутствующим диагнозом C00-C80 или C97),
+    /// если (USL_OK не равен 4 и REAB не равен 1 и DS_ONK не равен 1)
     ///</remarks>
     /// </summary>
     class OnkologyTreat {
@@ -186,7 +207,7 @@ namespace invox.Model {
             if (i < 3)
                 reason = (OnkologyReason)i;
             else
-                reason = OnkologyReason.None;
+                reason = OnkologyReason.Primary;
 
             stage = stage.Substring(1);
         }
@@ -209,6 +230,8 @@ namespace invox.Model {
 
             if (e.MainDiagnosis.First() == 'C') return true;
 
+            if (e.MainDiagnosis.Substring(0, 2) == "D0") return true;
+
             if (e.MainDiagnosis.Substring(0, 3) == "D70")
                 return pool.LoadPersonDiagnoses().Any(IsSuppOnkology);
 
@@ -218,18 +241,18 @@ namespace invox.Model {
         public void Write(Lib.XmlExporter xml, Data.IInvoice pool) {
             xml.Writer.WriteStartElement("ONK_SL");
 
-            if (reason != OnkologyReason.None)
-                xml.Writer.WriteElementString("DS1_T", ((int)reason).ToString());
-            else
-                xml.Writer.WriteElementString("DS1_T", string.Empty);
+            xml.Writer.WriteElementString("DS1_T", ((int)reason).ToString());
 
             xml.WriteIfValid("STAD", stage);
             xml.WriteIfValid("ONK_T", tumor);
             xml.WriteIfValid("ONK_N", nodus);
             xml.WriteIfValid("ONK_M", mts);
             
-            if (reason != OnkologyReason.None && remoteMts)
-                xml.Writer.WriteElementString("MTSTZ", "1");
+            if (reason == OnkologyReason.Relapse || reason == OnkologyReason.Progression)
+                xml.WriteBool("MTSTZ", remoteMts);
+
+            if (beamLoad > 0)
+                xml.Writer.WriteElementString("SOD", beamLoad.ToString("F2", Options.NumberFormat));
 
             foreach (OnkologyDiagnosticType dt in pool.LoadOnkologicalDiagnosticTypes())
                 dt.Write(xml);
@@ -237,8 +260,8 @@ namespace invox.Model {
             foreach (OnkologyRefusal r in pool.LoadOnkologicalRefusal())
                 r.Write(xml);
 
-            if (beamLoad > 0)
-                xml.Writer.WriteElementString("SOD", beamLoad.ToString("F2", Options.NumberFormat));
+            foreach (OncologyService s in pool.LoadOncologyServices())
+                s.Write(xml, pool);
 
             xml.Writer.WriteEndElement();
         }

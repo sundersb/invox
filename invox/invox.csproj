@@ -91,6 +91,7 @@
     <Compile Include="Model\InvoiceRecord.cs" />
     <Compile Include="Model\OncologyConsilium.cs" />
     <Compile Include="Model\OncologyDirection.cs" />
+    <Compile Include="Model\OncologyDrug.cs" />
     <Compile Include="Model\OncologyService.cs" />
     <Compile Include="Model\OnkologyTreat.cs" />
     <Compile Include="Model\OrderSection.cs" />

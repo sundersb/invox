@@ -421,8 +421,6 @@ namespace invox.Model {
             if (AcceptedSum > 0)
                 xml.Writer.WriteElementString("SUMP", AcceptedSum.ToString("F2", Options.NumberFormat));
 
-            // Сведения о санкциях
-            // Описывает санкции, примененные в рамках данного случая.
             foreach (Sanction s in pool.LoadSanctions(irec, this))
                 s.Write(xml, pool);
 

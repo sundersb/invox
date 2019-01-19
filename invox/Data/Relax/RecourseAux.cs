@@ -207,7 +207,7 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Создать событие и заполнить его доступными полями
         /// </summary>
-        public Model.Event ToEvent(Model.Recourse rec) {
+        public Model.Event ToEvent(Model.Recourse rec, Model.OrderSection section) {
             Model.Event result = new Model.Event();
 
             // result.Services;                         - Pool.LoadEvents
@@ -241,7 +241,9 @@ namespace invox.Data.Relax {
             // TODO: RecourseAux - forming ClinicalGroup
             //result.ClinicalGroup;
 
-            result.Rehabilitation = Rehabilitation;
+            // Hack to avoid oncology treatment services in polyclinic
+            result.Rehabilitation = Rehabilitation || (section == Model.OrderSection.D4 && !rec.SuspectOncology);
+
             result.Quantity = Quantity;
             result.SpecialityCode = SpecialityCode;
             result.DoctorCode = DoctorCode;
