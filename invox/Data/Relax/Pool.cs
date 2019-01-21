@@ -48,7 +48,7 @@ namespace invox.Data.Relax {
         /// Подразделения: лечебная, СДП, иная цель, неотложка; не онкология; не ДД раз в 2 года
         /// </remarks>
 #if FOMS
-        const string D1_SELECTION = "(S.OTD in ('0001', '0003', '0004', '0005')) and (S.DS <> 'Z03.1') and (left (S.DS, 1) <> 'C') and (S.DS not like 'D0%') and (S.BE <> '98')";
+        const string D1_SELECTION = "(S.OTD in ('0001', '0003', '0004', '0005', '0008')) and (S.DS <> 'Z03.1') and (left (S.DS, 1) <> 'C') and (S.DS not like 'D0%') and (S.BE <> '98')";
 #else
         const string D1_SELECTION = "(S.OTD in ('0001', '0003', '0004', '0005')) and (S.DS <> 'Z03.1') and (left (S.DS, 1) <> 'C')";
 #endif
@@ -60,7 +60,11 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Коды отделений профилактики и диспансеризации
         /// </summary>
-        const string D3_SELECTION = "(S.OTD in ('0000', '0009', '0008')) or (S.OTD = '0004' and S.BE = '98')";
+
+        //const string D3_SELECTION = "(S.OTD in ('0000', '0009')) or (S.OTD = '0004' and S.BE = '98')";
+        const string D3_SELECTION_STAGE1 = "((floor(S.COD/1000) in (22, 24, 29)) or (S.COD in (50019, 50021)) or (S.BE = '98'))";
+        const string D3_SELECTION_STAGE2 = "((floor(S.COD/1000) in (25, 28)) or (S.COD in (50020, 50022)))";
+        const string D3_SELECTION_PROF = "floor(S.COD/1000) = 27";
 
         /// <summary>
         /// Выборка онкологии
@@ -75,6 +79,7 @@ namespace invox.Data.Relax {
         string period;
         string lpuCode;
         Model.OrderSection lastRecoursesSection;
+        Model.ProphSubsection lastRecourceSubsection;
 
         OleDbConnection connectionMain;
         OleDbConnection connectionAlt;
@@ -103,6 +108,7 @@ namespace invox.Data.Relax {
         public Pool(string location, string lpuCode, string period) {
             this.period = period;
             this.lpuCode = lpuCode;
+            lastRecourceSubsection = Model.ProphSubsection.None;
 
             aStrings = new AdapterStrings();
             aPerson = new AdapterPerson();
@@ -315,7 +321,7 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Подставить в запрос коды отделений в соответствие разделу приложения Д к приказу
         /// </summary>
-        string SectionizeQuery(string sql, Model.OrderSection section) {
+        string SectionizeQuery(string sql, Model.OrderSection section, Model.ProphSubsection subsection) {
             switch (section) {
                 case Model.OrderSection.D1:
                     return sql.Replace(APPENDIX_SECTION_MARKER, D1_SELECTION);
@@ -324,7 +330,15 @@ namespace invox.Data.Relax {
                     return sql.Replace(APPENDIX_SECTION_MARKER, D2_SELECTION);
 
                 case Model.OrderSection.D3:
-                    return sql.Replace(APPENDIX_SECTION_MARKER, D3_SELECTION);
+                    switch(subsection) {
+                        case Model.ProphSubsection.Stage1:
+                            return sql.Replace(APPENDIX_SECTION_MARKER, D3_SELECTION_STAGE1);
+                        case Model.ProphSubsection.Stage2:
+                            return sql.Replace(APPENDIX_SECTION_MARKER, D3_SELECTION_STAGE2);
+                        case Model.ProphSubsection.Prophylaxis:
+                            return sql.Replace(APPENDIX_SECTION_MARKER, D3_SELECTION_PROF);
+                        default: throw new NotImplementedException();
+                    }
 
                 case Model.OrderSection.D4:
                     return sql.Replace(APPENDIX_SECTION_MARKER, D4_SELECTION);
@@ -602,32 +616,32 @@ namespace invox.Data.Relax {
             return result;
         }
 
-        public int GetPeopleCount(Model.OrderSection section) {
-            string sql = SectionizeQuery(Queries.SELECT_PEOPLE_COUNT, section);
+        public int GetPeopleCount(Model.OrderSection section, Model.ProphSubsection subsection) {
+            string sql = SectionizeQuery(Queries.SELECT_PEOPLE_COUNT, section, subsection);
             object result = ExecuteScalar(connectionMain, LocalizeQuery(sql));
-            return result != DBNull.Value ? (int)(decimal)result : 0;
+            return result != null && result != DBNull.Value ? (int)(decimal)result : 0;
         }
 
-        public IEnumerable<Model.Person> LoadPeople(Model.OrderSection section) {
-            string sql = SectionizeQuery(Queries.SELECT_PEOPLE, section);
+        public IEnumerable<Model.Person> LoadPeople(Model.OrderSection section, Model.ProphSubsection subsection) {
+            string sql = SectionizeQuery(Queries.SELECT_PEOPLE, section, subsection);
             return aPerson.Load(connectionMain, LocalizeQuery(sql));
         }
 
-        public int GetInvoiceRecordsCount(Model.OrderSection section) {
-            string sql = SectionizeQuery(Queries.SELECT_INVOICE_RECORDS_COUNT, section);
+        public int GetInvoiceRecordsCount(Model.OrderSection section, Model.ProphSubsection subsection) {
+            string sql = SectionizeQuery(Queries.SELECT_INVOICE_RECORDS_COUNT, section, subsection);
             sql = RecoursizeQuery(sql);
             object result = ExecuteScalar(connectionMain, LocalizeQuery(sql));
-            return result != DBNull.Value ? (int)(decimal)result : 0;
+            return result != null && result != DBNull.Value ? (int)(decimal)result : 0;
         }
 
-        public decimal Total(Model.OrderSection section) {
-            string sql = SectionizeQuery(Queries.SELECT_TOTAL, section);
+        public decimal Total(Model.OrderSection section, Model.ProphSubsection subsection) {
+            string sql = SectionizeQuery(Queries.SELECT_TOTAL, section, subsection);
             object result = ExecuteScalar(connectionMain, LocalizeQuery(sql));
-            return result != DBNull.Value ? (decimal)result : 0;
+            return result != null && result != DBNull.Value ? (decimal)result : 0;
         }
 
-        public IEnumerable<Model.InvoiceRecord> LoadInvoiceRecords(Model.OrderSection section) {
-            string sql = SectionizeQuery(Queries.SELECT_INVOICE_PEOPLE, section);
+        public IEnumerable<Model.InvoiceRecord> LoadInvoiceRecords(Model.OrderSection section, Model.ProphSubsection subsection) {
+            string sql = SectionizeQuery(Queries.SELECT_INVOICE_PEOPLE, section, subsection);
             sql = RecoursizeQuery(sql);
             return aInvoice.Load(connectionMain, LocalizeQuery(sql));
         }
@@ -638,20 +652,21 @@ namespace invox.Data.Relax {
             result.AddRange(aStrings.Load(connectionMain, Queries.SELECT_NO_SPECIALITY));
             return result;
         }
-    
 
-        public IEnumerable<Model.Recourse>  LoadRecourses(Model.InvoiceRecord irec, Model.OrderSection section) {
+
+        public IEnumerable<Model.Recourse> LoadRecourses(Model.InvoiceRecord irec, Model.OrderSection section, Model.ProphSubsection subsection) {
             // Query is cached 
-            if (section != lastRecoursesSection) {
+            if (section != lastRecoursesSection || lastRecourceSubsection != subsection) {
                 selectRecourses = null;
                 lastRecoursesSection = section;
+                lastRecourceSubsection = subsection;
             }
 
             if (selectRecourses == null) {
                 string sql = LocalizeQuery(Queries.SELECT_RECOURSES);
                 sql = RecoursizeQuery(sql);
                 selectRecourses = connectionAlt.CreateCommand();
-                selectRecourses.CommandText = SectionizeQuery(sql, section);
+                selectRecourses.CommandText = SectionizeQuery(sql, section, subsection);
                 AddStringParameters(selectRecourses, SELECT_RECOURSE_CASES_PARAMS);
             }
             string id = string.Format("{0,6}", irec.Person.Identity);

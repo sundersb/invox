@@ -36,8 +36,8 @@ namespace invox.Model {
         /// <param name="onRecourse">Callback to call on each recourse</param>
         /// <param name="pool">Datapool</param>
         /// <param name="section">Order #59 section</param>
-        public void Write(Lib.XmlExporter xml, Action onRecourse, Data.IInvoice pool, OrderSection section) {
-            foreach (Recourse recourse in pool.LoadRecourses(this, section)) {
+        public void Write(Lib.XmlExporter xml, Action onRecourse, Data.IInvoice pool, OrderSection section, Model.ProphSubsection subsection) {
+            foreach (Recourse recourse in pool.LoadRecourses(this, section, subsection)) {
                 ++Identity;
                 xml.Writer.WriteStartElement("ZAP");
                 xml.Writer.WriteElementString("N_ZAP", Identity.ToString());

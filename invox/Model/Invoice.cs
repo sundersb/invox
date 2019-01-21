@@ -35,7 +35,9 @@ namespace invox.Model {
                     Console.WriteLine("Случаи ВМП");
                     break;
                 case OrderSection.D3:
-                    Console.WriteLine("Профосмотры и диспансеризация");
+                    Console.WriteLine("Профосмотры и диспансеризация ("
+                        + ProphSubsectionHelper.AsString(invoiceFilename.Subsection)
+                        + ")");
                     break;
                 case OrderSection.D4:
                     Console.WriteLine("Онкология");
@@ -43,36 +45,45 @@ namespace invox.Model {
             }
 
             Lib.XmlExporter xml = new Lib.XmlExporter();
-            
-            string fname = outputDirectory + invoiceFilename.PersonFile + XML;
-            if (!xml.Init(fname) || !ExportPeople(xml, pool)) {
-                Console.WriteLine("Ошибка при выгрузке пациентов");
-                return false;
-            }
 
-            fname = outputDirectory + invoiceFilename.InvoiceFile + XML;
-            if (!xml.Init(fname) || !ExportInvoice(xml, pool)) {
-                Console.WriteLine("Ошибка при выгрузке счетов");
-                return false;
-            }
+            int count = pool.GetPeopleCount(invoiceFilename.Section, invoiceFilename.Subsection);
+#if DEBUG
+            count = Math.Min(Properties.Settings.Default.DebugSelectionLimit, count);
+#endif
+            if (count > 0) {
+                string fname = outputDirectory + invoiceFilename.PersonFile + XML;
+                if (!xml.Init(fname) || !ExportPeople(xml, pool, count)) {
+                    Console.WriteLine("Ошибка при выгрузке пациентов");
+                    return false;
+                }
 
-            xml.Close();
+                fname = outputDirectory + invoiceFilename.InvoiceFile + XML;
+                if (!xml.Init(fname) || !ExportInvoice(xml, pool)) {
+                    Console.WriteLine("Ошибка при выгрузке счетов");
+                    return false;
+                }
 
-            if (Lib.Zip.Compress(invoiceFilename)) {
-                if (!leaveFiles)
-                    Lib.Unlinker.RemoveFiles(invoiceFilename, outputDirectory);
+                xml.Close();
 
-                Console.WriteLine(string.Format("Файл выгрузки: {0}{1}.zip",
-                    outputDirectory,
-                    invoiceFilename.InvoiceFile));
-                return true;
+                if (Lib.Zip.Compress(invoiceFilename)) {
+                    if (!leaveFiles)
+                        Lib.Unlinker.RemoveFiles(invoiceFilename, outputDirectory);
+
+                    Console.WriteLine(string.Format("Файл выгрузки: {0}{1}.zip",
+                        outputDirectory,
+                        invoiceFilename.InvoiceFile));
+                    return true;
+                } else {
+                    Console.WriteLine("Ошибка при создании архива");
+                    return false;
+                }
             } else {
-                Console.WriteLine("Ошибка при создании архива");
-                return false;
+                Console.WriteLine("Нет данных для выгрузки");
+                return true;
             }
         }
 
-        bool ExportPeople(Lib.XmlExporter xml, Data.IInvoice pool) {
+        bool ExportPeople(Lib.XmlExporter xml, Data.IInvoice pool, int count) {
             if (!xml.OK) return false;
 
             xml.Writer.WriteStartElement("PERS_LIST");
@@ -84,13 +95,8 @@ namespace invox.Model {
             xml.Writer.WriteElementString("FILENAME1", invoiceFilename.InvoiceFile);
             xml.Writer.WriteEndElement();
 
-            int count = pool.GetPeopleCount(invoiceFilename.Section);
-#if DEBUG
-            count = Math.Min(Properties.Settings.Default.DebugSelectionLimit, count);
-#endif
-
             Lib.Progress progress = new Progress("Пациенты", count);
-            foreach (Person p in pool.LoadPeople(invoiceFilename.Section)) {
+            foreach (Person p in pool.LoadPeople(invoiceFilename.Section, invoiceFilename.Subsection)) {
                 p.Write(xml, pool, invoiceFilename.Section);
                 progress.Step();
 #if DEBUG
@@ -114,7 +120,7 @@ namespace invox.Model {
             xml.Writer.WriteElementString("FILENAME", invoiceFilename.InvoiceFile);
             
             // TODO: Invoices count, not people
-            int count = pool.GetInvoiceRecordsCount(invoiceFilename.Section);
+            int count = pool.GetInvoiceRecordsCount(invoiceFilename.Section, invoiceFilename.Subsection);
 #if DEBUG
             count = Math.Min(Properties.Settings.Default.DebugSelectionLimit, count);
 #endif
@@ -130,14 +136,14 @@ namespace invox.Model {
             xml.Writer.WriteElementString("NSCHET", invox.Options.InvoiceNumber);
             xml.Writer.WriteElementString("DSCHET", invox.Options.InvoiceDate.AsXml());
             xml.WriteIfValid("PLAT", invoiceFilename.CompanyCode);
-            xml.Writer.WriteElementString("SUMMAV", pool.Total(invoiceFilename.Section).ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("SUMMAV", pool.Total(invoiceFilename.Section, invoiceFilename.Subsection).ToString("F2", Options.NumberFormat));
             xml.Writer.WriteEndElement();
 
             Lib.Progress progress = new Progress("Случаи обращения", count);
             int number = 0;
-            foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(invoiceFilename.Section)) {
+            foreach (InvoiceRecord irec in pool.LoadInvoiceRecords(invoiceFilename.Section, invoiceFilename.Subsection)) {
                 irec.Identity = number;
-                irec.Write(xml, () => progress.Step(), pool, invoiceFilename.Section);
+                irec.Write(xml, () => progress.Step(), pool, invoiceFilename.Section, invoiceFilename.Subsection);
                 number = irec.Identity;
 #if DEBUG
                 if (--count <= 0) break;

@@ -23,14 +23,14 @@ namespace invox.Data {
         IEnumerable<Model.ConcomitantDisease> GetConcomitantDiseases(Model.InvoiceRecord irec, Model.Event evt);
         IEnumerable<Model.DispAssignment> GetDispanserisationAssignments(Model.Recourse rec, Model.Event evt);
 
-        int GetPeopleCount(Model.OrderSection section);
-        IEnumerable<Model.Person> LoadPeople(Model.OrderSection section);
+        int GetPeopleCount(Model.OrderSection section, Model.ProphSubsection subsection);
+        IEnumerable<Model.Person> LoadPeople(Model.OrderSection section, Model.ProphSubsection subsection);
 
-        int GetInvoiceRecordsCount(Model.OrderSection section);
-        decimal Total(Model.OrderSection section);
+        int GetInvoiceRecordsCount(Model.OrderSection section, Model.ProphSubsection subsection);
+        decimal Total(Model.OrderSection section, Model.ProphSubsection subsection);
 
-        IEnumerable<Model.InvoiceRecord> LoadInvoiceRecords(Model.OrderSection section);
-        IEnumerable<Model.Recourse> LoadRecourses(Model.InvoiceRecord irec, Model.OrderSection section);
+        IEnumerable<Model.InvoiceRecord> LoadInvoiceRecords(Model.OrderSection section, Model.ProphSubsection subsection);
+        IEnumerable<Model.Recourse> LoadRecourses(Model.InvoiceRecord irec, Model.OrderSection section, Model.ProphSubsection subsection);
         List<string> LoadInitErrors();
     }
 }

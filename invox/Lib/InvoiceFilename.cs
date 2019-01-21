@@ -17,6 +17,7 @@ namespace invox.Lib {
         int year;
         int month;
         Model.OrderSection section;
+        Model.ProphSubsection subsection;
 
         /// <summary>
         /// Имя файла пациентов (без каталога)
@@ -47,6 +48,11 @@ namespace invox.Lib {
         /// Раздел приложения к приказу 59
         /// </summary>
         public Model.OrderSection Section { get { return section; } }
+
+        /// <summary>
+        /// Подраздел раздела 3 приказа 79 (профилактика)
+        /// </summary>
+        public Model.ProphSubsection Subsection { get { return subsection; } }
 
         /// <summary>
         /// True - счет для ФОМС, false - счет для СМО
@@ -87,7 +93,8 @@ namespace invox.Lib {
             int year,
             int month,
             int packetNumber,
-            Model.OrderSection orderSection) {
+            Model.OrderSection orderSection,
+            Model.ProphSubsection subSection) {
 
             if (string.IsNullOrEmpty(territoryFundCode)) return null;
 
@@ -124,8 +131,7 @@ namespace invox.Lib {
                     persons = "LT" + bulk;
                     break;
                 case Model.OrderSection.D3:
-                    // TODO: GetProfKindCode(profKind), so far default - adults' prof exams
-                    bulk = 'O' + bulk;
+                    bulk = Model.ProphSubsectionHelper.GetCode(subSection) + bulk;
                     invoice = "D" + bulk;
                     persons = "L" + bulk;
                     break;
@@ -139,6 +145,7 @@ namespace invox.Lib {
                 clinicCode = lpuCode,
                 fundCode = territoryFundCode,
                 section = orderSection,
+                subsection = subSection,
                 year = year,
                 month = month,
                 code = (year % 100) * 10000 + month * 100 + (packetNumber % 100)
@@ -151,7 +158,8 @@ namespace invox.Lib {
             int year,
             int month,
             int packetNumber,
-            Model.OrderSection orderSection) {
+            Model.OrderSection orderSection,
+            Model.ProphSubsection subSection) {
 
             StringBuilder sb = new StringBuilder();
 
@@ -182,8 +190,7 @@ namespace invox.Lib {
                     persons = "LT" + bulk;
                     break;
                 case Model.OrderSection.D3:
-                    // TODO: GetProfKindCode(profKind), so far default - adults' prof exams
-                    bulk = 'O' + bulk;
+                    bulk = Model.ProphSubsectionHelper.GetCode(subSection) + bulk;
                     invoice = "D" + bulk;
                     persons = "L" + bulk;
                     break;
@@ -197,6 +204,7 @@ namespace invox.Lib {
                 clinicCode = lpuCode,
                 smoCode = assuranceCompanyCode,
                 section = orderSection,
+                subsection = subSection,
                 year = year,
                 month = month,
                 code = (year % 100) * 10000 + month * 100 + (packetNumber % 100)

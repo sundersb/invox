@@ -57,12 +57,13 @@ namespace invox.Lib {
             long newpos = ++position * PROGRESS_WIDTH / max;
             if (newpos > step) {
                 step = newpos;
-
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.SetCursorPosition(left + (int)step - 1, top);
-                Console.Write('=');
-
-                Console.ForegroundColor = fg;
+                int p = left + (int)step - 1;
+                if (p < LINE_LENGTH) {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.SetCursorPosition(p, top);
+                    Console.Write('=');
+                    Console.ForegroundColor = fg;
+                }
                 Center(top + 1, string.Format("{0}%-{1}", (long)position * 100 / max, position));
             }
         }

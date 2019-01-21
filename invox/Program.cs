@@ -86,20 +86,14 @@ namespace invox {
                 Data.IInvoice pool = new Data.Relax.Pool(Options.LpuLocation, Options.LocalLpuCode, Options.PeriodLocation);
 
                 if (pool.Init() && Checkup(pool)) {
-                    // TODO: Section from commandline: --files=1234
-                    Model.OrderSection[] ss = new Model.OrderSection[] {
-                        Model.OrderSection.D1,
-                        Model.OrderSection.D2,
-                        Model.OrderSection.D3,
-                        Model.OrderSection.D4
-                    };
                     int packet = Options.PacketNumber - 1;
 
                     bool error = false;
                     foreach (Model.OrderSection section in Options.Sections) {
                         if (!Run(pool, section, ++packet)) {
                             error = true;
-                            Console.WriteLine("Ошибка при выгрузке счетов " + Model.OrderSectionHelper.AsString(section));
+                            Console.WriteLine("Ошибка при выгрузке счетов "
+                                + Model.OrderSectionHelper.AsString(section, Model.ProphSubsection.None));
                             break;
                         }
                     }
@@ -116,19 +110,22 @@ namespace invox {
         }
 
         static bool Run(Data.IInvoice pool, Model.OrderSection section, int packet) {
-            Lib.InvoiceFilename files = Lib.InvoiceFilename.ToAssuranceFund(
-                Options.LpuCode,
-                Options.FomsCode,
-                Options.Year,
-                Options.Month,
-                packet,
-                section);
+            foreach (Model.ProphSubsection s in Model.ProphSubsectionHelper.GetSubsections(section, Options.Pediatric)) {
+                Lib.InvoiceFilename files = Lib.InvoiceFilename.ToAssuranceFund(
+                    Options.LpuCode,
+                    Options.FomsCode,
+                    Options.Year,
+                    Options.Month,
+                    packet,
+                    section,
+                    s);
 
-            Model.Invoice invoice = new Model.Invoice(files);
+                Model.Invoice invoice = new Model.Invoice(files);
 
-            if (!invoice.Export(pool, Options.OutputLocation, Options.LeaveFiles)) {
-                Console.WriteLine("\r\nОшибка!\r\n");
-                return false;
+                if (!invoice.Export(pool, Options.OutputLocation, Options.LeaveFiles)) {
+                    Console.WriteLine("\r\nОшибка!\r\n");
+                    return false;
+                }
             }
             
             return true;

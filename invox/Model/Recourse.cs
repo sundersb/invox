@@ -321,7 +321,10 @@ namespace invox.Model {
             xml.Writer.WriteStartElement("Z_SL");
 
             xml.Writer.WriteElementString("IDCASE", Identity);
+
+#if FOMS
             xml.Writer.WriteElementString("USL_OK", Conditions);
+#endif
 
             xml.Writer.WriteElementString("VIDPOM", AidKind.ToString());
 

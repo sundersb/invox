@@ -31,6 +31,7 @@ namespace invox {
         public static string OutputLocation { get { return outputLocation; } }
         public static string LpuCode { get { return lpuCode; } }
         public static string FomsCode { get { return fomsCode; } }
+        public static bool Pediatric { get { return pediatric; } }
         public static string LpuLocation { get { return lpuLocation; } }
         public static string PeriodLocation { get { return periodLocation; } }
         public static bool NeedHelp { get { return options.ShowHelp; } }

@@ -11,15 +11,26 @@ namespace invox.Model {
         D4
     }
 
+    enum ProphSubsection {
+        None,                // 
+        Stage1,              // в рамках первого этапа диспансеризации определенных групп взрослого населения
+        Stage2,              // в рамках второго этапа диспансеризации определенных групп взрослого населения
+        Prophylaxis,         // в рамках профилактических осмотров взрослого населения
+        DispChildrenTight,   // в рамках диспансеризации пребывающих в стационарных учреждениях детей-сирот и детей, находящихся в трудной жизненной ситуации
+        DispChildrenAdopted, // детей-сирот и детей, оставшихся без попечения родителей, в том числе усыновленных (удочеренных), принятых под опеку (попечительство), в приемную или патронатную семью
+        ProphChildren        // в рамках профилактических медицинских осмотров несовершеннолетних
+    }
+
     static class OrderSectionHelper {
-        public static string AsString(OrderSection section) {
+        public static string AsString(OrderSection section, ProphSubsection subsection) {
             switch (section) {
                 case OrderSection.D1:
                     return "с лечебной целью";
                 case OrderSection.D2:
                     return "ВМП";
                 case OrderSection.D3:
-                    return "профилактики и диспансеризации";
+                    return "профилактики и диспансеризации ("
+                        + ProphSubsectionHelper.AsString(subsection) + ")";
                 case OrderSection.D4:
                     return "онкологии";
             }
@@ -43,6 +54,55 @@ namespace invox.Model {
                 }
 
                 return result.ToArray();
+            }
+        }
+    }
+
+    static class ProphSubsectionHelper {
+        public static string AsString(ProphSubsection s) {
+            switch (s) {
+                case ProphSubsection.Stage1: return "I этап диспансесризации";
+                case ProphSubsection.Stage2: return "II этап диспансеризации";
+                case ProphSubsection.Prophylaxis: return "профилактика";
+                case ProphSubsection.DispChildrenTight: return "диспансеризация несовершеннолетних в трудной жизненной ситуации";
+                case ProphSubsection.DispChildrenAdopted: return "диспансеризация детей-сирот";
+                case ProphSubsection.ProphChildren: return "профосмотры несовершеннолетних";
+                default: return string.Empty;
+            }
+        }
+
+        public static string GetCode(ProphSubsection s) {
+            switch (s) {
+                case ProphSubsection.Stage1: return "P";
+                case ProphSubsection.Stage2: return "V";
+                case ProphSubsection.Prophylaxis: return "O";
+                case ProphSubsection.DispChildrenTight: return "S";
+                case ProphSubsection.DispChildrenAdopted: return "U";
+                case ProphSubsection.ProphChildren: return "F";
+                default: return string.Empty;
+            }
+        }
+
+        public static ProphSubsection[] GetSubsections(OrderSection section, bool pediatric) {
+            if (section != OrderSection.D3) {
+                return new ProphSubsection[] { ProphSubsection.None };
+            } else {
+                if (pediatric) {
+                    return new ProphSubsection[] {
+                        ProphSubsection.Stage1,
+                        ProphSubsection.Stage2,
+                        ProphSubsection.Prophylaxis,
+                        ProphSubsection.DispChildrenTight,
+                        ProphSubsection.DispChildrenAdopted,
+                        ProphSubsection.ProphChildren
+                    };
+                } else {
+                    return new ProphSubsection[] {
+                        ProphSubsection.Stage1,
+                        ProphSubsection.Stage2,
+                        ProphSubsection.Prophylaxis
+                    };
+                }
             }
         }
     }
