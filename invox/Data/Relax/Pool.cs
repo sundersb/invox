@@ -507,7 +507,7 @@ namespace invox.Data.Relax {
                 // For other cases service with minimal date (mayhap hospitalization - reason why not ss.Min())
                 evt.DateFrom = evt.Services.Min(s => s.DateFrom);
             }
-            evt.DateTill = ss.Max(s => s.Date);
+            evt.DateTill = evt.Services.Max(s => s.DateTill);
 
             // Statistic code
             if (!string.IsNullOrEmpty(ra.MainDiagnosis) && ra.MainDiagnosis.First() != 'Z') {
