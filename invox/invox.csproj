@@ -48,6 +48,7 @@
     <Compile Include="Data\Relax\AdapterConcomitantDisease.cs" />
     <Compile Include="Data\Relax\AdapterEvent.cs" />
     <Compile Include="Data\Relax\AdapterInvoice.cs" />
+    <Compile Include="Data\Relax\AdapterOncoDirection.cs" />
     <Compile Include="Data\Relax\AdapterPerson.cs" />
     <Compile Include="Data\Relax\AdapterRecourseAux.cs" />
     <Compile Include="Data\Relax\AdapterServiceAux.cs" />

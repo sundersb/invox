@@ -211,6 +211,9 @@ select
  group by 1) A</value>
     <comment>Список специальностей без кода НСИ в настройках отделения</comment>
   </data>
+  <data name="SELECT_ONCO_DIRECTIONS" xml:space="preserve">
+    <value>select S.BLOPEN DIRECTION_DATE, S.TR DIRECTION from {period}S{lpu} S where S.RECID = ?</value>
+  </data>
   <data name="SELECT_PEOPLE" xml:space="preserve">
     <value>select distinct
   P.RECID,

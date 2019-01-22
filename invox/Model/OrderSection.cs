@@ -38,7 +38,7 @@ namespace invox.Model {
         }
 
         public static OrderSection[] FromString(string commandLineOption) {
-            if (string.IsNullOrEmpty(commandLineOption) || commandLineOption.Any(c => c >= '4' || c < '0')) {
+            if (string.IsNullOrEmpty(commandLineOption) || commandLineOption.Any(c => c > '4' || c < '0')) {
                 return new OrderSection[] {
                     OrderSection.D1,
                     OrderSection.D2,
@@ -61,7 +61,7 @@ namespace invox.Model {
     static class ProphSubsectionHelper {
         public static string AsString(ProphSubsection s) {
             switch (s) {
-                case ProphSubsection.Stage1: return "I этап диспансесризации";
+                case ProphSubsection.Stage1: return "I этап диспансеризации";
                 case ProphSubsection.Stage2: return "II этап диспансеризации";
                 case ProphSubsection.Prophylaxis: return "профилактика";
                 case ProphSubsection.DispChildrenTight: return "диспансеризация несовершеннолетних в трудной жизненной ситуации";

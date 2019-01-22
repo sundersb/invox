@@ -197,6 +197,15 @@ namespace invox.Data.Relax {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на select S.BLOPEN DIRECTION_DATE, S.TR DIRECTION from {period}S{lpu} S where S.RECID = ?.
+        /// </summary>
+        internal static string SELECT_ONCO_DIRECTIONS {
+            get {
+                return ResourceManager.GetString("SELECT_ONCO_DIRECTIONS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на select distinct
         ///  P.RECID,
         ///  cpconvert(866, 1251, P.FAM) FAM,

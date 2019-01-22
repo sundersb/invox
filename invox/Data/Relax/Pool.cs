@@ -14,7 +14,7 @@ namespace invox.Data.Relax {
         static string[] SELECT_SERVICES_TREATMENT = { "PERSON_RECID", "UNIT", "DS" };
         static string[] SELECT_SERVICES_BY_DATE = { "PERSON_RECID", "UNIT", "DS", "DU" };
         static string[] SELECT_CONCOM_DISEASES = { "POLICY", "UNIT", "DIAGNOSIS" };
-        static string[] SELECT_DISP_ASSIGNMENTS = { "EVENT_RECID" };
+        static string[] PARAMETER_EVENT_RECID = { "EVENT_RECID" };
         
         const string PERIOD_MARKER = "{period}";
         const string LPU_MARKER = "{lpu}";
@@ -70,9 +70,9 @@ namespace invox.Data.Relax {
         /// Выборка онкологии
         /// </summary>
 #if FOMS
-        const string D4_SELECTION = "(S.OTD <> '8000') and ((S.DS = 'Z03.1') or (left (S.DS, 1) = 'C') or (S.DS like 'D0%'))";
+        const string D4_SELECTION = "(S.OTD not in ('0000', '8000', '0009')) and ((S.DS = 'Z03.1') or (left (S.DS, 1) = 'C') or (S.DS like 'D0%'))";
 #else
-        const string D4_SELECTION = "(S.OTD <> '8000') and ((S.DS = 'Z03.1') or (left (S.DS, 1) = 'C'))";
+        const string D4_SELECTION = "(S.OTD not in ('0000', '8000', '0009')) and ((S.DS = 'Z03.1') or (left (S.DS, 1) = 'C'))";
 #endif
 
 
@@ -91,6 +91,7 @@ namespace invox.Data.Relax {
         OleDbCommand selectServicesStage2;
         OleDbCommand selectConcomDiseases;
         OleDbCommand selectDispDirections;
+        OleDbCommand selectOnkologyDirections;
 
         AdapterStrings aStrings;
         AdapterPerson aPerson;
@@ -98,6 +99,7 @@ namespace invox.Data.Relax {
         AdapterRecourseAux aRecourse;
         AdapterServiceAux aService;
         AdapterConcomitantDisease aConcomitantDisease;
+        AdapterOncoDirection aOncologyDirection;
 
         /// <summary>
         /// Ctor
@@ -116,6 +118,7 @@ namespace invox.Data.Relax {
             aRecourse = new AdapterRecourseAux();
             aService = new AdapterServiceAux();
             aConcomitantDisease = new AdapterConcomitantDisease();
+            aOncologyDirection = new AdapterOncoDirection();
 
             string cs = string.Format(CONNECTION_STRING, location);
             connectionMain = new OleDbConnection(cs);
@@ -146,7 +149,11 @@ namespace invox.Data.Relax {
 
             selectDispDirections = connectionAlt.CreateCommand();
             selectDispDirections.CommandText = LocalizeQuery(Queries.SELECT_DISP_ASSIGNMENTS);
-            AddStringParameters(selectDispDirections, SELECT_DISP_ASSIGNMENTS);
+            AddStringParameters(selectDispDirections, PARAMETER_EVENT_RECID);
+
+            selectOnkologyDirections = connectionAlt.CreateCommand();
+            selectOnkologyDirections.CommandText = LocalizeQuery(Queries.SELECT_ONCO_DIRECTIONS);
+            AddStringParameters(selectOnkologyDirections, PARAMETER_EVENT_RECID);
         }
 
         public bool Init() {
@@ -393,7 +400,9 @@ namespace invox.Data.Relax {
         }
 
         public IEnumerable<Model.OncologyDirection> LoadOncologyDirections(Model.Recourse rec, Model.Event evt) {
-            throw new NotImplementedException();
+            string id = string.Format("{0,6}", evt.Identity);
+            selectOnkologyDirections.Parameters[0].Value = id;
+            return aOncologyDirection.Load(selectOnkologyDirections);
         }
 
         public IEnumerable<Model.OncologyConsilium> LoadOncologyConsilium(Model.Recourse rec, Model.Event evt) {
