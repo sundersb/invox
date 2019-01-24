@@ -90,7 +90,7 @@ namespace invox {
 
                     bool error = false;
                     foreach (Model.OrderSection section in Options.Sections) {
-                        if (!Run(pool, section, ++packet)) {
+                        if (!Run(pool, section, ref packet)) {
                             error = true;
                             Console.WriteLine("Ошибка при выгрузке счетов "
                                 + Model.OrderSectionHelper.AsString(section, Model.ProphSubsection.None));
@@ -109,14 +109,14 @@ namespace invox {
             Console.ReadKey();
         }
 
-        static bool Run(Data.IInvoice pool, Model.OrderSection section, int packet) {
+        static bool Run(Data.IInvoice pool, Model.OrderSection section, ref int packet) {
             foreach (Model.ProphSubsection s in Model.ProphSubsectionHelper.GetSubsections(section, Options.Pediatric)) {
                 Lib.InvoiceFilename files = Lib.InvoiceFilename.ToAssuranceFund(
                     Options.LpuCode,
                     Options.FomsCode,
                     Options.Year,
                     Options.Month,
-                    packet,
+                    ++packet,
                     section,
                     s);
 

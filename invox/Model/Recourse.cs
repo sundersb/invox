@@ -144,7 +144,6 @@ namespace invox.Model {
         /// <summary>
         /// Код способа оплаты медицинской помощи
         /// Классификатор способов оплаты медицинской помощи V010
-        /// TODO: Изменен 11.01.2019
         /// </summary>
         public string PayKind { get; set; }
 
