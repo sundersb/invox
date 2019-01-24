@@ -62,7 +62,7 @@ namespace invox.Data.Relax {
         /// </summary>
 
         //const string D3_SELECTION = "(S.OTD in ('0000', '0009')) or (S.OTD = '0004' and S.BE = '98')";
-        const string D3_SELECTION_STAGE1 = "((floor(S.COD/1000) in (22, 24, 29)) or (S.COD in (50019, 50021)) or (S.BE = '98'))";
+        const string D3_SELECTION_STAGE1 = "((floor(S.COD/1000) in (22, 24, 29)) or (S.COD in (50019, 50021, 50023)) or (S.BE = '98'))";
         const string D3_SELECTION_STAGE2 = "((floor(S.COD/1000) in (25, 28)) or (S.COD in (50020, 50022)))";
         const string D3_SELECTION_PROF = "floor(S.COD/1000) = 27";
 

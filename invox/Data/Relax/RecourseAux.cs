@@ -317,7 +317,7 @@ namespace invox.Data.Relax {
         static Relax.InternalReason GetInternalReason(int unit, int service, string recourseResult) {
             switch (unit) {
             case 0:
-                    if (service == 50019 || service == 50021 || (service/1000 == 24))
+                    if (service == 50019 || service == 50021 || service == 50023 || (service/1000 == 24))
                         return InternalReason.StrippedStage1;
                     else
                         return InternalReason.StrippedStage2;
