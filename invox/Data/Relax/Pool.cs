@@ -528,7 +528,12 @@ namespace invox.Data.Relax {
                     evt.DateFrom = ss.Min(s => s.Date);
             } else {
                 // For other cases service with minimal date (mayhap hospitalization - reason why not ss.Min())
-                evt.DateFrom = evt.Services.Min(s => s.DateFrom);
+                // 2 этап - пустая выборка
+                try {
+                    evt.DateFrom = evt.Services.Min(s => s.DateFrom);
+                } catch (Exception e) {
+                    Logger.Log(e.Message + string.Format(" - повод {0}, услуга {1}, S.RECID {2}", ra.InternalReason, ra.ServiceCode, ra.ServiceId));
+                }
             }
             evt.DateTill = evt.Services.Max(s => s.DateTill);
 

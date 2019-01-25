@@ -14,6 +14,10 @@ namespace invox.Data.Relax {
 
             p.Identity = ReadString(reader["RECID"]);
             p.PolicyType = ReadInt(reader["T_POL"]);
+
+            // Полис единого образца, если не указан
+            if (p.PolicyType == 0) p.PolicyType = 3;
+
             p.Policy = ReadString(reader["SN_POL"]);
             p.SmoOkato = ReadString(reader["MSO_OKATO"]).Substring(0, 5);
 
