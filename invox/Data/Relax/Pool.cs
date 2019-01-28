@@ -453,7 +453,7 @@ namespace invox.Data.Relax {
             }
 
             if (command != null) {
-                command.Parameters[0].Value = string.Format("{0,6}", ra.PersonId); ;
+                command.Parameters[0].Value = string.Format("{0,6}", ra.PersonId);
                 command.Parameters[1].Value = ra.Department;
                 command.Parameters[2].Value = ra.MainDiagnosis;
                 return aService.Load(command);
