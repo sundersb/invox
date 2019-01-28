@@ -18,5 +18,9 @@
         }
 
         AidProfile() { }
+
+        new public string Get(string key) {
+            return GetDefault(key, "97");
+        }
     }
 }
