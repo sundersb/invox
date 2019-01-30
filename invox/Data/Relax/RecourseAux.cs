@@ -14,7 +14,7 @@ namespace invox.Data.Relax {
 
         static int[] REFUSAL_RESULTS = { 302, 408, 417, 207 };
 
-        static int[] SOUL_TARIFF_SERVICES = { 50002, 50004, 50010, 50014, 50019, 50020 };
+        static int[] SOUL_TARIFF_SERVICES = { 50002, 50004, 50010, 50014, 50019, 50020, 50023 };
 
         // V008
         const int AID_KIND_PRIMARY = 1;
