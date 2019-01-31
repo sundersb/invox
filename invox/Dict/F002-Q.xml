@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dict title="Код СМО" in="Q" out="F002">
+  <item in="F6" out="27001" title="Дальрос-мед"/>
+  <item in="F8" out="27004" title="Спасские ворота"/>
+  <item in="F9" out="27005" title="Согаз"/>
+  <item in="FB" out="27002" title="ВТБ (РОСНО)"/>
+  <item in="FE" out="27003" title="Росгосстрах"/>
+</dict>
