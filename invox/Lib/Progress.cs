@@ -8,6 +8,9 @@ namespace invox.Lib {
         const int LINE_LENGTH = 80;
         const int PROGRESS_WIDTH = LINE_LENGTH - 6;
 
+        const ConsoleColor COLOR_TITLE = ConsoleColor.Yellow;
+        const ConsoleColor COLOR_BAR = ConsoleColor.Green;
+
         int max;
         long step;
         long position;
@@ -33,7 +36,7 @@ namespace invox.Lib {
 
             fg = Console.ForegroundColor;
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = COLOR_TITLE;
             Center(top, title + " (" + maxPosition.ToString() + ")");
 
             Console.ForegroundColor = fg;
@@ -59,7 +62,7 @@ namespace invox.Lib {
                 step = newpos;
                 int p = left + (int)step - 1;
                 if (p < LINE_LENGTH) {
-                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = COLOR_BAR;
                     Console.SetCursorPosition(p, top);
                     Console.Write('=');
                     Console.ForegroundColor = fg;

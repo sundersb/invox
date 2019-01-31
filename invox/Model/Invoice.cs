@@ -7,8 +7,8 @@ using invox.Lib;
 namespace invox.Model {
     class Invoice {
         const string XML = ".xml";
-
         const string VERSION = "3.1";
+        const ConsoleColor COLOR_TITLE = ConsoleColor.Magenta;
 
         Lib.InvoiceFilename invoiceFilename;
 
@@ -27,22 +27,9 @@ namespace invox.Model {
         /// <param name="outputDirectory">Каталог для экспорта</param>
         /// <param name="leaveFiles">Не удалять файлы после упаковки</param>
         public bool Export(Data.IInvoice pool, string outputDirectory, bool leaveFiles) {
-            switch(invoiceFilename.Section) {
-                case OrderSection.D1:
-                    Console.WriteLine("Случаи обращения с лечебной целью");
-                    break;
-                case OrderSection.D2:
-                    Console.WriteLine("Случаи ВМП");
-                    break;
-                case OrderSection.D3:
-                    Console.WriteLine("Профосмотры и диспансеризация ("
-                        + ProphSubsectionHelper.AsString(invoiceFilename.Subsection)
-                        + ")");
-                    break;
-                case OrderSection.D4:
-                    Console.WriteLine("Онкология");
-                    break;
-            }
+            Console.WriteLine();
+            Console.WriteLine();
+            WriteSectionTitle(invoiceFilename.Section);
 
             Lib.XmlExporter xml = new Lib.XmlExporter();
 
@@ -154,6 +141,36 @@ namespace invox.Model {
 
             xml.Writer.WriteEndElement();
             return true;
+        }
+
+        void WriteCenter(string value) {
+            if (Console.WindowWidth > value.Length)
+                Console.CursorLeft = (Console.WindowWidth - value.Length) / 2;
+
+            Console.WriteLine(value);
+        }
+
+        void WriteSectionTitle(OrderSection section) {
+            ConsoleColor fg = Console.ForegroundColor;
+            Console.ForegroundColor = COLOR_TITLE;
+
+            switch (section) {
+                case OrderSection.D1:
+                    WriteCenter("Случаи обращения с лечебной целью");
+                    break;
+                case OrderSection.D2:
+                    WriteCenter("Случаи ВМП");
+                    break;
+                case OrderSection.D3:
+                    WriteCenter("Профосмотры и диспансеризация ("
+                        + ProphSubsectionHelper.AsString(invoiceFilename.Subsection)
+                        + ")");
+                    break;
+                case OrderSection.D4:
+                    WriteCenter("Онкология");
+                    break;
+            }
+            Console.ForegroundColor = fg;
         }
     }
 }
