@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8B99204C-FC58-44AF-B5A4-E6B20E304F0C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>invox</RootNamespace>
+    <AssemblyName>invox</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOMS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;FOMS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\IInvoice.cs" />
+    <Compile Include="Data\Relax\AdapterBase.cs" />
+    <Compile Include="Data\Relax\AdapterConcomitantDisease.cs" />
+    <Compile Include="Data\Relax\AdapterEvent.cs" />
+    <Compile Include="Data\Relax\AdapterInvoice.cs" />
+    <Compile Include="Data\Relax\AdapterOncoDirection.cs" />
+    <Compile Include="Data\Relax\AdapterPerson.cs" />
+    <Compile Include="Data\Relax\AdapterRecourseAux.cs" />
+    <Compile Include="Data\Relax\AdapterServiceAux.cs" />
+    <Compile Include="Data\Relax\AdapterStrings.cs" />
+    <Compile Include="Data\Relax\Pool.cs" />
+    <Compile Include="Data\Relax\Queries.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Queries.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Relax\Reason.cs" />
+    <Compile Include="Data\Relax\RecourseAux.cs" />
+    <Compile Include="Data\Relax\ServiceAux.cs" />
+    <Compile Include="Data\Relax\SpecialityDict.cs" />
+    <Compile Include="Dict\AidProfile.cs" />
+    <Compile Include="Dict\Base.cs" />
+    <Compile Include="Dict\BedProfile.cs" />
+    <Compile Include="Dict\Condition.cs" />
+    <Compile Include="Dict\DispResult.cs" />
+    <Compile Include="Dict\DocumentType.cs" />
+    <Compile Include="Dict\Outcome.cs" />
+    <Compile Include="Dict\PayKind.cs" />
+    <Compile Include="Dict\SMO.cs" />
+    <Compile Include="Dict\StatisticsCode.cs" />
+    <Compile Include="Lib\CommandLine.cs" />
+    <Compile Include="Lib\DateHelper.cs" />
+    <Compile Include="Lib\InvoiceFilename.cs" />
+    <Compile Include="Lib\Logger.cs" />
+    <Compile Include="Lib\Options.cs" />
+    <Compile Include="Lib\Progress.cs" />
+    <Compile Include="Lib\UniqueNumber.cs" />
+    <Compile Include="Lib\Unlinker.cs" />
+    <Compile Include="Lib\XmlExporter.cs" />
+    <Compile Include="Lib\Zip.cs" />
+    <Compile Include="Model\ClinicalGroup.cs" />
+    <Compile Include="Model\ConcomitantDisease.cs" />
+    <Compile Include="Model\DispAssignment.cs" />
+    <Compile Include="Model\Event.cs" />
+    <Compile Include="Model\Invoice.cs" />
+    <Compile Include="Model\InvoicePerson.cs" />
+    <Compile Include="Model\InvoiceRecord.cs" />
+    <Compile Include="Model\OncologyConsilium.cs" />
+    <Compile Include="Model\OncologyDirection.cs" />
+    <Compile Include="Model\OncologyDrug.cs" />
+    <Compile Include="Model\OncologyService.cs" />
+    <Compile Include="Model\OnkologyTreat.cs" />
+    <Compile Include="Model\OrderSection.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\Recourse.cs" />
+    <Compile Include="Model\Sanction.cs" />
+    <Compile Include="Model\Service.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lib\holidays.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Lib\workdays.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\Relax\Queries.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Queries.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dict\F002-Q.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\F011-TPDOC.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\morbidity.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\V002-SLMSP.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\V006-SLUSL.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\V010-OPLMSP.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\V012-BOLEND.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\V017-REZOBR.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\V020-SLPROF.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

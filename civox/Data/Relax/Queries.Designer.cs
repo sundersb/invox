@@ -208,7 +208,7 @@ namespace civox.Data.Relax {
         /// <summary>
         ///   Ищет локализованную строку, похожую на select count(*)
         /// from {period}S{lpu}
-        /// where floor(COD/1000) in (3, 27, 25, 29, 22, 50).
+        /// where floor(COD/1000) in (3, 27, 28, 29, 22, 50).
         /// </summary>
         internal static string SELECT_RECOURSES_COUNT {
             get {
