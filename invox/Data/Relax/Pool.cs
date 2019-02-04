@@ -526,6 +526,26 @@ namespace invox.Data.Relax {
                     evt.DateFrom = sa.Date;
                 else
                     evt.DateFrom = ss.Min(s => s.Date);
+
+                evt.DateTill = evt.Services.Max(s => s.DateTill);
+#if FOMS
+            } else if (ra.InternalReason == InternalReason.Prof) {
+                // Work around error "Код способа оплаты не соответствует периоду лечения;
+                // Цель обращения не соответствует способу оплаты медицинской помощи"
+                // Prof events within a single day are discarded with this error
+                evt.DateFrom = ra.Date.ShiftDays(-1);
+
+                if (evt.DateFrom == ra.Date) {
+                    evt.DateTill = ra.Date.ShiftDays(1);
+                    Model.Service s = evt.Services.First();
+                    if (s != null) {
+                        s.DateFrom = evt.DateTill;
+                        s.DateTill = evt.DateTill;
+                    }
+                } else {
+                    evt.DateTill = ra.Date;
+                }
+#endif
             } else {
                 // For other cases service with minimal date (mayhap hospitalization - reason why not ss.Min())
                 // 2 этап - пустая выборка
@@ -534,8 +554,8 @@ namespace invox.Data.Relax {
                 } catch (Exception e) {
                     Logger.Log(e.Message + string.Format(" - повод {0}, услуга {1}, S.RECID {2}", ra.InternalReason, ra.ServiceCode, ra.ServiceId));
                 }
+                evt.DateTill = evt.Services.Max(s => s.DateTill);
             }
-            evt.DateTill = evt.Services.Max(s => s.DateTill);
 
             // Statistic code
             if (!string.IsNullOrEmpty(ra.MainDiagnosis) && ra.MainDiagnosis.First() != 'Z') {

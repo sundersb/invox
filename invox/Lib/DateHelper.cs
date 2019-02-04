@@ -48,6 +48,24 @@ namespace invox.Lib {
         }
 
         /// <summary>
+        /// Increment days to get work day
+        /// </summary>
+        /// <param name="date">Date to increment</param>
+        /// <param name="days">Increment amount (days). May be negative</param>
+        /// <returns>Nearest incremented (decremented) day which is still a workday</returns>
+        public static DateTime ShiftDays(this DateTime date, int days) {
+            int m = date.Month;
+            DateTime result = date;
+            
+            do {
+                result = result.AddDays(days);
+                if (result.Month != m) return date;
+            } while (!result.IsWorkDay());
+
+            return result;
+        }
+
+        /// <summary>
         /// Get DateTime from yyyy-mm-dd string
         /// </summary>
         /// <param name="value">String representation of a DateTime value to read from</param>
