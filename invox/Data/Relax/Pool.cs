@@ -528,7 +528,7 @@ namespace invox.Data.Relax {
                     evt.DateFrom = ss.Min(s => s.Date);
 
                 evt.DateTill = evt.Services.Max(s => s.DateTill);
-#if FOMS
+#if FOMS1
             } else if (ra.InternalReason == InternalReason.Prof) {
                 // Work around error "Код способа оплаты не соответствует периоду лечения;
                 // Цель обращения не соответствует способу оплаты медицинской помощи"
