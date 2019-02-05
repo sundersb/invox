@@ -96,9 +96,30 @@ namespace invox.Lib {
             return date;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static DateTime WorkingDaysBeforeDayStationary (this DateTime date, int n) {
+            date = date.Date;
+            --n;
+            while (n > 0) {
+                date = date.AddDays(-1);
+                if (date.IsWorkDayNoSaturdays()) --n;
+            }
+            return date;
+        }
+
         public static bool IsWorkDay(this DateTime date) {
             DayOfWeek dw = date.DayOfWeek;
             return ((dw != DayOfWeek.Saturday && dw != DayOfWeek.Sunday) || Workdays.Contains(date)) && !Holidays.Contains(date);
+        }
+
+        public static bool IsWorkDayNoSaturdays(this DateTime date) {
+            DayOfWeek dw = date.DayOfWeek;
+            return (dw != DayOfWeek.Sunday || Workdays.Contains(date)) && !Holidays.Contains(date);
         }
 
         static void LoadDates(List<DateTime> days, string fName) {

@@ -246,8 +246,8 @@ namespace invox.Data.Relax {
             result.Unit = ra.Unit;
             result.InterventionKind = InterventionKind;
             result.Child = ra.Child;
-            
-            SetDates(result);
+
+            SetDates(result, ra);
 
             result.Diagnosis = ra.MainDiagnosis;
             result.ServiceCode = ServiceCode;
@@ -266,13 +266,16 @@ namespace invox.Data.Relax {
         /// Установить даты начала и окончания услуги и количество услуг
         /// </summary>
         /// <param name="service">Услуга, которую требуется обновить</param>
-        void SetDates(Model.Service service) {
+        void SetDates(Model.Service service, RecourseAux ra) {
             if (Quantity <= 1) {
                 Quantity = 1;
                 service.DateFrom = service.DateTill = Date;
             } else {
                 service.DateTill = Date;
-                service.DateFrom = Date.WorkingDaysBefore(Quantity);
+                if (ra.InternalReason == InternalReason.DayHosp || ra.InternalReason == InternalReason.SurgeryDayHosp)
+                    service.DateFrom = Date.WorkingDaysBeforeDayStationary(Quantity);
+                else
+                    service.DateFrom = Date.WorkingDaysBefore(Quantity);
             }
         }
         
