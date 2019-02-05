@@ -87,39 +87,33 @@ namespace invox.Lib {
         /// </summary>
         /// <param name="date">Date to count from</param>
         /// <param name="n">Working days to count backwards</param>
-        public static DateTime WorkingDaysBefore(this DateTime date, int n) {
+        public static DateTime WorkingDaysBefore(this DateTime date, int n, bool sixDaysWeek, bool dayHospInPolyclinic) {
             date = date.Date;
-            while (n > 0) {
-                date = date.AddDays(-1);
-                if (date.IsWorkDay()) --n;
+            if (sixDaysWeek) --n;
+
+            if (dayHospInPolyclinic) {
+                // Day hospital by polyclinic bed days counting differs: in and out days are both to count
+                while (n > 0) {
+                    date = date.AddDays(-1);
+                    DayOfWeek dw = date.DayOfWeek;
+                    if ((dw != DayOfWeek.Sunday || Workdays.Contains(date)) && !Holidays.Contains(date))
+                        --n;
+                }
+            } else {
+                while (n > 0) {
+                    date = date.AddDays(-1);
+                    DayOfWeek dw = date.DayOfWeek;
+                    if (((dw != DayOfWeek.Saturday && dw != DayOfWeek.Sunday)
+                        || Workdays.Contains(date)) && !Holidays.Contains(date))
+                        --n;
+                }
             }
             return date;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="date"></param>
-        /// <param name="n"></param>
-        /// <returns></returns>
-        public static DateTime WorkingDaysBeforeDayStationary (this DateTime date, int n) {
-            date = date.Date;
-            --n;
-            while (n > 0) {
-                date = date.AddDays(-1);
-                if (date.IsWorkDayNoSaturdays()) --n;
-            }
-            return date;
-        }
-
+        
         public static bool IsWorkDay(this DateTime date) {
             DayOfWeek dw = date.DayOfWeek;
             return ((dw != DayOfWeek.Saturday && dw != DayOfWeek.Sunday) || Workdays.Contains(date)) && !Holidays.Contains(date);
-        }
-
-        public static bool IsWorkDayNoSaturdays(this DateTime date) {
-            DayOfWeek dw = date.DayOfWeek;
-            return (dw != DayOfWeek.Sunday || Workdays.Contains(date)) && !Holidays.Contains(date);
         }
 
         static void LoadDates(List<DateTime> days, string fName) {
