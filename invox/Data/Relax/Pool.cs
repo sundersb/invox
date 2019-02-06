@@ -610,7 +610,7 @@ namespace invox.Data.Relax {
                     // TODO: LPU code from local to federal
                     rec.DirectedFrom = Options.LpuCode;
                 }
-                // TODO: Direction date
+                rec.DirectionDate = rec.DateFrom;
             }
 
             return result;
