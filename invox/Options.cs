@@ -75,6 +75,7 @@ namespace invox {
             pediatric = Properties.Settings.Default.Pediatric;
             okato = Properties.Settings.Default.OKATO;
             defaultDocument = Properties.Settings.Default.DefaultDocument;
+            Lib.DateHelper.DayHospitalSixDaysWeek = Properties.Settings.Default.DayHospitalSixDaysWeek;
 
             // Decimal point instead of comma
             NumberFormat = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();

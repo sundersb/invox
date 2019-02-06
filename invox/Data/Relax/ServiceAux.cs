@@ -274,10 +274,10 @@ namespace invox.Data.Relax {
                 service.DateTill = Date;
 #if GKP3
                 // Since we are apriori polyclinic
-                service.DateFrom = Date.WorkingDaysBefore(Quantity, true, true);
+                service.DateFrom = Date.WorkingDaysBefore(Quantity, true);
 #else
-                bool dayHospInPolyclinic = ra.InternalReason == InternalReason.DayHosp || ra.InternalReason == InternalReason.SurgeryDayHosp;
-                service.DateFrom = Date.WorkingDaysBefore(Quantity, dayHospInPolyclinic, dayHospInPolyclinic);
+                bool dayHospital = ra.InternalReason == InternalReason.DayHosp || ra.InternalReason == InternalReason.SurgeryDayHosp;
+                service.DateFrom = Date.WorkingDaysBefore(Quantity, dayHospital);
 #endif
             }
         }

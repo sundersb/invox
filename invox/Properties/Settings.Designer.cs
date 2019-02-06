@@ -130,5 +130,17 @@ namespace invox.Properties {
                 this["DebugSelectionLimit"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DayHospitalSixDaysWeek {
+            get {
+                return ((bool)(this["DayHospitalSixDaysWeek"]));
+            }
+            set {
+                this["DayHospitalSixDaysWeek"] = value;
+            }
+        }
     }
 }

@@ -491,7 +491,7 @@ namespace invox.Data.Relax {
                 if (sa != null) {
                     // Get hospitalization dates
                     DateTime till = sa.Date;
-                    DateTime from = till.WorkingDaysBefore(sa.BedDays, true, true);
+                    DateTime from = till.WorkingDaysBefore(sa.BedDays, true);
 
                     // Select only services with relevant dates
                     evt.Services = ss.Where(s => s.Date <= till && s.Date >= from).Select(s => s.ToService(ra)).ToList();

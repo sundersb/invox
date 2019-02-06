@@ -39,6 +39,11 @@ namespace invox.Lib {
         }
 
         /// <summary>
+        /// Day hospital in this clinic works by six-days (not five-days) week
+        /// </summary>
+        public static bool DayHospitalSixDaysWeek;
+
+        /// <summary>
         /// Helper for date formatting
         /// </summary>
         /// <param name="date">Date to be converted to string</param>
@@ -87,12 +92,14 @@ namespace invox.Lib {
         /// </summary>
         /// <param name="date">Date to count from</param>
         /// <param name="n">Working days to count backwards</param>
-        public static DateTime WorkingDaysBefore(this DateTime date, int n, bool sixDaysWeek, bool dayHospInPolyclinic) {
+        /// <param name="dayHospital">True if this is day hospital</param>
+        public static DateTime WorkingDaysBefore(this DateTime date, int n, bool dayHospital) {
             date = date.Date;
-            if (sixDaysWeek) --n;
 
-            if (dayHospInPolyclinic) {
-                // Day hospital by polyclinic bed days counting differs: in and out days are both to count
+            // Day hospital by polyclinic bed days counting differs: in and out days are both to count
+            if (dayHospital) --n;
+
+            if (dayHospital && DayHospitalSixDaysWeek) {
                 while (n > 0) {
                     date = date.AddDays(-1);
                     DayOfWeek dw = date.DayOfWeek;
