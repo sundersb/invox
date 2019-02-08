@@ -27,7 +27,7 @@
       <Value Profile="(Default)">C:\Program Files\7-Zip\7z.exe</Value>
     </Setting>
     <Setting Name="DebugSelectionLimit" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">10</Value>
+      <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="DayHospitalSixDaysWeek" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

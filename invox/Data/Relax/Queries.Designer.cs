@@ -284,7 +284,7 @@ namespace invox.Data.Relax {
         ///  K.MSP AID_PROFILE,
         ///  S.COD SERVICE_CODE,
         ///  nvl(RO.SLIZ, &apos;xxx&apos;) RESULT, ST.PROF BED_PROFILE,
-        ///  S.K_U QUANTITY,
+        ///  1 QUANTITY,
         ///  S.S_ALL TARIFF,
         ///  S.S_ALL TOTAL,
         ///  S.OTD + S.TN1 SPECIALITY_ID,
@@ -298,7 +298,7 @@ namespace invox.Data.Relax {
         ///  DS.BOLEND OUTCOME1,
         ///  DS.INSTAC TRANSFER,
         ///  D.OBR REASON1,
-        ///  nvl(DS.KD, S.K_U) BED_ [остаток строки не уместился]&quot;;.
+        ///  nvl(DS.KD, S.K_U) BED_DAYS [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_SERVICES {
             get {

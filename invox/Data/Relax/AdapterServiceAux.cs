@@ -35,6 +35,10 @@ namespace invox.Data.Relax {
             result.ConcurrentMesCode = ReadString(reader["CONCURRENT_MES_CODE"]);
             result.StatisticCode = (StatisticCode)ReadInt(reader["CHARACTER"]);
 
+            //if (result.ServiceCode == 3034 || result.ServiceCode == 3038) {
+            //    Console.WriteLine(result.BedDays);
+            //}
+
             int dummy = ReadInt(reader["DISPENSARY_SUPERVISION"]);
             result.DispensarySupervision = ServiceAux.GetDispensarySupervision(dummy, ReadInt(reader["DCANCEL_REASON"]));
 

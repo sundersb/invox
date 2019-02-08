@@ -267,14 +267,14 @@ namespace invox.Data.Relax {
         /// </summary>
         /// <param name="service">Услуга, которую требуется обновить</param>
         void SetDates(Model.Service service, RecourseAux ra) {
-            if (Quantity <= 1) {
+            if (BedDays <= 1) {
                 Quantity = 1;
                 service.DateFrom = service.DateTill = Date;
             } else {
                 service.DateTill = Date;
 #if GKP3
                 // Since we are apriori polyclinic
-                service.DateFrom = Date.WorkingDaysBefore(Quantity, true);
+                service.DateFrom = Date.WorkingDaysBefore(BedDays, true);
 #else
                 bool dayHospital = ra.InternalReason == InternalReason.DayHosp || ra.InternalReason == InternalReason.SurgeryDayHosp;
                 service.DateFrom = Date.WorkingDaysBefore(Quantity, dayHospital);

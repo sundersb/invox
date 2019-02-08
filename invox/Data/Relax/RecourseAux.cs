@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace invox.Data.Relax {
     /// <summary>
@@ -17,8 +18,9 @@ namespace invox.Data.Relax {
         static int[] SOUL_TARIFF_SERVICES = { 50002, 50004, 50010, 50014, 50019, 50020, 50023 };
 
         // V008
-        const int AID_KIND_PRIMARY = 1;
         const int AID_KIND_EMERGENCY = 2;
+        const int AID_KIND_PRIMARY = 12;
+        const int AID_KIND_PRIMARY_SPECIALIZED = 13;
         const int AID_KIND_SPECIALIZED = 31;
         const int AID_KIND_HITECH = 32;
 
@@ -178,8 +180,8 @@ namespace invox.Data.Relax {
             result.Profile = AidProfile;
             result.Identity = ServiceId;
             result.Conditions = AidConditions;
-            result.AidKind = GetAidKind();
-            result.AidForm = GetAidForm();
+            //result.AidKind;                           - Pool.LoadEvents
+            //result.AidForm;                           - Pool.LoadEvents
             //result.DirectedFrom;                      - Pool.LoadEvents
 
             // TODO: RecourseAux.DirectionDate - where to take from?
@@ -202,6 +204,16 @@ namespace invox.Data.Relax {
             result.DispanserisationResult = Dict.DispResult.Get(RecourseResult);
 
             return result;
+        }
+
+        /// <summary>
+        /// Обновить вид и форму помощи случая по закрывающей услуге
+        /// </summary>
+        /// <param name="rec">Законченный случай, для которого требуется обновить вид и форму МП</param>
+        /// <param name="sa">Посещение, закрывающее случай</param>
+        public void UpdateMedicalAid(Model.Recourse rec, ServiceAux sa) {
+            rec.AidKind = GetAidKind(sa);
+            rec.AidForm = GetAidForm(sa);
         }
 
         /// <summary>
@@ -377,8 +389,8 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Получить вид медицинской помощи V008
         /// </summary>
-        int GetAidKind() {
-            switch (ServiceCode / 100000) {
+        int GetAidKind(ServiceAux sa) {
+            switch (sa.ServiceCode / 100000) {
                 case 7:
                     return AID_KIND_HITECH;
 
@@ -386,20 +398,24 @@ namespace invox.Data.Relax {
                     return AID_KIND_EMERGENCY;
 
                 default:
-                    int c = ServiceCode / 1000;
-                    if (c == 98 || c == 3)
+                    int c = sa.ServiceCode / 1000;
+                    if (c == 98 || c == 3) {
                         return AID_KIND_SPECIALIZED;
-                    else
-                        return AID_KIND_PRIMARY;
+                    } else {
+                        if (sa.AidProfile == "97")
+                            return AID_KIND_PRIMARY;
+                        else
+                            return AID_KIND_PRIMARY_SPECIALIZED;
+                    }
             }
         }
 
         /// <summary>
         /// Получить форму оказания медицинской помощи V014
         /// </summary>
-        int GetAidForm() {
-            if (ServiceCode / 10000 == 4) return AID_FORM_URGENT;
-            if (ServiceCode / 1000 == 7) return AID_FORM_PRESSING;
+        int GetAidForm(ServiceAux sa) {
+            if (sa.ServiceCode / 10000 == 4) return AID_FORM_URGENT;
+            if (sa.ServiceCode / 1000 == 7) return AID_FORM_PRESSING;
             return AID_FORM_ORDINAL;
         }
 

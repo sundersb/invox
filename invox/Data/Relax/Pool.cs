@@ -477,7 +477,7 @@ namespace invox.Data.Relax {
             result.Add(evt);
 
             // Load auxilliary service records and service models
-            List<ServiceAux> ss = LoadServices(ra, evt).ToList();
+            List<ServiceAux> ss = LoadServices(ra, evt).OrderBy(s => s.Date).ToList();
 
             if (ra.InternalReason == InternalReason.SurgeryDayHosp
                 && ss.Count(s => s.ServiceCode == ra.ServiceCode) > 1) {
@@ -494,13 +494,17 @@ namespace invox.Data.Relax {
                     DateTime from = till.WorkingDaysBefore(sa.BedDays, true);
 
                     // Select only services with relevant dates
-                    evt.Services = ss.Where(s => s.Date <= till && s.Date >= from).Select(s => s.ToService(ra)).ToList();
+                    IEnumerable<ServiceAux> sas = ss.Where(s => s.Date <= till && s.Date >= from);
+                    ra.UpdateMedicalAid(rec, sas.Last());
+                    evt.Services = sas.Select(s => s.ToService(ra)).ToList();
                     
                     // ...supposedly at least one services is selected: the main one
                 } else {
+                    ra.UpdateMedicalAid(rec, ss.Last());
                     evt.Services = ss.Select(s => s.ToService(ra)).ToList();
                 }
             } else {
+                ra.UpdateMedicalAid(rec, ss.Last());
                 evt.Services = ss.Select(s => s.ToService(ra)).ToList();
             }
 
