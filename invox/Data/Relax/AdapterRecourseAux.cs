@@ -21,7 +21,7 @@ namespace invox.Data.Relax {
 
             result.ServiceCode = ReadInt(reader["SERVICE_CODE"]);
             result.Result = ReadInt(reader["RESULT"]);
-            result.Outcome = Dict.Outcome.Get(result.AidConditions, ReadString(reader["OUTCOME"]).TrimStart('0'));
+            result.Outcome = ReadString(reader["OUTCOME"]);
             result.PayType = (Model.PayType) ReadInt(reader["PAY_TYPE"]);
             result.MobileBrigade = ReadBool(reader["MOBILE_BRIGADE"]);
             result.RecourseResult = ReadString(reader["RECOURSE_RESULT"]);
@@ -36,6 +36,7 @@ namespace invox.Data.Relax {
             result.SpecialityCode = SpecialityDict.Get(ReadString(reader["SPECIALITY_ID"]));
             result.DoctorCode = ReadString(reader["DOCTOR_CODE"]);
             result.Date = ReadDate(reader["D_U"]);
+            result.ServiceKind = ReadInt(reader["SERVICE_KIND"]);
 
             // Дневной стационар у нас - поликлиническое отделение, не имеющее профиля койки.
             // Отсюда вручную прописываем терапию или неврологию в зависимости от диагноза

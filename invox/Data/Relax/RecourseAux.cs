@@ -13,6 +13,8 @@ namespace invox.Data.Relax {
         const string SUSP_NEO_DIAGNOSIS = "Z03.1";
         const int DD_ONCE_IN_TWO_YEARS_DONE = 98;
 
+        static int[] SERVICE_KIND_LABORATORY = { 13, 34 };
+
         static int[] REFUSAL_RESULTS = { 302, 408, 417, 207 };
 
         static int[] SOUL_TARIFF_SERVICES = { 50002, 50004, 50010, 50014, 50019, 50020, 50023 };
@@ -73,6 +75,11 @@ namespace invox.Data.Relax {
         /// Код услуги (COD)
         /// </summary>
         public int ServiceCode;         // S.COD
+
+        /// <summary>
+        /// Вид услуги. Можно отличить лабораторные услуги от других
+        /// </summary>
+        public int ServiceKind;
 
         /// <summary>
         /// Результат обращения V009 (из REZOBR.SLIZ)
@@ -282,6 +289,19 @@ namespace invox.Data.Relax {
 
             soul = SOUL_TARIFF_SERVICES.Contains(ServiceCode);
             InternalReason = GetInternalReason(unit, ServiceCode, RecourseResult);
+
+            // 20190304 - Снова в конце месяца блять!
+            if (InternalReason == Relax.InternalReason.Diagnostics) {
+                Result = 304;
+                Outcome = "304";
+                if (SERVICE_KIND_LABORATORY.Contains(ServiceKind))
+                    MainDiagnosis = "Z01.7";
+                else
+                    MainDiagnosis = "Z01.8";
+            } else {
+                Outcome = Dict.Outcome.Get(AidConditions, Outcome.TrimStart('0'));
+            }
+
             PayKind = GetPayKind(unit, ServiceCode, soul);
         }
 
@@ -367,7 +387,7 @@ namespace invox.Data.Relax {
 
             case 8:
                 // ФОГК подросткам
-                return InternalReason.Fluorography;
+                return InternalReason.Diagnostics;
 
             case 9:
                 // Диспансеризация

@@ -20,7 +20,7 @@ namespace invox.Data.Relax {
         Stage2 = 9,         // Диспансеризация, 2 этап
         StrippedStage1 = 10,// Дисп. раз в два года - 1 этап
         StrippedStage2 = 11,// Дисп. раз в два года - 2 этап
-        Fluorography = 12   // ФОГК подросткам
+        Diagnostics = 12    // ФОГК подросткам
     }
 
     static class InternalReasonHelper {
@@ -54,8 +54,9 @@ namespace invox.Data.Relax {
                 case InternalReason.StrippedStage2:
                     return "2.2";
 
-                case InternalReason.Fluorography:
-                    return "2.1";
+                case InternalReason.Diagnostics:
+                    // Письмо ФОМС 1.03.2019 №10-673/9
+                    return "2.6";
 
                 default: return "2.6";
             }
@@ -102,7 +103,7 @@ namespace invox.Data.Relax {
                 case InternalReason.StrippedStage1: return isSoul ? "33" : "35";
                 case InternalReason.StrippedStage2: return isSoul ? "34" : "36";
 
-                case InternalReason.Fluorography: return "21";
+                case InternalReason.Diagnostics: return "21";
 
                 default: return string.Empty;
             }

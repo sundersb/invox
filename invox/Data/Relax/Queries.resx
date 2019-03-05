@@ -272,7 +272,8 @@ select
   S.S_ALL TOTAL,
   S.OTD + S.TN1 SPECIALITY_ID,
   S.TN1 DOCTOR_CODE,
-  S.D_U
+  S.D_U,
+  K.PRUPP SERVICE_KIND
  from {period}S{lpu} S
   join {period}P{lpu} P on P.SN_POL = S.SN_POL
   left outer join BASE/COMMON/KMU K on cast (K.CODE as int) = S.COD

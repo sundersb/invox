@@ -445,7 +445,7 @@ namespace invox.Data.Relax {
                 case InternalReason.DispRegister:
                 case InternalReason.Emergency:
                 case InternalReason.Prof:
-                case InternalReason.Fluorography:
+                case InternalReason.Diagnostics:
                     command = selectServicesByDate;
                     string d = ra.Date.ToString("MM/dd/yyyy").Replace('.', '/');
                     command.Parameters[3].Value = d;
@@ -573,6 +573,10 @@ namespace invox.Data.Relax {
                 else
                     evt.StatisticsCode = Dict.StatisticsCode.Instance.Get(ra.MainDiagnosis);
             }
+
+            // Service diagnosis as recorse's in case of diagnostics
+            if (ra.InternalReason == InternalReason.Diagnostics)
+                evt.Services.ForEach(s => s.Diagnosis = ra.MainDiagnosis);
 
             // Other Event fields which can be taken from the services
             evt.Tariff = evt.Services.Sum(s => s.Tariff);
