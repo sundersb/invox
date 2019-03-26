@@ -164,7 +164,7 @@ namespace invox.Model {
 
         /// <summary>
         /// Код места жительства по ОКАТО
-        /// Заполняется при наличии сведений
+        /// Заполняется при наличии сведений. По ФОМС - обязательное
         /// </summary>
         public string ResidenceOkato { get; set; }
 
@@ -242,7 +242,11 @@ namespace invox.Model {
             xml.WriteIfValid("DOCNUM", DocumentNumber);
 
             xml.WriteIfValid("SNILS", Snils);
+#if FOMS
+            xml.Writer.WriteElementString("OKATOG", ResidenceOkato);
+#else
             xml.WriteIfValid("OKATOG", ResidenceOkato);
+#endif
             xml.WriteIfValid("OKATOP", PresenceOkato);
 
 #if FOMS

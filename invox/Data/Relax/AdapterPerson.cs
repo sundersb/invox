@@ -6,6 +6,8 @@ using invox.Model;
 
 namespace invox.Data.Relax {
     class AdapterPerson : AdapterBase<Person> {
+        const string DEFAULT_OKATO = "08401000000";
+
         public override Person Read(System.Data.Common.DbDataReader reader, int number) {
             Person result = new Person();
             result.ID = ReadString(reader["RECID"]);
@@ -25,6 +27,7 @@ namespace invox.Data.Relax {
             result.Address = ReadString(reader["ADRES"]);
             result.SocialPosition = ReadString(reader["SP"]);
             result.SocialFavour = ReadString(reader["KT"]);
+            result.ResidenceOkato = DEFAULT_OKATO;
 
             result.Representative = GetRepresentative(reader);
 
