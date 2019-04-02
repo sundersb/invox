@@ -129,7 +129,8 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Основное заболевание
         /// </summary>
-        public string MainDiagnosis;    // S.DS
+        public string MainDiagnosis;    // S.DS - ректифицирован
+        public string InitialDiagnosis; // Диагноз по базе
 
         /// <summary>
         /// Признак реабилитации. Пока false
@@ -289,6 +290,7 @@ namespace invox.Data.Relax {
 
             soul = SOUL_TARIFF_SERVICES.Contains(ServiceCode);
             InternalReason = GetInternalReason(unit, ServiceCode, RecourseResult);
+            InitialDiagnosis = MainDiagnosis;
 
             // 20190304 - Снова в конце месяца блять!
             if (InternalReason == Relax.InternalReason.Diagnostics) {

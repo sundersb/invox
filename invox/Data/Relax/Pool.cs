@@ -455,7 +455,7 @@ namespace invox.Data.Relax {
             if (command != null) {
                 command.Parameters[0].Value = string.Format("{0,6}", ra.PersonId);
                 command.Parameters[1].Value = ra.Department;
-                command.Parameters[2].Value = ra.MainDiagnosis;
+                command.Parameters[2].Value = ra.InitialDiagnosis;
                 return aService.Load(command);
             } else {
                 return null;
@@ -524,14 +524,27 @@ namespace invox.Data.Relax {
 
             // Event dates
             if (ra.InternalReason == InternalReason.Stage1) {
+                evt.DateTill = evt.Services.Max(s => s.DateTill);
+
                 // For DD1 - start of the recourse is an antropometry
                 ServiceAux sa = ss.Where(s => s.IsAntropometry()).FirstOrDefault();
-                if (sa != null)
+                if (sa != null) {
                     evt.DateFrom = sa.Date;
-                else
+                } else {
                     evt.DateFrom = ss.Min(s => s.Date);
+                }
+            } else if ((ra.InternalReason == InternalReason.StrippedStage1)) {
+#if FOMS
+                // Задолбал ФОМС с их дурацкими ошибками: дд раз в 2 года ставит "неправильные даты", если дата начала и окончания не совпадают
+                // 1 вариант
+                evt.DateFrom = evt.DateTill;
 
-                evt.DateTill = evt.Services.Max(s => s.DateTill);
+                // 2 вариант
+                //Model.Service ser = evt.Services.FirstOrDefault(s => s.ServiceCode / 10000 == 5);
+                //if (ser != null) ser.DateTill = evt.DateTill;
+#endif
+
+
 #if FOMS1
             } else if (ra.InternalReason == InternalReason.Prof) {
                 // Work around error "Код способа оплаты не соответствует периоду лечения;
