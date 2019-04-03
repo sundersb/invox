@@ -533,15 +533,22 @@ namespace invox.Data.Relax {
                 } else {
                     evt.DateFrom = ss.Min(s => s.Date);
                 }
-            } else if ((ra.InternalReason == InternalReason.StrippedStage1)) {
 #if FOMS
+            } else if ((ra.InternalReason == InternalReason.StrippedStage1)) {
                 // Задолбал ФОМС с их дурацкими ошибками: дд раз в 2 года ставит "неправильные даты", если дата начала и окончания не совпадают
+
+                evt.DateTill = evt.Services.Max(s => s.DateTill);
+                evt.DateFrom = evt.Services.Min(s => s.DateFrom);
+
                 // 1 вариант
-                evt.DateFrom = evt.DateTill;
+                //evt.DateFrom = evt.DateTill;
 
                 // 2 вариант
-                //Model.Service ser = evt.Services.FirstOrDefault(s => s.ServiceCode / 10000 == 5);
-                //if (ser != null) ser.DateTill = evt.DateTill;
+                Model.Service ser = evt.Services.FirstOrDefault(s => s.ServiceCode / 10000 == 5);
+                if (ser != null) {
+                    ser.DateFrom = evt.DateFrom;
+                    ser.DateTill = evt.DateTill;
+                }
 #endif
 
 
@@ -587,6 +594,9 @@ namespace invox.Data.Relax {
                     evt.StatisticsCode = Dict.StatisticsCode.Instance.Get(ra.MainDiagnosis);
             }
 
+            // Профиль МП случая - по профилю закрывающей записи
+            rec.Profile = ss.OrderBy(s => s.Date).Last().AidProfile;
+
             // Service diagnosis as recorse's in case of diagnostics
             if (ra.InternalReason == InternalReason.Diagnostics)
                 evt.Services.ForEach(s => s.Diagnosis = ra.MainDiagnosis);
@@ -598,7 +608,7 @@ namespace invox.Data.Relax {
             evt.PrimaryDiagnosis = ss.Max(s => s.PrimaryDiagnosis);
             evt.FirstIdentified = ss.Any(s => s.FirstIdentified);
 
-            evt.ConcurrentDiagnoses = ServiceAux.GetConcurrentDiagnoses(ss);
+            ra.FindConcurrentDiagnoses(evt, ss, section);
             evt.ComplicationDiagnoses = ServiceAux.GetComplicationDiagnoses(ss);
 
             if (ra.InternalReason == InternalReason.DispRegister) {

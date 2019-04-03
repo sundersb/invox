@@ -29,7 +29,10 @@ namespace invox.Data.Relax {
             result.Transfer = ServiceAux.GetTransfer(ReadInt(reader["TRANSFER"]));
             result.Reason1 = ReadString(reader["REASON1"]); //
             result.BedDays = ReadInt(reader["BED_DAYS"]);
-            result.PrimaryDiagnosis = ReadString(reader["DS_PRIMARY"]);
+            
+            // Не смущаем ФОМС первичным диагнозом: он необязателен
+            //result.PrimaryDiagnosis = ReadString(reader["DS_PRIMARY"]);
+            
             result.ConcurrentDiagnosis = ReadString(reader["DS_CONCURRENT"]);
             result.ComplicationDiagnosis = ReadString(reader["DS_COMPLICATION"]);
             result.ConcurrentMesCode = ReadString(reader["CONCURRENT_MES_CODE"]);

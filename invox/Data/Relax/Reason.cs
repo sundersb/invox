@@ -23,7 +23,21 @@ namespace invox.Data.Relax {
         Diagnostics = 12    // ФОГК подросткам
     }
 
+    /// <summary>
+    /// Сопоставление цели посещения диагнозу для разделов D1, D4 (ФОМС)
+    /// </summary>
+    enum DiagnosisKind {
+        Treatment,
+        Prophylax,
+        NeverMind
+    }
+
     static class InternalReasonHelper {
+        const string DEFAULT_DIAGNOSIS_TREATMENT = "I13.2";
+        const string DEFAULT_DIAGNOSIS_DIAGNOSTICS = "Z01.9";
+        const string DEFAULT_DIAGNOSIS_PROPHYLAX = "Z00.0";
+        const string DEFAULT_DIAGNOSIS_OTHER = "Z76.8";
+
         /// <summary>
         /// Преобразовать InternalReason в коды V025 Классификатор целей посещения (KPC)
         /// </summary>
@@ -79,10 +93,10 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Получить код цели обращения по локальному справочнику ХКФОМС
         /// </summary>
-        /// <param name="reason"></param>
-        /// <param name="isSoul"></param>
-        /// <returns></returns>
-        public static string ToFomsReason(InternalReason reason, bool isSoul) {
+        /// <param name="reason">Повод обращения</param>
+        /// <param name="isSoul">Подушевое финансирование?</param>
+        /// <returns>Значение поля CEL законченного случая</returns>
+        public static string ToFomsReason(this InternalReason reason, bool isSoul) {
             switch (reason) {
                 case InternalReason.AmbTreatment:
                     return isSoul ? "17" : "16";
@@ -109,5 +123,78 @@ namespace invox.Data.Relax {
             }
         }
 #endif
+
+        /// <summary>
+        /// Получить требуемый проверкой тип диагноза в зависимости от цели обращения
+        /// </summary>
+        /// <returns>Тип диагноза, сопоставляющий его с требуемой целью обращения</returns>
+        public static DiagnosisKind GetDiagnosisKind(this InternalReason reason) {
+            switch (reason) {
+                case InternalReason.Diagnostics:
+                case InternalReason.Other:
+                case InternalReason.Prof:
+                    return DiagnosisKind.Prophylax;
+
+                case InternalReason.AmbTreatment:
+                case InternalReason.DayHosp:
+                case InternalReason.SurgeryDayHosp:
+                case InternalReason.DispRegister:
+                case InternalReason.Emergency:
+                    return DiagnosisKind.Treatment;
+
+                default:
+                    return DiagnosisKind.NeverMind;
+            }
+        }
+
+        /// <summary>
+        /// Получить диагноз "по умолчанию" для данного повода обращения. Только для разделов D1 и D4 приказа!
+        /// </summary>
+        /// <param name="reason">Повод обращения</param>
+        /// <returns>Соответствующий диагноз</returns>
+        public static string DefaultDiagnosis(this InternalReason reason) {
+            switch (reason) {
+                case InternalReason.Diagnostics:
+                    return DEFAULT_DIAGNOSIS_DIAGNOSTICS;
+
+                case InternalReason.Prof:
+                    return DEFAULT_DIAGNOSIS_PROPHYLAX;
+
+                case InternalReason.Other:
+                    return DEFAULT_DIAGNOSIS_OTHER;
+
+                default:
+                    return DEFAULT_DIAGNOSIS_TREATMENT;
+            }
+        }
+    }
+
+    //Коллеги, у ТФОМС вышла новая проверка 
+    //"Соответствие цели посещения диагнозу"
+    //Для пакетов СМ, НМ
+    //Для P_CEL (V025)=1.0; 1.1; 1.2; 1.3; 3.0   DS1=(A00-T98)
+    //P_CEL (V025)=2.3; 2.5; 2.6; 3.1  DS1=(Z00-Z99)
+    /// <summary>
+    /// Сопоставление диагноза цели посещения
+    /// </summary>
+    static class DiagnosisKindHelper {
+        /// <summary>
+        /// Проверка соответствия диагноза требуемому целью обращения
+        /// </summary>
+        /// <param name="kind">Ожидаемый тип диагноза в зависимости от цели обращения</param>
+        /// <param name="diagnosis">Диагноз</param>
+        public static bool Matches(this DiagnosisKind kind, string diagnosis) {
+            if (string.IsNullOrEmpty(diagnosis)) return false;
+
+            switch (kind) {
+                case DiagnosisKind.Prophylax:
+                    return diagnosis[0] == 'Z';
+
+                case DiagnosisKind.Treatment:
+                    return diagnosis[0] >= 'A' & diagnosis[0] <= 'T';
+
+                default: return true;
+            }
+        }
     }
 }

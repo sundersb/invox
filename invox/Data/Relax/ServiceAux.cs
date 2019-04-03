@@ -304,17 +304,6 @@ namespace invox.Data.Relax {
         }
 
         /// <summary>
-        /// Extract not zero concurrent diseases from the services of an event
-        /// </summary>
-        public static List<string> GetConcurrentDiagnoses(List<ServiceAux> services) {
-            var d1 = services.Select(s => s.ConcurrentDiagnosis).Where(d => !string.IsNullOrEmpty(d));
-            if (d1.Count() > 0)
-                return d1.ToList();
-            else
-                return null;
-        }
-
-        /// <summary>
         /// Extract not zero complications from the services of an event
         /// </summary>
         public static List<string> GetComplicationDiagnoses(List<ServiceAux> services) {

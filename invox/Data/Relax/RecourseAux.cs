@@ -11,6 +11,7 @@ namespace invox.Data.Relax {
     /// </remarks>
     class RecourseAux {
         const string SUSP_NEO_DIAGNOSIS = "Z03.1";
+
         const int DD_ONCE_IN_TWO_YEARS_DONE = 98;
 
         static int[] SERVICE_KIND_LABORATORY = { 13, 34 };
@@ -224,6 +225,50 @@ namespace invox.Data.Relax {
             rec.AidForm = GetAidForm(sa);
         }
 
+
+        /// <summary>
+        /// Загрузить сопутствующие заболевания для события
+        /// </summary>
+        /// <param name="evt">Событие, которому требуется установить сопутствующие заболевания</param>
+        /// <param name="services">Услуги, оказанные в рамках события. Сопутствующие берутся из них</param>
+        public void FindConcurrentDiagnoses(Model.Event evt, List<ServiceAux> services, Model.OrderSection section) {
+            var d1 = services.Select(s => s.ConcurrentDiagnosis)
+                .Where(d => !string.IsNullOrEmpty(d) && d != evt.MainDiagnosis)
+                .Distinct();
+            
+            if (d1.Count() > 0)
+                evt.ConcurrentDiagnoses = d1.ToList();
+            else
+                evt.ConcurrentDiagnoses = null;
+
+            // Проверить соответствие диагноза цели обращения (только для разделов D1 и D4)
+            if (section == Model.OrderSection.D1 || section == Model.OrderSection.D4) {
+                DiagnosisKind kind = InternalReason.GetDiagnosisKind();
+
+                if (!kind.Matches(MainDiagnosis)) {
+                    // Если не соответствует
+                    
+                    // Переносим основное заболевание в сопутствующие
+                    if (evt.ConcurrentDiagnoses == null) evt.ConcurrentDiagnoses = new List<string>();
+                    evt.ConcurrentDiagnoses.Add(MainDiagnosis);
+
+                    // Попытаться найти подходящий в услугах...
+                    d1 = services.Select(s => s.PrimaryDiagnosis).Where(d => kind.Matches(d));
+                    if (d1.Count() > 0) {
+                        evt.MainDiagnosis = MainDiagnosis = d1.First();
+                    } else {
+                        // ...либо поставить диагноз по умолчанию
+                        if (kind == DiagnosisKind.Treatment) {
+                            Lib.Logger.Log(string.Format("Не найден подходящий диагноз для случая лечебной цели: RECID {0} (диагноз {1})",
+                                evt.CardNumber,
+                                MainDiagnosis));
+                        }
+                        evt.MainDiagnosis = MainDiagnosis = InternalReason.DefaultDiagnosis();
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Создать событие и заполнить его доступными полями
         /// </summary>
@@ -240,7 +285,7 @@ namespace invox.Data.Relax {
             result.Child = Child;
             result.Reason = InternalReasonHelper.ToVisitAim(InternalReason);
 #if FOMS
-            result.LocalReason = InternalReasonHelper.ToFomsReason(InternalReason, soul);
+            result.LocalReason = InternalReason.ToFomsReason(soul);
 #endif
 
             result.CardNumber = CardNumber;
