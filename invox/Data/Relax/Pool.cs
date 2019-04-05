@@ -534,7 +534,7 @@ namespace invox.Data.Relax {
                     evt.DateFrom = ss.Min(s => s.Date);
                 }
 #if FOMS
-            } else if ((ra.InternalReason == InternalReason.StrippedStage1)) {
+            } else if ((ra.InternalReason == InternalReason.StrippedStage1) || (ra.InternalReason == InternalReason.StrippedStage2)) {
                 // Задолбал ФОМС с их дурацкими ошибками: дд раз в 2 года ставит "неправильные даты", если дата начала и окончания не совпадают
 
                 evt.DateTill = evt.Services.Max(s => s.DateTill);
