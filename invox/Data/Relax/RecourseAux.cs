@@ -264,6 +264,7 @@ namespace invox.Data.Relax {
                                 MainDiagnosis));
                         }
                         evt.MainDiagnosis = MainDiagnosis = InternalReason.DefaultDiagnosis();
+                        evt.Services.ForEach(s => s.Diagnosis = MainDiagnosis);
                     }
                 }
             }

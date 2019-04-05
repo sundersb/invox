@@ -581,6 +581,15 @@ namespace invox.Data.Relax {
                 evt.DateTill = evt.Services.Max(s => s.DateTill);
             }
 
+            // May change evt and ra's MainDiagnosis:
+            ra.FindConcurrentDiagnoses(evt, ss, section);
+
+            // Service diagnosis as recorse's in case of diagnostics
+            if (ra.InternalReason == InternalReason.Diagnostics)
+                evt.Services.ForEach(s => s.Diagnosis = ra.MainDiagnosis);
+
+            evt.ComplicationDiagnoses = ServiceAux.GetComplicationDiagnoses(ss);
+
             // Statistic code
             if (!string.IsNullOrEmpty(ra.MainDiagnosis) && ra.MainDiagnosis.First() != 'Z') {
                 StatisticCode[] sc = ss
@@ -597,19 +606,12 @@ namespace invox.Data.Relax {
             // Профиль МП случая - по профилю закрывающей записи
             rec.Profile = ss.OrderBy(s => s.Date).Last().AidProfile;
 
-            // Service diagnosis as recorse's in case of diagnostics
-            if (ra.InternalReason == InternalReason.Diagnostics)
-                evt.Services.ForEach(s => s.Diagnosis = ra.MainDiagnosis);
-
             // Other Event fields which can be taken from the services
             evt.Tariff = evt.Services.Sum(s => s.Tariff);
             evt.Total = evt.Services.Sum(s => s.Total);
 
             evt.PrimaryDiagnosis = ss.Max(s => s.PrimaryDiagnosis);
             evt.FirstIdentified = ss.Any(s => s.FirstIdentified);
-
-            ra.FindConcurrentDiagnoses(evt, ss, section);
-            evt.ComplicationDiagnoses = ServiceAux.GetComplicationDiagnoses(ss);
 
             if (ra.InternalReason == InternalReason.DispRegister) {
                 evt.DispensarySupervision = ss.Max(s => s.DispensarySupervision);

@@ -36,7 +36,9 @@ namespace invox.Data.Relax {
         const string DEFAULT_DIAGNOSIS_TREATMENT = "I13.2";
         const string DEFAULT_DIAGNOSIS_DIAGNOSTICS = "Z01.9";
         const string DEFAULT_DIAGNOSIS_PROPHYLAX = "Z00.0";
-        const string DEFAULT_DIAGNOSIS_OTHER = "Z76.8";
+
+        //const string DEFAULT_DIAGNOSIS_OTHER = "Z76.8"; // Обращение в учреждения здравоохранения в связи с другими уточненными обстоятельствами
+        const string DEFAULT_DIAGNOSIS_OTHER = "Z02.7"; // Обращение в связи с получением медицинских документов
 
         /// <summary>
         /// Преобразовать InternalReason в коды V025 Классификатор целей посещения (KPC)

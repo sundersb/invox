@@ -14,7 +14,10 @@ namespace invox.Data.Relax {
             result.ServiceId = ReadString(reader["SERVICE_ID"]);
             result.Department = ReadString(reader["DEPT"]);
             result.Unit = ReadString(reader["UNIT"]);
-            result.AidProfile = Dict.AidProfile.Instance.Get(ReadString(reader["AID_PROFILE"]));
+
+            //result.AidProfile = Dict.AidProfile.Instance.Get(ReadString(reader["AID_PROFILE"]));
+            result.SpecialityCode = SpecialityDict.Get(ReadString(reader["SPECIALITY_ID"]));
+            result.AidProfile = Dict.AidProfileBySpeciality.Instance.Get(ReadString(reader["AID_PROFILE"]), result.SpecialityCode);
             
             int dummy = ReadInt(ReadString(reader["AID_CONDITIONS"]));
             result.AidConditions = Dict.Condition.Instance.Get(dummy.ToString());
@@ -33,7 +36,6 @@ namespace invox.Data.Relax {
             result.Quantity = ReadInt(reader["QUANTITY"]);
             result.Tariff = (decimal) reader["TARIFF"];
             result.Total = (decimal) reader["TOTAL"];
-            result.SpecialityCode = SpecialityDict.Get(ReadString(reader["SPECIALITY_ID"]));
             result.DoctorCode = ReadString(reader["DOCTOR_CODE"]);
             result.Date = ReadDate(reader["D_U"]);
             result.ServiceKind = ReadInt(reader["SERVICE_KIND"]);

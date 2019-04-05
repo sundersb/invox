@@ -9,14 +9,18 @@ namespace invox.Data.Relax {
             ServiceAux result = new ServiceAux();
 
             result.ServiceId = ReadString(reader["SERVICE_ID"]);
-            result.AidProfile = Dict.AidProfile.Instance.Get(ReadString(reader["AID_PROFILE"]));
+
             result.ServiceCode = ReadInt(reader["SERVICE_CODE"]);
             result.Result = ReadString(reader["RESULT"]);
             result.BedProfile = ReadString(reader["BED_PROFILE"]);
             result.Quantity = ReadInt(reader["QUANTITY"]);
             result.Tariff = (decimal)reader["TARIFF"];
             result.Total = (decimal)reader["TOTAL"];
+
             result.SpecialityCode = SpecialityDict.Get(ReadString(reader["SPECIALITY_ID"]));
+            // По-новому профиль МП должен соответствовать специальности врача, а не только быть привязанным к услуге
+            result.AidProfile = Dict.AidProfileBySpeciality.Instance.Get(ReadString(reader["AID_PROFILE"]), result.SpecialityCode);
+
             result.DoctorCode = ReadString(reader["DOCTOR_CODE"]);
             result.Date = ReadDate(reader["D_U"]);
             result.Newborn = ReadBool(reader["NOVOR"]);
