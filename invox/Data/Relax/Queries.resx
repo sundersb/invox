@@ -308,7 +308,7 @@ select
   nvl(DS.KD, S.K_U) BED_DAYS,
   nvl(D.DIAGIN, DS.DIAGIN) DS_PRIMARY,
   D.F CHARACTER,
-  nvl(D.DIAG2, DS.DIAG2) DS_CONCURRENT,
+  nvl(S.DS2, nvl(D.DIAG2, DS.DIAG2)) DS_CONCURRENT,
   nvl(D.DIAG1, DS.DIAG1) DS_COMPLICATION,
   D.HR DISPENSARY_SUPERVISION, D.HRO DCANCEL_REASON,
   cast (nvl(D.KSG2, DS.KSG2) as varchar(10)) CONCURRENT_MES_CODE
@@ -327,5 +327,19 @@ select
   <data name="SELECT_TOTAL" xml:space="preserve">
     <value>select sum(S_ALL) TOTAL from {period}S{lpu} S where {section}</value>
     <comment>Сумма к оплате по счету</comment>
+  </data>
+  <data name="UPDATE_ONKO_OTHER_AIM_COMMON" xml:space="preserve">
+    <value>update {period}PATU set DS2 = DS, DS = 'Z02.7'
+ where (DS like 'C%')
+  and (OTD = '0004')
+  and ((COD in (50001, 50002))
+   or (floor(COD / 10000) = 6))</value>
+  </data>
+  <data name="UPDATE_ONKO_OTHER_AIM_MAIN" xml:space="preserve">
+    <value>update {period}S{lpu} set DS2 = DS, DS = 'Z02.7'
+ where (DS like 'C%')
+  and (OTD = '0004')
+  and ((COD in (50001, 50002))
+   or (floor(COD / 10000) = 6))</value>
   </data>
 </root>

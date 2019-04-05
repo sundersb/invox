@@ -314,5 +314,31 @@ namespace invox.Data.Relax {
                 return ResourceManager.GetString("SELECT_TOTAL", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на update {period}PATU set DS2 = DS, DS = &apos;Z02.7&apos;
+        /// where (DS like &apos;C%&apos;)
+        ///  and (OTD = &apos;0004&apos;)
+        ///  and ((COD in (50001, 50002))
+        ///   or (floor(COD / 10000) = 6)).
+        /// </summary>
+        internal static string UPDATE_ONKO_OTHER_AIM_COMMON {
+            get {
+                return ResourceManager.GetString("UPDATE_ONKO_OTHER_AIM_COMMON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на update {period}S{lpu} set DS2 = DS, DS = &apos;Z02.7&apos;
+        /// where (DS like &apos;C%&apos;)
+        ///  and (OTD = &apos;0004&apos;)
+        ///  and ((COD in (50001, 50002))
+        ///   or (floor(COD / 10000) = 6)).
+        /// </summary>
+        internal static string UPDATE_ONKO_OTHER_AIM_MAIN {
+            get {
+                return ResourceManager.GetString("UPDATE_ONKO_OTHER_AIM_MAIN", resourceCulture);
+            }
+        }
     }
 }

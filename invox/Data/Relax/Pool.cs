@@ -168,6 +168,12 @@ namespace invox.Data.Relax {
                 SpecialityDict.Append(key, value.Trim());
             });
 
+            selectSpecs.CommandText = LocalizeQuery(Queries.UPDATE_ONKO_OTHER_AIM_COMMON);
+            ExecuteCommand(selectSpecs);
+
+            selectSpecs.CommandText = LocalizeQuery(Queries.UPDATE_ONKO_OTHER_AIM_MAIN);
+            ExecuteCommand(selectSpecs);
+
             return true;
         }
 
@@ -533,24 +539,6 @@ namespace invox.Data.Relax {
                 } else {
                     evt.DateFrom = ss.Min(s => s.Date);
                 }
-#if FOMS
-            } else if ((ra.InternalReason == InternalReason.StrippedStage1) || (ra.InternalReason == InternalReason.StrippedStage2)) {
-                // Задолбал ФОМС с их дурацкими ошибками: дд раз в 2 года ставит "неправильные даты", если дата начала и окончания не совпадают
-
-                evt.DateTill = evt.Services.Max(s => s.DateTill);
-                evt.DateFrom = evt.Services.Min(s => s.DateFrom);
-
-                // 1 вариант
-                //evt.DateFrom = evt.DateTill;
-
-                // 2 вариант
-                Model.Service ser = evt.Services.FirstOrDefault(s => s.ServiceCode / 10000 == 5);
-                if (ser != null) {
-                    ser.DateFrom = evt.DateFrom;
-                    ser.DateTill = evt.DateTill;
-                }
-#endif
-
 
 #if FOMS1
             } else if (ra.InternalReason == InternalReason.Prof) {
@@ -580,6 +568,18 @@ namespace invox.Data.Relax {
                 }
                 evt.DateTill = evt.Services.Max(s => s.DateTill);
             }
+
+#if FOMS
+            if (ra.InternalReason == InternalReason.StrippedStage1 || ra.InternalReason == InternalReason.StrippedStage2) {
+                // Задолбал ФОМС с их дурацкими ошибками: дд раз в 2 года ставит "неправильные даты", если дата начала и окончания не совпадают
+                // В подушевой услуге ставим даты начала и окончания как во всем закрытом случае
+                Model.Service ser = evt.Services.FirstOrDefault(s => s.ServiceCode / 10000 == 5);
+                if (ser != null) {
+                    ser.DateFrom = evt.DateFrom;
+                    ser.DateTill = evt.DateTill;
+                }
+            }
+#endif
 
             // May change evt and ra's MainDiagnosis:
             ra.FindConcurrentDiagnoses(evt, ss, section);
