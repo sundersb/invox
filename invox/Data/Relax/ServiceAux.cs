@@ -71,7 +71,7 @@ namespace invox.Data.Relax {
         public int ServiceCode;
 
         /// <summary>
-        /// Результат обращения V009 (из REZOBR.SLIZ)
+        /// Результат обращения V009
         /// </summary>
         public string Result {
             get { return result; }
@@ -150,7 +150,7 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Исход госпитализации (второй вариант - из DIAGNOZS.BOLEND)
         /// </summary>
-        public string Outcome1;
+        public string Outcome;
 
         /// <summary>
         /// Признак перевода (из DIAGNOZS.INSTAC)

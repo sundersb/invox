@@ -513,6 +513,11 @@ namespace invox.Data.Relax {
                 ra.UpdateMedicalAid(rec, ss.Last());
                 evt.Services = ss.Select(s => s.ToService(ra)).ToList();
             }
+            
+            // Код врача и специальности должны соответствовать закрывающей записи,
+            // приводим в соответствие из ra (где было изменено в UpdateMedicalAid())
+            evt.SpecialityCode = ra.SpecialityCode;
+            evt.DoctorCode = ra.DoctorCode;
 
             if (rec.IsHospitalization) {
                 // Update profile-shifting transfer and total of the bed days

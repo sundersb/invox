@@ -23,7 +23,7 @@ namespace invox.Data.Relax {
             result.AidConditions = Dict.Condition.Instance.Get(dummy.ToString());
 
             result.ServiceCode = ReadInt(reader["SERVICE_CODE"]);
-            result.Result = ReadInt(reader["RESULT"]);
+            result.Result = ReadString(reader["RESULT"]);
             result.Outcome = ReadString(reader["OUTCOME"]);
             result.PayType = (Model.PayType) ReadInt(reader["PAY_TYPE"]);
             result.MobileBrigade = ReadBool(reader["MOBILE_BRIGADE"]);

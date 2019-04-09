@@ -131,7 +131,7 @@ namespace invox.Model {
         /// Результат обращения
         /// Классификатор результатов обращения за медицинской помощью (Приложение А V009).
         /// </summary>
-        public int Result { get; set; }
+        public string Result { get; set; }
 
         /// <summary>
         /// Исход заболевания
@@ -233,7 +233,7 @@ namespace invox.Model {
             if (BirthWeight > 0)
                 xml.Writer.WriteElementString("VNOV_M", BirthWeight.ToString());
 
-            xml.Writer.WriteElementString("RSLT", Result.ToString());
+            xml.Writer.WriteElementString("RSLT", Result);
             xml.Writer.WriteElementString("ISHOD", Outcome);
 
             if (specialCase != null) {
@@ -290,7 +290,7 @@ namespace invox.Model {
             if (BirthWeight > 0)
                 xml.Writer.WriteElementString("VNOV_M", BirthWeight.ToString());
 
-            xml.Writer.WriteElementString("RSLT", Result.ToString());
+            xml.Writer.WriteElementString("RSLT", Result);
             xml.Writer.WriteElementString("ISHOD", Outcome.ToString());
 
             if (specialCase != null) {
@@ -405,7 +405,7 @@ namespace invox.Model {
             if (BirthWeight > 0)
                 xml.Writer.WriteElementString("VNOV_M", BirthWeight.ToString());
 
-            xml.Writer.WriteElementString("RSLT", Result.ToString());
+            xml.Writer.WriteElementString("RSLT", Result);
             xml.Writer.WriteElementString("ISHOD", Outcome);
 
             if (specialCase != null) {

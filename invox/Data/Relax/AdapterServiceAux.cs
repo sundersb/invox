@@ -27,7 +27,7 @@ namespace invox.Data.Relax {
             result.DirectedFrom = ReadString(reader["DIRECTION_FROM"]);
             result.BirthWeight = ReadInt(reader["BIRTH_WEIGHT"]);
             
-            result.Outcome1 = ReadString(reader["OUTCOME1"]);
+            result.Outcome = ReadString(reader["OUTCOME"]);
             // Dict.Outcome.Get(result.AidConditions, ReadString(reader["OUTCOME"]).TrimStart('0'));
 
             result.Transfer = ServiceAux.GetTransfer(ReadInt(reader["TRANSFER"]));

@@ -16,7 +16,7 @@ namespace invox.Data.Relax {
 
         static int[] SERVICE_KIND_LABORATORY = { 13, 34 };
 
-        static int[] REFUSAL_RESULTS = { 302, 408, 417, 207 };
+        static string[] REFUSAL_RESULTS = { "302", "408", "417", "207" };
 
         static int[] SOUL_TARIFF_SERVICES = { 50002, 50004, 50010, 50014, 50019, 50020, 50023 };
 
@@ -83,9 +83,9 @@ namespace invox.Data.Relax {
         public int ServiceKind;
 
         /// <summary>
-        /// Результат обращения V009 (из REZOBR.SLIZ)
+        /// Результат обращения V009
         /// </summary>
-        public int Result;              // REZOBR.SLIZ
+        public string Result;           // REZOBR.SLIZ
 
         /// <summary>
         /// Исход заболевания V012 (из IG)
@@ -223,6 +223,13 @@ namespace invox.Data.Relax {
         public void UpdateMedicalAid(Model.Recourse rec, ServiceAux sa) {
             rec.AidKind = GetAidKind(sa);
             rec.AidForm = GetAidForm(sa);
+            
+            // Код врача и специальности был взят из услуги, обозначающей закрытый случай и привязанной к открывающей записи,
+            // но по приказу они должны соответствовать закрывающей записи
+            SpecialityCode = sa.SpecialityCode;
+            DoctorCode = sa.DoctorCode;
+            Result = sa.Result;
+            Outcome = sa.Outcome;
         }
 
 
@@ -340,7 +347,7 @@ namespace invox.Data.Relax {
 
             // 20190304 - Снова в конце месяца блять!
             if (InternalReason == Relax.InternalReason.Diagnostics) {
-                Result = 304;
+                Result = "304";
                 Outcome = "304";
                 if (SERVICE_KIND_LABORATORY.Contains(ServiceKind))
                     MainDiagnosis = "Z01.7";
