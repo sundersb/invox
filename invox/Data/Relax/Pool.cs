@@ -8,6 +8,8 @@ using invox.Lib;
 
 namespace invox.Data.Relax {
     class Pool : IInvoice {
+        static InternalReason[] REASONS_WHICH_REQ_DATEFIX = { InternalReason.StrippedStage1, InternalReason.StrippedStage2, InternalReason.AmbTreatment };
+
         const string CONNECTION_STRING = "Provider=vfpoledb;Data Source={0};Collating Sequence=machine;Mode=ReadWrite|Share Deny None;";
 
         static string[] SELECT_RECOURSE_CASES_PARAMS = { "PERSON_RECID" };
@@ -526,10 +528,9 @@ namespace invox.Data.Relax {
                 // Turn transfer to ProfileShift if there has been bed profile change:
                 if (serv != null
                     && ss.GroupBy(s => s.BedProfile).Count() > 1) {
-                    
+
                     serv.Transfer = Model.Transfer.ProfileShift;
                 }
-
                 evt.BedDays = ss.Select(s => s.BedDays).Sum();
             }
 
@@ -575,9 +576,11 @@ namespace invox.Data.Relax {
             }
 
 #if FOMS
-            if (ra.InternalReason == InternalReason.StrippedStage1 || ra.InternalReason == InternalReason.StrippedStage2) {
+            if (REASONS_WHICH_REQ_DATEFIX.Contains(ra.InternalReason)) {
                 // Задолбал ФОМС с их дурацкими ошибками: дд раз в 2 года ставит "неправильные даты", если дата начала и окончания не совпадают
                 // В подушевой услуге ставим даты начала и окончания как во всем закрытом случае
+
+                // 20190417 Хрен там, теперь не только обрезанная ДД
                 Model.Service ser = evt.Services.FirstOrDefault(s => s.ServiceCode / 10000 == 5);
                 if (ser != null) {
                     ser.DateFrom = evt.DateFrom;
@@ -622,6 +625,20 @@ namespace invox.Data.Relax {
                 evt.DispensarySupervision = ss.Max(s => s.DispensarySupervision);
                 if (evt.DispensarySupervision == Model.DispensarySupervision.None)
                     evt.DispensarySupervision = Model.DispensarySupervision.Observed;
+            } else if (section == Model.OrderSection.D3) {
+                // 20190430 - D3 section: disp supervision is explicit
+                evt.DispensarySupervision = ss.Max(s => s.DispensarySupervision);
+                if (evt.DispensarySupervision < Model.DispensarySupervision.Observed
+                    || evt.DispensarySupervision > Model.DispensarySupervision.NotSubject) {
+                        if ("ZRQY".Contains(evt.MainDiagnosis.First())) {
+                            evt.DispensarySupervision = Model.DispensarySupervision.NotSubject;
+                        } else {
+                            if (evt.FirstIdentified)
+                                evt.DispensarySupervision = Model.DispensarySupervision.Taken;
+                            else
+                                evt.DispensarySupervision = Model.DispensarySupervision.Observed;
+                        }
+                }
             }
 
             evt.ConcurrentMesCode = ss.Max(s => s.ConcurrentMesCode);
@@ -629,8 +646,6 @@ namespace invox.Data.Relax {
             var d2 = ss.Where(s => s.Transfer != Model.Transfer.None);
             if (d2 != null && d2.Count() > 0)
                 evt.Transfer = d2.Min(s => s.Transfer);
-            else
-                evt.Transfer = Model.Transfer.None;
 
             // Other Recourse fields -"-
             rec.UnitShift = ss.Any(s => s.Transfer == Model.Transfer.ProfileShift);

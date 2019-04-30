@@ -475,7 +475,7 @@ namespace invox.Model {
 #if FOMS
             xml.WriteBool("DS_ONK", rec.SuspectOncology);
 
-            if (DispensarySupervision >= Model.DispensarySupervision.Observed
+            if (DispensarySupervision >= DispensarySupervision.Observed
                 && DispensarySupervision <= DispensarySupervision.NotSubject)
                 xml.Writer.WriteElementString("PR_D_N", ((int)DispensarySupervision).ToString());
 #else

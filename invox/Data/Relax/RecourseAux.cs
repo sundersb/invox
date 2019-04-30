@@ -286,12 +286,17 @@ namespace invox.Data.Relax {
             // result.Services;                         - Pool.LoadEvents
             result.Identity = ServiceId;
             result.Unit = Unit;
-            
-            if (rec.IsHospitalization)
+
+            if (rec.IsHospitalization) {
                 result.BedProfile = BedProfile;
+                result.Transfer = Model.Transfer.Independently;
+            } else {
+                result.Transfer = Model.Transfer.None;
+            }
             
             result.Child = Child;
             result.Reason = InternalReasonHelper.ToVisitAim(InternalReason);
+
 #if FOMS
             result.LocalReason = InternalReason.ToFomsReason(soul);
 #endif
