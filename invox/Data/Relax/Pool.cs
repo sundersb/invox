@@ -33,8 +33,8 @@ namespace invox.Data.Relax {
         // и 1, и 2 этап проходят в одном подразделении, а код МКБ может быть одинаковым, т.о.
         // в законченный случай 1 этапа могут войти все услуги и из 2-го (и наоборот):
 
-        // 1) BE 98 однозначно определяет 1 этап "раз в два года"
-        const string STAGE1_CRITERION = " and ((floor(S.COD/1000) in (22, 24, 29)) or (S.BE = '98'))";
+        // 1) Услуги 1 этапа диспансеризации
+        const string STAGE1_CRITERION = " and ((S.COD in (50019, 50023)) or (floor(S.COD/1000) in (22, 24, 29)))";
 
         // 2) Достаточно для того, чтобы отличить 2 этап от прочих посещений (при условии, что кабинет
         // уже есть в условии запроса)
@@ -485,7 +485,7 @@ namespace invox.Data.Relax {
             result.Add(evt);
 
             // Load auxilliary service records and service models
-            List<ServiceAux> ss = LoadServices(ra, evt).OrderBy(s => s.Date).ToList();
+            List<ServiceAux> ss = LoadServices(ra, evt).Distinct(new ServiceComparer()).OrderBy(s => s.Date).ToList();
 
             if (ra.InternalReason == InternalReason.SurgeryDayHosp
                 && ss.Count(s => s.ServiceCode == ra.ServiceCode) > 1) {
@@ -630,7 +630,7 @@ namespace invox.Data.Relax {
                 evt.DispensarySupervision = ss.Max(s => s.DispensarySupervision);
                 if (evt.DispensarySupervision < Model.DispensarySupervision.Observed
                     || evt.DispensarySupervision > Model.DispensarySupervision.NotSubject) {
-                        if ("ZRQY".Contains(evt.MainDiagnosis.First())) {
+                        if ("ZRY".Contains(evt.MainDiagnosis.First())) {
                             evt.DispensarySupervision = Model.DispensarySupervision.NotSubject;
                         } else {
                             if (evt.FirstIdentified)

@@ -222,7 +222,11 @@ namespace invox.Data.Relax {
         /// <param name="sa">Посещение, закрывающее случай</param>
         public void UpdateMedicalAid(Model.Recourse rec, ServiceAux sa) {
             rec.AidKind = GetAidKind(sa);
-            rec.AidForm = GetAidForm(sa);
+            //rec.AidForm = GetAidForm(sa);
+            if (InternalReason == Relax.InternalReason.Emergency)
+                rec.AidForm = AID_FORM_PRESSING;
+            else
+                rec.AidForm = AID_FORM_ORDINAL;
             
             // Код врача и специальности был взят из услуги, обозначающей закрытый случай и привязанной к открывающей записи,
             // но по приказу они должны соответствовать закрывающей записи

@@ -28,6 +28,26 @@ namespace invox.Data.Relax {
     }
 
     /// <summary>
+    /// Реализация интерфейса IEqualityComparer для исключения дублирования услуг
+    /// из-за привязки PAT к DIAGNOZ в гребанном Релаксе. Разработчики забыли добавить
+    /// ID-поля в таблицы, приходится линковать их по нескольким полям, и постоянно
+    /// всплывают дубликаты
+    /// </summary>
+    internal class ServiceComparer : IEqualityComparer<ServiceAux> {
+        public bool Equals(ServiceAux x, ServiceAux y) {
+            return (x.Date == y.Date)
+                && (x.ServiceCode == y.ServiceCode)
+                && (x.DoctorCode == y.DoctorCode);
+        }
+
+        public int GetHashCode(ServiceAux obj) {
+            return obj.Date.GetHashCode()
+                & obj.ServiceCode
+                & obj.DoctorCode.GetHashCode();
+        }
+    }
+
+    /// <summary>
     /// Вспомогательный класс для извлечения сведений об услугах, событии и законченном случае
     /// </summary>
     class ServiceAux {
