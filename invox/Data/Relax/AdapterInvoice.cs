@@ -8,7 +8,7 @@ namespace invox.Data.Relax {
         public override Model.InvoiceRecord Read(System.Data.Common.DbDataReader reader, int number) {
             Model.InvoiceRecord result = new Model.InvoiceRecord();
             result.Identity = number;
-            result.Revised = false;
+            result.Revised = Options.Fixing;
             result.Person = new Model.InvoicePerson();
             Model.InvoicePerson p = result.Person;
 

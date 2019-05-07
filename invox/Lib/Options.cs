@@ -42,6 +42,9 @@ namespace invox.Lib {
         [CommandLineOptionAttribute("l", "leave-files", "Не удалять файлы счетов после упаковки")]
         public bool LeaveFiles { get; set; }
 
+        [CommandLineOptionAttribute("x", "fix", "Данная выгрузка состоит из исправлений ошибок предыдущих счетов")]
+        public bool Fixing { get; set; }
+
         [ErrorMessageAttribute]
         public string Error { get; set; }
 

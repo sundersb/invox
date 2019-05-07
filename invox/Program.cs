@@ -83,6 +83,13 @@ namespace invox {
                 Console.WriteLine(Options.Help);
                 Console.WriteLine();
             } else {
+                if (Options.Fixing) {
+                    ConsoleColor fg = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Все случаи будут отмечены как исправления предыдущей выгрузки");
+                    Console.ForegroundColor = fg;
+                }
+
                 Data.IInvoice pool = new Data.Relax.Pool(Options.LpuLocation, Options.LocalLpuCode, Options.PeriodLocation);
 
                 if (pool.Init() && Checkup(pool)) {

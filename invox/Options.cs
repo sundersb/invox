@@ -46,6 +46,7 @@ namespace invox {
         public static int Month { get { return options.Month; } }
         public static Model.OrderSection[] Sections { get { return sections; } }
         public static bool LeaveFiles { get { return options.LeaveFiles; } }
+        public static bool Fixing { get { return options.Fixing; } }
 
         static string GetVersion() {
             return Assembly.GetExecutingAssembly().GetName().Version.ToString();
