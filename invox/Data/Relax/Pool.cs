@@ -34,11 +34,11 @@ namespace invox.Data.Relax {
         // в законченный случай 1 этапа могут войти все услуги и из 2-го (и наоборот):
 
         // 1) Услуги 1 этапа диспансеризации
-        const string STAGE1_CRITERION = " and ((S.COD in (50019, 50023)) or (floor(S.COD/1000) in (22, 24, 29)))";
+        //const string STAGE1_CRITERION = " and ((S.COD in (50019, 50023)) or (floor(S.COD/1000) in (22, 24, 29)))";
 
         // 2) Достаточно для того, чтобы отличить 2 этап от прочих посещений (при условии, что кабинет
         // уже есть в условии запроса)
-        const string STAGE2_CRITERION = " and ((S.COD in (50020, 50022)) or (floor(S.COD/1000) in (25, 28)))";
+        //const string STAGE2_CRITERION = " and ((S.COD in (50020, 50022)) or (floor(S.COD/1000) in (25, 28)))";
 
         // Добавить условие к выборке услуг законченного случая - по дате
         const string SERVICES_BY_DATE_CRITERION = " and (cast (S.D_U as varchar(10)) = ?)";
@@ -63,10 +63,14 @@ namespace invox.Data.Relax {
         /// Коды отделений профилактики и диспансеризации
         /// </summary>
 
-        //const string D3_SELECTION = "(S.OTD in ('0000', '0009')) or (S.OTD = '0004' and S.BE = '98')";
-        const string D3_SELECTION_STAGE1 = "((floor(S.COD/1000) in (22, 24, 29)) or (S.COD in (50019, 50021, 50023)) or (S.BE = '98'))";
-        const string D3_SELECTION_STAGE2 = "((floor(S.COD/1000) in (25, 28)) or (S.COD in (50020, 50022)))";
-        const string D3_SELECTION_PROF = "floor(S.COD/1000) = 27";
+        //const string D3_SELECTION_STAGE1 = "((floor(S.COD/1000) in (22, 24, 29)) or (S.COD in (50019, 50021, 50023)) or (S.BE = '98'))";
+        //const string D3_SELECTION_STAGE2 = "((floor(S.COD/1000) in (25, 28)) or (S.COD in (50020, 50022)))";
+        //const string D3_SELECTION_PROF = "floor(S.COD/1000) = 27";
+
+        // Changed 2019-06-24
+        const string D3_SELECTION_STAGE1 = "floor(S.COD/1000) in (22, 24, 29)";
+        const string D3_SELECTION_STAGE2 = "floor(S.COD/1000) in (25, 28)";
+        const string D3_SELECTION_PROF = "floor(S.COD/1000) in (24, 27)";
 
         /// <summary>
         /// Выборка онкологии
@@ -91,6 +95,7 @@ namespace invox.Data.Relax {
         OleDbCommand selectServicesByDate;
         OleDbCommand selectServicesStage1;
         OleDbCommand selectServicesStage2;
+        OleDbCommand selectServicesProf;
         OleDbCommand selectConcomDiseases;
         OleDbCommand selectDispDirections;
         OleDbCommand selectOnkologyDirections;
@@ -137,13 +142,18 @@ namespace invox.Data.Relax {
 
             selectServicesStage1 = connectionAlt.CreateCommand();
             selectServicesStage1.CommandText = LocalizeQuery(Queries.SELECT_SERVICES
-                + STAGE1_CRITERION);
+                + "and (" + D3_SELECTION_STAGE1 + ")");
             AddStringParameters(selectServicesStage1, SELECT_SERVICES_TREATMENT);
 
             selectServicesStage2 = connectionAlt.CreateCommand();
             selectServicesStage2.CommandText = LocalizeQuery(Queries.SELECT_SERVICES
-                + STAGE2_CRITERION);
+                + "and (" + D3_SELECTION_STAGE2 + ")");
             AddStringParameters(selectServicesStage2, SELECT_SERVICES_TREATMENT);
+
+            selectServicesProf = connectionAlt.CreateCommand();
+            selectServicesProf.CommandText = LocalizeQuery(Queries.SELECT_SERVICES
+                + "and (" + D3_SELECTION_PROF + ")");
+            AddStringParameters(selectServicesProf, SELECT_SERVICES_TREATMENT);
 
             selectConcomDiseases = connectionAlt.CreateCommand();
             selectConcomDiseases.CommandText = LocalizeQuery(Queries.SELECT_CONCOMITANT_DISEASES);
@@ -449,10 +459,13 @@ namespace invox.Data.Relax {
                     command = selectServicesStage2;
                     break;
 
+                case InternalReason.Prof:
+                    command = selectServicesProf;
+                    break;
+
                 case InternalReason.Other:
                 case InternalReason.DispRegister:
                 case InternalReason.Emergency:
-                case InternalReason.Prof:
                 case InternalReason.Diagnostics:
                     command = selectServicesByDate;
                     string d = ra.Date.ToString("MM/dd/yyyy").Replace('.', '/');
@@ -535,7 +548,7 @@ namespace invox.Data.Relax {
             }
 
             // Event dates
-            if (ra.InternalReason == InternalReason.Stage1) {
+            if (ra.InternalReason == InternalReason.Stage1 || ra.InternalReason == InternalReason.Prof) {
                 evt.DateTill = evt.Services.Max(s => s.DateTill);
 
                 // For DD1 - start of the recourse is an antropometry
@@ -628,9 +641,10 @@ namespace invox.Data.Relax {
             } else if (section == Model.OrderSection.D3) {
                 // 20190430 - D3 section: disp supervision is explicit
                 evt.DispensarySupervision = ss.Max(s => s.DispensarySupervision);
+                // Диагнозы на R ФОМС считает подлежащими Д-учету
                 if (evt.DispensarySupervision < Model.DispensarySupervision.Observed
                     || evt.DispensarySupervision > Model.DispensarySupervision.NotSubject) {
-                        if ("ZRY".Contains(evt.MainDiagnosis.First())) {
+                        if ("ZY".Contains(evt.MainDiagnosis.First())) {
                             evt.DispensarySupervision = Model.DispensarySupervision.NotSubject;
                         } else {
                             if (evt.FirstIdentified)
@@ -705,12 +719,14 @@ namespace invox.Data.Relax {
 
         public int GetPeopleCount(Model.OrderSection section, Model.ProphSubsection subsection) {
             string sql = SectionizeQuery(Queries.SELECT_PEOPLE_COUNT, section, subsection);
+            sql = RecoursizeQuery(sql);
             object result = ExecuteScalar(connectionMain, LocalizeQuery(sql));
             return result != null && result != DBNull.Value ? (int)(decimal)result : 0;
         }
 
         public IEnumerable<Model.Person> LoadPeople(Model.OrderSection section, Model.ProphSubsection subsection) {
             string sql = SectionizeQuery(Queries.SELECT_PEOPLE, section, subsection);
+            sql = RecoursizeQuery(sql);
             return aPerson.Load(connectionMain, LocalizeQuery(sql));
         }
 

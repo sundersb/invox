@@ -398,11 +398,7 @@ namespace invox.Data.Relax {
 
                 case 5: return "29";
                 case 8: return "28";
-                case 9:
-                    if (service / 1000 == 27)
-                        return "29";
-                    else
-                        return "30";
+                case 9: return "30";
                 default: return string.Empty;
             }
         }
@@ -463,6 +459,7 @@ namespace invox.Data.Relax {
                     case 28:
                         return Relax.InternalReason.Stage2;
                 }
+                // TODO: Теперь может быть и Prof. Отличить только по заключению терапевта
                 return Relax.InternalReason.Stage1;
 
             default:

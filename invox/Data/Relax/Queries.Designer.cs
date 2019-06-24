@@ -238,7 +238,7 @@ namespace invox.Data.Relax {
         /// <summary>
         ///   Ищет локализованную строку, похожую на select count(distinct SN_POL)
         /// from {period}S{lpu} S
-        /// where {section}.
+        /// where ({section}) and ({recsvc}).
         /// </summary>
         internal static string SELECT_PEOPLE_COUNT {
             get {

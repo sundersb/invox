@@ -253,6 +253,7 @@ namespace invox.Model {
             xml.WriteIfValid("LPU_1", Unit);
 #if FOMS
             xml.WriteIfValid("PODR", rec.Department);
+            // TODO: "20190611 Приказ 124н Диспансеризация и Профосмотры" - профиль каждой услуги отдельно???
             xml.Writer.WriteElementString("PROFIL", rec.Profile);
             xml.WriteBool("DET", Child);
 #endif

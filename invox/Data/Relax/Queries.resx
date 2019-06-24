@@ -238,13 +238,13 @@ select
  from {period}P{lpu} P
   join {period}S{lpu} S on S.SN_POL = P.SN_POL
   left outer join {period}PAT PP on PP.SN_POL = P.SN_POL
- where {section}
+ where ({section}) and ({recsvc})
  order by 1</value>
   </data>
   <data name="SELECT_PEOPLE_COUNT" xml:space="preserve">
     <value>select count(distinct SN_POL)
  from {period}S{lpu} S
- where {section}</value>
+ where ({section}) and ({recsvc})</value>
     <comment>К-во пациентов</comment>
   </data>
   <data name="SELECT_RECOURSES" xml:space="preserve">

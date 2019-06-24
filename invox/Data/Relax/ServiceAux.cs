@@ -54,7 +54,7 @@ namespace invox.Data.Relax {
         /// <summary>
         /// Код услуги, начинающей 1 этап диспансеризации
         /// </summary>
-        const int DD_ANTROPOMETRY_CODE = 24001;
+        const int DD_ANTROPOMETRY_CODE = 24101;
         
         /// <summary>
         /// Коды DIAGNOZ.INSTAC, соответствующие поступлению самотеком 
