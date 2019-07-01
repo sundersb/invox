@@ -10,6 +10,10 @@
   <item slusl="2" bolend="17" in="2-17" out="204" title="Ухудшение"/>
   <item slusl="2" bolend="8" in="2-8" out="201" title="Выздоровление"/>
   <item slusl="2" bolend="9" in="2-9" out="202" title="Улучшение"/>
+  
+  <!-- S.IG кажется всегда пустая. Но исход госпитализации не должен быть 306 -->
+  <item slusl="2" bolend="" in="2-" out="202" title="Улучшение"/>
+  
   <item slusl="2" bolend="11" in="2-11" out="203" title="Без перемен"/>
   <item slusl="2" bolend="12" in="2-12" out="204" title="Ухудшение"/>
   <item slusl="3" bolend="8" in="3-8" out="301" title="Выздоровление"/>
