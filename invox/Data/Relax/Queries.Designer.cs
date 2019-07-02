@@ -114,7 +114,7 @@ namespace invox.Data.Relax {
         ///  MSO.OKATO MSO_OKATO
         /// from {period}S{lpu} S
         ///  join {period}P{lpu} P on P.SN_POL = S.SN_POL
-        ///  join BASE/COMMON/SLMSO MSO on MSO.CODE = P.Q
+        ///  join BASE/COMMON/SLMSO MSO on MSO.CODE = upper(P.Q)
         /// where ({section})
         ///  and ({recsvc}).
         /// </summary>
