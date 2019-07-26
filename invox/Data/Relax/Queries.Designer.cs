@@ -206,6 +206,15 @@ namespace invox.Data.Relax {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на select S.KSG from {period}S{lpu} S where S.RECID = ?.
+        /// </summary>
+        internal static string SELECT_ONKO_TREAT {
+            get {
+                return ResourceManager.GetString("SELECT_ONKO_TREAT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на select distinct
         ///  P.RECID,
         ///  cpconvert(866, 1251, P.FAM) FAM,

@@ -99,6 +99,7 @@ namespace invox.Data.Relax {
         OleDbCommand selectConcomDiseases;
         OleDbCommand selectDispDirections;
         OleDbCommand selectOnkologyDirections;
+        OleDbCommand selectOnkologyTreat;
 
         AdapterStrings aStrings;
         AdapterPerson aPerson;
@@ -166,6 +167,10 @@ namespace invox.Data.Relax {
             selectOnkologyDirections = connectionAlt.CreateCommand();
             selectOnkologyDirections.CommandText = LocalizeQuery(Queries.SELECT_ONCO_DIRECTIONS);
             AddStringParameters(selectOnkologyDirections, PARAMETER_EVENT_RECID);
+
+            selectOnkologyTreat = connectionAlt.CreateCommand();
+            selectOnkologyTreat.CommandText = LocalizeQuery(Queries.SELECT_ONKO_TREAT);
+            AddStringParameters(selectOnkologyTreat, PARAMETER_EVENT_RECID);
         }
 
         public bool Init() {
@@ -385,15 +390,18 @@ namespace invox.Data.Relax {
 
 
         public IEnumerable<Model.OnkologyDiagnosticType> LoadOnkologicalDiagnosticTypes() {
-            throw new NotImplementedException();
+            yield break;
+            //throw new NotImplementedException();
         }
 
         public IEnumerable<Model.OnkologyRefusal> LoadOnkologicalRefusal() {
-            throw new NotImplementedException();
+            yield break;
+            //throw new NotImplementedException();
         }
 
         public IEnumerable<Model.ComplexityQuotient> LoadComplexityQuotients() {
-            throw new NotImplementedException();
+            yield break;
+            //throw new NotImplementedException();
         }
 
         public IEnumerable<string> LoadComplicationDiagnoses() {
@@ -410,7 +418,17 @@ namespace invox.Data.Relax {
         }
 
         public Model.OnkologyTreat GetOnkologyTreat(Model.Recourse rec, Model.Event evt) {
-            throw new NotImplementedException();
+            string id = string.Format("{0,6}", evt.Identity);
+            selectOnkologyTreat.Parameters[0].Value = id;
+
+            Model.OnkologyTreat result = null;
+
+            ExecuteReader(selectOnkologyTreat, r => {
+                string mes1 = aStrings.Read(r, 0);
+                result = new Model.OnkologyTreat(mes1);
+            });
+
+            return result;
         }
 
         public IEnumerable<Model.Sanction> LoadSanctions(Model.InvoiceRecord irec, Model.Recourse rec) {
@@ -429,11 +447,13 @@ namespace invox.Data.Relax {
         }
 
         public IEnumerable<Model.OncologyService> LoadOncologyServices() {
-            throw new NotImplementedException();
+            yield break;
+            //throw new NotImplementedException();
         }
 
         public IEnumerable<Model.OncologyDrug> LoadOncologyDrugs() {
-            throw new NotImplementedException();
+            yield break;
+            //throw new NotImplementedException();
         }
 
         /// <summary>

@@ -214,6 +214,9 @@ select
   <data name="SELECT_ONCO_DIRECTIONS" xml:space="preserve">
     <value>select S.BLOPEN DIRECTION_DATE, S.TR DIRECTION from {period}S{lpu} S where S.RECID = ?</value>
   </data>
+  <data name="SELECT_ONKO_TREAT" xml:space="preserve">
+    <value>select S.KSG from {period}S{lpu} S where S.RECID = ?</value>
+  </data>
   <data name="SELECT_PEOPLE" xml:space="preserve">
     <value>select distinct
   P.RECID,

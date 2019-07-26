@@ -324,7 +324,8 @@ namespace invox.Data.Relax {
             //result.ClinicalGroup;
 
             // Hack to avoid oncology treatment services in polyclinic
-            result.Rehabilitation = Rehabilitation || (section == Model.OrderSection.D4 && !rec.SuspectOncology);
+            //result.Rehabilitation = Rehabilitation || (section == Model.OrderSection.D4 && !rec.SuspectOncology);
+            result.Rehabilitation = Rehabilitation && !rec.SuspectOncology;
 
             result.Quantity = Quantity;
             result.SpecialityCode = SpecialityCode;
