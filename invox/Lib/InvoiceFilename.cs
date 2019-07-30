@@ -115,7 +115,7 @@ namespace invox.Lib {
             sb.Append(month.ToString("D2"));
 
             // Packet
-            sb.Append(packetNumber % 10);
+            sb.Append((packetNumber % 100).ToString("D2"));
 
             string bulk = sb.ToString();
             string invoice = null;
@@ -174,7 +174,7 @@ namespace invox.Lib {
             sb.Append('_');
             sb.Append(year % 100);
             sb.Append(month.ToString("D2"));
-            sb.Append(packetNumber % 10);
+            sb.Append((packetNumber % 100).ToString("D2"));
 
             string bulk = sb.ToString();
             string invoice = null;

@@ -516,7 +516,7 @@ namespace invox.Data.Relax {
             List<Model.Event> result = new List<Model.Event>();
             Model.Event evt = ra.ToEvent(rec, section);
             result.Add(evt);
-
+            
             // Load auxilliary service records and service models
             List<ServiceAux> ss = LoadServices(ra, evt).Distinct(new ServiceComparer()).OrderBy(s => s.Date).ToList();
 
