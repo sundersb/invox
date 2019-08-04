@@ -2,8 +2,8 @@
 <packet>
   <zglv>
     <type>OnkStad</type>
-    <version>2.1</version>
-    <date>12.09.2018</date>
+    <version>2.5</version>
+    <date>29.12.2018</date>
   </zglv>
   <zap>
     <ID_St>1</ID_St>
@@ -290,42 +290,42 @@
     <DS_St>C22</DS_St>
     <KOD_St>I</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_St>42</ID_St>
     <DS_St>C22</DS_St>
     <KOD_St>II</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_St>43</ID_St>
     <DS_St>C22</DS_St>
     <KOD_St>IIIA</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_St>44</ID_St>
     <DS_St>C22</DS_St>
     <KOD_St>IIIB</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_St>45</ID_St>
     <DS_St>C22</DS_St>
     <KOD_St>IVA</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_St>46</ID_St>
     <DS_St>C22</DS_St>
     <KOD_St>IVB</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_St>47</ID_St>
@@ -445,6 +445,41 @@
     <KOD_St>IV</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>64</ID_St>
+    <DS_St>C44</DS_St>
+    <KOD_St>0</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_St>65</ID_St>
+    <DS_St>C44</DS_St>
+    <KOD_St>I</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_St>66</ID_St>
+    <DS_St>C44</DS_St>
+    <KOD_St>II</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_St>67</ID_St>
+    <DS_St>C44</DS_St>
+    <KOD_St>III</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_St>68</ID_St>
+    <DS_St>C44</DS_St>
+    <KOD_St>IV</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_St>69</ID_St>
@@ -652,7 +687,7 @@
   <zap>
     <ID_St>98</ID_St>
     <DS_St>C67</DS_St>
-    <KOD_St>0A</KOD_St>
+    <KOD_St>0a</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>
@@ -976,7 +1011,7 @@
     <DS_St>C22</DS_St>
     <KOD_St>IIIC</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_St>145</ID_St>
@@ -1276,315 +1311,315 @@
     <ID_St>187</ID_St>
     <DS_St>C44.0</DS_St>
     <KOD_St>0</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>188</ID_St>
     <DS_St>C44.0</DS_St>
     <KOD_St>I</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>189</ID_St>
     <DS_St>C44.0</DS_St>
     <KOD_St>II</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>190</ID_St>
     <DS_St>C44.0</DS_St>
     <KOD_St>III</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>191</ID_St>
     <DS_St>C44.0</DS_St>
     <KOD_St>IV</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>192</ID_St>
     <DS_St>C44.2</DS_St>
     <KOD_St>0</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>193</ID_St>
     <DS_St>C44.2</DS_St>
     <KOD_St>I</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>194</ID_St>
     <DS_St>C44.2</DS_St>
     <KOD_St>II</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>195</ID_St>
     <DS_St>C44.2</DS_St>
     <KOD_St>III</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>196</ID_St>
     <DS_St>C44.2</DS_St>
     <KOD_St>IV</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>197</ID_St>
     <DS_St>C44.3</DS_St>
     <KOD_St>0</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>198</ID_St>
     <DS_St>C44.3</DS_St>
     <KOD_St>I</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>199</ID_St>
     <DS_St>C44.3</DS_St>
     <KOD_St>II</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>200</ID_St>
     <DS_St>C44.3</DS_St>
     <KOD_St>III</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>201</ID_St>
     <DS_St>C44.3</DS_St>
     <KOD_St>IV</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>202</ID_St>
     <DS_St>C44.4</DS_St>
     <KOD_St>0</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>203</ID_St>
     <DS_St>C44.4</DS_St>
     <KOD_St>I</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>204</ID_St>
     <DS_St>C44.4</DS_St>
     <KOD_St>II</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>205</ID_St>
     <DS_St>C44.4</DS_St>
     <KOD_St>III</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>206</ID_St>
     <DS_St>C44.4</DS_St>
     <KOD_St>IV</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>207</ID_St>
     <DS_St>C44.5</DS_St>
     <KOD_St>0</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>208</ID_St>
     <DS_St>C44.5</DS_St>
     <KOD_St>I</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>209</ID_St>
     <DS_St>C44.5</DS_St>
     <KOD_St>II</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>210</ID_St>
     <DS_St>C44.5</DS_St>
     <KOD_St>III</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>211</ID_St>
     <DS_St>C44.5</DS_St>
     <KOD_St>IV</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>212</ID_St>
     <DS_St>C44.6</DS_St>
     <KOD_St>0</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>213</ID_St>
     <DS_St>C44.6</DS_St>
     <KOD_St>I</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>214</ID_St>
     <DS_St>C44.6</DS_St>
     <KOD_St>II</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>215</ID_St>
     <DS_St>C44.6</DS_St>
     <KOD_St>III</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>216</ID_St>
     <DS_St>C44.6</DS_St>
     <KOD_St>IV</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>217</ID_St>
     <DS_St>C44.7</DS_St>
     <KOD_St>0</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>218</ID_St>
     <DS_St>C44.7</DS_St>
     <KOD_St>I</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>219</ID_St>
     <DS_St>C44.7</DS_St>
     <KOD_St>II</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>220</ID_St>
     <DS_St>C44.7</DS_St>
     <KOD_St>III</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>221</ID_St>
     <DS_St>C44.7</DS_St>
     <KOD_St>IV</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>222</ID_St>
     <DS_St>C44.8</DS_St>
     <KOD_St>0</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>223</ID_St>
     <DS_St>C44.8</DS_St>
     <KOD_St>I</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>224</ID_St>
     <DS_St>C44.8</DS_St>
     <KOD_St>II</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>225</ID_St>
     <DS_St>C44.8</DS_St>
     <KOD_St>III</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>226</ID_St>
     <DS_St>C44.8</DS_St>
     <KOD_St>IV</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>227</ID_St>
     <DS_St>C44.9</DS_St>
     <KOD_St>0</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>228</ID_St>
     <DS_St>C44.9</DS_St>
     <KOD_St>I</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>229</ID_St>
     <DS_St>C44.9</DS_St>
     <KOD_St>II</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>230</ID_St>
     <DS_St>C44.9</DS_St>
     <KOD_St>III</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_St>231</ID_St>
     <DS_St>C44.9</DS_St>
     <KOD_St>IV</KOD_St>
-    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1801,6 +1836,349 @@
     <ID_St>262</ID_St>
     <DS_St>C50</DS_St>
     <KOD_St>IV</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>263</ID_St>
+    <DS_St>C56</DS_St>
+    <KOD_St>IIC</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>264</ID_St>
+    <DS_St>C53</DS_St>
+    <KOD_St>IC</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>265</ID_St>
+    <DS_St>C69.3</DS_St>
+    <KOD_St>0</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>266</ID_St>
+    <DS_St>C69.3</DS_St>
+    <KOD_St>I</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>267</ID_St>
+    <DS_St>C69.3</DS_St>
+    <KOD_St>IIA</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>268</ID_St>
+    <DS_St>C69.3</DS_St>
+    <KOD_St>IIB</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>269</ID_St>
+    <DS_St>C69.3</DS_St>
+    <KOD_St>IIIA</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>270</ID_St>
+    <DS_St>C69.3</DS_St>
+    <KOD_St>IIIB</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>271</ID_St>
+    <DS_St>C69.3</DS_St>
+    <KOD_St>IIIC</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>272</ID_St>
+    <DS_St>C69.3</DS_St>
+    <KOD_St>IV</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>273</ID_St>
+    <DS_St>C69.2</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>274</ID_St>
+    <DS_St>C69.2</DS_St>
+    <KOD_St>0</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>275</ID_St>
+    <DS_St>C69.2</DS_St>
+    <KOD_St>IA</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>276</ID_St>
+    <DS_St>C69.2</DS_St>
+    <KOD_St>IB</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>277</ID_St>
+    <DS_St>C69.2</DS_St>
+    <KOD_St>IIA</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>278</ID_St>
+    <DS_St>C69.2</DS_St>
+    <KOD_St>IIB</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>279</ID_St>
+    <DS_St>C69.2</DS_St>
+    <KOD_St>IIC</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>280</ID_St>
+    <DS_St>C69.2</DS_St>
+    <KOD_St>IIIA</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>281</ID_St>
+    <DS_St>C69.2</DS_St>
+    <KOD_St>IIIB</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>282</ID_St>
+    <DS_St>C69.2</DS_St>
+    <KOD_St>IIIC</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>283</ID_St>
+    <DS_St>C69.2</DS_St>
+    <KOD_St>IV</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>284</ID_St>
+    <DS_St>C56</DS_St>
+    <KOD_St>IIIA</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>285</ID_St>
+    <DS_St>C56</DS_St>
+    <KOD_St>IV</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>286</ID_St>
+    <DS_St>C53</DS_St>
+    <KOD_St>IIA</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>20.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_St>287</ID_St>
+    <DS_St>C54</DS_St>
+    <KOD_St>IC</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>288</ID_St>
+    <DS_St>C54</DS_St>
+    <KOD_St>IIA</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>289</ID_St>
+    <DS_St>C54</DS_St>
+    <KOD_St>IIB</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>290</ID_St>
+    <DS_St>C80</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>291</ID_St>
+    <DS_St>C22.0</DS_St>
+    <KOD_St>I</KOD_St>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>292</ID_St>
+    <DS_St>C22.0</DS_St>
+    <KOD_St>II</KOD_St>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>293</ID_St>
+    <DS_St>C22.0</DS_St>
+    <KOD_St>IIIA</KOD_St>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>294</ID_St>
+    <DS_St>C22.0</DS_St>
+    <KOD_St>IIIB</KOD_St>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>295</ID_St>
+    <DS_St>C22.0</DS_St>
+    <KOD_St>IIIC</KOD_St>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>296</ID_St>
+    <DS_St>C22.0</DS_St>
+    <KOD_St>IVA</KOD_St>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>297</ID_St>
+    <DS_St>C22.0</DS_St>
+    <KOD_St>IVB</KOD_St>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>298</ID_St>
+    <DS_St>C64</DS_St>
+    <KOD_St>Нет</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>299</ID_St>
+    <DS_St>C16</DS_St>
+    <KOD_St>II</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>300</ID_St>
+    <DS_St>C15</DS_St>
+    <KOD_St>I</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>301</ID_St>
+    <DS_St>C15</DS_St>
+    <KOD_St>II</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>302</ID_St>
+    <DS_St>C18</DS_St>
+    <KOD_St>II</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>303</ID_St>
+    <DS_St>C18</DS_St>
+    <KOD_St>IV</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>304</ID_St>
+    <DS_St>C20</DS_St>
+    <KOD_St>II</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>305</ID_St>
+    <DS_St>C20</DS_St>
+    <KOD_St>IV</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>306</ID_St>
+    <DS_St>C18</DS_St>
+    <KOD_St>IVC</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>307</ID_St>
+    <DS_St>C18</DS_St>
+    <KOD_St>III</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>308</ID_St>
+    <DS_St>C53</DS_St>
+    <KOD_St>IA</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>309</ID_St>
+    <DS_St>C53</DS_St>
+    <KOD_St>IB</KOD_St>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>310</ID_St>
+    <DS_St>C53</DS_St>
+    <KOD_St>IIA</KOD_St>
+    <DATEBEG>21.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_St>311</ID_St>
+    <DS_St>C53</DS_St>
+    <KOD_St>IIIC</KOD_St>
     <DATEBEG>01.09.2018</DATEBEG>
     <DATEEND/>
   </zap>

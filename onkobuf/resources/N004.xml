@@ -2,8 +2,8 @@
 <packet>
   <zglv>
     <type>OnkN</type>
-    <version>3.0</version>
-    <date>12.09.2018</date>
+    <version>4.3</version>
+    <date>29.12.2018</date>
   </zglv>
   <zap>
     <ID_N>1</ID_N>
@@ -11,6 +11,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>1</ID_N>
+    <DS_N>C16</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -19,6 +27,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>2</ID_N>
+    <DS_N>C16</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -27,6 +43,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>От 1 до 2 пораженных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>3</ID_N>
+    <DS_N>C16</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -35,6 +59,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>От 3 до 6 пораженных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>4</ID_N>
+    <DS_N>C16</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -43,7 +75,7 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>7 и более пораженных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>6</ID_N>
@@ -51,6 +83,14 @@
     <KOD_N>N3a</KOD_N>
     <N_NAME>Метастазы в 7-15 регионарных ЛУ</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>6</ID_N>
+    <DS_N>C16</DS_N>
+    <KOD_N>N3a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -59,6 +99,14 @@
     <KOD_N>N3b</KOD_N>
     <N_NAME>Метастазы в 16 и более регионарных ЛУ</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>7</ID_N>
+    <DS_N>C16</DS_N>
+    <KOD_N>N3b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -67,6 +115,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>8</ID_N>
+    <DS_N>C56</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -75,6 +131,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>9</ID_N>
+    <DS_N>C56</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -83,6 +147,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастазы только в забрюшинных лимфатических узлах</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>10</ID_N>
+    <DS_N>C56</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -91,6 +163,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>11</ID_N>
+    <DS_N>C18</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -99,6 +179,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>12</ID_N>
+    <DS_N>C18</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -107,6 +195,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастазы в 1-3 (включительно) регионарных лимфатических узлах</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>13</ID_N>
+    <DS_N>C18</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -115,6 +211,14 @@
     <KOD_N>N1a</KOD_N>
     <N_NAME>Метастазы в 1 регионарном лимфатическом узле</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>14</ID_N>
+    <DS_N>C18</DS_N>
+    <KOD_N>N1a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -123,6 +227,14 @@
     <KOD_N>N1b</KOD_N>
     <N_NAME>Метастазы в 2-3 лимфатических узлах</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>15</ID_N>
+    <DS_N>C18</DS_N>
+    <KOD_N>N1b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -131,6 +243,14 @@
     <KOD_N>N1c</KOD_N>
     <N_NAME>Диссеминаты в брыжейке без поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>16</ID_N>
+    <DS_N>C18</DS_N>
+    <KOD_N>N1c</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -139,6 +259,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастазы в более чем 3-х регионарных лимфатических узлах</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>17</ID_N>
+    <DS_N>C18</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -147,6 +275,14 @@
     <KOD_N>N2a</KOD_N>
     <N_NAME>Поражено 4-6 лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>18</ID_N>
+    <DS_N>C18</DS_N>
+    <KOD_N>N2a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -155,6 +291,14 @@
     <KOD_N>N2b</KOD_N>
     <N_NAME>Поражено 7 и более лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>19</ID_N>
+    <DS_N>C18</DS_N>
+    <KOD_N>N2b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -163,6 +307,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>20</ID_N>
+    <DS_N>C19</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -171,6 +323,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>21</ID_N>
+    <DS_N>C19</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -179,7 +339,7 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастазы в 1-3 (включительно) регионарных лимфатических узлах</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>23</ID_N>
@@ -187,6 +347,14 @@
     <KOD_N>N1a</KOD_N>
     <N_NAME>Метастазы в 1 регионарном лимфатическом узле</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>23</ID_N>
+    <DS_N>C19</DS_N>
+    <KOD_N>N1a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -195,6 +363,14 @@
     <KOD_N>N1b</KOD_N>
     <N_NAME>Метастазы в 2-3 лимфатических узлах</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>24</ID_N>
+    <DS_N>C19</DS_N>
+    <KOD_N>N1b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -203,6 +379,14 @@
     <KOD_N>N1c</KOD_N>
     <N_NAME>Диссеминаты в брыжейке без поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>25</ID_N>
+    <DS_N>C19</DS_N>
+    <KOD_N>N1c</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -211,7 +395,7 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастазы в более чем 3-х регионарных лимфатических узлах</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>27</ID_N>
@@ -219,6 +403,14 @@
     <KOD_N>N2a</KOD_N>
     <N_NAME>Поражено 4-6 лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>27</ID_N>
+    <DS_N>C19</DS_N>
+    <KOD_N>N2a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -227,6 +419,14 @@
     <KOD_N>N2b</KOD_N>
     <N_NAME>Поражено 7 и более лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>28</ID_N>
+    <DS_N>C19</DS_N>
+    <KOD_N>N2b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -235,7 +435,7 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>31</ID_N>
@@ -243,7 +443,7 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>32</ID_N>
@@ -251,7 +451,7 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Имеется поражение регионарных лимфатических узлов метастазами</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>33</ID_N>
@@ -259,6 +459,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>33</ID_N>
+    <DS_N>C25</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -267,6 +475,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>34</ID_N>
+    <DS_N>C25</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -275,6 +491,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Имеется поражение регионарных лимфатических узлов метастазами</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>35</ID_N>
+    <DS_N>C25</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -283,6 +507,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>36</ID_N>
+    <DS_N>C43</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -291,6 +523,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>37</ID_N>
+    <DS_N>C43</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -299,7 +539,7 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастаз в 1 регионарном лимфатическом узле.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>39</ID_N>
@@ -307,6 +547,14 @@
     <KOD_N>N1a</KOD_N>
     <N_NAME>Микрометастазы в 1 регионарном лимфатическом узле (клинически, включая инструментальные методы диагностики и визуализации, не определяемые).</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>39</ID_N>
+    <DS_N>C43</DS_N>
+    <KOD_N>N1a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -315,6 +563,14 @@
     <KOD_N>N1b</KOD_N>
     <N_NAME>Макрометастазы в 1 регионарном лимфатическом узле (определяемые клинически, включая инструментальные методы диагностики и визуализации).</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>40</ID_N>
+    <DS_N>C43</DS_N>
+    <KOD_N>N1b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -323,7 +579,7 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастазы в 2-3 регионарных лимфатических узлах или только сателлитные или транзитные метастазы</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>42</ID_N>
@@ -331,6 +587,14 @@
     <KOD_N>N2a</KOD_N>
     <N_NAME>микрометастазы в 2-3 регионарных лимфатических узлах (клинически, включая инструментальные методы диагностики и визуализации, не определяемые).</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>42</ID_N>
+    <DS_N>C43</DS_N>
+    <KOD_N>N2a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -339,6 +603,14 @@
     <KOD_N>N2b</KOD_N>
     <N_NAME>макрометастазы в 2-3 регионарных лимфатических узлах (определяемые клинически, включая инструментальные методы диагностики и визуализации).</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>43</ID_N>
+    <DS_N>C43</DS_N>
+    <KOD_N>N2b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -347,6 +619,14 @@
     <KOD_N>N2c</KOD_N>
     <N_NAME>сателлитные или транзитные метастазы без метастазов в регионарных лимфатических узлах</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>44</ID_N>
+    <DS_N>C43</DS_N>
+    <KOD_N>N2c</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -355,7 +635,55 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>метастазы более чем в 3 регионарных лимфатических узлах, или конгломераты лимфатических узлов, или сателлитные/транзитные метастазы при наличии метастазов в регионарных лимфатических узлах.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>45</ID_N>
+    <DS_N>C43</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>46</ID_N>
+    <DS_N>C44</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>47</ID_N>
+    <DS_N>C44</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>48</ID_N>
+    <DS_N>C44</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>49</ID_N>
+    <DS_N>C44</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>50</ID_N>
+    <DS_N>C44</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>51</ID_N>
@@ -363,6 +691,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>51</ID_N>
+    <DS_N>C53</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -371,6 +707,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>52</ID_N>
+    <DS_N>C53</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -379,6 +723,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Имеется поражение регионарных лимфатических узлов метастазами</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>53</ID_N>
+    <DS_N>C53</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -387,6 +739,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>54</ID_N>
+    <DS_N>C54</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -395,6 +755,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастазы в регионарных лимфатических узлах (тазовых или поясничных)</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>55</ID_N>
+    <DS_N>C54</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -403,6 +771,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>56</ID_N>
+    <DS_N>C61</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -411,6 +787,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>57</ID_N>
+    <DS_N>C61</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -419,6 +803,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Имеется поражение регионарных лимфатических узлов метастазами</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>58</ID_N>
+    <DS_N>C61</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -427,6 +819,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>59</ID_N>
+    <DS_N>C64</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -435,6 +835,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>60</ID_N>
+    <DS_N>C64</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -443,6 +851,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>метастаз в одном лимфатическом узле.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>61</ID_N>
+    <DS_N>C64</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -451,6 +867,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастазы более чем в одном лимфатическом узле.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>62</ID_N>
+    <DS_N>C64</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -459,6 +883,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>63</ID_N>
+    <DS_N>C67</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -467,6 +899,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>64</ID_N>
+    <DS_N>C67</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -476,6 +916,14 @@
     <N_NAME>Метастаз в одном регионарном лимфатическом узле размером не более 2 см в
 наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>65</ID_N>
+    <DS_N>C67</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -484,6 +932,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастаз в одном регионарном лимфатическом узле размером более 2 см, но не более 5 см в наибольшем измерении, или множественные лимфатические узлы, ни один из которых не превышает 5 см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>66</ID_N>
+    <DS_N>C67</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -492,6 +948,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>Метастазы в регионарных лимфатических узлах размером более 5 см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>67</ID_N>
+    <DS_N>C67</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -500,6 +964,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>68</ID_N>
+    <DS_N>C73</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -508,6 +980,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>69</ID_N>
+    <DS_N>C73</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -516,7 +996,7 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Имеется поражение регионарных лимфатических узлов метастазами</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>71</ID_N>
@@ -524,6 +1004,14 @@
     <KOD_N>N1a</KOD_N>
     <N_NAME>Метастазы в лимфатических узлах VI уровня (претрахеальные и паратрахеальные, преларенгиальные)</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>71</ID_N>
+    <DS_N>C73</DS_N>
+    <KOD_N>N1a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -532,6 +1020,14 @@
     <KOD_N>N1b</KOD_N>
     <N_NAME>Метастазы в шейные лимфатические узлы на одной стороне, или с обеих сторон, или на противоположной стороне, верхние/передние медиастинальные</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>72</ID_N>
+    <DS_N>C73</DS_N>
+    <KOD_N>N1b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -540,6 +1036,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>73</ID_N>
+    <DS_N>C20</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -548,6 +1052,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>74</ID_N>
+    <DS_N>C20</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -556,6 +1068,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастазы в 1-3 (включительно) регионарных лимфатических узлах</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>75</ID_N>
+    <DS_N>C20</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -564,6 +1084,14 @@
     <KOD_N>N1a</KOD_N>
     <N_NAME>Метастазы в 1 регионарном лимфатическом узле</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>76</ID_N>
+    <DS_N>C20</DS_N>
+    <KOD_N>N1a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -572,6 +1100,14 @@
     <KOD_N>N1b</KOD_N>
     <N_NAME>Метастазы в 2-3 лимфатических узлах</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>77</ID_N>
+    <DS_N>C20</DS_N>
+    <KOD_N>N1b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -580,6 +1116,14 @@
     <KOD_N>N1c</KOD_N>
     <N_NAME>Диссеминаты в брыжейке без поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>78</ID_N>
+    <DS_N>C20</DS_N>
+    <KOD_N>N1c</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -588,7 +1132,7 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастазы в более чем 3-х регионарных лимфатических узлах</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>80</ID_N>
@@ -596,6 +1140,14 @@
     <KOD_N>N2a</KOD_N>
     <N_NAME>Поражено 4-6 лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>80</ID_N>
+    <DS_N>C20</DS_N>
+    <KOD_N>N2a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -604,6 +1156,14 @@
     <KOD_N>N2b</KOD_N>
     <N_NAME>Поражено 7 и более лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>81</ID_N>
+    <DS_N>C20</DS_N>
+    <KOD_N>N2b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -612,6 +1172,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>82</ID_N>
+    <DS_N>C15</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -620,6 +1188,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Поражение 1-2 регионарных лимфоузлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>83</ID_N>
+    <DS_N>C15</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -628,6 +1204,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Поражение 3-6 регионарных лимфоузлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>84</ID_N>
+    <DS_N>C15</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -636,6 +1220,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>Поражение 7 и свыше регионарных лимфоузлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>85</ID_N>
+    <DS_N>C15</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -644,6 +1236,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>86</ID_N>
+    <DS_N>C34</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -652,6 +1252,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>87</ID_N>
+    <DS_N>C34</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -660,6 +1268,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Имеется поражение регионарных лимфатических узлов метастазами</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>88</ID_N>
+    <DS_N>C34</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -668,6 +1284,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастатическое поражение ипсилатеральных средостенных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>89</ID_N>
+    <DS_N>C34</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -676,6 +1300,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>Поражение  лимфатических узлов средостения либо корня легкого на противоположной стороне, прескаленных или надключичных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>90</ID_N>
+    <DS_N>C34</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -684,6 +1316,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>91</ID_N>
+    <DS_N>C32</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -692,6 +1332,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>92</ID_N>
+    <DS_N>C32</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -700,6 +1348,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастазы в одном лимфатическом узле на стороне поражения до 3 см. в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>93</ID_N>
+    <DS_N>C32</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -708,7 +1364,7 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастазы в одном лимфатическом узле на стороне поражения до 6 см. в наибольшем измерении, или метастазы в нескольких лимфатических узлах на стороне поражения до 6  см в наибольшем измерении, или метастазы в лимфатических узлах шеи с обеих сторон до 6 см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>95</ID_N>
@@ -716,6 +1372,14 @@
     <KOD_N>N2a</KOD_N>
     <N_NAME>Метастазы в одном лимфатическом узле на стороне поражения до 6 см. в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>95</ID_N>
+    <DS_N>C32</DS_N>
+    <KOD_N>N2a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -724,6 +1388,14 @@
     <KOD_N>N2b</KOD_N>
     <N_NAME>Метастазы в нескольких лимфатических узлах на стороне поражения до 6см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>96</ID_N>
+    <DS_N>C32</DS_N>
+    <KOD_N>N2b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -732,6 +1404,14 @@
     <KOD_N>N2c</KOD_N>
     <N_NAME>Метастазы в лимфатических узлах с обеих сторон или с противоположной стороны до 6 см. в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>97</ID_N>
+    <DS_N>C32</DS_N>
+    <KOD_N>N2c</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -740,6 +1420,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>Метастазы в лимфатических узлах более 6 см. в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>98</ID_N>
+    <DS_N>C32</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -956,6 +1644,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>125</ID_N>
+    <DS_N>C44.0</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -964,6 +1660,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>126</ID_N>
+    <DS_N>C44.0</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -972,6 +1676,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастаз в 1 регионарном лимфатическом узле размерами 3 см или менее в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>127</ID_N>
+    <DS_N>C44.0</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -980,6 +1692,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастаз 1 регионарном лимфатическом узле размерами более 3 см, не более 6 см в наибольшем измерении, или множественные метастазы в регионарных лимфатических узлах не более 6 см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>128</ID_N>
+    <DS_N>C44.0</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -988,6 +1708,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>метастаз в 1 или более регионарных лимфатических узлах размерами более 6 см в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>129</ID_N>
+    <DS_N>C44.0</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -996,6 +1724,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>130</ID_N>
+    <DS_N>C44.2</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1004,6 +1740,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>131</ID_N>
+    <DS_N>C44.2</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1012,6 +1756,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастаз в 1 регионарном лимфатическом узле размерами 3 см или менее в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>132</ID_N>
+    <DS_N>C44.2</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1020,6 +1772,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастаз 1 регионарном лимфатическом узле размерами более 3 см, не более 6 см в наибольшем измерении, или множественные метастазы в регионарных лимфатических узлах не более 6 см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>133</ID_N>
+    <DS_N>C44.2</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1028,6 +1788,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>метастаз в 1 или более регионарных лимфатических узлах размерами более 6 см в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>134</ID_N>
+    <DS_N>C44.2</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1036,6 +1804,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>135</ID_N>
+    <DS_N>C44.3</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1044,6 +1820,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>136</ID_N>
+    <DS_N>C44.3</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1052,6 +1836,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастаз в 1 регионарном лимфатическом узле размерами 3 см или менее в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>137</ID_N>
+    <DS_N>C44.3</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1060,6 +1852,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастаз 1 регионарном лимфатическом узле размерами более 3 см, не более 6 см в наибольшем измерении, или множественные метастазы в регионарных лимфатических узлах не более 6 см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>138</ID_N>
+    <DS_N>C44.3</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1068,6 +1868,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>метастаз в 1 или более регионарных лимфатических узлах размерами более 6 см в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>139</ID_N>
+    <DS_N>C44.3</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1076,6 +1884,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>140</ID_N>
+    <DS_N>C44.4</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1084,6 +1900,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>141</ID_N>
+    <DS_N>C44.4</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1092,6 +1916,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастаз в 1 регионарном лимфатическом узле размерами 3 см или менее в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>142</ID_N>
+    <DS_N>C44.4</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1100,6 +1932,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастаз 1 регионарном лимфатическом узле размерами более 3 см, не более 6 см в наибольшем измерении, или множественные метастазы в регионарных лимфатических узлах не более 6 см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>143</ID_N>
+    <DS_N>C44.4</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1108,6 +1948,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>метастаз в 1 или более регионарных лимфатических узлах размерами более 6 см в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>144</ID_N>
+    <DS_N>C44.4</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1116,6 +1964,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>145</ID_N>
+    <DS_N>C44.5</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1124,6 +1980,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>146</ID_N>
+    <DS_N>C44.5</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1132,6 +1996,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастаз в 1 регионарном лимфатическом узле размерами 3 см или менее в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>147</ID_N>
+    <DS_N>C44.5</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1140,6 +2012,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастаз 1 регионарном лимфатическом узле размерами более 3 см, не более 6 см в наибольшем измерении, или множественные метастазы в регионарных лимфатических узлах не более 6 см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>148</ID_N>
+    <DS_N>C44.5</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1148,6 +2028,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>метастаз в 1 или более регионарных лимфатических узлах размерами более 6 см в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>149</ID_N>
+    <DS_N>C44.5</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1156,6 +2044,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>150</ID_N>
+    <DS_N>C44.6</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1164,6 +2060,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>151</ID_N>
+    <DS_N>C44.6</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1172,6 +2076,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастаз в 1 регионарном лимфатическом узле размерами 3 см или менее в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>152</ID_N>
+    <DS_N>C44.6</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1180,6 +2092,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастаз 1 регионарном лимфатическом узле размерами более 3 см, не более 6 см в наибольшем измерении, или множественные метастазы в регионарных лимфатических узлах не более 6 см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>153</ID_N>
+    <DS_N>C44.6</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1188,6 +2108,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>метастаз в 1 или более регионарных лимфатических узлах размерами более 6 см в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>154</ID_N>
+    <DS_N>C44.6</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1196,6 +2124,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>155</ID_N>
+    <DS_N>C44.7</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1204,6 +2140,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>156</ID_N>
+    <DS_N>C44.7</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1212,6 +2156,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастаз в 1 регионарном лимфатическом узле размерами 3 см или менее в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>157</ID_N>
+    <DS_N>C44.7</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1220,6 +2172,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастаз 1 регионарном лимфатическом узле размерами более 3 см, не более 6 см в наибольшем измерении, или множественные метастазы в регионарных лимфатических узлах не более 6 см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>158</ID_N>
+    <DS_N>C44.7</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1228,6 +2188,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>метастаз в 1 или более регионарных лимфатических узлах размерами более 6 см в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>159</ID_N>
+    <DS_N>C44.7</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1236,6 +2204,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>160</ID_N>
+    <DS_N>C44.8</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1244,6 +2220,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>161</ID_N>
+    <DS_N>C44.8</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1252,6 +2236,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастаз в 1 регионарном лимфатическом узле размерами 3 см или менее в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>162</ID_N>
+    <DS_N>C44.8</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1260,6 +2252,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастаз 1 регионарном лимфатическом узле размерами более 3 см, не более 6 см в наибольшем измерении, или множественные метастазы в регионарных лимфатических узлах не более 6 см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>163</ID_N>
+    <DS_N>C44.8</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1268,6 +2268,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>метастаз в 1 или более регионарных лимфатических узлах размерами более 6 см в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>164</ID_N>
+    <DS_N>C44.8</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1276,6 +2284,14 @@
     <KOD_N>Nx</KOD_N>
     <N_NAME>Недостаточно данных для оценки регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>165</ID_N>
+    <DS_N>C44.9</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1284,6 +2300,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>166</ID_N>
+    <DS_N>C44.9</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1292,6 +2316,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастаз в 1 регионарном лимфатическом узле размерами 3 см или менее в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>167</ID_N>
+    <DS_N>C44.9</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1300,6 +2332,14 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастаз 1 регионарном лимфатическом узле размерами более 3 см, не более 6 см в наибольшем измерении, или множественные метастазы в регионарных лимфатических узлах не более 6 см в наибольшем измерении</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>168</ID_N>
+    <DS_N>C44.9</DS_N>
+    <KOD_N>N2</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1308,6 +2348,14 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>метастаз в 1 или более регионарных лимфатических узлах размерами более 6 см в наибольшем измерении.</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>169</ID_N>
+    <DS_N>C44.9</DS_N>
+    <KOD_N>N3</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1316,6 +2364,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>170</ID_N>
+    <DS_N>D04.0</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1324,6 +2380,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>171</ID_N>
+    <DS_N>D04.2</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1332,6 +2396,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>172</ID_N>
+    <DS_N>D04.3</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1340,6 +2412,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>173</ID_N>
+    <DS_N>D04.4</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1348,6 +2428,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>174</ID_N>
+    <DS_N>D04.5</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1356,6 +2444,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>175</ID_N>
+    <DS_N>D04.6</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1364,6 +2460,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>176</ID_N>
+    <DS_N>D04.7</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1372,6 +2476,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>177</ID_N>
+    <DS_N>D04.8</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1380,6 +2492,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>178</ID_N>
+    <DS_N>D04.9</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1388,6 +2508,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>179</ID_N>
+    <DS_N>D00.1</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1396,6 +2524,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>180</ID_N>
+    <DS_N>D00.2</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1404,6 +2540,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>181</ID_N>
+    <DS_N>D01.7</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1412,6 +2556,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>182</ID_N>
+    <DS_N>D02.2</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1420,6 +2572,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>183</ID_N>
+    <DS_N>D06</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1428,6 +2588,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>184</ID_N>
+    <DS_N>D07.0</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1436,6 +2604,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>185</ID_N>
+    <DS_N>D09.0</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1444,6 +2620,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>186</ID_N>
+    <DS_N>D01.2</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1452,6 +2636,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>187</ID_N>
+    <DS_N>D01.0</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1460,6 +2652,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>188</ID_N>
+    <DS_N>D01.1</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1468,6 +2668,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>189</ID_N>
+    <DS_N>D03</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1476,6 +2684,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков метастатического поражения регионарных лимфатических узлов</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>190</ID_N>
+    <DS_N>D05</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1484,6 +2700,14 @@
     <KOD_N>N0</KOD_N>
     <N_NAME>Нет признаков поражения метастазами регионарных лимфатических узлов;</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>191</ID_N>
+    <DS_N>C50</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1492,6 +2716,14 @@
     <KOD_N>N1</KOD_N>
     <N_NAME>Метастазы в смещаемых подмышечных лимфатических узлах (на стороне поражения);</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>192</ID_N>
+    <DS_N>C50</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1500,7 +2732,7 @@
     <KOD_N>N2</KOD_N>
     <N_NAME>Метастазы в подмышечных лимфатических узлах на стороне поражения, спаянные между собой или фиксированные, либо клинически определяемые метастазы во внутригрудные лимфатические узлы при отсутствии клинически явного поражения подмышечных лимфатических узлов;</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_N>194</ID_N>
@@ -1508,6 +2740,110 @@
     <KOD_N>N3</KOD_N>
     <N_NAME>Метастазы в подключичных лимфатических узлах на стороне поражения, либо клинически определяемые метастазы во внутригрудных лимфатических узлах при наличии клинически явного поражения подмышечных лимфатических узлов, либо метастазы в надключичные лимфатические узлы на стороне поражения (независимо от состояния подмышечных и внутригрудных лимфатических узлов);</N_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_N>195</ID_N>
+    <DS_N>C50</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>196</ID_N>
+    <DS_N>C54</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>197</ID_N>
+    <DS_N>C15</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>198</ID_N>
+    <DS_N>C80</DS_N>
+    <KOD_N>Нет</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>199</ID_N>
+    <DS_N>C22.0</DS_N>
+    <KOD_N>Nx</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>200</ID_N>
+    <DS_N>C22.0</DS_N>
+    <KOD_N>N0</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>201</ID_N>
+    <DS_N>C22.0</DS_N>
+    <KOD_N>N1</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>202</ID_N>
+    <DS_N>C64</DS_N>
+    <KOD_N>Нет</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>203</ID_N>
+    <DS_N>C50</DS_N>
+    <KOD_N>N2a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>204</ID_N>
+    <DS_N>C50</DS_N>
+    <KOD_N>N2b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>205</ID_N>
+    <DS_N>C50</DS_N>
+    <KOD_N>N3a</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>206</ID_N>
+    <DS_N>C50</DS_N>
+    <KOD_N>N3b</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_N>207</ID_N>
+    <DS_N>C50</DS_N>
+    <KOD_N>N3c</KOD_N>
+    <N_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
     <DATEEND/>
   </zap>
 </packet>

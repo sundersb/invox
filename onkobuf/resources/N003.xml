@@ -2,8 +2,8 @@
 <packet>
   <zglv>
     <type>OnkT</type>
-    <version>2.1</version>
-    <date>12.09.2018</date>
+    <version>2.5</version>
+    <date>29.12.2018</date>
   </zglv>
   <zap>
     <ID_T>1</ID_T>
@@ -11,6 +11,14 @@
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>1</ID_T>
+    <DS_T>C16</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -19,6 +27,14 @@
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>2</ID_T>
+    <DS_T>C16</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -27,6 +43,14 @@
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома insitu (опухоль в пределах слизистой без инвазии собственной пластинки). Тяжелая дисплазия</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>3</ID_T>
+    <DS_T>C16</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -35,6 +59,14 @@
     <KOD_T>T1</KOD_T>
     <T_NAME>Собственная пластинка или мышечная пластинка слизистой оболочки, подслизистый слой</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>4</ID_T>
+    <DS_T>C16</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -43,6 +75,14 @@
     <KOD_T>T1a</KOD_T>
     <T_NAME>Собственная пластинка или мышечная пластинка слизистой оболочки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>5</ID_T>
+    <DS_T>C16</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -51,6 +91,14 @@
     <KOD_T>T1b</KOD_T>
     <T_NAME>Подслизистый слой</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>6</ID_T>
+    <DS_T>C16</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -59,6 +107,14 @@
     <KOD_T>T2</KOD_T>
     <T_NAME>Мышечный слой</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>7</ID_T>
+    <DS_T>C16</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -67,6 +123,14 @@
     <KOD_T>T3</KOD_T>
     <T_NAME>Субсероза без инвазии в висцеральную брюшину или прилежащие структуры; также к опухолям этой группы относятся опухоли с инвазией желудочно-ободочной и желудочно-печеночной связки, большого и малого сальников без поражения висцеральной брюшины</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>8</ID_T>
+    <DS_T>C16</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -75,6 +139,14 @@
     <KOD_T>T4</KOD_T>
     <T_NAME>Серозная оболочка (висцеральная брюшина) или соседние структуры</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>9</ID_T>
+    <DS_T>C16</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -83,6 +155,14 @@
     <KOD_T>T4a</KOD_T>
     <T_NAME>Серозная оболочка (висцеральная брюшина)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>10</ID_T>
+    <DS_T>C16</DS_T>
+    <KOD_T>T4a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -91,6 +171,14 @@
     <KOD_T>T4b</KOD_T>
     <T_NAME>Соседние структуры, такие как селезенка, поперечная ободочная кишка, печень, диафрагма, поджелудочная железа, передняя брюшная стенка, надпочечник, почка</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>11</ID_T>
+    <DS_T>C16</DS_T>
+    <KOD_T>T4b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -99,6 +187,14 @@
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>12</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -107,6 +203,14 @@
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>13</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -115,7 +219,7 @@
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль ограничена яичниками</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>15</ID_T>
@@ -123,6 +227,14 @@
     <KOD_T>T1a</KOD_T>
     <T_NAME>Опухоль ограничена одним яичником, капсула не повреждена, нет опухолевых разрастаний на поверхности яичника, нет злокачественных клеток в асцитической жидкости или смывах из брюшной полости</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>15</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -131,6 +243,14 @@
     <KOD_T>T1b</KOD_T>
     <T_NAME>Опухоль ограничена двумя яичниками, их капсулы не повреждены, нет опухолевых разрастаний на поверхности яичников, нет злокачественных клеток в асцитической жидкости или смывах из брюшной полости</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>16</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -139,6 +259,14 @@
     <KOD_T>T1c</KOD_T>
     <T_NAME>Опухоль ограничена одним или двумя яичниками и сопровождается любым из следующих факторов</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>17</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T1c</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -147,6 +275,14 @@
     <KOD_T>T1c1</KOD_T>
     <T_NAME>Повреждение капсулы во время операции</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>18</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T1c1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -155,6 +291,14 @@
     <KOD_T>T1c2</KOD_T>
     <T_NAME>Повреждение капсулы до операции или опухоль на поверхности яичника/маточной трубы</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>19</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T1c2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -163,6 +307,14 @@
     <KOD_T>T1c3</KOD_T>
     <T_NAME>Злокачественные клетки в асцитической жидкости или смывах с брюшины</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>20</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T1c3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -171,7 +323,7 @@
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль поражает один или два яичника с распространением на малый таз</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>22</ID_T>
@@ -179,6 +331,14 @@
     <KOD_T>T2a</KOD_T>
     <T_NAME>Врастание и/или метастазирование в матку и/или в одну или обе маточные трубы</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>22</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T2a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -187,6 +347,14 @@
     <KOD_T>T2b</KOD_T>
     <T_NAME>Распространение на другие ткани таза</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>23</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T2b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -195,7 +363,7 @@
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль поражает один или оба яичника с гистологически подтвержденными внутрибрюшинными метастазами за пределами таза и/или метастазами в регионарных лимфатических узлах (внутренних, наружных и общих подвздошных, запирательных, крестцовых, поясничных или паховых лимфоузлах)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>25</ID_T>
@@ -203,6 +371,14 @@
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>25</ID_T>
+    <DS_T>C18</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -212,6 +388,14 @@
     <T_NAME>Преинвазивный рак (интраэителиальная инвазия или инвазия собственной
 пластинки слизистой оболочки)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>26</ID_T>
+    <DS_T>C18</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -220,6 +404,14 @@
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль распространяется в подслизистый слой стенки кишки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>27</ID_T>
+    <DS_T>C18</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -228,6 +420,14 @@
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль распространяется на мышечный слой, без прорастания стенки кишки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>28</ID_T>
+    <DS_T>C18</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -236,6 +436,14 @@
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль прорастает все слои стенки кишки с распространением в жировую клетчатку, без поражения соседних органов</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>29</ID_T>
+    <DS_T>C18</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -244,6 +452,14 @@
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль прорастает в окружающие органы и ткани или серозную оболочку</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>30</ID_T>
+    <DS_T>C18</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -252,6 +468,14 @@
     <KOD_T>T4a</KOD_T>
     <T_NAME>Прорастание висцеральной брюшины</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>31</ID_T>
+    <DS_T>C18</DS_T>
+    <KOD_T>T4a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -260,6 +484,14 @@
     <KOD_T>T4b</KOD_T>
     <T_NAME>Прорастание в другие органы и структуры</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>32</ID_T>
+    <DS_T>C18</DS_T>
+    <KOD_T>T4b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -268,6 +500,14 @@
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>33</ID_T>
+    <DS_T>C19</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -277,6 +517,14 @@
     <T_NAME>Преинвазивный рак (интраэителиальная инвазия или инвазия собственной
 пластинки слизистой оболочки)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>34</ID_T>
+    <DS_T>C19</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -285,6 +533,14 @@
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль распространяется в подслизистый слой стенки кишки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>35</ID_T>
+    <DS_T>C19</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -293,6 +549,14 @@
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль распространяется на мышечный слой, без прорастания стенки кишки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>36</ID_T>
+    <DS_T>C19</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -301,6 +565,14 @@
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль прорастает все слои стенки кишки с распространением в жировую клетчатку, без поражения соседних органов</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>37</ID_T>
+    <DS_T>C19</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -309,7 +581,7 @@
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль прорастает в окружающие органы и ткани или серозную оболочку</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>39</ID_T>
@@ -317,6 +589,14 @@
     <KOD_T>T4a</KOD_T>
     <T_NAME>Прорастание висцеральной брюшины</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>39</ID_T>
+    <DS_T>C19</DS_T>
+    <KOD_T>T4a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -325,6 +605,14 @@
     <KOD_T>T4b</KOD_T>
     <T_NAME>Прорастание в другие органы и структуры</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>40</ID_T>
+    <DS_T>C19</DS_T>
+    <KOD_T>T4b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -333,7 +621,7 @@
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>43</ID_T>
@@ -341,7 +629,7 @@
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>44</ID_T>
@@ -349,7 +637,7 @@
     <KOD_T>T1</KOD_T>
     <T_NAME>Солитарная опухоль без инвазии сосудов</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>45</ID_T>
@@ -357,7 +645,7 @@
     <KOD_T>T2</KOD_T>
     <T_NAME>Солитарная опухоль до 5 см в наибольшем измерении с инвазией сосудов, 8  или множественные опухоли до 5 см в наибольшем измерении без инвазии сосудов</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>46</ID_T>
@@ -366,7 +654,7 @@
     <T_NAME>Множественные опухоли более 5 см в наибольшем измерении без инвазии
 сосудов</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>47</ID_T>
@@ -375,7 +663,7 @@
     <T_NAME>Солитарная опухоль или множественные опухоли любого размера с инвазией
 главных ветвей воротной или печеночных вен</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>48</ID_T>
@@ -384,7 +672,7 @@
     <T_NAME>Опухоль(и) с распространением на прилежащие органы за исключением
 желчного пузыря, или с перфорацией висцеральной брюшины</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>49</ID_T>
@@ -392,6 +680,14 @@
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>49</ID_T>
+    <DS_T>C25</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -400,6 +696,14 @@
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>50</ID_T>
+    <DS_T>C25</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -409,6 +713,14 @@
     <T_NAME>Опухоль ограничена поджелудочной железой до 2 см в наибольшем
 измерении</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>51</ID_T>
+    <DS_T>C25</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -418,6 +730,14 @@
     <T_NAME>Опухоль ограничена поджелудочной железой более 2 см в наибольшем
 измерении</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>52</ID_T>
+    <DS_T>C25</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -427,6 +747,14 @@
     <T_NAME>Опухоль распространяется за пределы поджелудочной железы без вовлечения
 чревного ствола или верхней брыжеечной артерии</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>53</ID_T>
+    <DS_T>C25</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -436,6 +764,14 @@
     <T_NAME>Опухоль распространяется на чревный ствол или верхнюю брыжеечную
 артерию</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>54</ID_T>
+    <DS_T>C25</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -444,6 +780,14 @@
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>55</ID_T>
+    <DS_T>C43</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -452,6 +796,14 @@
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>56</ID_T>
+    <DS_T>C43</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -460,6 +812,14 @@
     <KOD_T>Tis</KOD_T>
     <T_NAME>Меланома in situ (уровень инвазии по Кларку I) (атипическая меланоцитарная гиперплазия, тяжелая меланоцитарная дисплазия, неинвазивная злокачественная опухоль).</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>57</ID_T>
+    <DS_T>C43</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -468,7 +828,7 @@
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль толщиной по Бреслоу  &#x2264; 1 мм</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>59</ID_T>
@@ -476,6 +836,14 @@
     <KOD_T>T1a</KOD_T>
     <T_NAME>Уровень инвазии по Кларку II или III без изъязвления опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>59</ID_T>
+    <DS_T>C43</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -484,6 +852,14 @@
     <KOD_T>T1b</KOD_T>
     <T_NAME>Уровень инвазии по Кларку IV или V или наличие изъязвления опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>60</ID_T>
+    <DS_T>C43</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -492,7 +868,7 @@
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль толщиной по Бреслоу  &gt; 1 мм и &#x2264; 2 мм</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>62</ID_T>
@@ -500,6 +876,14 @@
     <KOD_T>T2a</KOD_T>
     <T_NAME>без изъязвления опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>62</ID_T>
+    <DS_T>C43</DS_T>
+    <KOD_T>T2a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -508,6 +892,14 @@
     <KOD_T>T2b</KOD_T>
     <T_NAME>Наличие изъязвления опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>63</ID_T>
+    <DS_T>C43</DS_T>
+    <KOD_T>T2b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -516,7 +908,7 @@
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль толщиной по Бреслоу  &gt; 2 мм и &#x2264; 4 мм</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>65</ID_T>
@@ -524,6 +916,14 @@
     <KOD_T>T3a</KOD_T>
     <T_NAME>Без изъязвления опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>65</ID_T>
+    <DS_T>C43</DS_T>
+    <KOD_T>T3a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -532,6 +932,14 @@
     <KOD_T>T3b</KOD_T>
     <T_NAME>Наличие изъязвления опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>66</ID_T>
+    <DS_T>C43</DS_T>
+    <KOD_T>T3b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -540,7 +948,7 @@
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль толщиной по Бреслоу  &gt; 4 мм</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>68</ID_T>
@@ -548,6 +956,14 @@
     <KOD_T>T4a</KOD_T>
     <T_NAME>Без изъязвления опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>68</ID_T>
+    <DS_T>C43</DS_T>
+    <KOD_T>T4a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -556,95 +972,159 @@
     <KOD_T>T4b</KOD_T>
     <T_NAME>Наличие изъязвления опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>69</ID_T>
+    <DS_T>C43</DS_T>
+    <KOD_T>T4b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>70</ID_T>
+    <DS_T>C44</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>71</ID_T>
+    <DS_T>C44</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>72</ID_T>
+    <DS_T>C44</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>73</ID_T>
+    <DS_T>C44</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>74</ID_T>
+    <DS_T>C44</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>75</ID_T>
+    <DS_T>C44</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>76</ID_T>
+    <DS_T>C44</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>77</ID_T>
     <DS_T>C53</DS_T>
     <KOD_T>T0</KOD_T>
-    <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
+    <T_NAME>Данных о наличии первичной опухоли не выявлено (эпителиальная опухоль)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>79</ID_T>
     <DS_T>C53</DS_T>
     <KOD_T>T1a1</KOD_T>
-    <T_NAME>Опухоль ограничена маткой (распространение на тело матки не учитывается), глубина инвазии не более 3 мм (микроинвазивный рак). Горизонтальное распространение не должно превышать 7 мм, в противном случае опухоль следует относить к стадии IВ</T_NAME>
+    <T_NAME>Опухоль ограничена маткой (распространение на тело матки не учитывается), глубина инвазии не более 3 мм (микроинвазивный рак). Горизонтальное распространение не должно превышать 7 мм, в противном случае опухоль следует относить к стадии IВ (эпителиальная опухоль)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>80</ID_T>
     <DS_T>C53</DS_T>
     <KOD_T>T1a2</KOD_T>
-    <T_NAME>Опухоль ограничена маткой (распространение на тело матки не учитывается), глубина инвазии более 3 мм, но не более 5 мм (измеряется от базальной мембраны поверхностного или железистого эпителия). Горизонтальное распространение не должно превышать 7 мм, в противном случае опухоль следует относить к стадии IВ</T_NAME>
+    <T_NAME>Опухоль ограничена маткой (распространение на тело матки не учитывается), глубина инвазии более 3 мм, но не более 5 мм (измеряется от базальной мембраны поверхностного или железистого эпителия). Горизонтальное распространение не должно превышать 7 мм, в противном случае опухоль следует относить к стадии IВ (эпителиальная опухоль)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>82</ID_T>
     <DS_T>C53</DS_T>
     <KOD_T>T1b1</KOD_T>
-    <T_NAME>Глубина инвазии более 5 мм, размеры опухоли не более 4 см</T_NAME>
+    <T_NAME>Глубина инвазии более 5 мм, размеры опухоли не более 4 см (эпителиальная опухоль)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>83</ID_T>
     <DS_T>C53</DS_T>
     <KOD_T>T1b2</KOD_T>
-    <T_NAME>Глубина инвазии более 5 мм, размеры опухоли более 4 см</T_NAME>
+    <T_NAME>Глубина инвазии более 5 мм, размеры опухоли более 4 см (эпителиальная опухоль)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>86</ID_T>
     <DS_T>C53</DS_T>
     <KOD_T>T2a1</KOD_T>
-    <T_NAME>Опухоль, распространившаяся за пределы матки, без перехода на стенки таза и поражения нижней трети влагалища, без вовлечения параметрия. Размеры опухоли не более 4 см</T_NAME>
+    <T_NAME>Опухоль, распространившаяся за пределы матки, без перехода на стенки таза и поражения нижней трети влагалища, без вовлечения параметрия. Размеры опухоли не более 4 см (эпителиальная опухоль)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>87</ID_T>
     <DS_T>C53</DS_T>
     <KOD_T>T2a2</KOD_T>
-    <T_NAME>Опухоль, распространившаяся за пределы матки, без перехода на стенки таза и поражения нижней трети влагалища, без вовлечения параметрия. Размеры опухоли более 4 см</T_NAME>
+    <T_NAME>Опухоль, распространившаяся за пределы матки, без перехода на стенки таза и поражения нижней трети влагалища, без вовлечения параметрия. Размеры опухоли более 4 см (эпителиальная опухоль)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>88</ID_T>
     <DS_T>C53</DS_T>
     <KOD_T>T2b</KOD_T>
-    <T_NAME>С вовлечением параметрия</T_NAME>
+    <T_NAME>С вовлечением параметрия (эпителиальная опухоль)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>90</ID_T>
     <DS_T>C53</DS_T>
     <KOD_T>T3a</KOD_T>
-    <T_NAME>Опухоль, вовлекающая стенки таза (при ректальном исследовании отсутствует пространство между опухолью и стенкой таза) или нижнюю треть влагалища, а также все случаи рака шейки матки с гидронефрозом и нефункционирующей почкой. Вовлечение нижней трети влагалища</T_NAME>
+    <T_NAME>Опухоль, вовлекающая стенки таза (при ректальном исследовании отсутствует пространство между опухолью и стенкой таза) или нижнюю треть влагалища, а также все случаи рака шейки матки с гидронефрозом и нефункционирующей почкой. Вовлечение нижней трети влагалища (эпителиальная опухоль)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>91</ID_T>
     <DS_T>C53</DS_T>
     <KOD_T>T3b</KOD_T>
-    <T_NAME>Опухоль, вовлекающая стенки таза (при ректальном исследовании отсутствует пространство между опухолью и стенкой таза) или нижнюю треть влагалища, а также все случаи рака шейки матки с гидронефрозом и нефункционирующей почкой. Распространение на стенку таза или гидронефроз и нефункционирующая почка</T_NAME>
+    <T_NAME>Опухоль, вовлекающая стенки таза (при ректальном исследовании отсутствует пространство между опухолью и стенкой таза) или нижнюю треть влагалища, а также все случаи рака шейки матки с гидронефрозом и нефункционирующей почкой. Распространение на стенку таза или гидронефроз и нефункционирующая почка (эпителиальная опухоль)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>93</ID_T>
     <DS_T>C53</DS_T>
     <KOD_T>T4</KOD_T>
-    <T_NAME>Прорастание мочевого пузыря или прямой кишки</T_NAME>
+    <T_NAME>Прорастание мочевого пузыря или прямой кишки (эпителиальная опухоль)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>94</ID_T>
@@ -652,7 +1132,7 @@
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>95</ID_T>
@@ -660,7 +1140,7 @@
     <KOD_T>Tis</KOD_T>
     <T_NAME>Рак insitu</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>96</ID_T>
@@ -668,7 +1148,7 @@
     <KOD_T>T1a</KOD_T>
     <T_NAME>Опухоль в пределах эндометрия или опухоль с инвазией менее половины толщины миометрия</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>97</ID_T>
@@ -676,7 +1156,7 @@
     <KOD_T>T1b</KOD_T>
     <T_NAME>Опухоль с инвазией более половины толщины миометрия</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>98</ID_T>
@@ -684,7 +1164,7 @@
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль распространяется на строму шейки матки, но не выходит за пределы матки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>99</ID_T>
@@ -692,7 +1172,7 @@
     <KOD_T>T3a</KOD_T>
     <T_NAME>Прорастание серозной оболочки матки, поражение маточных труб или яичников (непосредственный переход опухоли или метастазы)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>100</ID_T>
@@ -700,7 +1180,7 @@
     <KOD_T>T3b</KOD_T>
     <T_NAME>Поражение влагалища или параметриев (непосредственный переход опухоли или метастазы)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>101</ID_T>
@@ -708,7 +1188,7 @@
     <KOD_T>T4</KOD_T>
     <T_NAME>Прорастание слизистой оболочки мочевого пузыря или прямой кишки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>102</ID_T>
@@ -716,6 +1196,14 @@
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>102</ID_T>
+    <DS_T>C61</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -724,6 +1212,14 @@
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>103</ID_T>
+    <DS_T>C61</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -732,7 +1228,7 @@
     <KOD_T>T1</KOD_T>
     <T_NAME>Клинически неопределяемая опухоль (не пальпируется и не визуализируется)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>105</ID_T>
@@ -741,6 +1237,14 @@
     <T_NAME>Опухоль случайно выявлена при операции (объём опухолевой ткани не
 более 5% резецированной ткани предстательной железы)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>105</ID_T>
+    <DS_T>C61</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -750,6 +1254,14 @@
     <T_NAME>Опухоль случайно выявлена при операции (объём опухолевой ткани более
 5% резецированной ткани предстательной железы)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>106</ID_T>
+    <DS_T>C61</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -758,6 +1270,14 @@
     <KOD_T>T1c</KOD_T>
     <T_NAME>Опухоль выявлена при игольчатой биопсии (выполненной в связи с повышением уровня ПСА)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>107</ID_T>
+    <DS_T>C61</DS_T>
+    <KOD_T>T1c</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -766,7 +1286,7 @@
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль локализуется в предстательной железе [</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>109</ID_T>
@@ -774,6 +1294,14 @@
     <KOD_T>T2a</KOD_T>
     <T_NAME>Опухоль локализуется в одной доле и занимает &lt;50% поражённой доли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>109</ID_T>
+    <DS_T>C61</DS_T>
+    <KOD_T>T2a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -782,6 +1310,14 @@
     <KOD_T>T2b</KOD_T>
     <T_NAME>Опухоль локализуется в одной доле и занимает &gt;50% поражённой доли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>110</ID_T>
+    <DS_T>C61</DS_T>
+    <KOD_T>T2b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -790,6 +1326,14 @@
     <KOD_T>T2c</KOD_T>
     <T_NAME>Опухоль располагается в обеих долях</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>111</ID_T>
+    <DS_T>C61</DS_T>
+    <KOD_T>T2c</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -798,7 +1342,7 @@
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль выходит за пределы капсулы предстательной железы</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>113</ID_T>
@@ -807,6 +1351,14 @@
     <T_NAME>Опухоль прорастает в парапростатическую клетчатку (с одной или с обеих
 сторон)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>113</ID_T>
+    <DS_T>C61</DS_T>
+    <KOD_T>T3a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -815,6 +1367,14 @@
     <KOD_T>T3b</KOD_T>
     <T_NAME>Опухоль прорастает в семенные пузырьки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>114</ID_T>
+    <DS_T>C61</DS_T>
+    <KOD_T>T3b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -825,6 +1385,14 @@
 пузырьков (шейку мочевого пузыря, наружный сфинктер, прямую кишку, мышцу,
 поднимающую задний проход, и/или переднюю брюшную стенку)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>115</ID_T>
+    <DS_T>C61</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -833,6 +1401,14 @@
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>116</ID_T>
+    <DS_T>C64</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -841,6 +1417,14 @@
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>117</ID_T>
+    <DS_T>C64</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -849,7 +1433,7 @@
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль &#x2264;7 см в наибольшем измерении, не выходит за пределы почки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>119</ID_T>
@@ -857,6 +1441,14 @@
     <KOD_T>T1a</KOD_T>
     <T_NAME>опухоль &#x2264;4 см в наибольшем измерении, не выходит за пределы почки;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>119</ID_T>
+    <DS_T>C64</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -865,6 +1457,14 @@
     <KOD_T>T1b</KOD_T>
     <T_NAME>Опухоль &gt;4 см, но &lt;7 см в наибольшем измерении.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>120</ID_T>
+    <DS_T>C64</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -873,7 +1473,7 @@
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль &#x2265;7 см, в наибольшем измерении, не выходит за пределы почки:</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>122</ID_T>
@@ -881,6 +1481,14 @@
     <KOD_T>T2a</KOD_T>
     <T_NAME>Опухоль &gt;7 см, но &#x2264;10 см, не выходит за пределы почки;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>122</ID_T>
+    <DS_T>C64</DS_T>
+    <KOD_T>T2a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -889,6 +1497,14 @@
     <KOD_T>T2b</KOD_T>
     <T_NAME>Опухоль &gt;10 см, но не выходит за пределы почки.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>123</ID_T>
+    <DS_T>C64</DS_T>
+    <KOD_T>T2b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -897,7 +1513,7 @@
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль распространяется в крупные вены или прорастает надпочечник, но не распространяется за пределы фасции Героты:</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>125</ID_T>
@@ -905,6 +1521,14 @@
     <KOD_T>T3a</KOD_T>
     <T_NAME>Опухоль макроскопически распространяется на почечную вену или её сегментарные вены (с мышечной стенкой), либо опухоль прорастает в периренальные ткани и/или почечный синус (в клетчатку, окружающую почечную лоханку), но не выходит за пределы фасции Героты;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>125</ID_T>
+    <DS_T>C64</DS_T>
+    <KOD_T>T3a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -913,6 +1537,14 @@
     <KOD_T>T3b</KOD_T>
     <T_NAME>Опухоль макроскопически распространяется в нижнюю полую вену ниже уровня диафрагмы;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>126</ID_T>
+    <DS_T>C64</DS_T>
+    <KOD_T>T3b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -921,6 +1553,14 @@
     <KOD_T>T3c</KOD_T>
     <T_NAME>Опухоль макроскопически распространяется в нижнюю полую вену выше уровня диафрагмы или прорастает стенку нижней полой вены.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>127</ID_T>
+    <DS_T>C64</DS_T>
+    <KOD_T>T3c</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -929,6 +1569,14 @@
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль распространяется за пределы фасции Героты (и может прорастать в ипсилатеральный надпочечник).</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>128</ID_T>
+    <DS_T>C64</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -937,6 +1585,14 @@
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>129</ID_T>
+    <DS_T>C67</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -945,6 +1601,14 @@
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>130</ID_T>
+    <DS_T>C67</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -953,6 +1617,14 @@
     <KOD_T>Ta</KOD_T>
     <T_NAME>Неинвазивная папиллярная карцинома</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>131</ID_T>
+    <DS_T>C67</DS_T>
+    <KOD_T>Ta</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -961,6 +1633,14 @@
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>132</ID_T>
+    <DS_T>C67</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -969,6 +1649,14 @@
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль распространяется на субэпителиальную соединительную ткань</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>133</ID_T>
+    <DS_T>C67</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -977,7 +1665,7 @@
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухолевая инвазия мышечного слоя</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>135</ID_T>
@@ -985,6 +1673,14 @@
     <KOD_T>T2a</KOD_T>
     <T_NAME>Опухолевая инвазия поверхностного мышечного слоя</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>135</ID_T>
+    <DS_T>C67</DS_T>
+    <KOD_T>T2a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -993,6 +1689,14 @@
     <KOD_T>T2b</KOD_T>
     <T_NAME>Опухолевая инвазия глубокого мышечного слоя</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>136</ID_T>
+    <DS_T>C67</DS_T>
+    <KOD_T>T2b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1001,7 +1705,7 @@
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль распространяется на паравезикальную клетчатку</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>138</ID_T>
@@ -1009,6 +1713,14 @@
     <KOD_T>T3a</KOD_T>
     <T_NAME>Микроскопически</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>138</ID_T>
+    <DS_T>C67</DS_T>
+    <KOD_T>T3a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1017,6 +1729,14 @@
     <KOD_T>T3b</KOD_T>
     <T_NAME>Макроскопически</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>139</ID_T>
+    <DS_T>C67</DS_T>
+    <KOD_T>T3b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1026,7 +1746,7 @@
     <T_NAME>Опухоль распространяется на любой из этих органов: предстательную железу,
 матку, влагалище, стенку таза, брюшную стенку</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>141</ID_T>
@@ -1034,6 +1754,14 @@
     <KOD_T>T4a</KOD_T>
     <T_NAME>Опухолевая инвазия предстательной железы, или матки, или влагалища</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>141</ID_T>
+    <DS_T>C67</DS_T>
+    <KOD_T>T4a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1042,6 +1770,14 @@
     <KOD_T>T4b</KOD_T>
     <T_NAME>Опухолевая инвазия стенки таза или брюшной стенки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>142</ID_T>
+    <DS_T>C67</DS_T>
+    <KOD_T>T4b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1050,7 +1786,7 @@
     <KOD_T>T</KOD_T>
     <T_NAME>Первичная опухоль</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>144</ID_T>
@@ -1058,6 +1794,14 @@
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>144</ID_T>
+    <DS_T>C73</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1066,6 +1810,14 @@
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>145</ID_T>
+    <DS_T>C73</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1074,7 +1826,7 @@
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль до 2 см в наибольшем измерении, ограниченная тканью щитовидной железы</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>147</ID_T>
@@ -1082,6 +1834,14 @@
     <KOD_T>T1a</KOD_T>
     <T_NAME>Опухоль менее 1 см. ограниченная тканью щитовидной железы.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>147</ID_T>
+    <DS_T>C73</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1090,6 +1850,14 @@
     <KOD_T>T1b</KOD_T>
     <T_NAME>Опухоль более 1 см, но менее 2 см в диаметре, ограниченная щитовидной железой</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>148</ID_T>
+    <DS_T>C73</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1099,6 +1867,14 @@
     <T_NAME>Опухоль более 2-х, но не более 4 см в наибольшем измерении, ограниченная тканью
 щитовидной железы</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>149</ID_T>
+    <DS_T>C73</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1109,6 +1885,14 @@
 железы или любая опухоль с минимальным распространением за пределы капсулы (в
 m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>150</ID_T>
+    <DS_T>C73</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1119,6 +1903,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
 следующих структур: подкожные мягкие ткани, гортань, трахею, пищевод, возвратный
 нерв</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>151</ID_T>
+    <DS_T>C73</DS_T>
+    <KOD_T>T4a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1128,6 +1920,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <T_NAME>Опухоль распространяется на предпозвоночную фасцию, сосуды средостения или
 оболочку сонной артерии</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>152</ID_T>
+    <DS_T>C73</DS_T>
+    <KOD_T>T4b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1136,6 +1936,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>153</ID_T>
+    <DS_T>C20</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1144,6 +1952,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Преинвазивный рак (интраэителиальная инвазия или инвазия собственной пластинки слизистой оболочки)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>154</ID_T>
+    <DS_T>C20</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1152,6 +1968,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль распространяется в подслизистый слой стенки кишки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>155</ID_T>
+    <DS_T>C20</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1160,6 +1984,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль распространяется на мышечный слой, без прорастания стенки кишки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>156</ID_T>
+    <DS_T>C20</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1168,6 +2000,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль прорастает все слои стенки кишки с распространением в жировую клетчатку, без поражения соседних органов</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>157</ID_T>
+    <DS_T>C20</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1176,6 +2016,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль прорастает в окружающие органы и ткани или серозную оболочку при локализации в верхнеампулярном отделе прямой кишки и ректосигмоидном отделах ободочной кишки (покрытых брюшиной)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>158</ID_T>
+    <DS_T>C20</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1184,6 +2032,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4a</KOD_T>
     <T_NAME>Прорастание висцеральной брюшины</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>159</ID_T>
+    <DS_T>C20</DS_T>
+    <KOD_T>T4a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1192,6 +2048,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4b</KOD_T>
     <T_NAME>Прорастание в другие органы и структуры</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>160</ID_T>
+    <DS_T>C20</DS_T>
+    <KOD_T>T4b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1200,6 +2064,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ/дисплазия высокой степени</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>161</ID_T>
+    <DS_T>C15</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1208,6 +2080,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>Прорастание опухоли в собственную пластинку или подслизистый слой</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>162</ID_T>
+    <DS_T>C15</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1216,6 +2096,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1a</KOD_T>
     <T_NAME>Собственная пластинка или мышечная пластинка слизистой оболочки</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>163</ID_T>
+    <DS_T>C15</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1224,6 +2112,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1b</KOD_T>
     <T_NAME>Подслизистый слой</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>164</ID_T>
+    <DS_T>C15</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1232,6 +2128,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2</KOD_T>
     <T_NAME>Прорастание в мышечный слой</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>165</ID_T>
+    <DS_T>C15</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1240,6 +2144,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T3</KOD_T>
     <T_NAME>Прорастание в адвентициальную оболочку</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>166</ID_T>
+    <DS_T>C15</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1248,6 +2160,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4</KOD_T>
     <T_NAME>Прорастание прилегающих структур</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>167</ID_T>
+    <DS_T>C15</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1256,6 +2176,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4a</KOD_T>
     <T_NAME>Плевра, брюшина, перикард, диафрагма</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>168</ID_T>
+    <DS_T>C15</DS_T>
+    <KOD_T>T4a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1264,6 +2192,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4b</KOD_T>
     <T_NAME>Прилежащие органы: аорта, позвонки, трахея</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>169</ID_T>
+    <DS_T>C15</DS_T>
+    <KOD_T>T4b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1272,6 +2208,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>170</ID_T>
+    <DS_T>C34</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1280,6 +2224,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>171</ID_T>
+    <DS_T>C34</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1288,6 +2240,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Рак in situ</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>172</ID_T>
+    <DS_T>C34</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1296,7 +2256,7 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>В наибольшем измерении опухоль не больше 3 см, после проведения бронхоскопии нет признаков инвазии долевого бронха (не вовлечен главный бронх);</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>174</ID_T>
@@ -1304,6 +2264,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1a</KOD_T>
     <T_NAME>В наибольшем измерении опухоль не больше 2 см</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>174</ID_T>
+    <DS_T>C34</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1312,6 +2280,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1b</KOD_T>
     <T_NAME>Размер опухоли от 2 до 3 см</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>175</ID_T>
+    <DS_T>C34</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1323,7 +2299,7 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
 - опухоль любого размера, прорастающая в плевру;
 - опухоль, которая сопровождается ателектазом или обструктивной пневмонией, распространяется на корень легкого, но при этом не поражает все легкое;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>177</ID_T>
@@ -1331,6 +2307,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2a</KOD_T>
     <T_NAME>Размер опухоли от 3 до 5 см</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>177</ID_T>
+    <DS_T>C34</DS_T>
+    <KOD_T>T2a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1339,6 +2323,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2b</KOD_T>
     <T_NAME>Размер опухоли от 5 до 7 см</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>178</ID_T>
+    <DS_T>C34</DS_T>
+    <KOD_T>T2b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1355,6 +2347,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
 - распространяется менее чем на 2 см от карины
 - обтурационный ателектаз или обструктивный пневмонит всего легкого.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>179</ID_T>
+    <DS_T>C34</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1363,15 +2363,23 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль любого размера, распространяющаяся на средостение, сердце, крупные сосуды, трахею, возвратный нерв, пищевод, позвонки, карину, при этом могут появляться отдельные опухолевые очаги в другой доле на стороне поражения.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>180</ID_T>
+    <DS_T>C34</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_T>181</ID_T>
     <DS_T>C53</DS_T>
     <KOD_T>Tis</KOD_T>
-    <T_NAME>Опухоль in situ</T_NAME>
+    <T_NAME>Карцинома in situ (эпителиальная опухоль)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>182</ID_T>
@@ -1603,6 +2611,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>210</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1611,6 +2627,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>211</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1619,6 +2643,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>212</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1627,6 +2659,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>213</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1635,6 +2675,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>214</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1643,6 +2691,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>215</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1651,6 +2707,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>216</ID_T>
+    <DS_T>C44.0</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1659,6 +2723,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>217</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1667,6 +2739,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>218</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1675,6 +2755,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>219</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1683,6 +2771,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>220</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1691,6 +2787,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>221</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1699,6 +2803,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>222</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1707,6 +2819,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>223</ID_T>
+    <DS_T>C44.2</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1715,6 +2835,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>224</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1723,6 +2851,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>225</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1731,6 +2867,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>226</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1739,6 +2883,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>227</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1747,6 +2899,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>228</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1755,6 +2915,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>229</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1763,6 +2931,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>230</ID_T>
+    <DS_T>C44.3</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1771,6 +2947,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>231</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1779,6 +2963,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>232</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1787,6 +2979,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>233</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1795,6 +2995,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>234</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1803,6 +3011,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>235</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1811,6 +3027,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>236</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1819,6 +3043,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>237</ID_T>
+    <DS_T>C44.4</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1827,6 +3059,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>238</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1835,6 +3075,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>239</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1843,6 +3091,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>240</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1851,6 +3107,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>241</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1859,6 +3123,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>242</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1867,6 +3139,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>243</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1875,6 +3155,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>244</ID_T>
+    <DS_T>C44.5</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1883,6 +3171,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>245</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1891,6 +3187,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>246</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1899,6 +3203,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>247</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1907,6 +3219,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>248</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1915,6 +3235,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>249</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1923,6 +3251,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>250</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1931,6 +3267,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>251</ID_T>
+    <DS_T>C44.6</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1939,6 +3283,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>252</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1947,6 +3299,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>253</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1955,6 +3315,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>254</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1963,6 +3331,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>255</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1971,6 +3347,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>256</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1979,6 +3363,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>257</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1987,6 +3379,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>258</ID_T>
+    <DS_T>C44.7</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -1995,6 +3395,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>259</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2003,6 +3411,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>260</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2011,6 +3427,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>261</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2019,6 +3443,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>262</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2027,6 +3459,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>263</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2035,6 +3475,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>264</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2043,6 +3491,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>265</ID_T>
+    <DS_T>C44.8</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2051,6 +3507,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tx</KOD_T>
     <T_NAME>Недостаточно данных для оценки первичной опухоли</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>266</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2059,6 +3523,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>267</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2067,6 +3539,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>268</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2075,6 +3555,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль 2 см или менее в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>269</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2083,6 +3571,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль толщиной более 2 см в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>270</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2091,6 +3587,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль любого размера, врастающая в подлежащие структуры (например, в мышцу, кость, хрящ, челюсть и др.);</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>271</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2099,6 +3603,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T4</KOD_T>
     <T_NAME>Опухоль любого размера, с периневральной инвазией или прямым врастанием в кости основания черепа или осевого скелета.</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>272</ID_T>
+    <DS_T>C44.9</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2107,6 +3619,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>273</ID_T>
+    <DS_T>D04.0</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2115,6 +3635,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>274</ID_T>
+    <DS_T>D04.2</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2123,6 +3651,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>275</ID_T>
+    <DS_T>D04.3</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2131,6 +3667,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>276</ID_T>
+    <DS_T>D04.4</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2139,6 +3683,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>277</ID_T>
+    <DS_T>D04.5</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2147,6 +3699,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>278</ID_T>
+    <DS_T>D04.6</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2155,6 +3715,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>279</ID_T>
+    <DS_T>D04.7</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2163,6 +3731,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>280</ID_T>
+    <DS_T>D04.8</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2171,6 +3747,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>281</ID_T>
+    <DS_T>D04.9</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2179,6 +3763,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ/дисплазия высокой степени</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>282</ID_T>
+    <DS_T>D00.1</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2187,6 +3779,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома insitu (опухоль в пределах слизистой без инвазии собственной пластинки). Тяжелая дисплазия</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>283</ID_T>
+    <DS_T>D00.2</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2195,6 +3795,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>284</ID_T>
+    <DS_T>D01.7</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2203,6 +3811,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Рак in situ</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>285</ID_T>
+    <DS_T>D02.2</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2211,6 +3827,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Опухоль in situ</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>286</ID_T>
+    <DS_T>D06</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2219,6 +3843,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Рак insitu</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>287</ID_T>
+    <DS_T>D07.0</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2227,6 +3859,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Карцинома in situ</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>288</ID_T>
+    <DS_T>D09.0</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2235,6 +3875,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Преинвазивный рак (интраэителиальная инвазия или инвазия собственной пластинки слизистой оболочки)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>289</ID_T>
+    <DS_T>D01.2</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2244,6 +3892,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <T_NAME>Преинвазивный рак (интраэителиальная инвазия или инвазия собственной
 пластинки слизистой оболочки)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>290</ID_T>
+    <DS_T>D01.0</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2253,6 +3909,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <T_NAME>Преинвазивный рак (интраэителиальная инвазия или инвазия собственной
 пластинки слизистой оболочки)</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>291</ID_T>
+    <DS_T>D01.1</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2261,14 +3925,30 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Меланома in situ (уровень инвазии по Кларку I) (атипическая меланоцитарная гиперплазия, тяжелая меланоцитарная дисплазия, неинвазивная злокачественная опухоль).</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>292</ID_T>
+    <DS_T>D03</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_T>293</ID_T>
     <DS_T>D05</DS_T>
     <KOD_T>Tis</KOD_T>
-    <T_NAME>C50</T_NAME>
+    <T_NAME>Рак in situ</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>293</ID_T>
+    <DS_T>D05</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2277,6 +3957,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>Tis</KOD_T>
     <T_NAME>Рак in situ;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>294</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2285,6 +3973,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T0</KOD_T>
     <T_NAME>Данных о наличии первичной опухоли не выявлено</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>295</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2293,7 +3989,7 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T1</KOD_T>
     <T_NAME>Опухоль от 0,1 до 2 см в наибольшем измерении</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_T>297</ID_T>
@@ -2301,6 +3997,14 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T2</KOD_T>
     <T_NAME>Опухоль от 2 см до 5 см в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>297</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -2309,14 +4013,646 @@ m.sternothyroid или мягкие ткани около щитовидной железы)</T_NAME>
     <KOD_T>T3</KOD_T>
     <T_NAME>Опухоль более 5 см в наибольшем измерении;</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>298</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_T>299</ID_T>
     <DS_T>C50</DS_T>
     <KOD_T>T4</KOD_T>
-    <T_NAME>Опухоль любого размера с прямым распространением на грудную стенку[2]или кожу</T_NAME>
+    <T_NAME>Опухоль любого размера с прямым распространением на грудную стенку или кожу</T_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>300</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME>Опухоль ограничена маткой, не более 5 см в наибольшем измерении (лейомиосаркома, эндометриальная стромальная саркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>301</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME>Опухоль ограничена маткой, более 5 см в наибольшем измерении (лейомиосаркома, эндометриальная стромальная саркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>302</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T2a</KOD_T>
+    <T_NAME>Опухоль прорастает за пределы матки, но в пределах таза: опухоль прорастает в придатки (лейомиосаркома, эндометриальная стромальная саркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>303</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T2b</KOD_T>
+    <T_NAME>Опухоль прорастает за пределы матки, но в пределах таза: опухоль прорастает в другие ткани таза (лейомиосаркома, эндометриальная стромальная саркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>304</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T3a</KOD_T>
+    <T_NAME>Опухоль прорастает в ткани брюшной полости: одна локализация (лейомиосаркома, эндометриальная стромальная саркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>305</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T3b</KOD_T>
+    <T_NAME>Опухоль прорастает в ткани брюшной полости: более одной локализации (лейомиосаркома, эндометриальная стромальная саркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>306</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME>Опухоль прорастает в слизистую оболочку мочевого пузыря или прямой кишки (лейомиосаркома, эндометриальная стромальная саркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>307</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME>Опухоль ограничена маткой: опухоль ограничена эндометрием / эндоцервиксом (аденосаркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>308</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME>Опухоль ограничена маткой: опухоль прорастает в миометрий менее половины его толщи (аденосаркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>309</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T1c</KOD_T>
+    <T_NAME>Опухоль ограничена маткой: опухоль прорастает в миометрий на половину или более (аденосаркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>310</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T2a</KOD_T>
+    <T_NAME>Опухоль прорастает за пределы матки, но в пределах таза: опухоль прорастает в придатки (аденосаркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>311</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T2b</KOD_T>
+    <T_NAME>Опухоль прорастает за пределы матки, но в пределах таза: опухоль прорастает в другие ткани таза (аденосаркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>312</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T3a</KOD_T>
+    <T_NAME>Опухоль прорастает в ткани брюшной полости: одна локализация (аденосаркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>313</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T3b</KOD_T>
+    <T_NAME>Опухоль прорастает в ткани брюшной полости: более одной локализации (аденосаркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>314</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME>Опухоль прорастает в слизистую оболочку мочевого пузыря или прямой кишки (аденосаркома)</T_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_T>315</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T2c</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>316</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T3a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>317</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T3b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>318</ID_T>
+    <DS_T>C56</DS_T>
+    <KOD_T>T3c</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>319</ID_T>
+    <DS_T>C15</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>320</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>321</ID_T>
+    <DS_T>C54</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>322</ID_T>
+    <DS_T>C54</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>323</ID_T>
+    <DS_T>C54</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>324</ID_T>
+    <DS_T>C54</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>325</ID_T>
+    <DS_T>C54</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>326</ID_T>
+    <DS_T>C54</DS_T>
+    <KOD_T>T1c</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>327</ID_T>
+    <DS_T>C54</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>328</ID_T>
+    <DS_T>C54</DS_T>
+    <KOD_T>T2a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>329</ID_T>
+    <DS_T>C54</DS_T>
+    <KOD_T>T2b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>330</ID_T>
+    <DS_T>C54</DS_T>
+    <KOD_T>T3a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>331</ID_T>
+    <DS_T>C54</DS_T>
+    <KOD_T>T3b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>332</ID_T>
+    <DS_T>C54</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>333</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>334</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>335</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T1a1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>336</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T1a2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>337</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>338</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T1b1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>339</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T1b2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>340</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T1c</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>341</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T2a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>342</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T2a1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>343</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T2a2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>344</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T2b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>345</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T3a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>346</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T3b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>347</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>348</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>Tis</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>349</ID_T>
+    <DS_T>C53</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>350</ID_T>
+    <DS_T>C80</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>351</ID_T>
+    <DS_T>C22.0</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>352</ID_T>
+    <DS_T>C22.0</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>353</ID_T>
+    <DS_T>C22.0</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>354</ID_T>
+    <DS_T>C22.0</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>355</ID_T>
+    <DS_T>C22.0</DS_T>
+    <KOD_T>T3a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>356</ID_T>
+    <DS_T>C22.0</DS_T>
+    <KOD_T>T3b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>357</ID_T>
+    <DS_T>C22.0</DS_T>
+    <KOD_T>T4</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>358</ID_T>
+    <DS_T>C64</DS_T>
+    <KOD_T>Нет</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>359</ID_T>
+    <DS_T>C32</DS_T>
+    <KOD_T>Tx</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>360</ID_T>
+    <DS_T>C32</DS_T>
+    <KOD_T>T1</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>361</ID_T>
+    <DS_T>C32</DS_T>
+    <KOD_T>T2</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>362</ID_T>
+    <DS_T>C32</DS_T>
+    <KOD_T>T3</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>363</ID_T>
+    <DS_T>C32</DS_T>
+    <KOD_T>T4a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>364</ID_T>
+    <DS_T>C32</DS_T>
+    <KOD_T>T4b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>365</ID_T>
+    <DS_T>C15</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>366</ID_T>
+    <DS_T>C18</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>367</ID_T>
+    <DS_T>C20</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>368</ID_T>
+    <DS_T>C19</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>369</ID_T>
+    <DS_T>C25</DS_T>
+    <KOD_T>T0</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>370</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T1mi</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>371</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T1a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>372</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T1b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>373</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T1c</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>374</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T4a</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>375</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T4b</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>376</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T4c</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_T>377</ID_T>
+    <DS_T>C50</DS_T>
+    <KOD_T>T4d</KOD_T>
+    <T_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
     <DATEEND/>
   </zap>
 </packet>

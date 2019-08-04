@@ -2,8 +2,8 @@
 <packet>
   <zglv>
     <type>OnkM</type>
-    <version>3.0</version>
-    <date>12.09.2018</date>
+    <version>4.5</version>
+    <date>08.02.2019</date>
   </zglv>
   <zap>
     <ID_M>1</ID_M>
@@ -11,6 +11,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>1</ID_M>
+    <DS_M>C16</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -19,6 +27,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>2</ID_M>
+    <DS_M>C16</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -27,6 +43,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>3</ID_M>
+    <DS_M>C56</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -35,6 +59,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>4</ID_M>
+    <DS_M>C56</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -43,6 +75,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>5</ID_M>
+    <DS_M>C18</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -51,6 +91,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>6</ID_M>
+    <DS_M>C18</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -59,6 +107,14 @@
     <KOD_M>M1a</KOD_M>
     <M_NAME>Наличие отдаленных метастазов в одном органе</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>7</ID_M>
+    <DS_M>C18</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -67,6 +123,14 @@
     <KOD_M>M1b</KOD_M>
     <M_NAME>Наличие отдаленных метастазов более чем в одном органе или по брюшине</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>8</ID_M>
+    <DS_M>C18</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -75,6 +139,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>9</ID_M>
+    <DS_M>C19</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -83,7 +155,7 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>11</ID_M>
@@ -91,6 +163,14 @@
     <KOD_M>M1a</KOD_M>
     <M_NAME>Наличие отдаленных метастазов в одном органе</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>11</ID_M>
+    <DS_M>C19</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -99,6 +179,14 @@
     <KOD_M>M1b</KOD_M>
     <M_NAME>Наличие отдаленных метастазов более чем в одном органе или по брюшине</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>12</ID_M>
+    <DS_M>C19</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -107,7 +195,7 @@
     <KOD_M>Mx</KOD_M>
     <M_NAME>Недостаточно данных для определения отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>14</ID_M>
@@ -115,7 +203,7 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>15</ID_M>
@@ -123,7 +211,7 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>16</ID_M>
@@ -131,6 +219,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>16</ID_M>
+    <DS_M>C25</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -139,6 +235,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>17</ID_M>
+    <DS_M>C25</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -147,6 +251,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>18</ID_M>
+    <DS_M>C43</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -155,7 +267,7 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>20</ID_M>
@@ -163,6 +275,14 @@
     <KOD_M>M1a</KOD_M>
     <M_NAME>Метастазы в кожу, подкожную клетчатку или лимфатические узлы (за исключением регионарных) при нормальном уровне ЛДГ крови</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>20</ID_M>
+    <DS_M>C43</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -171,6 +291,14 @@
     <KOD_M>M1b</KOD_M>
     <M_NAME>Метастазы в легкие при нормальном уровне ЛДГ крови;</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>21</ID_M>
+    <DS_M>C43</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -179,7 +307,31 @@
     <KOD_M>M1c</KOD_M>
     <M_NAME>Метастазы в любые другие органы, или любая локализация метастазов при уровне ЛДГ выше верхней границы нормального диапазона.</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>22</ID_M>
+    <DS_M>C43</DS_M>
+    <KOD_M>M1c</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>23</ID_M>
+    <DS_M>C44</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>24</ID_M>
+    <DS_M>C44</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>25</ID_M>
@@ -187,6 +339,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>25</ID_M>
+    <DS_M>C53</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -195,6 +355,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>26</ID_M>
+    <DS_M>C53</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -203,6 +371,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>27</ID_M>
+    <DS_M>C54</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -211,6 +387,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>28</ID_M>
+    <DS_M>C54</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -219,7 +403,7 @@
     <KOD_M>Mx</KOD_M>
     <M_NAME>Недостаточно данных для определения отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>30</ID_M>
@@ -227,6 +411,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>30</ID_M>
+    <DS_M>C61</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -235,7 +427,7 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>32</ID_M>
@@ -243,6 +435,14 @@
     <KOD_M>M1a</KOD_M>
     <M_NAME>Метастазы в лимфатические узлы, не относящиеся к регионарным</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>32</ID_M>
+    <DS_M>C61</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -251,6 +451,14 @@
     <KOD_M>M1b</KOD_M>
     <M_NAME>Метастазы в кости</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>33</ID_M>
+    <DS_M>C61</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -259,6 +467,14 @@
     <KOD_M>M1c</KOD_M>
     <M_NAME>Метастазы в другие органы</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>34</ID_M>
+    <DS_M>C61</DS_M>
+    <KOD_M>M1c</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -267,7 +483,7 @@
     <KOD_M>Mx</KOD_M>
     <M_NAME>Недостаточно данных для определения отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>36</ID_M>
@@ -275,6 +491,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>36</ID_M>
+    <DS_M>C64</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -283,6 +507,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>37</ID_M>
+    <DS_M>C64</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -291,6 +523,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>38</ID_M>
+    <DS_M>C67</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -299,6 +539,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>39</ID_M>
+    <DS_M>C67</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -307,6 +555,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>40</ID_M>
+    <DS_M>C73</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -315,6 +571,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>41</ID_M>
+    <DS_M>C73</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -323,6 +587,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>42</ID_M>
+    <DS_M>C20</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -331,6 +603,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>43</ID_M>
+    <DS_M>C20</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -339,6 +619,14 @@
     <KOD_M>M1a</KOD_M>
     <M_NAME>Наличие отдаленных метастазов в одном органе</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>44</ID_M>
+    <DS_M>C20</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -347,6 +635,14 @@
     <KOD_M>M1b</KOD_M>
     <M_NAME>Наличие отдаленных метастазов более чем в одном органе или по брюшине</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>45</ID_M>
+    <DS_M>C20</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -355,6 +651,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>47</ID_M>
+    <DS_M>C15</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -363,7 +667,7 @@
     <KOD_M>Mx</KOD_M>
     <M_NAME>Недостаточно данных для определения отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>49</ID_M>
@@ -371,6 +675,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>49</ID_M>
+    <DS_M>C34</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -379,7 +691,7 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>51</ID_M>
@@ -387,6 +699,14 @@
     <KOD_M>M1a</KOD_M>
     <M_NAME>Опухолевые очаги в противоположном легком; опухоль с плевральными очагами или сопровождается злокачественным плевральным или перикардиальным выпотом</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>51</ID_M>
+    <DS_M>C34</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -395,6 +715,14 @@
     <KOD_M>M1b</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>52</ID_M>
+    <DS_M>C34</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -403,7 +731,7 @@
     <KOD_M>Mx</KOD_M>
     <M_NAME>Недостаточно данных для определения отдалённых метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>54</ID_M>
@@ -411,6 +739,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>54</ID_M>
+    <DS_M>C32</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -419,6 +755,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>55</ID_M>
+    <DS_M>C32</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -427,7 +771,7 @@
     <KOD_M>Mx</KOD_M>
     <M_NAME/>
     <DATEBEG>01.09.2018</DATEBEG>
-    <DATEEND/>
+    <DATEEND>31.12.2018</DATEEND>
   </zap>
   <zap>
     <ID_M>57</ID_M>
@@ -619,6 +963,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>80</ID_M>
+    <DS_M>C44.0</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -627,6 +979,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>81</ID_M>
+    <DS_M>C44.0</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -635,6 +995,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>82</ID_M>
+    <DS_M>C44.2</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -643,6 +1011,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>83</ID_M>
+    <DS_M>C44.2</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -651,6 +1027,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>84</ID_M>
+    <DS_M>C44.3</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -659,6 +1043,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>85</ID_M>
+    <DS_M>C44.3</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -667,6 +1059,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>86</ID_M>
+    <DS_M>C44.4</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -675,6 +1075,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>87</ID_M>
+    <DS_M>C44.4</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -683,6 +1091,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>88</ID_M>
+    <DS_M>C44.5</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -691,6 +1107,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>89</ID_M>
+    <DS_M>C44.5</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -699,6 +1123,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>90</ID_M>
+    <DS_M>C44.6</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -707,6 +1139,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>91</ID_M>
+    <DS_M>C44.6</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -715,6 +1155,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>92</ID_M>
+    <DS_M>C44.7</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -723,6 +1171,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>93</ID_M>
+    <DS_M>C44.7</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -731,6 +1187,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>94</ID_M>
+    <DS_M>C44.8</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -739,6 +1203,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>95</ID_M>
+    <DS_M>C44.8</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -747,6 +1219,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>96</ID_M>
+    <DS_M>C44.9</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -755,6 +1235,14 @@
     <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>97</ID_M>
+    <DS_M>C44.9</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -763,6 +1251,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>98</ID_M>
+    <DS_M>D04.0</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -771,6 +1267,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>99</ID_M>
+    <DS_M>D04.2</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -779,6 +1283,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>100</ID_M>
+    <DS_M>D04.3</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -787,6 +1299,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>101</ID_M>
+    <DS_M>D04.4</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -795,6 +1315,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>102</ID_M>
+    <DS_M>D04.5</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -803,6 +1331,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>103</ID_M>
+    <DS_M>D04.6</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -811,6 +1347,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>104</ID_M>
+    <DS_M>D04.7</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -819,6 +1363,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>105</ID_M>
+    <DS_M>D04.8</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -827,6 +1379,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>106</ID_M>
+    <DS_M>D04.9</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -835,6 +1395,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>107</ID_M>
+    <DS_M>D00.1</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -843,6 +1411,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>108</ID_M>
+    <DS_M>D00.2</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -851,6 +1427,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>109</ID_M>
+    <DS_M>D01.7</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -859,6 +1443,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>110</ID_M>
+    <DS_M>D02.2</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -867,6 +1459,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>111</ID_M>
+    <DS_M>D06</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -875,6 +1475,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>112</ID_M>
+    <DS_M>D07.0</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -883,6 +1491,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>113</ID_M>
+    <DS_M>D09.0</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -891,6 +1507,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>114</ID_M>
+    <DS_M>D01.2</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -899,6 +1523,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>115</ID_M>
+    <DS_M>D01.0</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -907,6 +1539,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>116</ID_M>
+    <DS_M>D01.1</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -915,6 +1555,14 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>117</ID_M>
+    <DS_M>D03</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
@@ -923,22 +1571,110 @@
     <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>118</ID_M>
+    <DS_M>D05</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_M>119</ID_M>
     <DS_M>C50</DS_M>
-    <KOD_M>М0</KOD_M>
+    <KOD_M>M0</KOD_M>
     <M_NAME>Нет отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>119</ID_M>
+    <DS_M>C50</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
     <DATEEND/>
   </zap>
   <zap>
     <ID_M>120</ID_M>
     <DS_M>C50</DS_M>
-    <KOD_M>М1</KOD_M>
+    <KOD_M>M1</KOD_M>
     <M_NAME>Наличие отдаленных метастазов</M_NAME>
     <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>120</ID_M>
+    <DS_M>C50</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>121</ID_M>
+    <DS_M>C15</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME>Нет отдаленных метастазов</M_NAME>
+    <DATEBEG>01.09.2018</DATEBEG>
+    <DATEEND>31.12.2018</DATEEND>
+  </zap>
+  <zap>
+    <ID_M>121</ID_M>
+    <DS_M>C15</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>122</ID_M>
+    <DS_M>C80</DS_M>
+    <KOD_M>Нет</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>123</ID_M>
+    <DS_M>C22.0</DS_M>
+    <KOD_M>M0</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>124</ID_M>
+    <DS_M>C22.0</DS_M>
+    <KOD_M>M1</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.01.2019</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>125</ID_M>
+    <DS_M>C64</DS_M>
+    <KOD_M>Нет</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>126</ID_M>
+    <DS_M>C56</DS_M>
+    <KOD_M>M1a</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <ID_M>127</ID_M>
+    <DS_M>C56</DS_M>
+    <KOD_M>M1b</KOD_M>
+    <M_NAME/>
+    <DATEBEG>01.12.2018</DATEBEG>
     <DATEEND/>
   </zap>
 </packet>
