@@ -504,6 +504,23 @@ namespace invox.Data.Relax {
         }
 
         /// <summary>
+        /// Получить вид вмешательства в зависимости от кода услуги операции
+        /// </summary>
+        /// <param name="serviceCode">Код услуги</param>
+        /// <returns>Вид медицинского вмешательства V001</returns>
+        string GetInterventionKind(int serviceCode) {
+            object o = ExecuteScalar(connectionAlt, Queries.SELECT_SERVICE_NAME + "'" + serviceCode.ToString() + "'");
+            if (o == null)
+                return null;
+
+            string result = (string)o;
+            result = result.Trim();
+            int pos = result.IndexOf(' ');
+            result = result.Substring(0, pos);
+            return result;
+        }
+
+        /// <summary>
         /// Загрузить события для законченного случая
         /// </summary>
         /// <remarks>
@@ -547,6 +564,16 @@ namespace invox.Data.Relax {
             } else {
                 ra.UpdateMedicalAid(rec, ss.Last());
                 evt.Services = ss.Select(s => s.ToService(ra)).ToList();
+            }
+
+            // 20190902 - Блядский вид медицинского вмешательства
+            if (ra.InternalReason == InternalReason.SurgeryDayHosp) {
+                Model.Service service = evt.Services.FirstOrDefault(s => s.ServiceCode / 100000 == 3);
+                if (service != null) {
+                    string interventionKind = GetInterventionKind(service.ServiceCode);
+                    if (!string.IsNullOrEmpty(interventionKind))
+                        evt.Services.ForEach(s => s.InterventionKind = interventionKind);
+                }
             }
             
             // Код врача и специальности должны соответствовать закрывающей записи,

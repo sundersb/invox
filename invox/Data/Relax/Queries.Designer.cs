@@ -288,6 +288,15 @@ namespace invox.Data.Relax {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на select cpconvert(866, 1251, NAME) from BASE/COMMON/KMU where CODE = .
+        /// </summary>
+        internal static string SELECT_SERVICE_NAME {
+            get {
+                return ResourceManager.GetString("SELECT_SERVICE_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на select
         ///  S.RECID SERVICE_ID,
         ///  K.MSP AID_PROFILE,

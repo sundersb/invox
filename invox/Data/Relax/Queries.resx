@@ -327,6 +327,10 @@ select
   and (S.DS = ?)</value>
     <comment>Услуги пациента в рамках обращения по заболеванию</comment>
   </data>
+  <data name="SELECT_SERVICE_NAME" xml:space="preserve">
+    <value>select cpconvert(866, 1251, NAME) from BASE/COMMON/KMU where CODE = </value>
+    <comment>Название услуги по коду (строка)</comment>
+  </data>
   <data name="SELECT_TOTAL" xml:space="preserve">
     <value>select sum(S_ALL) TOTAL from {period}S{lpu} S where {section}</value>
     <comment>Сумма к оплате по счету</comment>
