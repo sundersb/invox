@@ -473,6 +473,10 @@ namespace invox.Model {
                 xml.Writer.WriteElementString("DS1_PR", "1");
             
 #if FOMS
+            // 20190930 C_ZAB не фигурирует в разделе D3, но ФОМС ставит ошибку
+            // Исправлено в Барс 20190930
+            //xml.WriteIfValid("C_ZAB", StatisticsCode);
+
             xml.WriteBool("DS_ONK", rec.SuspectOncology);
 
             if (DispensarySupervision >= DispensarySupervision.Observed
