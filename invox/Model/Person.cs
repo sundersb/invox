@@ -157,6 +157,16 @@ namespace invox.Model {
         public string DocumentNumber { get; set; }
 
         /// <summary>
+        /// Дата выдачи документа. Обязательна для иногородних, у которых не указан ЕНП
+        /// </summary>
+        public DateTime? DocumentDate { get; set; }
+
+        /// <summary>
+        /// Орган, выдавший документ. Обязателен для иногородних, у которых не указан ЕНП
+        /// </summary>
+        public string DocumentOrganization { get; set; }
+
+        /// <summary>
         /// СНИЛС пациента или представителя
         /// СНИЛС с разделителями. Указывается при наличии.
         /// </summary>
@@ -240,6 +250,11 @@ namespace invox.Model {
 
             xml.WriteIfValid("DOCSER", DocumentSerial);
             xml.WriteIfValid("DOCNUM", DocumentNumber);
+#if FOMS
+            if (DocumentDate.HasValue)
+                xml.Writer.WriteElementString("DOCDATE", DocumentDate.Value.AsXml());
+            xml.WriteIfValid("DOCORG", DocumentOrganization);
+#endif
 
             xml.WriteIfValid("SNILS", Snils);
 #if FOMS

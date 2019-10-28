@@ -31,6 +31,10 @@ namespace invox.Data.Relax {
 
             result.Representative = GetRepresentative(reader);
 
+            // Брать неоткуда!
+            result.DocumentDate = null;
+            result.DocumentOrganization = string.Empty;
+
             return result;
         }
 

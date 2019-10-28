@@ -83,6 +83,18 @@ namespace invox.Model {
             }
         }
 
+        public static string GetCodeV016(ProphSubsection s) {
+            switch (s) {
+                case ProphSubsection.Stage1: return "ДВ1";
+                case ProphSubsection.Stage2: return "ДВ2";
+                case ProphSubsection.Prophylaxis: return "ОПВ";
+                case ProphSubsection.DispChildrenTight: return "ДС1";
+                case ProphSubsection.DispChildrenAdopted: return "ДС1";
+                case ProphSubsection.ProphChildren: return "ОН1";
+            }
+            return string.Empty;
+        }
+
         public static ProphSubsection[] GetSubsections(OrderSection section, bool pediatric) {
             if (section != OrderSection.D3) {
                 return new ProphSubsection[] { ProphSubsection.None };

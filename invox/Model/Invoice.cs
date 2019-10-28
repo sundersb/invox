@@ -7,7 +7,8 @@ using invox.Lib;
 namespace invox.Model {
     class Invoice {
         const string XML = ".xml";
-        const string VERSION = "3.1";
+        const string VERSION_INVOICES = "3.1";
+        const string VERSION_PEOPLE = "3.2";
         const ConsoleColor COLOR_TITLE = ConsoleColor.Magenta;
 
         Lib.InvoiceFilename invoiceFilename;
@@ -76,7 +77,7 @@ namespace invox.Model {
             xml.Writer.WriteStartElement("PERS_LIST");
 
             xml.Writer.WriteStartElement("ZGLV");
-            xml.Writer.WriteElementString("VERSION", VERSION);
+            xml.Writer.WriteElementString("VERSION", VERSION_PEOPLE);
             xml.Writer.WriteElementString("DATA", DateTime.Today.AsXml());
             xml.Writer.WriteElementString("FILENAME", invoiceFilename.PersonFile);
             xml.Writer.WriteElementString("FILENAME1", invoiceFilename.InvoiceFile);
@@ -102,7 +103,7 @@ namespace invox.Model {
             xml.Writer.WriteStartElement("ZL_LIST");
 
             xml.Writer.WriteStartElement("ZGLV");
-            xml.Writer.WriteElementString("VERSION", VERSION);
+            xml.Writer.WriteElementString("VERSION", VERSION_INVOICES);
             xml.Writer.WriteElementString("DATA", DateTime.Today.AsXml());
             xml.Writer.WriteElementString("FILENAME", invoiceFilename.InvoiceFile);
             
@@ -124,6 +125,11 @@ namespace invox.Model {
             xml.Writer.WriteElementString("DSCHET", invox.Options.InvoiceDate.AsXml());
             xml.WriteIfValid("PLAT", invoiceFilename.CompanyCode);
             xml.Writer.WriteElementString("SUMMAV", pool.Total(invoiceFilename.Section, invoiceFilename.Subsection).ToString("F2", Options.NumberFormat));
+
+            // 20191028
+            if (invoiceFilename.Section == OrderSection.D3)
+                xml.Writer.WriteElementString("DISP", ProphSubsectionHelper.GetCodeV016(invoiceFilename.Subsection));
+
             xml.Writer.WriteEndElement();
 
             Lib.Progress progress = new Progress("Случаи обращения", count);
