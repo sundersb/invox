@@ -142,5 +142,53 @@ namespace invox.Properties {
                 this["DayHospitalSixDaysWeek"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("server.gkp3.med")]
+        public string MedialogServer {
+            get {
+                return ((string)(this["MedialogServer"]));
+            }
+            set {
+                this["MedialogServer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Medialog")]
+        public string MedialogDatabase {
+            get {
+                return ((string)(this["MedialogDatabase"]));
+            }
+            set {
+                this["MedialogDatabase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("nonnemo")]
+        public string MedialogUser {
+            get {
+                return ((string)(this["MedialogUser"]));
+            }
+            set {
+                this["MedialogUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ups7H65$")]
+        public string MedialogPassword {
+            get {
+                return ((string)(this["MedialogPassword"]));
+            }
+            set {
+                this["MedialogPassword"] = value;
+            }
+        }
     }
 }

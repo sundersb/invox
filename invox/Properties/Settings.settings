@@ -32,5 +32,17 @@
     <Setting Name="DayHospitalSixDaysWeek" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="MedialogServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">server.gkp3.med</Value>
+    </Setting>
+    <Setting Name="MedialogDatabase" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Medialog</Value>
+    </Setting>
+    <Setting Name="MedialogUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">nonnemo</Value>
+    </Setting>
+    <Setting Name="MedialogPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ups7H65$</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

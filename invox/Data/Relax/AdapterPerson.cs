@@ -7,6 +7,11 @@ using invox.Model;
 namespace invox.Data.Relax {
     class AdapterPerson : AdapterBase<Person> {
         const string DEFAULT_OKATO = "08401000000";
+        SQL.Medialog medialog;
+
+        public AdapterPerson(SQL.Medialog medialog) {
+            this.medialog = medialog;
+        }
 
         public override Person Read(System.Data.Common.DbDataReader reader, int number) {
             Person result = new Person();
@@ -31,9 +36,8 @@ namespace invox.Data.Relax {
 
             result.Representative = GetRepresentative(reader);
 
-            // Брать неоткуда!
-            result.DocumentDate = null;
-            result.DocumentOrganization = string.Empty;
+            // Брать неоткуда, кроме как из Ммедиалога
+            medialog.UpdatePersonDocument(result);
 
             return result;
         }

@@ -63,6 +63,12 @@
     <Compile Include="Data\Relax\RecourseAux.cs" />
     <Compile Include="Data\Relax\ServiceAux.cs" />
     <Compile Include="Data\Relax\SpecialityDict.cs" />
+    <Compile Include="Data\SQL\Medialog.cs" />
+    <Compile Include="Data\SQL\Queries.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Queries.resx</DependentUpon>
+    </Compile>
     <Compile Include="Dict\AidProfile.cs" />
     <Compile Include="Dict\Base.cs" />
     <Compile Include="Dict\BedProfile.cs" />
@@ -79,6 +85,7 @@
     <Compile Include="Lib\Logger.cs" />
     <Compile Include="Lib\Options.cs" />
     <Compile Include="Lib\Progress.cs" />
+    <Compile Include="Lib\SnilsChecker.cs" />
     <Compile Include="Lib\UniqueNumber.cs" />
     <Compile Include="Lib\Unlinker.cs" />
     <Compile Include="Lib\XmlExporter.cs" />
@@ -130,6 +137,10 @@
       <LastGenOutput>Queries.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Data\SQL\Queries.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Queries.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Dict\F002-Q.xml">
@@ -164,6 +175,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

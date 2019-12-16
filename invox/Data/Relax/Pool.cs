@@ -84,6 +84,7 @@ namespace invox.Data.Relax {
 
         string period;
         string lpuCode;
+        SQL.Medialog medialog;
         Model.OrderSection lastRecoursesSection;
         Model.ProphSubsection lastRecourceSubsection;
 
@@ -115,13 +116,14 @@ namespace invox.Data.Relax {
         /// <param name="location">Каталог Релакс</param>
         /// <param name="lpuCode">Код ЛПУ (релаксовский)</param>
         /// <param name="period">Каталог текущего периода (от корневого каталога Релакс)</param>
-        public Pool(string location, string lpuCode, string period) {
+        public Pool(string location, string lpuCode, string period, SQL.Medialog medialog) {
             this.period = period;
             this.lpuCode = lpuCode;
             lastRecourceSubsection = Model.ProphSubsection.None;
+            this.medialog = medialog;
 
             aStrings = new AdapterStrings();
-            aPerson = new AdapterPerson();
+            aPerson = new AdapterPerson(medialog);
             aInvoice = new AdapterInvoice();
             aRecourse = new AdapterRecourseAux();
             aService = new AdapterServiceAux();

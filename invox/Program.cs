@@ -90,7 +90,11 @@ namespace invox {
                     Console.ForegroundColor = fg;
                 }
 
-                Data.IInvoice pool = new Data.Relax.Pool(Options.LpuLocation, Options.LocalLpuCode, Options.PeriodLocation);
+                Data.SQL.Medialog medialog = new Data.SQL.Medialog();
+                if (!medialog.Authorize())
+                    Lib.Logger.Log("Ошибка авторизации в Медиалоге!");
+
+                Data.IInvoice pool = new Data.Relax.Pool(Options.LpuLocation, Options.LocalLpuCode, Options.PeriodLocation, medialog);
 
                 if (pool.Init() && Checkup(pool)) {
                     int packet = Options.PacketNumber - 1;

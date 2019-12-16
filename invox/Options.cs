@@ -25,6 +25,11 @@ namespace invox {
         static Lib.Options options;
         static Model.OrderSection[] sections;
 
+        static string medialogServer;
+        static string medialogDatabase;
+        static string medialogUser;
+        static string medialogPassword;
+
         public static NumberFormatInfo NumberFormat { get; private set; }
 
         public static string BaseDirectory { get { return baseDirectory; } }
@@ -47,6 +52,11 @@ namespace invox {
         public static Model.OrderSection[] Sections { get { return sections; } }
         public static bool LeaveFiles { get { return options.LeaveFiles; } }
         public static bool Fixing { get { return options.Fixing; } }
+
+        public static string MedialogServer { get { return medialogServer; } }
+        public static string MedialogDatabase { get { return medialogDatabase; } }
+        public static string MedialogUser { get { return medialogUser; } }
+        public static string MedialogPassword { get { return medialogPassword; } }
 
         static string GetVersion() {
             return Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -77,6 +87,11 @@ namespace invox {
             okato = Properties.Settings.Default.OKATO;
             defaultDocument = Properties.Settings.Default.DefaultDocument;
             Lib.DateHelper.DayHospitalSixDaysWeek = Properties.Settings.Default.DayHospitalSixDaysWeek;
+
+            medialogServer = Properties.Settings.Default.MedialogServer;
+            medialogDatabase = Properties.Settings.Default.MedialogDatabase;
+            medialogUser = Properties.Settings.Default.MedialogUser;
+            medialogPassword = Properties.Settings.Default.MedialogPassword;
 
             // Decimal point instead of comma
             NumberFormat = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
