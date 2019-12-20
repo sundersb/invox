@@ -61,7 +61,7 @@ namespace invox.Data.SQL {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select top 1 KOGDA_V_DAN, KEM_V_DAN from PATIENTS
+        ///   Ищет локализованную строку, похожую на select top 1 KOGDA_V_DAN, KEM_V_DAN, PASPORT_N from PATIENTS
         /// where (NOM like @family)
         ///  and (PRENOM like @name)
         ///  and (PATRONYME like @patr)
@@ -74,7 +74,7 @@ namespace invox.Data.SQL {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select top 1 KOGDA_V_DAN, KEM_V_DAN from PATIENTS where SNILS = @snils.
+        ///   Ищет локализованную строку, похожую на select top 1 KOGDA_V_DAN, KEM_V_DAN, PASPORT_N from PATIENTS where SNILS = @snils.
         /// </summary>
         internal static string QUERY_SELECT_PASSPORT_BY_SNILS {
             get {

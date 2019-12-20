@@ -136,6 +136,10 @@ namespace invox.Data.SQL {
                 d = reader[1];
                 if (d != DBNull.Value)
                     person.DocumentOrganization = (string)d;
+
+                d = reader[2];
+                if (d != DBNull.Value)
+                    Lib.PassportChecker.UpdatePassport(person, string.Empty, (string)d);
             };
 
             if (Lib.SnilsChecker.Valid(person.Snils)) {
@@ -145,9 +149,9 @@ namespace invox.Data.SQL {
                     return true;
             }
 
-            selectPassByName.Parameters["family"].Value = person.Family;
-            selectPassByName.Parameters["name"].Value = person.Name;
-            selectPassByName.Parameters["patr"].Value = person.Patronymic;
+            selectPassByName.Parameters["family"].Value = person.Family.CoalesceYo();
+            selectPassByName.Parameters["name"].Value = person.Name.CoalesceYo();
+            selectPassByName.Parameters["patr"].Value = person.Patronymic.CoalesceYo();
             selectPassByName.Parameters["bdate"].Value = person.BirthDate;
 
             return Execute(selectPassByName, onPassRecord)

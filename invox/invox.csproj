@@ -63,6 +63,7 @@
     <Compile Include="Data\Relax\RecourseAux.cs" />
     <Compile Include="Data\Relax\ServiceAux.cs" />
     <Compile Include="Data\Relax\SpecialityDict.cs" />
+    <Compile Include="Data\SQL\Eyo.cs" />
     <Compile Include="Data\SQL\Medialog.cs" />
     <Compile Include="Data\SQL\Queries.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -84,6 +85,7 @@
     <Compile Include="Lib\InvoiceFilename.cs" />
     <Compile Include="Lib\Logger.cs" />
     <Compile Include="Lib\Options.cs" />
+    <Compile Include="Lib\PassportChecker.cs" />
     <Compile Include="Lib\Progress.cs" />
     <Compile Include="Lib\SnilsChecker.cs" />
     <Compile Include="Lib\UniqueNumber.cs" />

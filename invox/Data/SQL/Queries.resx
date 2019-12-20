@@ -118,14 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="QUERY_SELECT_PASSPORT_BY_NAME" xml:space="preserve">
-    <value>select top 1 KOGDA_V_DAN, KEM_V_DAN from PATIENTS
+    <value>select top 1 KOGDA_V_DAN, KEM_V_DAN, PASPORT_N from PATIENTS
  where (NOM like @family)
   and (PRENOM like @name)
   and (PATRONYME like @patr)
   and (NE_LE = @bdate)</value>
   </data>
   <data name="QUERY_SELECT_PASSPORT_BY_SNILS" xml:space="preserve">
-    <value>select top 1 KOGDA_V_DAN, KEM_V_DAN from PATIENTS where SNILS = @snils</value>
+    <value>select top 1 KOGDA_V_DAN, KEM_V_DAN, PASPORT_N from PATIENTS where SNILS = @snils</value>
   </data>
   <data name="QUERY_SELECT_USER_ID" xml:space="preserve">
     <value>select cast (MEDECINS_ID as bigint) from MEDECINS where login like @name</value>
