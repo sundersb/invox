@@ -8,6 +8,8 @@ namespace invox.Lib {
     /// Валидатор номера паспорта
     /// </summary>
     static class PassportChecker {
+        // TODO: Форматирование с учетом типа документа F011
+
         const int SERIAL_LENGTH = 4;
         const int NUMBER_LENGTH = 6;
 
@@ -63,6 +65,9 @@ namespace invox.Lib {
         /// <returns>Истина, если серия и номер паспорта валидные, и удалось обновить
         /// данные пациента при их различии (либо данные пациента бьют)</returns>
         public static bool UpdatePassport(Model.Person person, string passportSerial, string passportNumber) {
+            if (person.DocumentType != "14")
+                return false;
+
             if (string.IsNullOrEmpty(passportSerial) && string.IsNullOrEmpty(passportNumber))
                 return false;
 
@@ -70,7 +75,12 @@ namespace invox.Lib {
             if (digits.Length != SERIAL_LENGTH + NUMBER_LENGTH)
                 return false;
 
-            passportSerial = new string(digits, 0, SERIAL_LENGTH);
+            var ser = digits.Take(2).ToList();
+            ser.Add(' ');
+            ser.AddRange(digits.Skip(2).Take(2));
+            passportSerial = new string(ser.ToArray());
+
+            //passportSerial = new string(digits, 0, SERIAL_LENGTH);
             passportNumber = new string(digits, SERIAL_LENGTH, NUMBER_LENGTH);
 
             if (person.DocumentSerial != passportSerial)

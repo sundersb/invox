@@ -31,21 +31,42 @@ namespace invox.Data.SQL {
             selectPassByName.Parameters.AddWithValue("bdate", DateTime.Today);
         }
 
-        public bool Authorize() {
+        public bool Authorize(string server, string database, string user, string password) {
             if (authorized) return true;
 
             try {
                 connection.ConnectionString = string.Format(CONNECTION_STRING,
-                    Options.MedialogServer,
-                    Options.MedialogDatabase,
-                    Options.MedialogUser,
-                    Options.MedialogPassword);
+                    server,
+                    database,
+                    user,
+                    password);
                 userId = GetUserId(Options.MedialogUser);
             } catch (Exception ex) {
                 Lib.Logger.Log(ex.Message);
             }
             authorized = userId != 0;
             return authorized;
+        }
+
+        public bool Authorize() {
+            if (authorized) return true;
+            return Authorize(Options.MedialogServer,
+                    Options.MedialogDatabase,
+                    Options.MedialogUser,
+                    Options.MedialogPassword);
+
+            //try {
+            //    connection.ConnectionString = string.Format(CONNECTION_STRING,
+            //        Options.MedialogServer,
+            //        Options.MedialogDatabase,
+            //        Options.MedialogUser,
+            //        Options.MedialogPassword);
+            //    userId = GetUserId(Options.MedialogUser);
+            //} catch (Exception ex) {
+            //    Lib.Logger.Log(ex.Message);
+            //}
+            //authorized = userId != 0;
+            //return authorized;
         }
 
         long GetUserId(string userName) {

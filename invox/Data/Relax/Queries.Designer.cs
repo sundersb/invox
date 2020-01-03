@@ -225,7 +225,7 @@ namespace invox.Data.Relax {
         ///  P.SS,
         ///  cpconver(866, 1251, P.SN_POL) SN_POL,
         ///  PP.Q_PASP,
-        ///  PP.SN_PASP,
+        ///  cpconvert(866, 1251, PP.SN_PASP) SN_PASP,
         ///  cpconvert(866, 1251, P.PR) BP,
         ///  cpconvert(866, 1251, P.ADRES) ADRES,
         ///  P.SP,
@@ -236,7 +236,7 @@ namespace invox.Data.Relax {
         ///  P.WP,
         ///  P.DRP
         /// from {period}P{lpu} P
-        ///  join {period}S{lpu} S on S.SN_POL = P [остаток строки не уместился]&quot;;.
+        ///  join {p [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_PEOPLE {
             get {

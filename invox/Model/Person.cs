@@ -274,6 +274,7 @@ namespace invox.Model {
         }
 
         public void SetDocument(string number) {
+            // TODO: Форматирование с учетом типа документа F011
             number = number.Trim();
             if (string.IsNullOrEmpty(number)) {
                 DocumentNumber = string.Empty;

@@ -228,7 +228,7 @@ select
   P.SS,
   cpconver(866, 1251, P.SN_POL) SN_POL,
   PP.Q_PASP,
-  PP.SN_PASP,
+  cpconvert(866, 1251, PP.SN_PASP) SN_PASP,
   cpconvert(866, 1251, P.PR) BP,
   cpconvert(866, 1251, P.ADRES) ADRES,
   P.SP,
