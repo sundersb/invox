@@ -260,7 +260,9 @@ namespace invox.Data.Relax {
         ///  P.RECID PERSON_ID,
         ///  S.RECID SERVICE_ID,
         ///  S.OTD DEPT, S.PODR UNIT,
-        ///  K.MSP AID_PROFILE,
+        ///  K.MSP MSP,
+        ///  K.PRUPP AID_PROFILE,
+        ///  K.UMP PAY_KIND,
         ///  UMP.SLUSL AID_CONDITIONS,
         ///  S.COD SERVICE_CODE,
         ///  nvl(RO.SLIZ, &apos;xxx&apos;) RESULT,
@@ -278,8 +280,7 @@ namespace invox.Data.Relax {
         ///  S.K_U QUANTITY,
         ///  S.S_ALL TARIFF,
         ///  S.S_ALL TOTAL,
-        ///  S.OTD + S.TN1 SPECIALITY_ID,
-        ///  S.TN1 D [остаток строки не уместился]&quot;;.
+        ///  S.OT [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_RECOURSES {
             get {

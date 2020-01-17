@@ -18,7 +18,11 @@ namespace invox.Data.Relax {
 
         static string[] REFUSAL_RESULTS = { "302", "408", "417", "207" };
 
-        static int[] SOUL_TARIFF_SERVICES = { 50002, 50004, 50010, 50014, 50019, 50020, 50023 };
+        static int[] SOUL_TARIFF_SERVICES = { 50002, 50004, 50010, 50014, 50019, 50020, 50023,
+            50102, 50104, 50110, 50114,
+            50202, 50204, 50210, 50214,
+            50302, 50402
+        };
 
         // V008
         const int AID_KIND_EMERGENCY = 2;
@@ -352,7 +356,7 @@ namespace invox.Data.Relax {
             if (!int.TryParse(Department, out unit)) unit = 1;
 
             soul = SOUL_TARIFF_SERVICES.Contains(ServiceCode);
-            InternalReason = GetInternalReason(unit, ServiceCode, RecourseResult);
+            InternalReason = GetInternalReason(unit, ServiceCode);
             InitialDiagnosis = MainDiagnosis;
 
             // 20190304 - Снова в конце месяца блять!
@@ -367,7 +371,7 @@ namespace invox.Data.Relax {
                 Outcome = Dict.Outcome.Get(AidConditions, Outcome.TrimStart('0'));
             }
 
-            PayKind = GetPayKind(unit, ServiceCode, soul);
+            //PayKind = GetPayKind(unit, ServiceCode, soul);
         }
 
         /// <summary>
@@ -380,48 +384,52 @@ namespace invox.Data.Relax {
         /// Использовался документ pravila-dlya-sbora-sluchaev-sposob-oplaty_16012018.xlsx с сайта ХКФОМС
         /// </remarks>
         /// <returns>Код способа оплаты</returns>
-        static string GetPayKind(int unit, int service, bool isSoul) {
-            switch (unit) {
-                case 0:
-                case 1:
-                    if (isSoul)
-                        return "25";
-                    else
-                        return "30";
+        //static string GetPayKind(int unit, int service, bool isSoul) {
+        //    switch (unit) {
+        //        case 0:
+        //        case 1:
+        //            if (isSoul)
+        //                return "25";
+        //            else
+        //                return "30";
 
-                case 3: return "33";
+        //        case 3: return "33";
 
-                case 4:
-                    if (isSoul)
-                        return "25";
-                    else
-                        return "29";
+        //        case 4:
+        //            if (isSoul)
+        //                return "25";
+        //            else
+        //                return "29";
 
-                case 5: return "29";
-                case 8: return "28";
-                case 9: return "30";
-                default: return string.Empty;
-            }
+        //        case 5: return "29";
+        //        case 8: return "28";
+        //        case 9: return "30";
+        //        default: return string.Empty;
+        //    }
+        //}
+
+        static bool ServiceIsDispensarySupervision(int service) {
+            if (service / 1000 != 50)
+                return false;
+
+            int lastTwo = service % 100;
+            return lastTwo == 13 || lastTwo == 14;
         }
 
         /// <summary>
         /// Получить повод обращения
         /// </summary>
         /// <param name="unit">Код отделения (S.OTD)</param>
-        /// <param name="service">Код услуги (S.COD)</param>
-        /// <param name="recourseResult">Код результата обращения (S.BE)</param>
+        /// <param name="service">Код главной услуги (S.COD) законченного случая</param>
         /// <returns>Повод обращения</returns>
-        static Relax.InternalReason GetInternalReason(int unit, int service, string recourseResult) {
+        static Relax.InternalReason GetInternalReason(int unit, int service) {
             switch (unit) {
-            case 0:
-                    if (service == 50019 || service == 50021 || service == 50023 || (service/1000 == 24))
-                        return InternalReason.StrippedStage1;
-                    else
-                        return InternalReason.StrippedStage2;
-
             case 1:
                 // Поликлиника, лечебная
-                return Relax.InternalReason.AmbTreatment;
+                if (service % 100 < 3)
+                    return InternalReason.BriefTreatment;
+                else
+                    return Relax.InternalReason.AmbTreatment;
 
             case 3:
                 // Дневной стационар
@@ -432,15 +440,10 @@ namespace invox.Data.Relax {
 
             case 4:
                 // Профилактика
-                if (service == 50002 || service == 50001 || (service / 10000 == 6)) {
-                    int r = 0;
-                    if (int.TryParse(recourseResult, out r) && r == DD_ONCE_IN_TWO_YEARS_DONE)
-                        return InternalReason.StrippedStage1;
-                    else
-                        return Relax.InternalReason.Other;
-                } else {
-                    return Relax.InternalReason.DispRegister;
-                }
+                if (ServiceIsDispensarySupervision(service))
+                    return InternalReason.DispRegister;
+                else
+                    return InternalReason.Other;
 
             case 5:
                 // Неотложная помощь

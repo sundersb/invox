@@ -17,8 +17,12 @@ namespace invox.Data.Relax {
 
             //result.AidProfile = Dict.AidProfile.Instance.Get(ReadString(reader["AID_PROFILE"]));
             result.SpecialityCode = SpecialityDict.Get(ReadString(reader["SPECIALITY_ID"]));
-            result.AidProfile = Dict.AidProfileBySpeciality.Instance.Get(ReadString(reader["AID_PROFILE"]), result.SpecialityCode);
-            
+
+            // TODO: Which is more precise?
+            result.AidProfile = ReadString(reader["AID_PROFILE"]);
+            //result.AidProfile = Dict.AidProfileBySpeciality.Instance.Get(ReadString(reader["MSP"]), result.SpecialityCode);
+
+            result.PayKind = ReadString(reader["PAY_KIND"]);
             int dummy = ReadInt(ReadString(reader["AID_CONDITIONS"]));
             result.AidConditions = Dict.Condition.Instance.Get(dummy.ToString());
 

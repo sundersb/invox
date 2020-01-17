@@ -8,8 +8,6 @@ using invox.Lib;
 
 namespace invox.Data.Relax {
     class Pool : IInvoice {
-        static InternalReason[] REASONS_WHICH_REQ_DATEFIX = { InternalReason.StrippedStage1, InternalReason.StrippedStage2, InternalReason.AmbTreatment };
-
         const string CONNECTION_STRING = "Provider=vfpoledb;Data Source={0};Collating Sequence=machine;Mode=ReadWrite|Share Deny None;";
 
         static string[] SELECT_RECOURSE_CASES_PARAMS = { "PERSON_RECID" };
@@ -466,18 +464,17 @@ namespace invox.Data.Relax {
 
             switch (ra.InternalReason) {
                 case InternalReason.AmbTreatment:
+                case InternalReason.BriefTreatment:
                 case InternalReason.DayHosp:
                 case InternalReason.SurgeryDayHosp:
                     command = selectServicesTreatment;
                     break;
 
                 case InternalReason.Stage1:
-                case InternalReason.StrippedStage1:
                     command = selectServicesStage1;
                     break;
 
                 case InternalReason.Stage2:
-                case InternalReason.StrippedStage2:
                     command = selectServicesStage2;
                     break;
 
@@ -638,16 +635,14 @@ namespace invox.Data.Relax {
             }
 
 #if FOMS
-            if (REASONS_WHICH_REQ_DATEFIX.Contains(ra.InternalReason)) {
-                // Задолбал ФОМС с их дурацкими ошибками: дд раз в 2 года ставит "неправильные даты", если дата начала и окончания не совпадают
-                // В подушевой услуге ставим даты начала и окончания как во всем закрытом случае
+            // Задолбал ФОМС с их дурацкими ошибками: дд раз в 2 года ставит "неправильные даты", если дата начала и окончания не совпадают
+            // В подушевой услуге ставим даты начала и окончания как во всем закрытом случае
 
-                // 20190417 Хрен там, теперь не только обрезанная ДД
-                Model.Service ser = evt.Services.FirstOrDefault(s => s.ServiceCode / 10000 == 5);
-                if (ser != null) {
-                    ser.DateFrom = evt.DateFrom;
-                    ser.DateTill = evt.DateTill;
-                }
+            // 20190417 Хрен там, теперь не только обрезанная ДД
+            Model.Service ser = evt.Services.FirstOrDefault(s => s.ServiceCode / 10000 == 5);
+            if (ser != null) {
+                ser.DateFrom = evt.DateFrom;
+                ser.DateTill = evt.DateTill;
             }
 #endif
 

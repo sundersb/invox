@@ -8,19 +8,65 @@ namespace invox.Data.Relax {
     /// Повод обращения - для внутренних нужд
     /// </summary>
     enum InternalReason {
-        Unknown = 0,        // Неверный повод
-        AmbTreatment = 1,   // Лечебная
-        DayHosp = 2,        // СДП
-        SurgeryDayHosp = 3, // СДП (хирургия)
-        Other = 4,          // Иная цель
-        DispRegister = 5,   // Д-учет
-        Emergency = 6,      // Неотложная помощь
-        Prof = 7,           // Профосмотр старше 18 лет
-        Stage1 = 8,         // Диспансеризация, 1 этап
-        Stage2 = 9,         // Диспансеризация, 2 этап
-        StrippedStage1 = 10,// Дисп. раз в два года - 1 этап
-        StrippedStage2 = 11,// Дисп. раз в два года - 2 этап
-        Diagnostics = 12    // ФОГК подросткам
+        /// <summary>
+        /// Неверный повод
+        /// </summary>
+        Unknown = 0,
+
+        /// <summary>
+        /// Лечебная
+        /// </summary>
+        AmbTreatment = 1,
+        
+        /// <summary>
+        /// СДП
+        /// </summary>
+        DayHosp = 2,
+        
+        /// <summary>
+        /// СДП (хирургия)
+        /// </summary>
+        SurgeryDayHosp = 3,
+        
+        /// <summary>
+        /// Иная цель
+        /// </summary>
+        Other = 4,
+        
+        /// <summary>
+        /// Д-учет
+        /// </summary>
+        DispRegister = 5,
+        
+        /// <summary>
+        /// Неотложная помощь
+        /// </summary>
+        Emergency = 6,
+        
+        /// <summary>
+        /// Профосмотр старше 18 лет
+        /// </summary>
+        Prof = 7,
+        
+        /// <summary>
+        /// Диспансеризация, 1 этап
+        /// </summary>
+        Stage1 = 8,
+        
+        /// <summary>
+        /// Диспансеризация, 2 этап
+        /// </summary>
+        Stage2 = 9,
+        
+        /// <summary>
+        /// ФОГК подросткам
+        /// </summary>
+        Diagnostics = 12,
+
+        /// <summary>
+        /// Лечебная цель (единичное посещение)
+        /// </summary>
+        BriefTreatment = 13
     }
 
     /// <summary>
@@ -48,6 +94,7 @@ namespace invox.Data.Relax {
         public static string ToVisitAim(InternalReason reason) {
             switch (reason) {
                 case InternalReason.AmbTreatment:
+                case InternalReason.BriefTreatment:
                 case InternalReason.DayHosp:
                 case InternalReason.SurgeryDayHosp:
                     return "3.0";
@@ -66,8 +113,6 @@ namespace invox.Data.Relax {
 
                 case InternalReason.Stage1:
                 case InternalReason.Stage2:
-                case InternalReason.StrippedStage1:
-                case InternalReason.StrippedStage2:
                     return "2.2";
 
                 case InternalReason.Diagnostics:
@@ -101,6 +146,7 @@ namespace invox.Data.Relax {
         public static string ToFomsReason(this InternalReason reason, bool isSoul) {
             switch (reason) {
                 case InternalReason.AmbTreatment:
+                case InternalReason.BriefTreatment:
                     return isSoul ? "17" : "16";
                 
                 case InternalReason.DayHosp:
@@ -115,9 +161,6 @@ namespace invox.Data.Relax {
                 case InternalReason.Prof: return "15";
                 case InternalReason.Stage1: return "8";
                 case InternalReason.Stage2: return "9";
-                
-                case InternalReason.StrippedStage1: return isSoul ? "33" : "35";
-                case InternalReason.StrippedStage2: return isSoul ? "34" : "36";
 
                 case InternalReason.Diagnostics: return "21";
 
@@ -138,6 +181,7 @@ namespace invox.Data.Relax {
                     return DiagnosisKind.Prophylax;
 
                 case InternalReason.AmbTreatment:
+                case InternalReason.BriefTreatment:
                 case InternalReason.DayHosp:
                 case InternalReason.SurgeryDayHosp:
                 case InternalReason.DispRegister:

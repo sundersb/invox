@@ -36,7 +36,7 @@ namespace invox.Data.Relax {
 
             result.Representative = GetRepresentative(reader);
 
-            // Брать неоткуда, кроме как из Ммедиалога
+            // Брать неоткуда, кроме как из Медиалога
             medialog.UpdatePersonDocument(result);
 
             return result;

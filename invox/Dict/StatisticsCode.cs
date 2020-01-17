@@ -27,7 +27,7 @@ namespace invox.Dict {
 
         StatisticsCode() { }
 
-        public string Get(string key) {
+        new public string Get(string key) {
             if (string.IsNullOrEmpty(key) || key.Length < 3) return "1";
 
             string result = base.GetDefault(key.Substring(0, 3), string.Empty);
