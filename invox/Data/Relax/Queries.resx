@@ -341,14 +341,14 @@ select
     <value>update {period}PATU set DS2 = DS, DS = 'Z02.7'
  where (DS like 'C%')
   and (OTD = '0004')
-  and ((COD in (50001, 50002))
+  and ((COD in (50301, 50302, 50401, 50402))
    or (floor(COD / 10000) = 6))</value>
   </data>
   <data name="UPDATE_ONKO_OTHER_AIM_MAIN" xml:space="preserve">
     <value>update {period}S{lpu} set DS2 = DS, DS = 'Z02.7'
  where (DS like 'C%')
   and (OTD = '0004')
-  and ((COD in (50001, 50002))
+  and ((COD in (50301, 50302, 50401, 50402))
    or (floor(COD / 10000) = 6))</value>
   </data>
 </root>

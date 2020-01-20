@@ -338,7 +338,7 @@ namespace invox.Data.Relax {
         ///   Ищет локализованную строку, похожую на update {period}PATU set DS2 = DS, DS = &apos;Z02.7&apos;
         /// where (DS like &apos;C%&apos;)
         ///  and (OTD = &apos;0004&apos;)
-        ///  and ((COD in (50001, 50002))
+        ///  and ((COD in (50301, 50302, 50401, 50402))
         ///   or (floor(COD / 10000) = 6)).
         /// </summary>
         internal static string UPDATE_ONKO_OTHER_AIM_COMMON {
@@ -351,7 +351,7 @@ namespace invox.Data.Relax {
         ///   Ищет локализованную строку, похожую на update {period}S{lpu} set DS2 = DS, DS = &apos;Z02.7&apos;
         /// where (DS like &apos;C%&apos;)
         ///  and (OTD = &apos;0004&apos;)
-        ///  and ((COD in (50001, 50002))
+        ///  and ((COD in (50301, 50302, 50401, 50402))
         ///   or (floor(COD / 10000) = 6)).
         /// </summary>
         internal static string UPDATE_ONKO_OTHER_AIM_MAIN {
