@@ -267,7 +267,7 @@ namespace invox.Data.Relax {
         ///  S.COD SERVICE_CODE,
         ///  nvl(RO.SLIZ, &apos;xxx&apos;) RESULT,
         ///  S.IG OUTCOME,
-        ///  K.OPL PAY_KIND,
+        ///  K.OPL PAY_KIND2,
         ///  1 PAY_TYPE,
         ///  .F. MOBILE_BRIGADE,
         ///  S.BE RECOURSE_RESULT,
@@ -280,7 +280,7 @@ namespace invox.Data.Relax {
         ///  S.K_U QUANTITY,
         ///  S.S_ALL TARIFF,
         ///  S.S_ALL TOTAL,
-        ///  S.OT [остаток строки не уместился]&quot;;.
+        ///  S.O [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string SELECT_RECOURSES {
             get {

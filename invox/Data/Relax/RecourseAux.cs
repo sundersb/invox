@@ -450,7 +450,7 @@ namespace invox.Data.Relax {
                 return Relax.InternalReason.Emergency;
 
             case 8:
-                // ФОГК подросткам
+                // ФОГК подросткам, диагностика
                 return InternalReason.Diagnostics;
 
             case 9:

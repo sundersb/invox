@@ -24,7 +24,8 @@ namespace invox.Data.Relax {
         // Чтобы избежать ошибок, связанных с забывчивостью при добавлении чего-нибудь в ответ на нововведения
         // ФОМС условие SQL для выборки услуг, обозначающих закрытый случай, вынесено из Queries
         // и помещено здесь
-        const string RECOURSE_SERVICES_CRITERION = "floor(S.COD/1000) in (3, 27, 28, 29, 22, 50, 5)";
+        // СДП, проф, ДД2, ДД1, подушевые, ФОГК, диагностика
+        const string RECOURSE_SERVICES_CRITERION = "floor(S.COD/1000) in (3, 27, 28, 22, 50, 5, 6)";
 
         
         // Условия для выборки услуг в рамках диспансеризации. Необходимость связана с тем, что
@@ -48,7 +49,7 @@ namespace invox.Data.Relax {
         /// Подразделения: лечебная, СДП, иная цель, неотложка; не онкология; не ДД раз в 2 года
         /// </remarks>
 #if FOMS
-        const string D1_SELECTION = "(S.OTD in ('0001', '0003', '0004', '0005', '0008')) and (S.DS <> 'Z03.1') and (left (S.DS, 1) <> 'C') and (S.DS not like 'D0%') and (S.BE <> '98')";
+        const string D1_SELECTION = "(S.OTD in ('0001', '0003', '0004', '0005', '0008')) and (S.DS <> 'Z03.1') and (left (S.DS, 1) <> 'C') and (S.DS not like 'D0%')";
 #else
         const string D1_SELECTION = "(S.OTD in ('0001', '0003', '0004', '0005')) and (S.DS <> 'Z03.1') and (left (S.DS, 1) <> 'C')";
 #endif
@@ -66,7 +67,7 @@ namespace invox.Data.Relax {
         //const string D3_SELECTION_PROF = "floor(S.COD/1000) = 27";
 
         // Changed 2019-06-24
-        const string D3_SELECTION_STAGE1 = "floor(S.COD/1000) in (22, 24, 29)";
+        const string D3_SELECTION_STAGE1 = "floor(S.COD/1000) in (22, 24)";
         const string D3_SELECTION_STAGE2 = "floor(S.COD/1000) in (25, 28)";
         const string D3_SELECTION_PROF = "floor(S.COD/1000) in (24, 27)";
 
@@ -78,7 +79,6 @@ namespace invox.Data.Relax {
 #else
         const string D4_SELECTION = "(S.OTD not in ('0000', '8000', '0009')) and ((S.DS = 'Z03.1') or (left (S.DS, 1) = 'C'))";
 #endif
-
 
         string period;
         string lpuCode;
