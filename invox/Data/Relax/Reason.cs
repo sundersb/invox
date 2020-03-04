@@ -93,8 +93,10 @@ namespace invox.Data.Relax {
         /// <returns>Код цели посещения V025</returns>
         public static string ToVisitAim(InternalReason reason) {
             switch (reason) {
-                case InternalReason.AmbTreatment:
                 case InternalReason.BriefTreatment:
+                    return "1.0";
+
+                case InternalReason.AmbTreatment:
                 case InternalReason.DayHosp:
                 case InternalReason.SurgeryDayHosp:
                     return "3.0";
@@ -146,8 +148,10 @@ namespace invox.Data.Relax {
         public static string ToFomsReason(this InternalReason reason, bool isSoul) {
             switch (reason) {
                 case InternalReason.AmbTreatment:
-                case InternalReason.BriefTreatment:
                     return isSoul ? "17" : "16";
+
+                case InternalReason.BriefTreatment:
+                    return "5";
                 
                 case InternalReason.DayHosp:
                 case InternalReason.SurgeryDayHosp:

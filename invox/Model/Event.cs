@@ -420,7 +420,11 @@ namespace invox.Model {
             isOncology = OnkologyTreat.IsOnkologyTreat(rec, this, pool);
             if (isOncology) {
                 OnkologyTreat treat = pool.GetOnkologyTreat(rec, this);
-                if (treat != null) treat.Write(xml, pool);
+                if (treat != null) {
+                    if (string.IsNullOrEmpty(treat.Stage))
+                        Console.WriteLine("Пустая стадия для онкологии. Случай " + this.Identity);
+                    treat.Write(xml, pool);
+                }
             }
 
             xml.Writer.WriteElementString("PRVS", SpecialityCode);
@@ -580,8 +584,13 @@ namespace invox.Model {
 
             // Не на дому, не реабилитация и не подозрение
             if (!Rehabilitation && !rec.SuspectOncology && rec.Conditions != "4") {
-                OnkologyTreat t = pool.GetOnkologyTreat(rec, this);
-                if (t != null) t.Write(xml, pool);
+                OnkologyTreat treat = pool.GetOnkologyTreat(rec, this);
+
+                if (treat != null) {
+                    if (string.IsNullOrEmpty(treat.Stage))
+                        Console.WriteLine("Пустая стадия для онкологии. Случай " + this.Identity);
+                    treat.Write(xml, pool);
+                }
             }
 
             if (ClinicalGroup != null) ClinicalGroup.Write(xml, pool, this);

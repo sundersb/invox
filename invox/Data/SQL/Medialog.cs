@@ -163,19 +163,22 @@ namespace invox.Data.SQL {
                     Lib.PassportChecker.UpdatePassport(person, string.Empty, (string)d);
             };
 
+            SqlCommand command = null;
             if (Lib.SnilsChecker.Valid(person.Snils)) {
+                command = selectPassBySnils;
                 selectPassBySnils.Parameters["snils"].Value = person.Snils;
-                if (Execute(selectPassBySnils, onPassRecord)
-                    && person.DocumentDate.HasValue)
-                    return true;
+                //if (Execute(selectPassBySnils, onPassRecord)
+                //    && person.DocumentDate.HasValue)
+                //    return true;
+            } else {
+                command = selectPassByName;
+                selectPassByName.Parameters["family"].Value = person.Family.CoalesceYo();
+                selectPassByName.Parameters["name"].Value = person.Name.CoalesceYo();
+                selectPassByName.Parameters["patr"].Value = person.Patronymic.CoalesceYo();
+                selectPassByName.Parameters["bdate"].Value = person.BirthDate;
             }
 
-            selectPassByName.Parameters["family"].Value = person.Family.CoalesceYo();
-            selectPassByName.Parameters["name"].Value = person.Name.CoalesceYo();
-            selectPassByName.Parameters["patr"].Value = person.Patronymic.CoalesceYo();
-            selectPassByName.Parameters["bdate"].Value = person.BirthDate;
-
-            return Execute(selectPassByName, onPassRecord)
+            return Execute(command, onPassRecord)
                 && person.DocumentDate.HasValue;
         }
     }

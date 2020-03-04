@@ -165,6 +165,7 @@
     </Content>
     <Content Include="Dict\V010-OPLMSP.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Dict\V012-BOLEND.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

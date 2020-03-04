@@ -203,13 +203,15 @@ namespace invox.Model {
             }
             remoteMts = false;
 
-            int i = (int)stage.First() - (int)'0';
-            if (i < 3)
-                reason = (OnkologyReason)i;
-            else
-                reason = OnkologyReason.Primary;
+            if (!string.IsNullOrEmpty(stage)) {
+                int i = (int)stage.First() - (int)'0';
+                if (i < 3)
+                    reason = (OnkologyReason)i;
+                else
+                    reason = OnkologyReason.Primary;
 
-            stage = stage.Substring(1);
+                stage = stage.Substring(1);
+            }
         }
 
         static bool IsSuppOnkology(string ds) {

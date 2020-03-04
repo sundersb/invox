@@ -464,7 +464,6 @@ namespace invox.Data.Relax {
 
             switch (ra.InternalReason) {
                 case InternalReason.AmbTreatment:
-                case InternalReason.BriefTreatment:
                 case InternalReason.DayHosp:
                 case InternalReason.SurgeryDayHosp:
                     command = selectServicesTreatment;
@@ -483,6 +482,7 @@ namespace invox.Data.Relax {
                     break;
 
                 case InternalReason.Other:
+                case InternalReason.BriefTreatment:
                 case InternalReason.DispRegister:
                 case InternalReason.Emergency:
                 case InternalReason.Diagnostics:

@@ -24,6 +24,10 @@ namespace invox.Data.Relax {
             50302, 50402
         };
 
+        static int[] BRIEF_TREATMEN_SERVICES = {
+            50101, 50102, 50201, 50202
+        };
+
         // V008
         const int AID_KIND_EMERGENCY = 2;
         const int AID_KIND_PRIMARY = 12;
@@ -426,10 +430,7 @@ namespace invox.Data.Relax {
             switch (unit) {
             case 1:
                 // Поликлиника, лечебная
-                if (service % 100 < 3)
-                    return InternalReason.BriefTreatment;
-                else
-                    return Relax.InternalReason.AmbTreatment;
+                return Relax.InternalReason.AmbTreatment;
 
             case 3:
                 // Дневной стационар
@@ -439,6 +440,9 @@ namespace invox.Data.Relax {
                     return Relax.InternalReason.SurgeryDayHosp;
 
             case 4:
+                if (BRIEF_TREATMEN_SERVICES.Contains(service))
+                    return InternalReason.BriefTreatment;
+
                 // Профилактика
                 if (ServiceIsDispensarySupervision(service))
                     return InternalReason.DispRegister;
