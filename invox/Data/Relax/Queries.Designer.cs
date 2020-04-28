@@ -335,6 +335,18 @@ namespace invox.Data.Relax {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на update {period}S{lpu} set COD = COD + 40 where (COD between 22020 and 22054) and (dow(D_U, 2) in (6, 7));
+        ///update {period}S{lpu} set COD = COD + 12 where (COD between 27003 and 27014) and (dow(D_U, 2) in (6, 7));
+        ///update {period}S{lpu} set COD = COD - 40 where (COD between 022060 and 022094) and (dow(D_U, 2) not in (6, 7));
+        ///update {period}S{lpu} set COD = COD - 12 where (COD between 027015 and 027026) and (dow(D_U, 2) not in (6, 7));.
+        /// </summary>
+        internal static string UPDATE_DAYOFF_DISPANSERIZATION {
+            get {
+                return ResourceManager.GetString("UPDATE_DAYOFF_DISPANSERIZATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на update {period}PATU set DS2 = DS, DS = &apos;Z02.7&apos;
         /// where (DS like &apos;C%&apos;)
         ///  and (OTD = &apos;0004&apos;)

@@ -191,6 +191,16 @@ namespace invox.Data.Relax {
             selectSpecs.CommandText = LocalizeQuery(Queries.UPDATE_ONKO_OTHER_AIM_MAIN);
             ExecuteCommand(selectSpecs);
 
+            var fixes = LocalizeQuery(Queries.UPDATE_DAYOFF_DISPANSERIZATION)
+                .Split(new char[] { ';' })
+                .Select(s => s.Trim())
+                .Where(s => !string.IsNullOrEmpty(s));
+
+            foreach (string fix in fixes) {
+                selectSpecs.CommandText = fix;
+                ExecuteCommand(selectSpecs);
+            }
+
             return true;
         }
 

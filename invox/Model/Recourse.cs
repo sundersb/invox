@@ -276,8 +276,10 @@ namespace invox.Model {
 
             xml.Writer.WriteElementString("FOR_POM", AidForm.ToString());
 
-            if (!string.IsNullOrEmpty(DirectedFrom))
+            if (!string.IsNullOrEmpty(DirectedFrom)) {
                 xml.Writer.WriteElementString("NPR_MO", DirectedFrom);
+                xml.Writer.WriteElementString("NPR_DATE", DirectionDate.AsXml());
+            }
 
             xml.Writer.WriteElementString("LPU", Options.LpuCode);
 

@@ -337,12 +337,20 @@ select
     <value>select sum(S_ALL) TOTAL from {period}S{lpu} S where {section}</value>
     <comment>Сумма к оплате по счету</comment>
   </data>
+  <data name="UPDATE_DAYOFF_DISPANSERIZATION" xml:space="preserve">
+    <value>update {period}S{lpu} set COD = COD + 40 where (COD between 22020 and 22054) and (dow(D_U, 2) in (6, 7));
+update {period}S{lpu} set COD = COD + 12 where (COD between 27003 and 27014) and (dow(D_U, 2) in (6, 7));
+update {period}S{lpu} set COD = COD - 40 where (COD between 022060 and 022094) and (dow(D_U, 2) not in (6, 7));
+update {period}S{lpu} set COD = COD - 12 where (COD between 027015 and 027026) and (dow(D_U, 2) not in (6, 7));</value>
+    <comment>Исправить коды услуг ДД-1 и проф для выходных</comment>
+  </data>
   <data name="UPDATE_ONKO_OTHER_AIM_COMMON" xml:space="preserve">
     <value>update {period}PATU set DS2 = DS, DS = 'Z02.7'
  where (DS like 'C%')
   and (OTD = '0004')
   and ((COD in (50101, 50102, 50201, 50202, 50301, 50302, 50401, 50402))
    or (floor(COD / 10000) = 6))</value>
+    <comment>Сводный счет - диагноз для единичных посещений с иной целью</comment>
   </data>
   <data name="UPDATE_ONKO_OTHER_AIM_MAIN" xml:space="preserve">
     <value>update {period}S{lpu} set DS2 = DS, DS = 'Z02.7'
@@ -350,5 +358,6 @@ select
   and (OTD = '0004')
   and ((COD in (50101, 50102, 50201, 50202, 50301, 50302, 50401, 50402))
    or (floor(COD / 10000) = 6))</value>
+    <comment>Основной счет - диагноз для единичных посещений с иной целью</comment>
   </data>
 </root>

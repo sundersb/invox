@@ -307,7 +307,7 @@ namespace invox.Data.Relax {
             }
             
             result.Child = Child;
-            result.Reason = InternalReasonHelper.ToVisitAim(InternalReason);
+            result.Reason = AidConditions == "3" ? InternalReasonHelper.ToVisitAim(InternalReason) : string.Empty;
 
 #if FOMS
             result.LocalReason = InternalReason.ToFomsReason(soul);
