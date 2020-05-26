@@ -373,7 +373,6 @@ namespace invox.Data.Relax {
                     MainDiagnosis = "Z01.8";
             } else {
                 Outcome = Dict.Outcome.Get(AidConditions, Outcome.TrimStart('0'));
-                Outcome = Dict.ResultOutcome.Instance.Repair(Result, Outcome);
             }
 
             //PayKind = GetPayKind(unit, ServiceCode, soul);

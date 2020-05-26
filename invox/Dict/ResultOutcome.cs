@@ -12,6 +12,9 @@ namespace invox.Dict {
     /// </summary>
     class ResultOutcome {
         const string XML_NAME = "\\Dict\\ResultOutcome.xml";
+        static string[] RESULTS_FOR_OUTCOME_306 = {
+            "301", "305", "308", "314", "315"
+        };
 
         ResultOutcomeItem[] items;
 
@@ -42,21 +45,19 @@ namespace invox.Dict {
         }
 
         /// <summary>
-        /// Заменить исход заболевания на валидный, если он не соответствует результату обращения
+        /// Исправить результат обращения или исход заболевания, если они не бьют друг другу
         /// </summary>
-        /// <param name="resultCode">Результат обращения</param>
-        /// <param name="outcomeCode">Исход заболевания</param>
-        /// <returns>Исход заболевания - тот же или исправленный</returns>
-        public string Repair(string resultCode, string outcomeCode) {
-            var matches = items.Where(i => i.Result == resultCode).Select(i => i.Outcome);
-
-            if (matches == null || matches.Count() == 0)
-                return outcomeCode;
-
-            if (matches.Contains(outcomeCode)) {
-                return outcomeCode;
+        /// <param name="rec"></param>
+        public void Repair(invox.Model.Recourse rec) {
+            if (rec.Outcome == "306") {
+                if (!RESULTS_FOR_OUTCOME_306.Contains(rec.Result))
+                    rec.Outcome = "304";
             } else {
-                return matches.First();
+                var matches = items.Where(i => i.Result == rec.Result).Select(i => i.Outcome);
+                if (matches == null || matches.Count() == 0) return;
+
+                if (!matches.Contains(rec.Outcome))
+                    rec.Outcome = matches.First();
             }
         }
     }

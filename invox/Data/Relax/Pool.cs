@@ -833,6 +833,7 @@ namespace invox.Data.Relax {
 
             foreach (RecourseAux ra in rs) {
                 Model.Recourse rec = ra.ToRecourse();
+                invox.Dict.ResultOutcome.Instance.Repair(rec); 
                 rec.Events = LoadEvents(rec, ra, section);
                 yield return rec;
             }
