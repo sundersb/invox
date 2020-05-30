@@ -75,9 +75,9 @@ namespace invox.Data.Relax {
         /// Выборка онкологии
         /// </summary>
 #if FOMS
-        const string D4_SELECTION = "(S.OTD not in ('0000', '8000', '0009')) and ((S.DS = 'Z03.1') or (left (S.DS, 1) = 'C') or (S.DS like 'D0%'))";
+        const string D4_SELECTION = "(S.OTD not in ('0000', '0008', '0009')) and ((S.DS = 'Z03.1') or (left (S.DS, 1) = 'C') or (S.DS like 'D0%'))";
 #else
-        const string D4_SELECTION = "(S.OTD not in ('0000', '8000', '0009')) and ((S.DS = 'Z03.1') or (left (S.DS, 1) = 'C'))";
+        const string D4_SELECTION = "(S.OTD not in ('0000', '0008', '0009')) and ((S.DS = 'Z03.1') or (left (S.DS, 1) = 'C'))";
 #endif
 
         string period;
