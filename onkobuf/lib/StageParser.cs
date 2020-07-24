@@ -32,7 +32,7 @@ namespace onkobuf.lib {
             get {
                 if (diagnoses == null) lock (locker) {
                     if (diagnoses == null) {
-                        diagnoses = model.Classifier.All
+                        diagnoses = model.Stages.All
                             .GroupBy(s => s.Diagnosis)
                             .Select(v => v.First().Diagnosis)
                             .ToArray();
@@ -83,8 +83,6 @@ namespace onkobuf.lib {
 
         // Helper to form StageParser fields from a string
         void Parse(string line) {
-            // This one resembles gode-code but it's not Haskell which manages things like this natively
-
             // Separate ICD code
             int pos = line.IndexOf(' ');
             if (pos < 0) return;
@@ -250,28 +248,28 @@ namespace onkobuf.lib {
                 ds = string.Empty;
 
             var query =
-                from cs in model.Classifier.All
-                join ss in model.Stages.All on cs.Stage equals ss.ID
-                join ts in model.Tumors.All on cs.Tumor equals ts.ID
-                join ns in model.Nodules.All on cs.Nodus equals ns.ID
-                join ms in model.Metastases.All on cs.Metastasis equals ms.ID
-                where cs.Diagnosis == ds
+                from ss in model.Stages.All
+                join ts in model.Tumors.All on ss.Diagnosis equals ts.Diagnosis
+                join ns in model.Nodules.All on ss.Diagnosis equals ns.Diagnosis
+                join ms in model.Metastases.All on ss.Diagnosis equals ms.Diagnosis
+
+                where ss.Diagnosis == ds
                 select new ClassesRecord {
-                    ID = cs.ID,
-                    Diagnosis = cs.Diagnosis,
+                    ID = 0,
+                    Diagnosis = ts.Diagnosis,
                     Stage = ss.Code,
                     StageArabic = ss.CodeArabic,
                     Tumor = ts.Code,
                     Nodus = ns.Code,
                     Metastasis = ms.Code,
-                    Code = ClassesRecord.GetCode(cs.Stage, cs.Tumor, cs.Nodus, cs.Metastasis)
+                    Code = ClassesRecord.GetCode(ss.ID, ts.ID, ns.ID, ms.ID)
                 };
 
             maxRating = 0;
             var result = query.ToList();
             result.ForEach(rec => rec.Rating = CountRating(rec));
 
-            return result.OrderByDescending(r => r.Rating);
+            return result.OrderByDescending(r => r.Rating).Take(50);
         }
     }
 }

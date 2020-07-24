@@ -61,6 +61,8 @@ namespace onkobuf.model {
             xml.Load(xmlName);
             XmlElement root = xml.DocumentElement;
             foreach (XmlNode node in root.SelectNodes("zap")) {
+                if (!lib.DateHelper.ValidNode(node)) continue;
+
                 string id = node.SelectSingleNode("ID_M").InnerText;
                 string ds = node.SelectSingleNode("DS_M").InnerText;
                 string code = node.SelectSingleNode("KOD_M").InnerText.Capitalized();

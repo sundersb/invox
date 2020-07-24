@@ -78,8 +78,8 @@
     </Compile>
     <Compile Include="lib\Capitalizer.cs" />
     <Compile Include="lib\DataTableHelper.cs" />
+    <Compile Include="lib\DateHelper.cs" />
     <Compile Include="lib\StageParser.cs" />
-    <Compile Include="model\Classifier.cs" />
     <Compile Include="model\Directions.cs" />
     <Compile Include="model\Metastasis.cs" />
     <Compile Include="model\Nodus.cs" />
@@ -125,9 +125,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="resources\N005.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="resources\N006.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

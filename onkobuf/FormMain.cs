@@ -18,24 +18,23 @@ namespace onkobuf {
             nagging.Show(this);
 
             var query =
-                from cs in model.Classifier.All
-                    join ss in model.Stages.All on cs.Stage equals ss.ID
-                    join ts in model.Tumors.All on cs.Tumor equals ts.ID
-                    join ns in model.Nodules.All on cs.Nodus equals ns.ID
-                    join ms in model.Metastases.All on cs.Metastasis equals ms.ID
+                from ss in model.Stages.All
+                join ts in model.Tumors.All on ss.Diagnosis equals ts.Diagnosis
+                join ns in model.Nodules.All on ss.Diagnosis equals ns.Diagnosis
+                join ms in model.Metastases.All on ss.Diagnosis equals ms.Diagnosis
                 select new ClassesRecord {
-                    ID = cs.ID,
-                    Diagnosis = cs.Diagnosis,
+                    ID = 0,
+                    Diagnosis = ts.Diagnosis,
                     Stage = ss.Code,
                     StageArabic = ss.CodeArabic,
                     Tumor = ts.Code,
                     Nodus = ns.Code,
                     Metastasis = ms.Code,
-                    Code = ClassesRecord.GetCode(cs.Stage, cs.Tumor, cs.Nodus, cs.Metastasis)
+                    Code = ClassesRecord.GetCode(ss.ID, ts.ID, ns.ID, ms.ID)
                 };
 
             // Load directions' table with options
-            DataTable table = lib.DataTableHelper.ConvertToDatatable(query);
+            DataTable table = lib.DataTableHelper.ConvertToDatatable(query.Take(100));
             sgData.DataSource = table;
             sgData.Columns["Code"].Visible = false;
             lblCaseCode.DataBindings.Add("Text", sgData.DataSource, "Code");

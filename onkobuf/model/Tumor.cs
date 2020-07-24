@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Xml;
 using onkobuf.lib;
+using System;
 
 namespace onkobuf.model {
     /// <summary>
@@ -61,6 +62,8 @@ namespace onkobuf.model {
             xml.Load(xmlName);
             XmlElement root = xml.DocumentElement;
             foreach (XmlNode node in root.SelectNodes("zap")) {
+                if (!lib.DateHelper.ValidNode(node)) continue;
+
                 string id = node.SelectSingleNode("ID_T").InnerText;
                 string ds = node.SelectSingleNode("DS_T").InnerText;
                 string code = node.SelectSingleNode("KOD_T").InnerText.Capitalized();
