@@ -49,7 +49,7 @@ namespace invox.Data.Relax {
         /// Порядковый номер закрытого случая
         /// </summary>
         public int OrdinalNumber;
-
+        
         /// <summary>
         /// Пациент P.RECID
         /// </summary>
@@ -327,9 +327,6 @@ namespace invox.Data.Relax {
             //result.ComplicationDiagnosis;             - Pool.LoadEvents
             //result.DispensarySupervision;             - Pool.LoadEvents
             //result.ConcurrentMesCode;                 - Pool.LoadEvents
-
-            // TODO: RecourseAux - forming ClinicalGroup
-            //result.ClinicalGroup;
 
             // Hack to avoid oncology treatment services in polyclinic
             //result.Rehabilitation = Rehabilitation || (section == Model.OrderSection.D4 && !rec.SuspectOncology);

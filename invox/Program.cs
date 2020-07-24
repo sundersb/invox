@@ -94,6 +94,12 @@ namespace invox {
                 if (!medialog.Authorize())
                     Lib.Logger.Log("Ошибка авторизации в Медиалоге!");
 
+                if (!Lib.ClinicalGroupHelper.Init())
+                    Lib.Logger.Log("Ошибка загрузки справочника КСГ");
+
+                if (!Lib.OncoTherapyHelper.Init())
+                    Lib.Logger.Log("Ошибка загрузки справочника онкотерапии");
+
                 Data.IInvoice pool = new Data.Relax.Pool(Options.LpuLocation, Options.LocalLpuCode, Options.PeriodLocation, medialog);
 
                 if (pool.Init() && Checkup(pool)) {

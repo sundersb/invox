@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<items>
+  <item schema="sh019" serv="520026" idls="000438" line="1" ksg="ds19.018">Бусерелин 3,75 мг 1 раз в 28 дней</item>
+  <item schema="sh047" serv="520069" idls="000679" line="1" ksg="ds19.018">Гозерелин 3,6 мг 1 раз в 28 дней</item>
+  <item schema="sh182" serv="520211" idls="002140" line="1" ksg="ds19.018">Трипторелин 3,75 мг 1 раз в 28 дней</item>
+  <item schema="sh214" serv="520245" idls="002263" line="2" ksg="ds19.019">Фулвестрант 500 мг 1 раз в 28 дней (500 мг 2 раза в первый месяц терапии)</item>
+  <item schema="sh468" serv="520544" idls="001004" line="2" ksg="ds19.019">Интерферон альфа 3-5 млн ЕД 3 раза в неделю</item>
+</items>

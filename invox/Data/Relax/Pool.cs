@@ -438,6 +438,18 @@ namespace invox.Data.Relax {
                 result = new Model.OnkologyTreat(mes1);
             });
 
+            if (result != null) {
+                var drugService = evt.Services.FirstOrDefault(s => s.ServiceCode / 10000 == 52);
+                if (drugService != null) {
+                    var oncoService = Lib.OncoTherapyHelper.Service[drugService.ServiceCode];
+                    if (oncoService != null) {
+                        result.Services = new invox.Model.OncologyService[] { oncoService };
+                        evt.ClinicalGroup = Lib.OncoTherapyHelper.Service.ClinicalCroupForService(drugService.ServiceCode);
+                        oncoService.Drugs.First().Date = drugService.DateTill;
+                    }
+                }
+            }
+
             return result;
         }
 
@@ -454,16 +466,6 @@ namespace invox.Data.Relax {
         public IEnumerable<Model.OncologyConsilium> LoadOncologyConsilium(Model.Recourse rec, Model.Event evt) {
             // У нас не проводятся консилиумы
             yield return new Model.OncologyConsilium(Model.OncologyConsiliumReason.NotNeeded, DateTime.Today);
-        }
-
-        public IEnumerable<Model.OncologyService> LoadOncologyServices() {
-            yield break;
-            //throw new NotImplementedException();
-        }
-
-        public IEnumerable<Model.OncologyDrug> LoadOncologyDrugs() {
-            yield break;
-            //throw new NotImplementedException();
         }
 
         /// <summary>

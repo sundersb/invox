@@ -229,10 +229,6 @@ namespace invox.Model {
                     d.Write(xml);
             }
 
-            if (evt.IsOncology) {
-                foreach (OncologyService o in pool.LoadOncologyServices())
-                    o.Write(xml, pool);
-            }
             xml.WriteIfValid("COMENTU", Comment);
 
             xml.Writer.WriteEndElement();

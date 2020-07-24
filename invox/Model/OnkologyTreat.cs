@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using invox.Lib;
+using System.Collections.Generic;
 
 namespace invox.Model {
     /// <summary>
@@ -180,6 +181,11 @@ namespace invox.Model {
         public float BeamLoad { get { return beamLoad; } }
 
         /// <summary>
+        /// Список услуг по онкологии
+        /// </summary>
+        public IEnumerable<OncologyService> Services { get; set; }
+
+        /// <summary>
         /// Ctor
         /// </summary>
         /// <param name="mes1">Блянский код МЭС1 из релакса</param>
@@ -262,8 +268,10 @@ namespace invox.Model {
             foreach (OnkologyRefusal r in pool.LoadOnkologicalRefusal())
                 r.Write(xml);
 
-            foreach (OncologyService s in pool.LoadOncologyServices())
-                s.Write(xml, pool);
+            if (Services != null) {
+                foreach (OncologyService s in Services)
+                    s.Write(xml, pool);
+            }
 
             xml.Writer.WriteEndElement();
         }

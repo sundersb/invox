@@ -81,10 +81,12 @@
     <Compile Include="Dict\ResultOutcome.cs" />
     <Compile Include="Dict\SMO.cs" />
     <Compile Include="Dict\StatisticsCode.cs" />
+    <Compile Include="Lib\ClinicalGroupHelper.cs" />
     <Compile Include="Lib\CommandLine.cs" />
     <Compile Include="Lib\DateHelper.cs" />
     <Compile Include="Lib\InvoiceFilename.cs" />
     <Compile Include="Lib\Logger.cs" />
+    <Compile Include="Lib\OncoTherapyHelper.cs" />
     <Compile Include="Lib\Options.cs" />
     <Compile Include="Lib\PassportChecker.cs" />
     <Compile Include="Lib\Progress.cs" />
@@ -178,6 +180,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Dict\V020-SLPROF.xml" />
+    <None Include="Lib\onco_drug_therapy.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Lib\statq.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>

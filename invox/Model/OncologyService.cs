@@ -69,39 +69,32 @@ namespace invox.Model {
     /// </remarks>
     /// </summary>
     class OncologyService {
-        N013 serviceType;
-        N014 surgicalCure;
-        N015 line;
-        N016 cycle;
-        bool counterVomit;
-        N017 rayKind;
-
         /// <summary>
         /// Тип услуги
         /// Заполняется в соответствии со справочником N013 Приложения А.
         /// </summary>
-        public N013 ServiceType { get { return serviceType; } }
+        public N013 ServiceType { get; set; }
 
         /// <summary>
         /// Тип хирургического лечения
         /// При USL_TIP=1 заполняется в соответствии со справочником N014 Приложения А.
         /// Не подлежит заполнению при USL_TIP <> 1.
         /// </summary>
-        public N014 SurgicalCure { get { return surgicalCure; } }
+        public N014 SurgicalCure { get; set; }
 
         /// <summary>
         /// Линия лекарственной терапии
         /// При USL_TIP=2 заполняется в соответствии со справочником N015 Приложения А.
         /// Не подлежит заполнению при USL_TIP не равном 2
         /// </summary>
-        public N015 Line { get { return line; } }
+        public N015 Line { get; set; }
 
         /// <summary>
         /// Цикл лекарственной терапии
         /// При USL_TIP=2 заполняется в соответствии со справочником N016 Приложеиня А.
         /// Не подлежит заполнению при USL_TIP не равном 2
         /// </summary>
-        public N016 Cycle { get { return cycle; } }
+        public N016 Cycle { get; set; }
 
         /// <summary>
         /// Признак проведения профилактики тошноты и рвотного рефлекса
@@ -109,36 +102,41 @@ namespace invox.Model {
         /// лекарственной противоопухолевой или химиолучевой терапии препаратом высоко-,
         /// средне- или низкоэметогенного потенциала
         /// </summary>
-        public bool CounterVomitCure { get { return counterVomit; } }
+        public bool CounterVomitCure { get; set; }
 
         /// <summary>
         /// Тип лучевой терапии
         /// При USL_TIP=3 или USL_TIP=4 заполняется в соответствии со справочником N017 Приложения А.
         /// Не подлежит заполнению при USL_TIP не равном 3 или 4
         /// </summary>
-        public N017 RayKind { get { return rayKind; } }
+        public N017 RayKind { get; set; }
+
+        public IEnumerable<OncologyDrug> Drugs { get; set; }
 
         public void Write(Lib.XmlExporter xml, Data.IInvoice pool) {
             xml.Writer.WriteStartElement("ONK_USL");
             
-            xml.Writer.WriteElementString("USL_TIP", ((int)serviceType).ToString());
+            xml.Writer.WriteElementString("USL_TIP", ((int)ServiceType).ToString());
 
-            if (surgicalCure != N014.None)
-                xml.Writer.WriteElementString("HIR_TIP", ((int)surgicalCure).ToString());
+            if (SurgicalCure != N014.None)
+                xml.Writer.WriteElementString("HIR_TIP", ((int)SurgicalCure).ToString());
 
-            if (line != N015.None)
-                xml.Writer.WriteElementString("LEK_TIP_L", ((int)line).ToString());
+            if (Line != N015.None)
+                xml.Writer.WriteElementString("LEK_TIP_L", ((int)Line).ToString());
 
-            if (cycle != N016.None)
-                xml.Writer.WriteElementString("LEK_TIP_V", ((int)cycle).ToString());
+            if (Cycle != N016.None)
+                xml.Writer.WriteElementString("LEK_TIP_V", ((int)Cycle).ToString());
 
-            foreach (OncologyDrug d in pool.LoadOncologyDrugs())
-                d.Write(xml);
+            if (Drugs != null) {
+                foreach (OncologyDrug d in Drugs)
+                    d.Write(xml);
+            }
 
-            xml.WriteBool("PPTR", counterVomit);
+            if (CounterVomitCure)
+                xml.Writer.WriteElementString("PPTR", "1");
 
-            if (rayKind != N017.None)
-                xml.Writer.WriteElementString("LUCH_TIP", ((int)rayKind).ToString());
+            if (RayKind != N017.None)
+                xml.Writer.WriteElementString("LUCH_TIP", ((int)RayKind).ToString());
             
             xml.Writer.WriteEndElement();
         }

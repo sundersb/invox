@@ -46,33 +46,33 @@ namespace invox.Model {
     /// D1 - OK, D2, D3 - absent
     /// </summary>
     class ClinicalGroup {
-        string ksgNumber;
-        int version;
-        bool subgroupUsed;
-        string kpgNumber;
+        //string ksgNumber;
+        //int version;
+        //bool subgroupUsed;
+        //string kpgNumber;
 
-        double qexpenece;
-        double qmanagement;
-        double baseRate;
-        double qdiff;
-        double qlevel;
+        //decimal qexpenece;
+        //decimal qmanagement;
+        //decimal baseRate;
+        //decimal qdiff;
+        //decimal qlevel;
 
-        string crit;
+        //string crit;
 
-        bool kslpUsed;
+        //bool kslpUsed;
 
         /// <summary>
         /// Номер КСГ
         /// Номер КСГ (V023) с указанием подгруппы (в случае использования).
         /// Заполняется при оплате случая лечения по КСГ. Не подлежит заполнению при заполненном N_KPG
         /// </summary>
-        public string KsgNumber { get { return ksgNumber; } }
+        public string KsgNumber { get; set; }
 
         /// <summary>
         /// Модель определения КСГ
         /// Указывается версия модели определения КСГ (год)
         /// </summary>
-        public int Version { get { return version; } }
+        public int Version { get; set; }
 
         /// <summary>
         /// Номер КПГ
@@ -80,46 +80,46 @@ namespace invox.Model {
         /// Заполняется при оплате случая лечения по КПГ.
         /// Не подлежит заполнению при заполненном N_KSG
         /// </summary>
-        public string KpgNumber { get { return kpgNumber; } }
+        public string KpgNumber { get; set; }
 
         /// <summary>
         /// Признак использования подгруппы КСГ
         /// </summary>
-        public bool SubgroupUsed { get { return subgroupUsed; } }
+        public bool SubgroupUsed { get; set; }
 
         /// <summary>
         /// Коэффициент затратоемкости
         /// Значение коэффициента затратоемкости группы/подгруппы КСГ или КПГ
         /// </summary>
-        public double QuotExpense { get { return qexpenece; } }
+        public decimal QuotExpense { get; set; }
 
         /// <summary>
         /// Управленческий коэффициент
         /// Значение управленческого коэффициента для КСГ или КПГ.
         /// При отсутствии указывается "1
         /// </summary>
-        public double QuotManagement { get { return qmanagement; } }
+        public decimal QuotManagement { get; set; }
         
         /// <summary>
         /// Базовая ставка
         /// Значение базовой ставки, указывается в рублях
         /// </summary>
-        public double BaseRate { get { return baseRate; } }
+        public decimal BaseRate { get; set; }
 
         /// <summary>
         /// Коэффициент дифференциации
         /// </summary>
-        public double QuotDifference { get { return qdiff; } }
+        public decimal QuotDifference { get; set; }
 
         /// <summary>
         /// Коэффициент уровня/подуровня оказания медицинской помощи
         /// </summary>
-        public double QuotGroupLevel { get { return qlevel; } }
+        public decimal QuotGroupLevel { get; set; }
 
         /// <summary>
         /// Признак использования КСЛП
         /// </summary>
-        public bool KslpUsed { get { return kslpUsed; } }
+        public bool KslpUsed { get; set; }
 
         /// <summary>
         /// Классификационный критерий
@@ -128,27 +128,28 @@ namespace invox.Model {
         /// - в случае применения при оплате случая лечения по КСГ;
         /// - в случае применения при оплате случая лечения по КПГ, если применен региональный классификационный критерий
         /// </summary>
-        public string AuxCriterion { get { return crit; } }
+        public string AuxCriterion { get; set; }
 
         public void Write(Lib.XmlExporter xml, Data.IInvoice pool, Event evt) {
             xml.Writer.WriteStartElement("KSG_KPG");
 
-            xml.WriteIfValid("N_KSG", ksgNumber);
-            xml.Writer.WriteElementString("VER_KSG", version.ToString());
-            xml.WriteBool("KSG_PG", subgroupUsed);
-            xml.WriteIfValid("N_KPG", kpgNumber);
+            xml.WriteIfValid("N_KSG", KsgNumber);
+            xml.Writer.WriteElementString("VER_KSG", Version.ToString());
+            xml.WriteBool("KSG_PG", SubgroupUsed);
+            xml.WriteIfValid("N_KPG", KpgNumber);
 
-            xml.Writer.WriteElementString("KOEF_Z", qexpenece.ToString("F5", Options.NumberFormat));
-            xml.Writer.WriteElementString("KOEF_UP", qmanagement.ToString("F5", Options.NumberFormat));
-            xml.Writer.WriteElementString("BZTSZ", baseRate.ToString("C2", Options.NumberFormat));
-            xml.Writer.WriteElementString("KOEF_D", qdiff.ToString("F5", Options.NumberFormat));
-            xml.Writer.WriteElementString("KOEF_U", qlevel.ToString("F5", Options.NumberFormat));
+            xml.Writer.WriteElementString("KOEF_Z", QuotExpense.ToString("F5", Options.NumberFormat));
+            xml.Writer.WriteElementString("KOEF_UP", QuotManagement.ToString("F5", Options.NumberFormat));
+            xml.Writer.WriteElementString("BZTSZ", BaseRate.ToString("F2", Options.NumberFormat));
+            xml.Writer.WriteElementString("KOEF_D", QuotDifference.ToString("F5", Options.NumberFormat));
+            xml.Writer.WriteElementString("KOEF_U", QuotGroupLevel.ToString("F5", Options.NumberFormat));
 
             // TODO: D4 Multiple
-            xml.WriteIfValid("CRIT", crit);
+            xml.WriteIfValid("CRIT", AuxCriterion);
 
             // TODO:
             // D4: SL_K
+            xml.WriteBool("SL_K", KslpUsed);
 
             List<ComplexityQuotient> qs = pool.LoadComplexityQuotients().ToList();
             if (qs.Count() > 0) {
