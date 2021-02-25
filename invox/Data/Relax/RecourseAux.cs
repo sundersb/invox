@@ -486,7 +486,8 @@ namespace invox.Data.Relax {
                 default:
                     int c = sa.ServiceCode / 1000;
                     if (c == 98 || c == 3) {
-                        return AID_KIND_SPECIALIZED;
+                        //return AID_KIND_PRIMARY_SPECIALIZED;
+                        return AID_KIND_PRIMARY;
                     } else {
                         if (sa.AidProfile == "97")
                             return AID_KIND_PRIMARY;
