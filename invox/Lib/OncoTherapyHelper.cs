@@ -89,6 +89,12 @@ namespace invox.Lib {
 
             OncologyService ReadItem(XElement node) {
                 //string title = node.Value;
+                string schema = node.Attribute("schema").Value;
+
+                var drugs = node.Attribute("idls").Value
+                    .Split(new[] { ',', ';' })
+                    .Select(id => new OncologyDrug(id, schema))
+                    .ToArray();
 
                 OncologyService result = new OncologyService() {
                     ServiceType = DEFAULT_SERVICE_TYPE,
@@ -97,9 +103,7 @@ namespace invox.Lib {
                     Cycle = DEFAULT_CURE_CYCLE,
                     CounterVomitCure = DEFAULT_VOMIT_PROPHYLAX,
                     RayKind = DEFAULT_RAY_TREAT,
-                    Drugs = new OncologyDrug[] {
-                        new OncologyDrug(node.Attribute("idls").Value, node.Attribute("schema").Value)
-                    }
+                    Drugs = drugs
                 };
 
                 return result;
