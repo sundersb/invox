@@ -25,7 +25,7 @@ namespace invox.Data.Relax {
         // ФОМС условие SQL для выборки услуг, обозначающих закрытый случай, вынесено из Queries
         // и помещено здесь
         // СДП, проф, ДД2, ДД1, подушевые, ФОГК, диагностика
-        const string RECOURSE_SERVICES_CRITERION = "floor(S.COD/1000) in (3, 27, 28, 22, 50, 5, 6)";
+        const string RECOURSE_SERVICES_CRITERION = "floor(S.COD/1000) in (3, 27, 28, 22, 50, 4, 5, 6)";
 
         
         // Условия для выборки услуг в рамках диспансеризации. Необходимость связана с тем, что

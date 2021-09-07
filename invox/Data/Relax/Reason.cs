@@ -162,9 +162,9 @@ namespace invox.Data.Relax {
                     return isSoul ? "5" : "4";
 
                 case InternalReason.Emergency: return "18";
-                case InternalReason.Prof: return "15";
-                case InternalReason.Stage1: return "8";
-                case InternalReason.Stage2: return "9";
+                case InternalReason.Prof: return "43";
+                case InternalReason.Stage1: return "38";
+                case InternalReason.Stage2: return "39";
 
                 case InternalReason.Diagnostics: return "21";
 
@@ -241,7 +241,7 @@ namespace invox.Data.Relax {
                     return diagnosis[0] == 'Z';
 
                 case DiagnosisKind.Treatment:
-                    return diagnosis[0] >= 'A' & diagnosis[0] <= 'T';
+                    return (diagnosis[0] >= 'A' && diagnosis[0] <= 'T') || diagnosis.StartsWith("U07");
 
                 default: return true;
             }

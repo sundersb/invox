@@ -101,9 +101,9 @@ namespace invox.Data.Relax {
         public string Outcome;          // S.IG
 
         /// <summary>
-        /// Способ оплаты V010 (из KMU.OPL)
+        /// Способ оплаты V010 (из KMU.UMP)
         /// </summary>
-        public string PayKind;          // KMU.OPL
+        public string PayKind;          // KMU.UMP
 
         /// <summary>
         /// Тип оплаты для законченного случая
@@ -484,15 +484,15 @@ namespace invox.Data.Relax {
                     return AID_KIND_EMERGENCY;
 
                 default:
-                    int c = sa.ServiceCode / 1000;
-                    if (c == 98 || c == 3) {
-                        //return AID_KIND_PRIMARY_SPECIALIZED;
-                        return AID_KIND_PRIMARY;
-                    } else {
-                        if (sa.AidProfile == "97")
+                    switch (sa.ServiceCode / 1000) {
+                        case 98:
+                            //return AID_KIND_PRIMARY_SPECIALIZED;
                             return AID_KIND_PRIMARY;
-                        else
-                            return AID_KIND_PRIMARY_SPECIALIZED;
+                        default:
+                            if (sa.AidProfile == "97")
+                                return AID_KIND_PRIMARY;
+                            else
+                                return AID_KIND_PRIMARY_SPECIALIZED;
                     }
             }
         }

@@ -264,8 +264,13 @@ namespace invox.Model {
                 xml.Writer.WriteElementString("TARIF", Tariff.ToString("F2", Options.NumberFormat));
 
             xml.Writer.WriteElementString("SUMV_USL", Total.ToString("F2", Options.NumberFormat));
+
+            xml.Writer.WriteStartElement("MR_USL_N");
+            xml.Writer.WriteElementString("MR_N", "1");
             xml.Writer.WriteElementString("PRVS", SpecialityCode);
             xml.Writer.WriteElementString("CODE_MD", DoctorCode);
+            xml.Writer.WriteEndElement();
+            
             xml.WriteIfValid("COMENTU", Comment);
             xml.Writer.WriteEndElement();
         }

@@ -388,8 +388,9 @@ namespace invox.Model {
             xml.WriteIfValid("PROFIL_K", BedProfile);
             xml.WriteBool("DET", Child);
 
-            // KHFOMS
+#if FOMS
             xml.Writer.WriteElementString("CEL", LocalReason);
+#endif
 
             xml.Writer.WriteElementString("TAL_D", HiTechCheckDate.AsXml());
             xml.Writer.WriteElementString("TAL_NUM", HiTechCheckNumber);

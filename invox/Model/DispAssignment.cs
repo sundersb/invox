@@ -179,7 +179,7 @@ namespace invox.Model {
             xml.Writer.WriteElementString("NAZN", Index.ToString());
 #endif
             xml.Writer.WriteElementString("NAZ_R", RouteCode.ToString());
-            xml.WriteIfValid("NAZ_SP", DoctorSpeciality);
+            xml.WriteIfValid("NAZ_IDDOKT", DoctorSpeciality);
             xml.WriteIfValid("NAZ_V", StudyKind);
 
             xml.WriteIfValid("NAZ_USL", ServiceCode);
