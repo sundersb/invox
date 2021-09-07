@@ -219,7 +219,12 @@ namespace invox.Model {
 
             xml.Writer.WriteElementString("VPOLIS", PolicyType.ToString());
             xml.WriteIfValid("SPOLIS", PolicySerial);
-            xml.WriteIfValid("NPOLIS", PolicyNumber);
+
+            if (PolicyType == 3) {
+                xml.WriteIfValid("ENP", PolicyNumber);
+            } else {
+                xml.WriteIfValid("NPOLIS", PolicyNumber);
+            }
 
             xml.WriteIfValid("ST_OKATO", AssuranceOkato);
             xml.WriteIfValid("SMO", SmoCode);
