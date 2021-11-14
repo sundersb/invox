@@ -10,6 +10,8 @@ Lib/
 !invox/Lib/
 *.dll
 *.exe
+.vscode/
+Medialog.session.sql
 
 # User-specific files
 *.suo
